@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Erik\AndroidStudioProjects\SafespaceApp\SafeSpace.iml" filepath="C:\Users\Erik\AndroidStudioProjects\SafespaceApp\SafeSpace.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SafespaceApp.iml" filepath="$PROJECT_DIR$/SafespaceApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SafeSpace.iml" filepath="$PROJECT_DIR$/SafeSpace.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
