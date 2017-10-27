@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kristoffer on 2017-10-27.
  */
 
 public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdapter.DocumentationViewHolder> {
-    List<DataClass> list = new ArrayList<>();
+    List<String> list = new ArrayList<>();
     private final Context context;
     OnClickListener listener;
     public interface OnClickListener{
