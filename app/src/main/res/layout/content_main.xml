@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="222dp"
-            android:text="Bruker"
+            android:hint="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,13 +36,14 @@
             android:id="@+id/launch_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Passord.."
+            android:hint="@string/password"
+            android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/launch_username" />
 
         <Button
-            android:id="@+id/launch_loginBtn"
+            android:id="@+id/launch_loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="45dp"
@@ -51,8 +52,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/launch_password" />
     </android.support.constraint.ConstraintLayout>
-
-
-
 
 </android.support.constraint.ConstraintLayout>
