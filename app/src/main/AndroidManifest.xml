@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.MainNavigationMenuActivity" />
-        <activity android:name=".Activities.ReportActivity"></activity>
+        <activity android:name=".Activities.ReportActivity" />
+        <activity android:name=".Activities.DocumentActivity"></activity>
     </application>
 
 </manifest>
