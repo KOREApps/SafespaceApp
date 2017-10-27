@@ -2,4 +2,6 @@
     <string name="app_name">SafeSpace</string>
 
     <string name="settings_menu">Settings</string>
+
+    <string name="login">Login</string>
 </resources>
