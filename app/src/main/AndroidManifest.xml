@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kore.ntnu.no.safespace">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Check for camera at runtime: hasSystemFeature(PackageManager.FEATURE_CAMERA). -->
+    <uses-feature android:name="android.hardware.camera2"
+                  android:required="false"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                     android:maxSdkVersion="18"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,9 +28,17 @@
             </intent-filter>
 
         </activity>
+
         <activity android:name=".Activities.MainNavigationMenuActivity" />
-        <activity android:name=".Activities.ReportActivity" />
-        <activity android:name=".Activities.DocumentActivity"></activity>
+
+        <activity android:name=".Activities.ReportActivity"
+                  android:parentActivityName=".Activities.MainNavigationMenuActivity">
+        </activity>
+
+        <activity android:name=".Activities.DocumentActivity"
+                  android:parentActivityName=".Activities.MainNavigationMenuActivity">
+        </activity>
+
     </application>
 
 </manifest>

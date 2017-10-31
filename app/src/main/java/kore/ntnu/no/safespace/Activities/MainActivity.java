@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             // Check input -> login -> start ny activity
             String username = loginUser.getText().toString();
             String password = loginPwd.getText().toString();
-            Intent intent = new Intent(MainActivity.this, DocumentActivity.class);
+            Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
             startActivity(intent);
         });
 

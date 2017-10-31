@@ -1,7 +1,10 @@
 package kore.ntnu.no.safespace.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import kore.ntnu.no.safespace.R;
 
@@ -11,5 +14,24 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
+
+
+        Button reportBtn = findViewById(R.id.rapportBtn);
+        Button documentBtn = findViewById(R.id.dokumBtn);
+
+        reportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
+                startActivity(intent);
+            }
+        });
+        documentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
