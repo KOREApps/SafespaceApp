@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class Report {
+public abstract class Report {
     private final Long id;
     private final String description;
     private final List<Image> images;
