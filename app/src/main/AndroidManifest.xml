@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kore.ntnu.no.safespace">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Check for camera at runtime: hasSystemFeature(PackageManager.FEATURE_CAMERA). -->
@@ -42,11 +43,15 @@
             android:name=".Activities.GPSActivity"
             android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
         <activity
+            android:name=".Activities.LatestReportActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
+        <activity
             android:name=".Activities.SettingsActivity"
             android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
         <activity
             android:name=".Activities.HelpActivity"
             android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
+        <activity android:name=".Activities.TakePictureActivity"></activity>
     </application>
 
 </manifest>
