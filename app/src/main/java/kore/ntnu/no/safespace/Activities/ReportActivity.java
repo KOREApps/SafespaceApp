@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import kore.ntnu.no.safespace.R;
 
 public class ReportActivity extends AppCompatActivity {
+
+    public static final String PICTURE_ID = "kore.ntnu.safespace.PICTURE_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,15 @@ public class ReportActivity extends AppCompatActivity {
         EditText reportDescription = findViewById(R.id.reportDescription);
         Button sendReport = findViewById(R.id.sendReportBtn);
 
+        capturePhoto.setOnClickListener(c -> takePhoto());
 
+
+    }
+
+    private void takePhoto() {
+        Intent intent = new Intent(ReportActivity.this, TakePictureActivity.class);
+        intent.putExtra(PICTURE_ID, "report");
+        startActivity(intent);
     }
 
 
