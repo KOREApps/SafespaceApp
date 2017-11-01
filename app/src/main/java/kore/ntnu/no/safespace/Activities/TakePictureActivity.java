@@ -84,8 +84,8 @@ public class TakePictureActivity extends AppCompatActivity {
         takePictureButton = findViewById(R.id.take_picture_button);
         assert takePictureButton != null;
         takePictureButton.setOnClickListener(v -> takePicture());
-        String fileName = getIntent().getStringExtra(ReportActivity.PICTURE_ID);
-        outputFile = new File(getImageFilePath("filename"));
+        String filename = getIntent().getStringExtra(ReportActivity.PICTURE_ID);
+        outputFile = new File(getImageFilePath(filename));
         //TODO:Get project name for file name
     }
 
