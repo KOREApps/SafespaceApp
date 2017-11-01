@@ -81,6 +81,7 @@ public class ReportActivity extends AppCompatActivity {
         return image;
     }
     @Override
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == TAKE_PICTURE_REQUEST){
             if(resultCode == RESULT_OK){
