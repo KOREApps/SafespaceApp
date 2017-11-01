@@ -2,6 +2,7 @@ package kore.ntnu.no.safespace.Activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
@@ -163,6 +164,7 @@ public class TakePictureActivity extends AppCompatActivity {
     }
 
     protected void takePicture() {
+        takePictureButton.setEnabled(false);
         if (null == cameraDevice) {
             Log.e(TAG, "cameraDevice is null");
             return;
@@ -190,7 +192,6 @@ public class TakePictureActivity extends AppCompatActivity {
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
-            final File file = new File(Environment.getExternalStorageDirectory() + "/pic.jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
                 @Override
                 public void onImageAvailable(ImageReader reader) {
@@ -229,8 +230,8 @@ public class TakePictureActivity extends AppCompatActivity {
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
-                    Toast.makeText(TakePictureActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
-                    createCameraPreview();
+//                    Toast.makeText(TakePictureActivity.this, "Saved:" + outputFile, Toast.LENGTH_SHORT).show();
+                    pictureTaken();
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
@@ -250,6 +251,13 @@ public class TakePictureActivity extends AppCompatActivity {
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    private void pictureTaken() {
+        Intent intent = new Intent();
+        intent.putExtra(ReportActivity.PICTURE_ID, outputFile.getAbsolutePath());
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     protected void createCameraPreview() {

@@ -7,12 +7,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import kore.ntnu.no.safespace.R;
 
 public class ReportActivity extends AppCompatActivity {
 
     public static final String PICTURE_ID = "kore.ntnu.safespace.PICTURE_ID";
+    public static final int TAKE_PICTURE_REQUEST = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,16 @@ public class ReportActivity extends AppCompatActivity {
     private void takePhoto() {
         Intent intent = new Intent(ReportActivity.this, TakePictureActivity.class);
         intent.putExtra(PICTURE_ID, "report");
-        startActivity(intent);
+        startActivityForResult(intent,TAKE_PICTURE_REQUEST);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == TAKE_PICTURE_REQUEST){
+            if(resultCode == RESULT_OK){
+                String filePath = data.getStringExtra(PICTURE_ID);
+                Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 
