@@ -2,17 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kore.ntnu.no.safespace">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Check for camera at runtime: hasSystemFeature(PackageManager.FEATURE_CAMERA). -->
-    <uses-feature android:name="android.hardware.camera2"
-                  android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-                     android:maxSdkVersion="18"/>
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -21,26 +22,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MainActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
-
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity android:name=".Activities.MainNavigationMenuActivity" />
-
-        <activity android:name=".Activities.ReportActivity"
-                  android:parentActivityName=".Activities.MainNavigationMenuActivity">
-        </activity>
-
-        <activity android:name=".Activities.DocumentActivity"
-                  android:parentActivityName=".Activities.MainNavigationMenuActivity">
-        </activity>
-
+        <activity
+            android:name=".Activities.ReportActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+        <activity
+            android:name=".Activities.DocumentActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+        <activity android:name=".Activities.SettingsActivity" />
+        <activity android:name=".Activities.HelpActivity"></activity>
     </application>
 
 </manifest>
