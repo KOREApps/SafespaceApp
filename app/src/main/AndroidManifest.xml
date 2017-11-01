@@ -38,8 +38,15 @@
         <activity
             android:name=".Activities.DocumentActivity"
             android:parentActivityName=".Activities.MainNavigationMenuActivity" />
-        <activity android:name=".Activities.SettingsActivity" />
-        <activity android:name=".Activities.HelpActivity"></activity>
+        <activity
+            android:name=".Activities.GPSActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
+        <activity
+            android:name=".Activities.HelpActivity"
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
     </application>
 
 </manifest>
