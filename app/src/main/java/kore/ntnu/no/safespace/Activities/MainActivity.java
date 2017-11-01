@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         EditText loginPwd = (EditText) findViewById(R.id.launch_password);
         Button loginButton = (Button) findViewById(R.id.launch_loginButton);
         loginButton.setOnClickListener((View v) -> {
-            // Check input0 -> login -> start ny activity
+            // Check input -> login -> start ny activity
             String username = loginUser.getText().toString();
             String password = loginPwd.getText().toString();
             Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);

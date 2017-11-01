@@ -2,18 +2,24 @@ package kore.ntnu.no.safespace.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import kore.ntnu.no.safespace.Data.Report;
+import kore.ntnu.no.safespace.R;
+
 /**
- * Created by Kristoffer on 2017-10-27.
+ * Created by KristoffMisbruker on 2017-10-27.
  */
 
 public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdapter.DocumentationViewHolder> {
-    List<String> list = new ArrayList<>();
+    List<Report> list = new ArrayList<>();
     private final Context context;
     OnClickListener listener;
 
@@ -27,11 +33,19 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
 
     @Override
     public DocumentationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        Context cont = parent.getContext();
+        int layoutId = R.layout.reports_list_item;
+        LayoutInflater inflater = LayoutInflater.from(cont);
+        View view = inflater.inflate(layoutId, parent, false);
+        DocumentationViewHolder viewHolder = new DocumentationAdapter.DocumentationViewHolder(view);
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(DocumentationViewHolder holder, int position) {
+        Report report = list.get(position);
+
+        holder.textView.setText(report.getDescription()); //TODO FIKS IMGES OG SÅNT
 
     }
 
@@ -50,8 +64,11 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
     }
 
     public class DocumentationViewHolder extends RecyclerView.ViewHolder {
+        public TextView textView;
+
         public DocumentationViewHolder(View itemView) {
             super(itemView);
+            this.textView = itemView.findViewById(R.id.tv_reports);
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onClick(getAdapterPosition());
