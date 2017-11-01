@@ -11,24 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/launch_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="60dp"
             android:background="@mipmap/ic_launcher_round"
+            android:contentDescription="@string/login"
             app:layout_constraintBottom_toTopOf="@+id/launch_username"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/launch_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="184dp"
             android:hint="@string/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -39,7 +43,7 @@
             android:id="@+id/launch_password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:hint="@string/password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,9 +55,10 @@
             android:id="@+id/launch_loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="48dp"
             android:text="@string/login"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.499"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/launch_password" />
     </android.support.constraint.ConstraintLayout>
