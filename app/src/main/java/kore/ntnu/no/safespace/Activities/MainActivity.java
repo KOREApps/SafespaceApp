@@ -16,6 +16,8 @@ import kore.ntnu.no.safespace.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String URL = "http://158.38.198.168:8080";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
