@@ -15,54 +15,41 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
 
-
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
+        Button gpsBtn = findViewById(R.id.gpsBtn);
         Button latestRepBtn = findViewById(R.id.latestBtn);
         Button helpBtn = findViewById(R.id.helpBtn);
         Button settingsBtn = findViewById(R.id.settingsBtn);
 
-        reportBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
-                startActivity(intent);
-            }
-        });
-        documentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
-                startActivity(intent);
-            }
+        reportBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
+            startActivity(intent);
         });
 
-
-        //TODO GPS BUTTON LISTENER
-
-
-        latestRepBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainNavigationMenuActivity.this, LatestReportActivity.class);
-                startActivity(intent);
-            }
+        documentBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
+            startActivity(intent);
         });
 
-        helpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
-                startActivity(intent);
-            }
+        gpsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, GPSActivity.class);
+            startActivity(intent);
         });
 
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
+        latestRepBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, LatestReportActivity.class);
+            startActivity(intent);
+        });
+
+        helpBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
+            startActivity(intent);
+        });
+
+        settingsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
+            startActivity(intent);
         });
     }
 }

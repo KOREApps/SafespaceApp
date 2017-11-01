@@ -16,7 +16,7 @@
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="report"
+        android:text="incidentReport"
         android:layout_row="0"
         android:layout_column="0" />
 
