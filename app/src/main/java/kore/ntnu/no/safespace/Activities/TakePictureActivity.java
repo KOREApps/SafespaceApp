@@ -254,6 +254,7 @@ public class TakePictureActivity extends AppCompatActivity {
     }
 
     private void pictureTaken() {
+        closeCamera();
         Intent intent = new Intent();
         intent.putExtra(ReportActivity.PICTURE_ID, outputFile.getAbsolutePath());
         setResult(RESULT_OK, intent);
