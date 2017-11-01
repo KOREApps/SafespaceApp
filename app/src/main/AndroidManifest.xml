@@ -52,7 +52,16 @@
         <activity
             android:name=".Activities.HelpActivity"
             android:parentActivityName=".Activities.MainNavigationMenuActivity"/>
-        <activity android:name=".Activities.TakePictureActivity"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="no.ntnu.kore.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path"></meta-data>
+        </provider>
     </application>
 
 </manifest>

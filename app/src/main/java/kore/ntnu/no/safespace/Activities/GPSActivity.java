@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.Activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,6 +29,7 @@ public class GPSActivity extends AppCompatActivity {
 
     String locationProvider = LocationManager.NETWORK_PROVIDER;
     Button getLocationBtn;
+    Button clearLocationBtn;
     TextView getLocationView;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -41,7 +42,9 @@ public class GPSActivity extends AppCompatActivity {
 
         getLocationBtn = findViewById(R.id.gpsButtonYo);
         getLocationView = findViewById(R.id.gpsTextView);
+        clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
+        clearLocationBtn.setOnClickListener(view -> stopGPSListener());
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -50,7 +53,7 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called everytime the location is updated.
-                getLocationView.append("\n " + location.getLatitude() + " " + location.getLongitude());
+                getLocationView.append(" " + location.getLatitude() + " " + location.getLongitude());
             }
 
             @Override
@@ -79,7 +82,7 @@ public class GPSActivity extends AppCompatActivity {
             }
             return;
         } else {
-            configureButton();
+            startGPSListener();
         }
 
         lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
@@ -90,21 +93,28 @@ public class GPSActivity extends AppCompatActivity {
         switch(requestCode) {
             case 10:
                 if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
-                    configureButton();
+                    startGPSListener();
                 return;
         }
     }
 
-    private void configureButton() {
+    /**
+     *
+     */
+    private void startGPSListener() {
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
+                getLocationView.setText("Coordinates: ");
                 locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
             }
         });
     }
 
-    // Method to remove GPS listener - The listener can consume a lot of battery.
+    /**
+     * Stops the GPS listener and clears the textview.
+     */
     public void stopGPSListener() {
         locationManager.removeUpdates(locationListener);
     }
