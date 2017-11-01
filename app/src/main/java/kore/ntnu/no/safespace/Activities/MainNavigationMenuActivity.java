@@ -18,6 +18,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
+        Button latestRepBtn = findViewById(R.id.latestBtn);
+        Button helpBtn = findViewById(R.id.helpBtn);
+        Button settingsBtn = findViewById(R.id.settingsBtn);
 
         reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +33,34 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //GPS BUTTON HER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+        latestRepBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainNavigationMenuActivity.this, LatestReportActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
