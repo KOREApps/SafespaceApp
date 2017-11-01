@@ -1,5 +1,7 @@
 package kore.ntnu.no.safespace.Data;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -12,6 +14,7 @@ public class Image  implements Serializable {
     private final String filePath;
     private final String fileExtension;
     private final String description;
+    private Bitmap bitmapImage;
 
     public Image(Long id, String name, String filePath, String fileExtension, String description) {
         this.id = id;
@@ -66,5 +69,13 @@ public class Image  implements Serializable {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    public Bitmap getBitmapImage() {
+        return bitmapImage;
+    }
+
+    public void setBitmapImage(Bitmap bitmapImage) {
+        this.bitmapImage = bitmapImage;
     }
 }

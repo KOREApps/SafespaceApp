@@ -19,6 +19,7 @@ import kore.ntnu.no.safespace.R;
 
 public class ImageDisplayAdapter extends RecyclerView.Adapter<ImageDisplayAdapter.ImageDisplayViewHolder> {
 
+    //TODO:Everything -Kristoffer
     List<Image> list = new ArrayList<>();
     private final Context context;
     LatestReportAdapter.OnClickListener listener;
