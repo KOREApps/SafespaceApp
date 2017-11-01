@@ -6,8 +6,115 @@
     android:layout_height="match_parent"
     tools:context="kore.ntnu.no.safespace.Activities.DocumentActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="documenting"/>
+    <ScrollView
+        android:id="@+id/docScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <EditText
+                android:id="@+id/docProject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:hint="@string/project"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/docSender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Sender:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docProject" />
+
+            <TextView
+                android:id="@+id/docSenderID"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Robert"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/docSender"
+                app:layout_constraintTop_toBottomOf="@+id/docProject" />
+
+            <ImageView
+                android:id="@+id/docTakenPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/navigationmenu_border"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docSenderID" />
+
+            <ImageButton
+                android:id="@+id/docTakePhotoBtn"
+                android:layout_width="65dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="4dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/takenPhoto"
+                android:padding="1dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_takenphoto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docTakenPhoto" />
+
+                <ImageView
+                    android:id="@+id/docTakenPhotos"
+                    android:layout_width="250dp"
+                    android:layout_height="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:contentDescription="@string/takenPhotos"
+                    app:layout_constraintBottom_toTopOf="@+id/docDescription"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/takePhotoBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/docTakenPhoto"
+                    app:layout_constraintVertical_bias="1.0"
+                    android:background="@drawable/navigationmenu_border"
+                    android:padding="1dp" />
+
+            <EditText
+                android:id="@+id/docDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="text"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn"
+                android:background="@drawable/navigationmenu_border"
+                android:padding="1dp"
+                android:hint="Project description.."
+                />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

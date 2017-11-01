@@ -4,12 +4,13 @@
     <string name="settings_menu">Settings</string>
 
     <!-- MainActivity -->
-    <string name="username">Usernam..</string>
+    <string name="username">Username..</string>
     <string name="password">Password..</string>
     <string name="login">Login</string>
 
     <!-- ReportActivity -->
     <string name="incident">Incident..</string>
+    <string name="project">Project name...</string>
     <string name="takePhoto">Photo</string>
     <string name="takenPhoto">Taken Photo</string>
     <string name="takenPhotos">Taken Photos</string>
