@@ -16,7 +16,8 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
     List<String> list = new ArrayList<>();
     private final Context context;
     OnClickListener listener;
-    public interface OnClickListener{
+
+    public interface OnClickListener {
         void onClick(int position);
     }
 
@@ -34,6 +35,10 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
 
     }
 
+    public void setListener(OnClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return list.size();
@@ -48,7 +53,7 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
         public DocumentationViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(view -> {
-                if(listener != null) {
+                if (listener != null) {
                     listener.onClick(getAdapterPosition());
                 }
             });
