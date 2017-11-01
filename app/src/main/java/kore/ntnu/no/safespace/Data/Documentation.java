@@ -1,12 +1,13 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class Documentation extends Report {
+public class Documentation extends Report implements Serializable{
     private final User submitter;
 
     public Documentation(Long ID, String description, List<Image> images, Project project, User submitter) {

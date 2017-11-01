@@ -1,10 +1,12 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class Image {
+public class Image  implements Serializable {
     private final Long id;
     private final String name;
     private final String filePath;

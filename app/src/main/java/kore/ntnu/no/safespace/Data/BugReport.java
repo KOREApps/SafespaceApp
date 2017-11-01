@@ -1,10 +1,12 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class BugReport {
+public class BugReport  implements Serializable {
     private final String title;
     private final String description;
     private final User user;

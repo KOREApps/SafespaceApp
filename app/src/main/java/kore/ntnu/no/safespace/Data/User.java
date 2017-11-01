@@ -1,10 +1,12 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
+
 /**
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class User {
+public class User implements Serializable {
     private final Long uid;
     private final String username, firstname, surname;
     private final Role role;

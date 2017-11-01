@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class IncidentReport extends Report{
+public class IncidentReport extends Report implements Serializable {
     private final List<String> keywords;
 
     public IncidentReport(Long id, String description, List<Image> images, List<String> keywords, Project project) {

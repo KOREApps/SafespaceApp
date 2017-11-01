@@ -1,12 +1,13 @@
 package kore.ntnu.no.safespace.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Kristoffer on 2017-11-01.
  */
 
-public abstract class Report {
+public abstract class Report implements Serializable {
     private final Long id;
     private final String description;
     private final List<Image> images;
