@@ -12,6 +12,12 @@ public class HttpService {
 
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JPG
+            = MediaType.parse("image/jpg");
+    public static final MediaType PNG
+            = MediaType.parse("image/png");
+    public static final MediaType BYTES
+            =  MediaType.parse("application/octet-stream");
 
     private OkHttpClient http;
 
@@ -36,6 +42,20 @@ public class HttpService {
                 .build();
         Response response = http.newCall(request).execute();
         return response.body().string();
+    }
+
+    public String post(String url, byte[] bodyBytes, MediaType mediaType) throws IOException {
+        RequestBody body = RequestBody.create(mediaType, bodyBytes);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = http.newCall(request).execute();
+        return response.body().string();
+    }
+
+    public String post(String url, byte[] bodyBytes) throws IOException {
+        return post(url, bodyBytes, BYTES);
     }
 
 }
