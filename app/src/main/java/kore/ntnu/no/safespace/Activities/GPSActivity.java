@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class GPSActivity extends AppCompatActivity {
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
         clearLocationBtn.setOnClickListener(view -> stopGPSListener());
+        getLocationView.setMovementMethod(new ScrollingMovementMethod());
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -53,7 +55,7 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called everytime the location is updated.
-                getLocationView.append(" " + location.getLatitude() + " " + location.getLongitude());
+                getLocationView.append("\n " + location.getLatitude() + " " + location.getLongitude());
             }
 
             @Override
@@ -107,7 +109,7 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getLocationView.setText("Coordinates: ");
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
             }
         });
     }
