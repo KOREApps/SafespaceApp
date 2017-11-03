@@ -14,14 +14,16 @@ public class Image  implements Serializable {
     private final String filePath;
     private final String fileExtension;
     private final String description;
+    private final String data;
     private Bitmap bitmapImage;
 
-    public Image(Long id, String name, String filePath, String fileExtension, String description) {
+    public Image(Long id, String name, String filePath, String fileExtension, String description, String data) {
         this.id = id;
         this.name = name;
         this.filePath = filePath;
         this.fileExtension = fileExtension;
         this.description = description;
+        this.data = data;
     }
 
     @Override
@@ -69,6 +71,10 @@ public class Image  implements Serializable {
 
     public String getFilePath() {
         return filePath;
+    }
+
+    public String getData(){
+        return data;
     }
 
     public Bitmap getBitmapImage() {

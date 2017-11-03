@@ -54,6 +54,16 @@ public class ImageService implements RestClient<Image, Long> {
         }
     }
 
+    public Image getOneWithData(Long id) {
+        try {
+            String response = http.get(IMAGE_URL + "/" + id + "?data=true");
+            return gson.fromJson(response, Image.class);
+        } catch (IOException e) {
+            Log.e(ImageService.class.getSimpleName(), "Failed to fetch image");
+            return null;
+        }
+    }
+
     @Override
     public Image add(Image image) {
         try {
