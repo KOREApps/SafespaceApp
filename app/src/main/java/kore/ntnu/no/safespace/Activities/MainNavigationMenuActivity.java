@@ -42,8 +42,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         });
 
         helpBtn.setOnClickListener(view -> {
-            //TODO: HelpActivity has been (temporarily) replaced with displayReport activity for the time being for testing purposes.
-            Intent intent = new Intent(MainNavigationMenuActivity.this, DisplayReportActivity.class);
+            Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
             startActivity(intent);
         });
 
