@@ -85,4 +85,8 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
         list.add(report);
         notifyDataSetChanged();
     }
+
+    public Report getReportFromList(int position) {
+        return list.get(position);
+    }
 }

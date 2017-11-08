@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import kore.ntnu.no.safespace.R;
 
 public class LatestReportActivity extends AppCompatActivity {
     DocumentationAdapter adapter;
+    public static final String REPORT = "kore.ntnu.safespace.REPORT";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,16 @@ public class LatestReportActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
         fillReports();
+
+        adapter.setListener(new DocumentationAdapter.OnClickListener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
+                intent.putExtra(REPORT, adapter.getReportFromList(position));
+                startActivity(intent);
+            }
+        });
+
 
 
     }
