@@ -36,6 +36,7 @@ public class GPSActivity extends AppCompatActivity {
     LocationManager locationManager;
     LocationListener locationListener;
     Location lastKnownLocation;
+    Boolean isFirstTime = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,12 +52,13 @@ public class GPSActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-
+        //
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called every time the location is updated.
                 getLocationView.append("\n" + location.getLatitude() + " " + location.getLongitude());
+                isFirstTime = true;
             }
 
             @Override
@@ -89,7 +91,7 @@ public class GPSActivity extends AppCompatActivity {
             startGPSListener();
         }
 
-        lastKnownLocation = locationManager.getLastKnownLocation(locationProviderNetwork);
+        lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
     }
 
 
@@ -109,16 +111,20 @@ public class GPSActivity extends AppCompatActivity {
     /**
      * Starts the GPS listener and clears the textview.
      * The GPS provider sometimes take a very long time to get location, but is very precise.
-     * The Network provider is quick, but not as accurate.
      */
     private void startGPSListener() {
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
-                getLocationView.setText("Coordinates:" + "\nLong: " + lastKnownLocation.getLongitude()
-                                        + "\nLat: " + lastKnownLocation.getLatitude());
-                locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
+                if(!isFirstTime) {
+                    getLocationView.setText("Coordinates: No previous coordinates found, fetching..");
+                    locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
+                } else {
+                    getLocationView.setText("Coordinates:" + "\nLong: " + lastKnownLocation.getLongitude()
+                                            + "\nLat: " + lastKnownLocation.getLatitude());
+                    locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
+                }
 
             }
         });

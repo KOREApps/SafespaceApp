@@ -62,7 +62,8 @@
                 android:resource="@xml/file_path" />
         </provider>
 
-        <activity android:name=".Activities.DisplayReportActivity"></activity>
+        <activity android:name=".Activities.DisplayReportActivity"
+                  android:parentActivityName=".Activities.LatestReportActivity"/>
     </application>
 
 </manifest>

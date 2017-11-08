@@ -10,7 +10,9 @@
         android:id="@+id/docScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout2"
@@ -59,12 +61,12 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/docTakenPhotos"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.8"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docSenderID"
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                app:layout_constraintTop_toBottomOf="@+id/docSenderID" />
 
             <ImageButton
                 android:id="@+id/docTakePhotoBtn"
@@ -100,16 +102,15 @@
                 android:id="@+id/docDescription"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:inputType="text"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/navigationmenu_border"
                 android:gravity="start"
+                android:hint="@string/documentation_project_description"
+                android:inputType="text"
+                android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn"
-                android:background="@drawable/navigationmenu_border"
-                android:padding="1dp"
-                android:hint="@string/documentation_project_description"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn" />
 
             <Button
                 android:id="@+id/docSubmitDocumentation"
@@ -121,8 +122,10 @@
                 android:text="@string/submit"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
-
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docDescription"
+                app:layout_constraintVertical_bias="1.0" />
 
 
         </android.support.constraint.ConstraintLayout>
