@@ -39,11 +39,11 @@ public class ImageUtils {
         ExifInterface exif = new ExifInterface(imageFile.getAbsolutePath());
         int rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
         rotation = exifToDegrees(rotation);
-        Matrix matrix = new Matrix();
-        matrix.preRotate(rotation);
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inSampleSize = scaleFactor;
         Bitmap imageBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), opts);
+        Matrix matrix = new Matrix();
+        matrix.setRotate(rotation, (float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
         imageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageBitmap.getWidth(), imageBitmap.getHeight(), matrix, true);
         return imageBitmap;
     }

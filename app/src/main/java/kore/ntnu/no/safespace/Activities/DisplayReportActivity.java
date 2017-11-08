@@ -93,7 +93,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         List<Image> list = new ArrayList<>();
         for(int i = 1; i<4; i++) {
-            File imgFile = new File(storageDir, "img" + i + ".png");
+            File imgFile = new File(storageDir, "img" + i + ".jpg");
             list.add(new Image(imgFile));
         }
         //</Test section>

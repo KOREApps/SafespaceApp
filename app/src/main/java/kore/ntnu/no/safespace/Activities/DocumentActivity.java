@@ -111,5 +111,6 @@ public class DocumentActivity extends AppCompatActivity {
     private void addImageToList(Image image) {
         adapter.addImage(image);
         imageList.add(image);
+        //TODO: save rotated image
     }
 }
