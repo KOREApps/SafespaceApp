@@ -6,6 +6,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
         Report report = list.get(position);
 
         holder.textView.setText(report.getDescription()); //TODO FIKS IMGES OG SÅNT
+        holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
 
     }
 
@@ -65,15 +67,21 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
 
     public class DocumentationViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public ImageView imageView;
 
         public DocumentationViewHolder(View itemView) {
             super(itemView);
             this.textView = itemView.findViewById(R.id.tv_reports);
+            this.imageView = itemView.findViewById(R.id.iv_reports);
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onClick(getAdapterPosition());
                 }
             });
         }
+    }
+
+    public void addReport(Report report) {
+        list.add(report);
     }
 }

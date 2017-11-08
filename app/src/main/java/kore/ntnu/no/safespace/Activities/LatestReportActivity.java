@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import kore.ntnu.no.safespace.Adapters.DocumentationAdapter;
+import kore.ntnu.no.safespace.Data.IncidentReport;
+import kore.ntnu.no.safespace.Data.Report;
 import kore.ntnu.no.safespace.R;
 
 /**
@@ -25,7 +27,21 @@ public class LatestReportActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rv_reports);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
+        fillReports();
 
 
+    }
+
+    void fillReports() {
+        adapter.addReport(new IncidentReport(null,"One", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Two", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Three", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Four", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Five", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Six", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Seven", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Eight", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Nine", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Ten", null, null, null));
     }
 }
