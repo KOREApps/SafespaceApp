@@ -1,7 +1,6 @@
 package kore.ntnu.no.safespace.Data;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,6 +13,21 @@ public class IncidentReport extends Report implements Serializable {
     public IncidentReport(Long id, String description, List<Image> images, List<String> keywords, Project project) {
         super(id,description,images,project);
         this.keywords = keywords;
+    }
+
+    public IncidentReport(String description, List<Image> images, List<String> keywords, Project project) {
+        this(null, description, images, keywords, project);
+    }
+
+    public IncidentReport(String description, List<Image> images, Project project) {
+        this(null, description, images, null, project);
+    }
+
+    public IncidentReport(String description, List<Image> images) {
+        this(null, description, images, null, null);
+    }
+    public IncidentReport(String description) {
+        this(null, description, null, null, null);
     }
 
     public List<String> getKeywords() {

@@ -23,6 +23,20 @@ public class Image  implements Serializable {
         this.description = description;
         this.data = data;
     }
+    public Image(Long id, String name, String description, String data) {
+        this.id = id;
+        this.name = name;
+        this.filePath = null;
+        this.fileExtension = null;
+        this.description = description;
+        this.data = data;
+    }
+    public Image(Long id, String name, File imageFile, String description, String data) {
+        this(id, name, description, data);
+        int index = imageFile.getAbsolutePath().lastIndexOf(".");
+        this.filePath = imageFile.getAbsolutePath().substring(0, index);
+        this.fileExtension = imageFile.getAbsolutePath().substring(index);
+    }
     private Image(){
         this.id = null;
         this.name = null;

@@ -23,6 +23,12 @@ public class Project implements Serializable {
             this.contributors.addAll(contributors);
         }
     }
+    public Project(String title, String description) {
+        this(null, title, description, null);
+    }
+    public Project (String title, String description, List<User> contributors){
+        this(null, title, description, contributors);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

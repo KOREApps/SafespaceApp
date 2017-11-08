@@ -7,12 +7,28 @@ import java.util.List;
  * Created by Kristoffer on 2017-11-01.
  */
 
-public class Documentation extends Report implements Serializable{
+public class Documentation extends Report implements Serializable {
     private final User submitter;
 
     public Documentation(Long ID, String description, List<Image> images, Project project, User submitter) {
         super(ID, description, images, project);
         this.submitter = submitter;
+    }
+
+    public Documentation(String description, List<Image> images, Project project, User submitter) {
+        this(null, description, images, project, submitter);
+    }
+
+    public Documentation(String description, List<Image> images, User submitter) {
+        this(null, description, images, null, submitter);
+    }
+
+    public Documentation(String description, Project project, User submitter) {
+        this(null, description, null, project, submitter);
+    }
+
+    public Documentation(String description, User submitter) {
+        this(null, description, null, null, submitter);
     }
 
     public User getSubmitter() {
