@@ -28,7 +28,8 @@ import kore.ntnu.no.safespace.R;
 
 public class GPSActivity extends AppCompatActivity {
 
-    String locationProvider = LocationManager.NETWORK_PROVIDER;
+    String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
+    String locationProviderGPS = LocationManager.GPS_PROVIDER;
     Button getLocationBtn;
     Button clearLocationBtn;
     TextView getLocationView;
@@ -50,12 +51,12 @@ public class GPSActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        //
+
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                // This method is called everytime the location is updated.
-                getLocationView.append("\n " + location.getLatitude() + " " + location.getLongitude());
+                // This method is called every time the location is updated.
+                getLocationView.append("\n" + location.getLatitude() + " " + location.getLongitude());
             }
 
             @Override
@@ -79,7 +80,8 @@ public class GPSActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[] {
-                        Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET
+                        Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
                 }, 10);
             }
             return;
@@ -87,8 +89,10 @@ public class GPSActivity extends AppCompatActivity {
             startGPSListener();
         }
 
-        lastKnownLocation = locationManager.getLastKnownLocation(locationProvider);
+        lastKnownLocation = locationManager.getLastKnownLocation(locationProviderNetwork);
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -100,16 +104,22 @@ public class GPSActivity extends AppCompatActivity {
         }
     }
 
+
+
     /**
-     *
+     * Starts the GPS listener and clears the textview.
+     * The GPS provider sometimes take a very long time to get location, but is very precise.
+     * The Network provider is quick, but not as accurate.
      */
     private void startGPSListener() {
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
-                getLocationView.setText("Coordinates: ");
+                getLocationView.setText("Coordinates:" + "\nLong: " + lastKnownLocation.getLongitude()
+                                        + "\nLat: " + lastKnownLocation.getLatitude());
                 locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
+
             }
         });
     }
@@ -120,4 +130,6 @@ public class GPSActivity extends AppCompatActivity {
     public void stopGPSListener() {
         locationManager.removeUpdates(locationListener);
     }
+
+    public void stopNetworkListener() { locationManager.removeUpdates(locationListener); }
 }
