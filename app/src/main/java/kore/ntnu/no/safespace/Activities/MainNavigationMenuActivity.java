@@ -1,9 +1,8 @@
 package kore.ntnu.no.safespace.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import kore.ntnu.no.safespace.R;
@@ -43,7 +42,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         });
 
         helpBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
+            //TODO: HelpActivity has been (temporarily) replaced with displayReport activity for the time being for testing purposes.
+            Intent intent = new Intent(MainNavigationMenuActivity.this, DisplayReportActivity.class);
             startActivity(intent);
         });
 

@@ -1,7 +1,6 @@
 package kore.ntnu.no.safespace.Data;
 
-import android.graphics.Bitmap;
-
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -11,11 +10,10 @@ import java.io.Serializable;
 public class Image  implements Serializable {
     private final Long id;
     private final String name;
-    private final String filePath;
-    private final String fileExtension;
+    private String filePath;
+    private String fileExtension;
     private final String description;
     private final String data;
-    private Bitmap bitmapImage;
 
     public Image(Long id, String name, String filePath, String fileExtension, String description, String data) {
         this.id = id;
@@ -24,6 +22,18 @@ public class Image  implements Serializable {
         this.fileExtension = fileExtension;
         this.description = description;
         this.data = data;
+    }
+    private Image(){
+        this.id = null;
+        this.name = null;
+        this.description = null;
+        this.data = null;
+    }
+    public Image(File imageFile){
+        this();
+        int index = imageFile.getAbsolutePath().lastIndexOf(".");
+        this.filePath = imageFile.getAbsolutePath().substring(0, index);
+        this.fileExtension = imageFile.getAbsolutePath().substring(index);
     }
 
     @Override
@@ -77,11 +87,12 @@ public class Image  implements Serializable {
         return data;
     }
 
-    public Bitmap getBitmapImage() {
-        return bitmapImage;
+    public File getImageFile() {
+        return new File(filePath + fileExtension);
     }
 
-    public void setBitmapImage(Bitmap bitmapImage) {
-        this.bitmapImage = bitmapImage;
+    public void setImageFile(File imageFile) {
+        this.filePath = imageFile.getAbsolutePath().split(".")[0];
+        this.fileExtension = "." + imageFile.getAbsolutePath().split(".")[1];
     }
 }
