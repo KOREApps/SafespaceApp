@@ -33,15 +33,15 @@ public class LatestReportActivity extends AppCompatActivity {
     }
 
     void fillReports() {
-        adapter.addReport(new IncidentReport((long) 1 ,"One", null, null, null));
-        adapter.addReport(new IncidentReport((long) 2 ,"Two", null, null, null));
-        adapter.addReport(new IncidentReport((long) 3 ,"Three", null, null, null));
-        adapter.addReport(new IncidentReport((long) 4 ,"Four", null, null, null));
-        adapter.addReport(new IncidentReport((long) 5 ,"Five", null, null, null));
-        adapter.addReport(new IncidentReport((long) 6 ,"Six", null, null, null));
-        adapter.addReport(new IncidentReport((long) 7 ,"Seven", null, null, null));
-        adapter.addReport(new IncidentReport((long) 8 ,"Eight", null, null, null));
-        adapter.addReport(new IncidentReport((long) 9 ,"Nine", null, null, null));
-        adapter.addReport(new IncidentReport((long) 10 ,"Ten", null, null, null));
+        adapter.addReport(new IncidentReport(null,"One", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Two", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Three", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Four", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Five", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Six", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Seven", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Eight", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Nine", null, null, null));
+        adapter.addReport(new IncidentReport(null,"Ten", null, null, null));
     }
 }
