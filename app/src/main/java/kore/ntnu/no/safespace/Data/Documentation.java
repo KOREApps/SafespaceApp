@@ -14,6 +14,22 @@ public class Documentation extends Report implements Serializable{
         super(ID, description, images, project);
         this.submitter = submitter;
     }
+    public Documentation(String description, List<Image> images, Project project, User submitter) {
+        super(null, description, images, project);
+        this.submitter = submitter;
+    }
+    public Documentation(String description, List<Image> images, User submitter) {
+        super(null, description, images, null);
+        this.submitter = submitter;
+    }
+    public Documentation(String description, Project project, User submitter) {
+        super(null, description, null, project);
+        this.submitter = submitter;
+    }
+    public Documentation(String description, User submitter) {
+        super(null, description, null, null);
+        this.submitter = submitter;
+    }
 
     public User getSubmitter() {
         return submitter;
