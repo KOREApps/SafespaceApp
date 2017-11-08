@@ -1,6 +1,5 @@
 package kore.ntnu.no.safespace.Activities;
 
-import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +15,7 @@ import kore.ntnu.no.safespace.Data.BugReport;
 import kore.ntnu.no.safespace.R;
 
 public class HelpActivity extends AppCompatActivity {
-    Button RepBugBtn;
-    EditText bugTitleView;
-    EditText bugDescriptionView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +56,9 @@ public class HelpActivity extends AppCompatActivity {
                 return true;
             }
         });
-        RepBugBtn = popupView.findViewById(R.id.bugReportSendBtn);
-        bugDescriptionView = popupView.findViewById(R.id.bugReportDescription);
-        bugTitleView = popupView.findViewById(R.id.bugReportTitle);
+        Button RepBugBtn = popupView.findViewById(R.id.bugReportSendBtn);
+        EditText bugDescriptionView = popupView.findViewById(R.id.bugReportDescription);
+        EditText bugTitleView = popupView.findViewById(R.id.bugReportTitle);
         RepBugBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
