@@ -49,7 +49,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         imagePreviewer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new ImageDisplayAdapter(this);
         imagePreviewer.setAdapter(adapter);
-        adapter.setListener(position -> openImage(adapter.getImage(position)));
+        adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
         adapter.setImages(report.getImages());
         updateView();
     }
@@ -93,7 +93,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         List<Image> list = new ArrayList<>();
         for(int i = 1; i<4; i++) {
-            File imgFile = new File(storageDir, "img" + i + ".jpg");
+            File imgFile = new File(storageDir, "img" + i + ".png");
             list.add(new Image(imgFile));
         }
         //</Test section>

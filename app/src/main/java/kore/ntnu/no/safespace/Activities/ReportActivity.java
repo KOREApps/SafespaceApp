@@ -4,24 +4,21 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.Utils.ImageUtils;
 
 public class ReportActivity extends AppCompatActivity {
 
@@ -57,7 +54,7 @@ public class ReportActivity extends AppCompatActivity {
             // Create the File where the photo should go
             imageFile = null;
             try {
-                imageFile = createImageFile();
+                imageFile = ImageUtils.createImageFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Report");
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
@@ -71,17 +68,8 @@ public class ReportActivity extends AppCompatActivity {
             }
         }
     }
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "Report_" + timeStamp + ".jpg";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = new File(storageDir, imageFileName);
-        image.createNewFile();
-        return image;
-    }
-    @Override
 
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == TAKE_PICTURE_REQUEST){
             if(resultCode == RESULT_OK){

@@ -1,8 +1,11 @@
 <resources>
+    <!-- Global -->
     <string name="app_name">SafeSpace</string>
-    <String name="empty_string">Empty String</String>
+    <string name="empty_string">Empty String</string>
 
     <string name="settings_menu">Settings</string>
+    <string name="submit">Submit</string>
+    <string name="default_user">Robert</string>
 
     <!-- MainActivity -->
     <string name="username">Username..</string>
@@ -17,9 +20,10 @@
     <string name="sendReport">Send</string>
 
     <!-- DocumentActivity -->
-    <string name="project">Project name...</string>
+    <string name="project">Project name…</string>
     <string name="documentation_sender">Sender:</string>
     <string name="documentation_project_description">Project description..</string>
+    <string name="image_description">Image Description</string>
 
     <!-- HelpActivity -->
     <string name="phone">123456789</string>
