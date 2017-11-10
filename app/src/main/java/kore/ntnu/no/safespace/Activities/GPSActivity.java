@@ -36,7 +36,6 @@ public class GPSActivity extends AppCompatActivity {
     LocationManager locationManager;
     LocationListener locationListener;
     Location lastKnownLocation;
-    Boolean isFirstTime = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class GPSActivity extends AppCompatActivity {
             public void onLocationChanged(Location location) {
                 // This method is called every time the location is updated.
                 getLocationView.append("\n" + location.getLatitude() + " " + location.getLongitude());
-                isFirstTime = true;
+                lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
             }
 
             @Override
@@ -117,7 +116,7 @@ public class GPSActivity extends AppCompatActivity {
             @SuppressLint("MissingPermission")
             @Override
             public void onClick(View view) {
-                if(!isFirstTime) {
+                if(lastKnownLocation == null) {
                     getLocationView.setText("Coordinates: No previous coordinates found, fetching..");
                     locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
                 } else {
