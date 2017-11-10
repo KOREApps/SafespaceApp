@@ -1,7 +1,5 @@
 package kore.ntnu.no.safespace;
 
-import android.util.Base64;
-
 import org.junit.Test;
 
 import java.net.URL;
@@ -10,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Data.Image;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.ImageService;
 
 import static org.junit.Assert.*;

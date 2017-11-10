@@ -10,8 +10,8 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Activities.MainActivity;
-import kore.ntnu.no.safespace.Data.User;
+import kore.ntnu.no.safespace.activities.MainActivity;
+import kore.ntnu.no.safespace.data.User;
 
 /**
  * Created by robert on 11/1/17.

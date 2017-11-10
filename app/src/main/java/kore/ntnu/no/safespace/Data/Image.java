@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Data;
+package kore.ntnu.no.safespace.data;
 
 import java.io.File;
 import java.io.Serializable;

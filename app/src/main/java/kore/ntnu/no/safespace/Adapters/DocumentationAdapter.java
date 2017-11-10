@@ -1,8 +1,7 @@
-package kore.ntnu.no.safespace.Adapters;
+package kore.ntnu.no.safespace.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Data.Report;
+import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.R;
 
 /**

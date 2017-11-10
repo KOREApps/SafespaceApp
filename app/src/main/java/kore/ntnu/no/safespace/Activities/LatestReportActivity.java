@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import kore.ntnu.no.safespace.Adapters.DocumentationAdapter;
-import kore.ntnu.no.safespace.Data.IncidentReport;
-import kore.ntnu.no.safespace.Data.Report;
+import kore.ntnu.no.safespace.adapters.DocumentationAdapter;
+import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.R;
 
 /**

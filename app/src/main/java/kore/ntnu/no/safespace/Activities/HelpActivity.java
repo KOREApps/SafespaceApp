@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
 
-import kore.ntnu.no.safespace.Data.BugReport;
+import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.R;
 
 public class HelpActivity extends AppCompatActivity {

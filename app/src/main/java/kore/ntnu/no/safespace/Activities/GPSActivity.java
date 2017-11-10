@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;

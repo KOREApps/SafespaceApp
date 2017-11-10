@@ -1,23 +1,17 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import kore.ntnu.no.safespace.R;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String URL = "http://158.38.198.168:8080";
-//TODO fjerne android:screenOrientation="portrait" fra androidmanifest og fikse data reset på en ordentlig måte.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

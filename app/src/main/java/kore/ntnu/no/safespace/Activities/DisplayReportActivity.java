@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -14,11 +14,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Adapters.ImageDisplayAdapter;
-import kore.ntnu.no.safespace.Data.Image;
-import kore.ntnu.no.safespace.Data.IncidentReport;
-import kore.ntnu.no.safespace.Data.Project;
-import kore.ntnu.no.safespace.Data.Report;
+import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
+import kore.ntnu.no.safespace.data.Image;
+import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.data.Project;
+import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.R;
 
 

@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Adapters;
+package kore.ntnu.no.safespace.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Data.Image;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.R;
-import kore.ntnu.no.safespace.Utils.ImageUtils;
+import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
  * Created by Kristoffer on 2017-11-01.

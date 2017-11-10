@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

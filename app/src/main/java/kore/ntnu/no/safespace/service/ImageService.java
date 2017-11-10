@@ -10,8 +10,8 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Activities.MainActivity;
-import kore.ntnu.no.safespace.Data.Image;
+import kore.ntnu.no.safespace.activities.MainActivity;
+import kore.ntnu.no.safespace.data.Image;
 import okhttp3.MediaType;
 
 /**

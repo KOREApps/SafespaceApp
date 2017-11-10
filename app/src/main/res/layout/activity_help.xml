@@ -6,7 +6,7 @@
     android:id="@+id/activity_help"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kore.ntnu.no.safespace.Activities.HelpActivity">
+    tools:context="kore.ntnu.no.safespace.activities.HelpActivity">
 
     <TextView
         android:id="@+id/helpEmail"

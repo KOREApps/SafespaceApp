@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -33,35 +33,35 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MainNavigationMenuActivity" />
+        <activity android:name=".activities.MainNavigationMenuActivity" />
         <activity
-            android:name=".Activities.ReportActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.ReportActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".Activities.DocumentActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.DocumentActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".Activities.GPSActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.GPSActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".Activities.LatestReportActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.LatestReportActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".Activities.SettingsActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
         <activity
-            android:name=".Activities.HelpActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:name=".activities.HelpActivity"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"
             android:configChanges="orientation|screenSize" />
 
         <activity
-            android:name=".Activities.DisplayReportActivity"
-            android:parentActivityName=".Activities.LatestReportActivity"
+            android:name=".activities.DisplayReportActivity"
+            android:parentActivityName=".activities.LatestReportActivity"
             android:configChanges="orientation|screenSize" />
 
         <provider

@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Activities;
+package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,11 +18,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.Adapters.ImageDisplayAdapter;
-import kore.ntnu.no.safespace.Data.Documentation;
-import kore.ntnu.no.safespace.Data.Image;
+import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
+import kore.ntnu.no.safespace.data.Documentation;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.R;
-import kore.ntnu.no.safespace.Utils.ImageUtils;
+import kore.ntnu.no.safespace.utils.ImageUtils;
 
 public class DocumentActivity extends AppCompatActivity {
     public static final int TAKE_PICTURE_REQUEST = 33;

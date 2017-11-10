@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.Utils;
+package kore.ntnu.no.safespace.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import kore.ntnu.no.safespace.Data.Image;
+import kore.ntnu.no.safespace.data.Image;
 
 /**
  * Created by Kristoffer on 2017-11-08.

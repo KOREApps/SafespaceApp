@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kore.ntnu.no.safespace.Activities.DocumentActivity">
+    tools:context="kore.ntnu.no.safespace.activities.DocumentActivity">
 
     <ScrollView
         android:id="@+id/docScrollView"
