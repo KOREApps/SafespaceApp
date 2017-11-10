@@ -15,11 +15,7 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="0dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/reportHeaderText"
@@ -79,7 +75,7 @@
             <EditText
                 android:id="@+id/reportDescription"
                 android:labelFor="@id/reportDescription"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="8dp"

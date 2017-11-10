@@ -16,12 +16,8 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="0dp">
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
             <Spinner
                 android:id="@+id/docProject"
@@ -106,8 +102,10 @@
                 android:background="@drawable/navigationmenu_border"
                 android:gravity="start"
                 android:hint="@string/documentation_project_description"
-                android:inputType="text"
+                android:inputType="textMultiLine"
                 android:padding="1dp"
+                android:scrollHorizontally="true"
+                android:singleLine="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn" />
@@ -116,16 +114,13 @@
                 android:id="@+id/docSubmitDocumentation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/submit"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docDescription"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
 
 
         </android.support.constraint.ConstraintLayout>
