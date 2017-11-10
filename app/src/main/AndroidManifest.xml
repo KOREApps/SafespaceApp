@@ -25,7 +25,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,22 +36,28 @@
         <activity android:name=".Activities.MainNavigationMenuActivity" />
         <activity
             android:name=".Activities.ReportActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.DocumentActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.GPSActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.LatestReportActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.SettingsActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.HelpActivity"
-            android:parentActivityName=".Activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".Activities.MainNavigationMenuActivity"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
