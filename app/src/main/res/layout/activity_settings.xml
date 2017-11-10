@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context="kore.ntnu.no.safespace.Activities.SettingsActivity">
 
+    <TextView
+        android:id="@+id/tv_logout"
+        android:text="@string/LogOut"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/navigationmenu_border"
+        android:layout_gravity="center"
+        android:padding="8dp" />
+
+
 </android.support.constraint.ConstraintLayout>
