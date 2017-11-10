@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
             startActivity(intent);
         });
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, RegisterUserActivity.class);
+            startActivity(intent);
+        });
 
 
     }
