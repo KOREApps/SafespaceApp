@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -8,12 +9,12 @@ import java.util.List;
 
 public interface RestClient<T, I> {
 
-    public List<T> getAll();
+    public List<T> getAll() throws IOException;
 
-    public T getOne(I id);
+    public T getOne(I id) throws IOException;
 
-    public T add(T t);
+    public T add(T t) throws IOException;
 
-    public T update(T t);
+    public T update(T t) throws IOException;
 
 }

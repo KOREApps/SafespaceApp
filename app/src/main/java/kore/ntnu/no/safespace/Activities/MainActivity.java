@@ -28,10 +28,14 @@ public class MainActivity extends AppCompatActivity {
             // Check input -> login -> start ny activity
             String username = loginUser.getText().toString();
             String password = loginPwd.getText().toString();
-            new GetUserTask((user) -> {
-                Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
-                intent.putExtra(USER, user);
-                startActivity(intent);
+            new GetUserTask((result) -> {
+                if (result.isSuccess()) {
+                    Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
+                    intent.putExtra(USER, result.getResult());
+                    startActivity(intent);
+                } else {
+                    System.out.println(result.getError().getMessage());
+                }
             }).execute(new UserCredentials(username, password));
 
         });

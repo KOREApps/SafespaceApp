@@ -10,30 +10,26 @@ import kore.ntnu.no.safespace.service.UserService;
  * Created by Robert on 11-Nov-17.
  */
 
-public class GetUserTask extends AsyncTask<UserCredentials, Integer, User> {
+public class GetUserTask extends AsyncTask<UserCredentials, Integer, AsyncTaskResult<User>> {
 
-    public interface OnPostExecute{
-        void onPostExecute(User user);
-    }
-
-    private OnPostExecute callback;
+    private AsyncOnPostExecute<User> callback;
     private UserService userService;
 
-    public GetUserTask(OnPostExecute callback) {
+    public GetUserTask(AsyncOnPostExecute<User> callback) {
         this.callback = callback;
         this.userService = new UserService();
     }
 
     @Override
-    protected User doInBackground(UserCredentials... credentials) {
+    protected AsyncTaskResult<User> doInBackground(UserCredentials... credentials) {
         UserCredentials userCredentials = credentials[0];
-        return userService.getByCredentials(userCredentials);
+        return new AsyncTaskResult<User>(userService.getByCredentials(userCredentials));
     }
 
     @Override
-    protected void onPostExecute(User user) {
+    protected void onPostExecute(AsyncTaskResult<User> result) {
         if (callback != null) {
-            callback.onPostExecute(user);
+            callback.onPostExecute(result);
         }
     }
 }

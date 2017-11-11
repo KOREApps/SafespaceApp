@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.service;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.List;
 import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
+import kore.ntnu.no.safespace.data.ValidCheckResult;
 
 /**
  * Created by robert on 11/1/17.
@@ -35,8 +37,8 @@ public class UserService implements RestClient<User, Long> {
     @Override
     public List<User> getAll() {
         try {
-            String response = http.get(URL);
-            List<User> users = gson.fromJson(response, LIST_TYPE);
+            HttpResponse response = http.get(URL);
+            List<User> users = gson.fromJson(response.getResponse(), LIST_TYPE);
             return users;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch users");
@@ -47,8 +49,8 @@ public class UserService implements RestClient<User, Long> {
     @Override
     public User getOne(Long id) {
         try {
-            String response = http.get(URL + "/" + id);
-            User user = gson.fromJson(response, User.class);
+            HttpResponse response = http.get(URL + "/" + id);
+            User user = gson.fromJson(response.getResponse(), User.class);
             return user;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch user with id: " + id);
@@ -57,14 +59,16 @@ public class UserService implements RestClient<User, Long> {
     }
 
     @Override
-    public User add(User user) {
-        try {
-            String response = http.post(URL, gson.toJson(user));
-            User newUser = gson.fromJson(response, User.class);
-            return newUser;
-        } catch (IOException ex) {
-            return null;
+    public User add(User user) throws IOException {
+        HttpResponse response = null;
+        response = http.post(URL, gson.toJson(user));
+        if (response.getCode() == 200) {
+            return gson.fromJson(response.getResponse(), User.class);
+        } else {
+            ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
+            throw new IOException(result.getMessage());
         }
+
     }
 
     @Override
@@ -74,10 +78,19 @@ public class UserService implements RestClient<User, Long> {
 
     public User getByCredentials(UserCredentials userCredentials){
         try {
-            String response = http.post(URL + "/login", gson.toJson(userCredentials));
-            return gson.fromJson(response, User.class);
+            HttpResponse response = http.post(URL + "/login", gson.toJson(userCredentials));
+            return gson.fromJson(response.getResponse(), User.class);
         } catch (IOException ex) {
             return null;
+        }
+    }
+
+    private boolean isResponseACheckResult(String response){
+        try {
+            gson.fromJson(response, ValidCheckResult.class);
+            return true;
+        } catch (JsonParseException ex) {
+            return false;
         }
     }
 }
