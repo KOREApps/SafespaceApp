@@ -16,7 +16,7 @@ public class RegisterUserTask extends AsyncTask<User, Integer, AsyncTaskResult<U
     private AsyncOnPostExecute<User> callback;
     private UserService userService;
 
-    public RegisterUserTask(AsyncOnPostExecute callback) {
+    public RegisterUserTask(AsyncOnPostExecute<User> callback) {
         this.callback = callback;
         this.userService = new UserService();
     }

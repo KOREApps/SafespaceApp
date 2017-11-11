@@ -24,7 +24,11 @@ public class RegisterUserActivity extends AppCompatActivity {
         registerButton.setOnClickListener((View view) -> {
             User newUser = getUser();
             new RegisterUserTask((result -> {
-
+                if (result.isSuccess()) {
+                    System.out.println(result.getResult().getUsername());
+                } else {
+                    System.out.println(result.getError().getMessage());
+                }
             })).execute(newUser);
         });
     }

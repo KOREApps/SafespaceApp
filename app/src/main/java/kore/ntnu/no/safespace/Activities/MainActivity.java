@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
             String username = loginUser.getText().toString();
             String password = loginPwd.getText().toString();
             new GetUserTask((result) -> {
-                if (result.isSuccess()) {
+                if (result.isSuccess() && result.getResult() != null) {
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                     intent.putExtra(USER, result.getResult());
                     startActivity(intent);
                 } else {
-                    System.out.println(result.getError().getMessage());
+                    System.out.println("Failed to log in");
                 }
             }).execute(new UserCredentials(username, password));
 
