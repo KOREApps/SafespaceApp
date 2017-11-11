@@ -55,7 +55,7 @@ public class DisplayReportActivity extends AppCompatActivity {
     }
 
     private void useTemplateReport() {
-        Report report = new IncidentReport(((long) 0),getTemplateDescription(), getTemplateImages(), null, new Project(((long) 0),"Template Project Title", getTemplateDescription(), null));
+        Report report = new IncidentReport(((long) 0), "Title", getTemplateDescription(), getTemplateImages(), null, new Project(((long) 0),"Template Project Title", getTemplateDescription(), null));
         this.report = report;
     }
 

@@ -19,6 +19,9 @@ import java.io.File;
 import java.io.IOException;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.data.Project;
+import kore.ntnu.no.safespace.tasks.SendReportTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 public class ReportActivity extends AppCompatActivity {
@@ -43,12 +46,20 @@ public class ReportActivity extends AppCompatActivity {
         Button sendReport = findViewById(R.id.sendReportBtn);
 
         capturePhoto.setOnClickListener(c -> takePhoto());
-
+        setUpSendButton(sendReport);
     }
 
     private void setUpSendButton(Button sendButton){
         sendButton.setOnClickListener((view) -> {
-
+            EditText reportHeader = findViewById(R.id.reportHeaderText);
+            String title = reportHeader.getText().toString();
+            EditText reportDescription = findViewById(R.id.reportDescription);
+            String description = reportDescription.getText().toString();
+            Project project = new Project(1L, "", "", null);
+            IncidentReport report = new IncidentReport(null, title, description, null, null, project);
+            new SendReportTask((result -> {
+                System.out.println(result.getResult().getTitle());
+            })).execute(report);
         });
     }
 

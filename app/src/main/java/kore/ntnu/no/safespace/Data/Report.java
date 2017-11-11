@@ -9,12 +9,14 @@ import java.util.List;
 
 public abstract class Report implements Serializable {
     private final Long id;
+    private final String title;
     private final String description;
     private final List<Image> images;
     private final Project project;
 
-    public Report(Long id, String description, List<Image> images, Project project) {
+    public Report(Long id, String title, String description, List<Image> images, Project project) {
         this.id = id;
+        this.title = title;
         this.description = description;
         this.images = images;
         this.project = project;
@@ -51,6 +53,10 @@ public abstract class Report implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public List<Image> getImages() {

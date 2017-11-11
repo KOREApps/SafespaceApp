@@ -10,25 +10,25 @@ import java.util.List;
 public class Documentation extends Report implements Serializable {
     private final User submitter;
 
-    public Documentation(Long ID, String description, List<Image> images, Project project, User submitter) {
-        super(ID, description, images, project);
+    public Documentation(Long ID, String title, String description, List<Image> images, Project project, User submitter) {
+        super(ID, title, description, images, project);
         this.submitter = submitter;
     }
 
-    public Documentation(String description, List<Image> images, Project project, User submitter) {
-        this(null, description, images, project, submitter);
+    public Documentation(String title, String description, List<Image> images, Project project, User submitter) {
+        this(null, title, description, images, project, submitter);
     }
 
-    public Documentation(String description, List<Image> images, User submitter) {
-        this(null, description, images, null, submitter);
+    public Documentation(String title, String description, List<Image> images, User submitter) {
+        this(null, title, description, images, null, submitter);
     }
 
-    public Documentation(String description, Project project, User submitter) {
-        this(null, description, null, project, submitter);
+    public Documentation(String title, String description, Project project, User submitter) {
+        this(null, title, description, null, project, submitter);
     }
 
-    public Documentation(String description, User submitter) {
-        this(null, description, null, null, submitter);
+    public Documentation(String title, String description, User submitter) {
+        this(null, title, description, null, null, submitter);
     }
 
     public User getSubmitter() {
