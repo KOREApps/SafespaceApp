@@ -25,36 +25,41 @@ public class HttpService {
         this.http = new OkHttpClient();
     }
 
-    public String get(String url) throws IOException {
+    public HttpResponse get(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .get()
                 .build();
         Response response = http.newCall(request).execute();
-        return response.body().string();
+        HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
+        return httpResponse;
     }
 
-    public String post(String url, String bodyString) throws IOException {
+    public HttpResponse post(String url, String bodyString) throws IOException {
         RequestBody body = RequestBody.create(JSON, bodyString);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
         Response response = http.newCall(request).execute();
-        return response.body().string();
+        HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
+        response.close();
+        return httpResponse;
     }
 
-    public String post(String url, byte[] bodyBytes, MediaType mediaType) throws IOException {
+    public HttpResponse post(String url, byte[] bodyBytes, MediaType mediaType) throws IOException {
         RequestBody body = RequestBody.create(mediaType, bodyBytes);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
         Response response = http.newCall(request).execute();
-        return response.body().string();
+        HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
+        response.close();
+        return httpResponse;
     }
 
-    public String post(String url, byte[] bodyBytes) throws IOException {
+    public HttpResponse post(String url, byte[] bodyBytes) throws IOException {
         return post(url, bodyBytes, BYTES);
     }
 

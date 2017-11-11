@@ -34,8 +34,8 @@ public class ImageService implements RestClient<Image, Long> {
     @Override
     public List<Image> getAll() {
         try {
-            String response = http.get(IMAGE_URL);
-            List<Image> images = gson.fromJson(response, LIST_TYPE);
+            HttpResponse response = http.get(IMAGE_URL);
+            List<Image> images = gson.fromJson(response.getResponse(), LIST_TYPE);
             return images;
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to fetch images");
@@ -46,8 +46,8 @@ public class ImageService implements RestClient<Image, Long> {
     @Override
     public Image getOne(Long id) {
         try {
-            String response = http.get(IMAGE_URL + "/" + id);
-            return gson.fromJson(response, Image.class);
+            HttpResponse response = http.get(IMAGE_URL + "/" + id);
+            return gson.fromJson(response.getResponse(), Image.class);
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to fetch image");
             return null;
@@ -56,8 +56,8 @@ public class ImageService implements RestClient<Image, Long> {
 
     public Image getOneWithData(Long id) {
         try {
-            String response = http.get(IMAGE_URL + "/" + id + "?data=true");
-            return gson.fromJson(response, Image.class);
+            HttpResponse response = http.get(IMAGE_URL + "/" + id + "?data=true");
+            return gson.fromJson(response.getResponse(), Image.class);
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to fetch image");
             return null;
@@ -68,8 +68,8 @@ public class ImageService implements RestClient<Image, Long> {
     public Image add(Image image) {
         try {
             String body = gson.toJson(image);
-            String response = http.post(IMAGE_URL, body);
-            return gson.fromJson(response, Image.class);
+            HttpResponse response = http.post(IMAGE_URL, body);
+            return gson.fromJson(response.getResponse(), Image.class);
         } catch (IOException ex) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image");
             return null;
@@ -84,7 +84,7 @@ public class ImageService implements RestClient<Image, Long> {
     public void addImageData(Image image, byte[] data) {
         try {
             final String url = IMAGE_URL + "/data/" + image.getId();
-            String response = http.post(url, data, getMediaType(image));
+            HttpResponse response = http.post(url, data, getMediaType(image));
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image data");
         }
@@ -93,7 +93,7 @@ public class ImageService implements RestClient<Image, Long> {
     public byte[] getImageData(Image image) {
         try {
             final String url = IMAGE_URL + "/data/" + image.getId();
-             return http.get(url).getBytes();
+             return http.get(url).getResponse().getBytes();
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image data");
             return new byte[0];

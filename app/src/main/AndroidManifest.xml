@@ -13,9 +13,10 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-feature android:name="android.hardware.location.gps"/>"
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <uses-feature android:name="android.hardware.location.gps" />
+    "
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_ss_logo_launcher"
@@ -25,8 +26,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,33 +37,32 @@
         <activity android:name=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.ReportActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.DocumentActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.GPSActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.LatestReportActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.SettingsActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.HelpActivity"
-            android:parentActivityName=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize" />
-
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.DisplayReportActivity"
-            android:parentActivityName=".activities.LatestReportActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.LatestReportActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -73,6 +73,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
+
+        <activity android:name=".activities.RegisterUserActivity"></activity>
     </application>
 
 </manifest>
