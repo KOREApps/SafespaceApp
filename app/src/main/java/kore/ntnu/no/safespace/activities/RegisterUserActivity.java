@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,8 @@ public class RegisterUserActivity extends AppCompatActivity {
             User newUser = getUser();
             new RegisterUserTask((result -> {
                 if (result.isSuccess()) {
-                    System.out.println(result.getResult().getUsername());
+                    Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
+                    startActivity(intent);
                 } else {
                     System.out.println(result.getError().getMessage());
                 }
