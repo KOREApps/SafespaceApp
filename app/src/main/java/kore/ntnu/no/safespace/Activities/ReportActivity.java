@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -43,6 +44,12 @@ public class ReportActivity extends AppCompatActivity {
 
         capturePhoto.setOnClickListener(c -> takePhoto());
 
+    }
+
+    private void setUpSendButton(Button sendButton){
+        sendButton.setOnClickListener((view) -> {
+
+        });
     }
 
     private void takePhoto() {

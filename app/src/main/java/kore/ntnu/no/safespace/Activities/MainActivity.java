@@ -37,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Failed to log in");
                 }
             }).execute(new UserCredentials(username, password));
-
+        });
+        Button anonLoginButton = findViewById(R.id.anonLoginButton);
+        anonLoginButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
+            startActivity(intent);
         });
         Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View v) -> {
