@@ -12,6 +12,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.User;
+import kore.ntnu.no.safespace.data.UserCredentials;
 
 /**
  * Created by robert on 11/1/17.
@@ -57,11 +58,26 @@ public class UserService implements RestClient<User, Long> {
 
     @Override
     public User add(User user) {
-        return null;
+        try {
+            String response = http.post(URL, gson.toJson(user));
+            User newUser = gson.fromJson(response, User.class);
+            return newUser;
+        } catch (IOException ex) {
+            return null;
+        }
     }
 
     @Override
     public User update(User user) {
         return null;
+    }
+
+    public User getByCredentials(UserCredentials userCredentials){
+        try {
+            String response = http.post(URL + "/login", gson.toJson(userCredentials));
+            return gson.fromJson(response, User.class);
+        } catch (IOException ex) {
+            return null;
+        }
     }
 }
