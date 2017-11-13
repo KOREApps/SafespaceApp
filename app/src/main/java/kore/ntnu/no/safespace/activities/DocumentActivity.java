@@ -9,6 +9,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,9 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
+import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.Project;
+import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 public class DocumentActivity extends AppCompatActivity {
@@ -31,7 +35,7 @@ public class DocumentActivity extends AppCompatActivity {
     private Documentation doc;
     private TextView sender;
     private TextView description;
-    private ArrayAdapter<String> droptDownAdapter;
+    private ProjectSpinnerAdapter dropDownAdapter;
     private ImageDisplayAdapter adapter;
     private List<Image> imageList;
     private File imageFile;
@@ -40,16 +44,13 @@ public class DocumentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document);
-        Spinner dropDown = findViewById(R.id.docProject);
         imageDisplay = findViewById(R.id.docTakenPhotos);
         sender = findViewById(R.id.docSenderID);
         description = findViewById(R.id.docDescription);
 
         imageList = new ArrayList<>();
 
-        String[] projects = new String[]{"Robert blir ferdig", "Kristoffer får bank", "Oskar døde"}; //TODO erstatt dummy data med data fra server
-        droptDownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, projects);
-        dropDown.setAdapter(droptDownAdapter);
+        populateSpinner();
 
         adapter = new ImageDisplayAdapter(this);
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
@@ -61,6 +62,23 @@ public class DocumentActivity extends AppCompatActivity {
         findViewById(R.id.docTakePhotoBtn).setOnClickListener(c->takePhoto());
         findViewById(R.id.docSubmitDocumentation).setOnClickListener(c->submitDocumentation());
 
+
+    }
+
+    private void populateSpinner(){
+        Spinner dropDown = findViewById(R.id.docProject);
+        dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
+        dropDown.setAdapter(dropDownAdapter);
+        new GetAllProjectsTask((projects) -> {
+            if (projects.isSuccess()) {
+                dropDownAdapter.setData(projects.getResult());
+            } else {
+                Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
+            }
+        }).execute();
+//        String[] projects = new String[]{"Robert blir ferdig", "Kristoffer får bank", "Oskar døde"}; //TODO erstatt dummy data med data fra server
+//        droptDownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, projects);
+//        dropDown.setAdapter(droptDownAdapter);
 
     }
 
