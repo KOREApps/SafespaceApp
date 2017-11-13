@@ -23,6 +23,9 @@ public class ProjectActivity extends AppCompatActivity {
         EditText projectDescription = findViewById(R.id.projectDescription);
         Button createProjectBtn = findViewById(R.id.createProjectBtn);
 
+        projectTitle.setFocusableInTouchMode(true);
+        projectTitle.requestFocus();
+
         createProjectBtn.setOnClickListener(view -> {
             Toast.makeText(ProjectActivity.this, "You pressed create LMFAO", Toast.LENGTH_SHORT).show();
         });

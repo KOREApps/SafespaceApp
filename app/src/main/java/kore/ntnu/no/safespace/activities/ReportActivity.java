@@ -46,6 +46,9 @@ public class ReportActivity extends AppCompatActivity {
         EditText reportDescription = findViewById(R.id.reportDescription);
         Button sendReport = findViewById(R.id.sendReportBtn);
 
+        reportHeader.setFocusableInTouchMode(true);
+        reportHeader.requestFocus();
+
         capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
     }
