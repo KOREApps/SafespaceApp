@@ -24,6 +24,7 @@
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
                 android:hint="Project.."
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

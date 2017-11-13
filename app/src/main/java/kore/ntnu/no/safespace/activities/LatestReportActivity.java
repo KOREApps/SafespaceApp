@@ -38,9 +38,6 @@ public class LatestReportActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     void fillReports() {

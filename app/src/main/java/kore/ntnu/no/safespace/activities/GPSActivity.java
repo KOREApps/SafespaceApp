@@ -51,7 +51,6 @@ public class GPSActivity extends AppCompatActivity {
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
-        //
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -94,7 +93,6 @@ public class GPSActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode) {
@@ -106,11 +104,6 @@ public class GPSActivity extends AppCompatActivity {
     }
 
 
-
-    /**
-     * Starts the GPS listener and clears the textview.
-     * The GPS provider sometimes take a very long time to get location, but is very precise.
-     */
     private void startGPSListener() {
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
@@ -129,9 +122,6 @@ public class GPSActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Stops the GPS listener and clears the textview.
-     */
     public void stopGPSListener() {
         locationManager.removeUpdates(locationListener);
     }

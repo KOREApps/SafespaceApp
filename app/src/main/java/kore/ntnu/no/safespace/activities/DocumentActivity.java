@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,7 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void submitDocumentation() {
         //TODO: Sub
+        Toast.makeText(DocumentActivity.this, "You pressed Submit, doesitwork? maybe", Toast.LENGTH_SHORT).show();
     }
 
     private void displayImageOptions(Image image) {

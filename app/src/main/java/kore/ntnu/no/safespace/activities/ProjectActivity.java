@@ -24,7 +24,7 @@ public class ProjectActivity extends AppCompatActivity {
         Button createProjectBtn = findViewById(R.id.createProjectBtn);
 
         createProjectBtn.setOnClickListener(view -> {
-            Toast.makeText(getApplicationContext(), "You pressed send LMFAO", Toast.LENGTH_SHORT);
+            Toast.makeText(ProjectActivity.this, "You pressed create LMFAO", Toast.LENGTH_SHORT).show();
         });
     }
 }

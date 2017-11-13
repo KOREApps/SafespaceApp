@@ -85,6 +85,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/navigationmenu_border"
+                android:inputType="text"
                 android:hint="@string/image_description"
                 android:padding="1dp"
                 app:layout_constraintBottom_toTopOf="@+id/docDescription"
