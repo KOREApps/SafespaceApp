@@ -10,24 +10,24 @@ import java.util.List;
 
 public class Project implements Serializable {
     private final Long id;
-    private final String title;
+    private final String name;
     private final String description;
     private final List<User> contributors;
 
-    public Project(Long id, String title, String description, List<User> contributors) {
+    public Project(Long id, String name, String description, List<User> contributors) {
         this.id = id;
-        this.title = title;
+        this.name = name;
         this.description = description;
         this.contributors = new ArrayList<>();
         if(contributors != null){
             this.contributors.addAll(contributors);
         }
     }
-    public Project(String title, String description) {
-        this(null, title, description, null);
+    public Project(String name, String description) {
+        this(null, name, description, null);
     }
-    public Project (String title, String description, List<User> contributors){
-        this(null, title, description, contributors);
+    public Project (String name, String description, List<User> contributors){
+        this(null, name, description, contributors);
     }
     @Override
     public boolean equals(Object o) {
@@ -38,7 +38,7 @@ public class Project implements Serializable {
 
         if (getId() != null ? !getId().equals(project.getId()) : project.getId() != null)
             return false;
-        if (getTitle() != null ? !getTitle().equals(project.getTitle()) : project.getTitle() != null)
+        if (getName() != null ? !getName().equals(project.getName()) : project.getName() != null)
             return false;
         if (getDescription() != null ? !getDescription().equals(project.getDescription()) : project.getDescription() != null)
             return false;
@@ -48,7 +48,7 @@ public class Project implements Serializable {
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getTitle() != null ? getTitle().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getContributors() != null ? getContributors().hashCode() : 0);
         return result;
@@ -58,8 +58,8 @@ public class Project implements Serializable {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {
