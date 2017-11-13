@@ -14,7 +14,7 @@ import kore.ntnu.no.safespace.tasks.GetUserTask;
 public class MainActivity extends AppCompatActivity {
 
     public static final String USER = "kore.ntnu.no.safespace.activities.MainActivity.USER";
-    public static final String URL = "http://192.168.1.10:8080";
+    public static final String URL = "http://roberris-ss.uials.no:8080";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
