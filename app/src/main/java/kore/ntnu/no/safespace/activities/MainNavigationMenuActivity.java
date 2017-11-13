@@ -16,7 +16,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
-        Button gpsBtn = findViewById(R.id.gpsBtn);
+        Button projectBtn = findViewById(R.id.projectBtn);
         Button latestRepBtn = findViewById(R.id.latestBtn);
         Button helpBtn = findViewById(R.id.helpBtn);
         Button settingsBtn = findViewById(R.id.settingsBtn);
@@ -31,8 +31,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        gpsBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, GPSActivity.class);
+        projectBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, ProjectActivity.class);
             startActivity(intent);
         });
 

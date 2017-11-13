@@ -46,7 +46,7 @@
         <activity
             android:name=".activities.GPSActivity"
             android:configChanges="orientation|screenSize"
-            android:parentActivityName=".activities.MainNavigationMenuActivity" />
+            android:parentActivityName=".activities.SettingsActivity" />
         <activity
             android:name=".activities.LatestReportActivity"
             android:configChanges="orientation|screenSize"
@@ -60,9 +60,14 @@
             android:configChanges="orientation|screenSize"
             android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
+            android:name=".activities.ProjectActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".activities.MainNavigationMenuActivity"/>
+        <activity
             android:name=".activities.DisplayReportActivity"
             android:configChanges="orientation|screenSize"
             android:parentActivityName=".activities.LatestReportActivity" />
+        <activity android:name=".activities.RegisterUserActivity"></activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -74,7 +79,6 @@
                 android:resource="@xml/file_path" />
         </provider>
 
-        <activity android:name=".activities.RegisterUserActivity"></activity>
     </application>
 
 </manifest>
