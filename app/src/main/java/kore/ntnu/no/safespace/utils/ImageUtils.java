@@ -127,5 +127,8 @@ public class ImageUtils {
         }
         return list;
     }
+    public static List<Image> getStoredImages(File storageDir){
+        return getStoredImages(storageDir.getAbsolutePath());
+    }
 
 }

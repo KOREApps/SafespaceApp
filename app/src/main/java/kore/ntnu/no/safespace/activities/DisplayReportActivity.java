@@ -49,7 +49,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         imagePreviewer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new ImageDisplayAdapter(this);
         imagePreviewer.setAdapter(adapter);
-        adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
+        //adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
         adapter.setImages(report.getImages());
         updateView();
     }
