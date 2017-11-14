@@ -13,6 +13,7 @@ import java.util.Date;
 
 import kore.ntnu.no.safespace.data.Image;
 
+
 /**
  * Created by Kristoffer on 2017-11-08.
  */
@@ -31,8 +32,6 @@ public class ImageUtils {
     }
 
     private static Bitmap getBitmap(File imageFile, int scaleFactor) throws IOException {
-        System.out.println(imageFile.getAbsolutePath());
-        System.out.println(scaleFactor);
         if (scaleFactor < 1) {
             scaleFactor = 1 / scaleFactor;
         }
