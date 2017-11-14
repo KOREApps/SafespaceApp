@@ -9,7 +9,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import kore.ntnu.no.safespace.data.Image;
 
@@ -100,6 +102,30 @@ public class ImageUtils {
 
     public static File createImageFile(String storageDir, String prefix) throws IOException {
         return createImageFile(new File(storageDir), prefix);
+    }
+
+    public static List<File> getDirectories(String storageDir){
+        List<File> list = new ArrayList<>();
+        File root = new File(storageDir);
+        String[] content = root.list();
+        for(String s: content){
+            if(!s.contains(".")){
+                list.add(new File(s));
+            }
+        }
+        return list;
+    }
+
+    //TODO: Test it properly
+    public static List<Image> getStoredImages(String storageDir){
+        List<Image> list = new ArrayList<>();
+        List<File> directories = getDirectories(storageDir);
+        for(File f: directories){
+            for(File img: f.listFiles()){
+                list.add(new Image(img));
+            }
+        }
+        return list;
     }
 
 }
