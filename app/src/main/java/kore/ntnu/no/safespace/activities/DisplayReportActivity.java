@@ -14,12 +14,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
-import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.data.Report;
-import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.Image;
 
 
 public class DisplayReportActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         imagePreviewer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         adapter = new ImageDisplayAdapter(this);
         imagePreviewer.setAdapter(adapter);
-        //adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
+        adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
         adapter.setImages(report.getImages());
         updateView();
     }

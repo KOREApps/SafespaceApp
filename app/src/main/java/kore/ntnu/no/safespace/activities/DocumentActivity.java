@@ -49,7 +49,6 @@ public class DocumentActivity extends AppCompatActivity {
         imageList = new ArrayList<>();
 
         populateSpinner();
-        ImageUtils.getStoredImages(getExternalFilesDir(Environment.DIRECTORY_PICTURES));
 
         adapter = new ImageDisplayAdapter(this);
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));

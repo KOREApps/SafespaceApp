@@ -116,12 +116,13 @@ public class ImageUtils {
         return list;
     }
 
-    //TODO: Test it properly
     public static List<Image> getStoredImages(String storageDir){
         List<Image> list = new ArrayList<>();
         List<File> directories = getDirectories(storageDir);
-        for(File f: directories){
-            for(File img: f.listFiles()){
+        for(File dir: directories){
+            File imgPath = new File(storageDir, dir.getAbsolutePath());
+            File[] images = imgPath.listFiles();
+            for(File img: images){
                 list.add(new Image(img));
             }
         }
