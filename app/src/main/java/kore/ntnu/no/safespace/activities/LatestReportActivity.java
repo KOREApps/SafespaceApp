@@ -33,7 +33,7 @@ public class LatestReportActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rv_reports);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
-        fillReports();
+//        fillReports();
 
         adapter.setListener(position -> {
             Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
@@ -42,16 +42,16 @@ public class LatestReportActivity extends AppCompatActivity {
         });
     }
 
-    void fillReports() {
-        try {
-            List<Documentation> list = StorageUtils.getDocumentationsFromFile(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
-            for(Documentation d : list){
-                adapter.addReport(d);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+//    void fillReports() {
+//        try {
+//            List<Documentation> list = StorageUtils.getDocumentationsFromFile(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+//            for(Documentation d : list){
+//                adapter.addReport(d);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

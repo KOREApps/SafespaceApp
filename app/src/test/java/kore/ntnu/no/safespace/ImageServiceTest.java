@@ -50,11 +50,12 @@ public class ImageServiceTest {
     public void addImageWithB64String() throws Exception {
         ClassLoader classLoader = this.getClass().getClassLoader();
         URL resource = classLoader.getResource("b64");
-        Path path = Paths.get(resource.getPath().substring(1));
+        Path path = Paths.get("/", resource.getPath().substring(1));
         String b64String = Files.readAllLines(path).get(0);
         //byte[] data = Files.readAllBytes(path);
         Image image = new Image(null, "ASDF", "1234", "jpg", "an asdf image", b64String);
         Image postedImage = imageService.add(image);
+
         assertEquals(image.getData(), postedImage.getData());
     }
 

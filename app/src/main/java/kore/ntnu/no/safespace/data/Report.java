@@ -12,7 +12,7 @@ public abstract class Report implements Serializable {
     private final Long id;
     private final String title;
     private final String description;
-    private final List<Image> images;
+    private List<Image> images;
     private final Project project;
 
     public Report(Long id, String title, String description, List<Image> images, Project project) {
@@ -70,5 +70,9 @@ public abstract class Report implements Serializable {
 
     public Project getProject() {
         return project;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

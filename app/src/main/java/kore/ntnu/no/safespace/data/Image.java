@@ -13,7 +13,7 @@ public class Image  implements Serializable {
     private String filePath;
     private String fileExtension;
     private final String description;
-    private final String data;
+    private String data;
 
     public Image(Long id, String name, String filePath, String fileExtension, String description, String data) {
         this.id = id;
@@ -108,5 +108,13 @@ public class Image  implements Serializable {
     public void setImageFile(File imageFile) {
         this.filePath = imageFile.getAbsolutePath().split(".")[0];
         this.fileExtension = "." + imageFile.getAbsolutePath().split(".")[1];
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
     }
 }

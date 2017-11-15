@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -9,14 +10,17 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +91,7 @@ public class DocumentActivity extends AppCompatActivity {
         //TODO: Sub
         Toast.makeText(DocumentActivity.this, "You pressed Submit, doesitwork? maybe", Toast.LENGTH_SHORT).show();
         Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), MainNavigationMenuActivity.getCurrentUser());
+        documentation.setImages(imageList);
         try {
             StorageUtils.saveReportToFile(documentation, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
         } catch (IOException e) {
@@ -104,6 +109,42 @@ public class DocumentActivity extends AppCompatActivity {
         intent.putExtra(LatestReportActivity.REPORT, documentation);
         startActivity(intent);
     }
+
+//    private void sendImages(Documentation documentation, List<Image> images){
+//        for (Image image : images) {
+//            try {
+//                Bitmap bitmap = ImageUtils.getBitmap(image);
+//                byte[] data = getBitmapData(bitmap);
+//                bitmap.recycle();
+//                String encoded = Base64.encodeToString(data, Base64.DEFAULT);
+//                image.setData(encoded);
+//
+//            } catch (IOException e) {
+//                Log.e(DocumentActivity.class.getSimpleName(), "Failed to load image");
+//            }
+//        }
+//    }
+//
+//    private void getImageData(List<Image> images){
+//        for (Image image : images) {
+//            try {
+//                Bitmap bitmap = ImageUtils.getBitmap(image);
+//                byte[] data = getBitmapData(bitmap);
+//                bitmap.recycle();
+//                String encoded = Base64.encodeToString(data, Base64.DEFAULT);
+//                image.setData(encoded);
+//            } catch (IOException e) {
+//                Log.e(DocumentActivity.class.getSimpleName(), "Failed to load image");
+//            }
+//        }
+//    }
+//
+//    private byte[] getBitmapData(Bitmap bitmap) {
+//        int size = bitmap.getRowBytes() * bitmap.getHeight();
+//        ByteBuffer byteBuffer = ByteBuffer.allocate(size);
+//        bitmap.copyPixelsToBuffer(byteBuffer);
+//        return byteBuffer.array();
+//    }
 
     private void displayImageOptions(Image image) {
         //TODO: display alert to user about removing picture or taking a new one.
