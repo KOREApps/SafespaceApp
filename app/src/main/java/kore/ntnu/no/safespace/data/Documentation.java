@@ -18,6 +18,9 @@ public class Documentation extends Report implements Serializable {
     public Documentation(String title, String description, List<Image> images, Project project, User submitter) {
         this(null, title, description, images, project, submitter);
     }
+    public Documentation(Long ID, String title, String description, User submitter) {
+        this(ID, title, description, null, null, submitter);
+    }
 
     public Documentation(String title, String description, List<Image> images, User submitter) {
         this(null, title, description, images, null, submitter);
