@@ -6,7 +6,7 @@ import android.os.AsyncTask;
  * Created by OscarWika on 01.11.2017.
  */
 
-public class JSONDocumentTask extends AsyncTask<String, String, String> {
+public class CreateDocumentTask extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPreExecute() {
