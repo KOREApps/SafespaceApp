@@ -40,7 +40,6 @@ public class ReportActivity extends AppCompatActivity {
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -66,9 +66,8 @@ public class DocumentActivity extends AppCompatActivity {
 
         findViewById(R.id.docTakePhotoBtn).setOnClickListener(c->takePhoto());
         findViewById(R.id.docSubmitDocumentation).setOnClickListener(c->submitDocumentation());
-
-
     }
+
     private void populateSpinner(){
 
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
@@ -102,6 +101,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void displayImageOptions(Image image) {
         //TODO: display alert to user about removing picture or taking a new one.
     }
+
     private void openImage(Image image){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri data = Uri.parse("file://" + image.getImageFile().getAbsolutePath());
@@ -130,6 +130,7 @@ public class DocumentActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == TAKE_PICTURE_REQUEST){

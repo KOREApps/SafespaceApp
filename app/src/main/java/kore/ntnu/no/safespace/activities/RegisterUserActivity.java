@@ -21,7 +21,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void setRegisterButtonOnClick(){
-        Button registerButton = (Button) findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View view) -> {
             User newUser = getUser();
             new RegisterUserTask((result -> {
