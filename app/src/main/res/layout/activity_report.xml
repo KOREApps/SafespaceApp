@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/takePhotoBtn"
                 android:background="@drawable/navigationmenu_border"
                 android:padding="1dp"
-                android:hint="Incident description.."/>
+                android:hint="@string/incident_description"/>
 
             <Button
                 android:id="@+id/sendReportBtn"
