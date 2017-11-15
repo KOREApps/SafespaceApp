@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Global -->
+    <string name="app_name">SafeSpace</string>
+    <string name="empty_string">Tom String</string>
+
+    <string name="settings_menu">Innstillinger</string>
+    <string name="submit">Send</string>
+    <string name="default_user">Robert</string>
+
+    <!-- MainActivity -->
+    <string name="username">Brukernavn..</string>
+    <string name="password">Passord..</string>
+    <string name="login">Logginn</string>
+
+    <!-- MainNavigationActivity -->
+    <string name="nav_document">Dokumenter</string>
+    <string name="nav_report">Rapporter</string>
+    <string name="nav_gps">GPS</string>
+    <string name="nav_latestrep">Nylige Rapporter</string>
+    <string name="nav_help">Hjelp</string>
+    <string name="nav_settings">Innstillinger</string>
+
+    <!-- ReportActivity -->
+    <string name="incident">Hendelse..</string>
+    <string name="takePhoto">Bilde</string>
+    <string name="takenPhoto">Tatt bilde</string>
+    <string name="takenPhotos">Tatt bilder</string>
+    <string name="sendReport">Send</string>
+
+    <!-- DocumentActivity -->
+    <string name="project">Prosjekt navn…</string>
+    <string name="documentation_sender">Sender:</string>
+    <string name="documentation_project_description">Prosjekt beskrivelse...</string>
+    <string name="image_description">Bilde beskrivelse</string>
+
+    <!-- HelpActivity -->
+    <string name="phone">123456789</string>
+    <string name="email">roflxd@kore.no</string>
+    <string name="bugreport">Rapporter bug</string>
+    <string name="settings">Innstillinger</string>
+    <string name="help">Hjelp</string>
+
+    <!-- DisplayReportActivity -->
+    <string name="image_card_display_description">Rapporter bilde</string>
+    <string name="project1">Prosjekt</string>
+    <string name="create">Create</string>
+
+    <!-- SettingsActivity -->
+    <string name="lang_nor">Norsk</string>
+    <string name="lang_eng">Engelsk</string>
+    <string name="LogOut">Logg ut</string>
+</resources>

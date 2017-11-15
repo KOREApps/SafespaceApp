@@ -43,5 +43,9 @@
     <string name="project1">Project</string>
     <string name="create">Create</string>
 
+    <!-- SettingsActivity -->
+    <string name="lang_nor">Norwegian</string>
+    <string name="lang_eng">English</string>
+
 
 </resources>
