@@ -47,7 +47,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         String confirmPassword = confirmPasswordInput.getText().toString();
         if (password.equals(confirmPassword)) {
-            return new User(null, username, firstName, lastName, password, null, null);
+            return new User(null, username, firstName, lastName, null, null);
         } else {
             return null;
         }

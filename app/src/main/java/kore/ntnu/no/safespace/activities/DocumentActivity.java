@@ -79,9 +79,6 @@ public class DocumentActivity extends AppCompatActivity {
                 Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
             }
         }).execute();
-//        String[] projects = new String[]{"Robert blir ferdig", "Kristoffer får bank", "Oskar døde"}; //TODO erstatt dummy data med data fra server
-//        droptDownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, projects);
-//        dropDown.setAdapter(droptDownAdapter);
 
     }
 
@@ -95,7 +92,9 @@ public class DocumentActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         finish();
-
+        Intent intent = new Intent(this, DisplayReportActivity.class);
+        intent.putExtra(LatestReportActivity.REPORT, documentation);
+        startActivity(intent);
     }
 
     private void displayImageOptions(Image image) {

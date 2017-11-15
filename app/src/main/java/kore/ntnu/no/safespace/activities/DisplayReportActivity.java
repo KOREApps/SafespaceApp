@@ -54,6 +54,8 @@ public class DisplayReportActivity extends AppCompatActivity {
         adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
         adapter.setImages(report.getImages());
         updateView();
+
+        findViewById(R.id.display_report_ok_button).setOnClickListener(c-> finish());
     }
 
     private void useTemplateReport() {
