@@ -65,4 +65,11 @@
     <string name="gps">GPS</string>
     <string name="ok">ok</string>
 
+    <!-- GPSActivity -->
+    <string name="get_location">Get location</string>
+    <string name="stop_location">Stop</string>
+    <string name="location">Location:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="latitude">Latitude:</string>
+
 </resources>

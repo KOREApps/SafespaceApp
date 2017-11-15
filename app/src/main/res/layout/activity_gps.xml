@@ -11,46 +11,69 @@
         android:id="@+id/gpsButtonYo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="164dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Get location"
+        android:text="@string/get_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpsTextView"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toBottomOf="@+id/longitudeView" />
 
     <Button
         android:id="@+id/gpsClearBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="380dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Stop/Clear"
+        android:text="@string/stop_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toEndOf="@+id/gpsButtonYo"
-        app:layout_constraintTop_toBottomOf="@+id/gpsTextView"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toBottomOf="@+id/longitudeView"
+        app:layout_constraintVertical_bias="0.977" />
 
     <TextView
-        android:id="@+id/gpsTextView"
-        android:layout_width="308dp"
-        android:layout_height="290dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="288dp"
+        android:id="@+id/locationView"
+        android:layout_width="500dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
-        android:text="Coordinates: "
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/location"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/longitudeView"
+        android:layout_width="500dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/longitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitudeView" />
+
+    <TextView
+        android:id="@+id/latitudeView"
+        android:layout_width="500dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:scrollbars="vertical"
+        android:text="@string/latitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationView" />
 
 </android.support.constraint.ConstraintLayout>

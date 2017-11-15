@@ -15,7 +15,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,10 +31,14 @@ public class GPSActivity extends AppCompatActivity {
     String locationProviderGPS = LocationManager.GPS_PROVIDER;
     Button getLocationBtn;
     Button clearLocationBtn;
+    TextView getLongitudeView;
+    TextView getLatitudeView;
     TextView getLocationView;
     LocationManager locationManager;
     LocationListener locationListener;
     Location lastKnownLocation;
+    Location NTNULabBuilding;
+    Location NTNUMainBuilding;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,11 +46,12 @@ public class GPSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gps);
 
         getLocationBtn = findViewById(R.id.gpsButtonYo);
-        getLocationView = findViewById(R.id.gpsTextView);
+        getLatitudeView = findViewById(R.id.latitudeView);
+        getLongitudeView = findViewById(R.id.longitudeView);
+        getLocationView = findViewById(R.id.locationView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
         clearLocationBtn.setOnClickListener(view -> stopGPSListener());
-        getLocationView.setMovementMethod(new ScrollingMovementMethod());
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -55,18 +59,37 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called every time the location is updated.
-                getLocationView.append("\n" + location.getLatitude() + " " + location.getLongitude());
+                getLatitudeView.setText("Latitude:");
+                getLatitudeView.append("\n" + location.getLatitude());
+                getLongitudeView.setText("Longitude:");
+                getLongitudeView.append("\n" + location.getLongitude());
+
                 lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
+
+                float result[] = new float[10];
+                NTNULabBuilding.distanceBetween(62.472171, 6.233951, location.getLatitude(), location.getLongitude(), result);
+
+                float result2[] = new float[10];
+                NTNUMainBuilding.distanceBetween(62.472144, 6.235740, location.getLatitude(), location.getLongitude(), result2);
+
+                if(result[0] < 36){
+                    getLocationView.setText("Location: You are at NTNU LAB building");
+                    getLocationView.append("\nDistance from center: " + result[0]);
+                } else if (result2[0] < 50) {
+                    getLocationView.setText("Location: You are at the main building");
+                    getLocationView.append("\nDistance from LAB center: " + result[0]);
+                } else {
+                    getLocationView.setText("");
+                    getLocationView.append("\nYou are NOT in a building(hopefully)");
+                }
             }
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
-
             }
 
             @Override
             public void onProviderEnabled(String s) {
-
             }
 
             @Override
@@ -110,11 +133,12 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(lastKnownLocation == null) {
-                    getLocationView.setText("Coordinates: No previous coordinates found, fetching..");
+                    getLongitudeView.setText("Coordinates: No previous coordinates found, fetching..");
                     locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
                 } else {
-                    getLocationView.setText("Coordinates:" + "\nLong: " + lastKnownLocation.getLongitude()
-                                            + "\nLat: " + lastKnownLocation.getLatitude());
+                    getLocationView.setText("Location: Fetching location..");
+                    getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
+                    getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
                     locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
                 }
 
