@@ -9,19 +9,24 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
+import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.tasks.SendReportTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
@@ -32,6 +37,7 @@ public class ReportActivity extends AppCompatActivity {
     private File imageFile;
     private ImageView takenPhoto;
     private Bitmap bitmap;
+    private ProjectSpinnerAdapter dropDownAdapter;
 
 
     @Override
@@ -46,11 +52,26 @@ public class ReportActivity extends AppCompatActivity {
         EditText reportDescription = findViewById(R.id.reportDescription);
         Button sendReport = findViewById(R.id.sendReportBtn);
 
+        populateSpinner();
+
         reportHeader.setFocusableInTouchMode(true);
         reportHeader.requestFocus();
 
         capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
+    }
+
+    private void populateSpinner(){
+        Spinner dropDown = findViewById(R.id.projectSpinner);
+        dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
+        dropDown.setAdapter(dropDownAdapter);
+        new GetAllProjectsTask((projects) -> {
+            if (projects.isSuccess()) {
+                dropDownAdapter.setData(projects.getResult());
+            } else {
+                Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
+            }
+        }).execute();
     }
 
     private void setUpSendButton(Button sendButton){
