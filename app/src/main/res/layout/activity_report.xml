@@ -25,23 +25,23 @@
                 android:layout_marginTop="16dp"
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
-                android:inputType="text"
                 android:hint="@string/incident"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/reportTakenPhoto"
-                android:contentDescription="@string/takenPhoto"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="155dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/navigationmenu_border"
+                android:contentDescription="@string/takenPhoto"
                 android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reportHeaderText" />
+                app:layout_constraintTop_toBottomOf="@+id/projectSpinner" />
 
             <ImageButton
                 android:id="@+id/takePhotoBtn"
@@ -63,30 +63,30 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/navigationmenu_border"
                 android:contentDescription="@string/takenPhotos"
+                android:padding="1dp"
                 app:layout_constraintBottom_toTopOf="@+id/reportDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/takePhotoBtn"
                 app:layout_constraintTop_toBottomOf="@+id/reportTakenPhoto"
-                app:layout_constraintVertical_bias="1.0"
-                android:background="@drawable/navigationmenu_border"
-                android:padding="1dp" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <EditText
                 android:id="@+id/reportDescription"
-                android:labelFor="@id/reportDescription"
-                android:inputType="textMultiLine"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/navigationmenu_border"
                 android:gravity="start"
+                android:hint="Incident description.."
+                android:inputType="textMultiLine"
+                android:labelFor="@id/reportDescription"
+                android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/takePhotoBtn"
-                android:background="@drawable/navigationmenu_border"
-                android:padding="1dp"
-                android:hint="Incident description.."/>
+                app:layout_constraintTop_toBottomOf="@+id/takePhotoBtn" />
 
             <Button
                 android:id="@+id/sendReportBtn"
@@ -100,6 +100,28 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
+
+            <Spinner
+                android:id="@+id/projectSpinner"
+                android:layout_width="246dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/projectLabel"
+                app:layout_constraintTop_toBottomOf="@+id/reportHeaderText" />
+
+            <TextView
+                android:id="@+id/projectLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/project1"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reportHeaderText" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
