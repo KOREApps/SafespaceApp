@@ -11,6 +11,15 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+
+    <!-- MainNavigationActivity -->
+    <string name="nav_document">Document</string>
+    <string name="nav_report">Report</string>
+    <string name="nav_gps">GPS</string>
+    <string name="nav_latestrep">Latest reports</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_settings">Settings</string>
+
     <!--RegisterUserActivity-->
     <string name="firstName">First Name</string>
     <string name="lastName">Last Name</string>

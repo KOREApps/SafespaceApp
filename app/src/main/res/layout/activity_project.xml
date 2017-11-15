@@ -23,7 +23,7 @@
                 android:layout_marginTop="16dp"
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
-                android:hint="Project.."
+                android:hint="@string/project"
                 android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
 
             <EditText
                 android:id="@+id/projectDescription"
-                android:contentDescription="Project Discription"
+                android:contentDescription="@string/documentation_project_description"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="8dp"
