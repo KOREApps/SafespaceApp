@@ -63,7 +63,7 @@ public class DisplayReportActivity extends AppCompatActivity {
 
     private String getTemplateDescription() {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at urna id dolor rutrum pharetra. Integer quis mauris risus. Integer ullamcorper dolor a porttitor pellentesque. " +
-                "Sed efficitur vitae nisl in feugiat. Donec interdum accumsan sem. Maecenas ut cursus odio. Quisque risus urna, hendrerit sit amet urna vel, pulvinar semper dui. Etiam vestibulum, " +
+                "Sed efficitur vitae nisl in feusgiat. Donec interdum accumsan sem. Maecenas ut cursus odio. Quisque risus urna, hendrerit sit amet urna vel, pulvinar semper dui. Etiam vestibulum, " +
                 "dui nec luctus volutpat, libero eros semper ante, sit amet lacinia lacus ipsum nec tortor. Sed eget velit vel ex dapibus euismod et nec ipsum. Vivamus porta sem turpis, molestie " +
                 "rutrum nibh cursus eu. Etiam sit amet fringilla urna, id iaculis purus. Phasellus et molestie justo, id ultrices libero. Morbi ut magna eu lacus feugiat placerat. Praesent ex orci, " +
                 "finibus id vulputate nec, hendrerit in dui. Cras quis lacinia nunc, vel placerat nunc.\n" +
