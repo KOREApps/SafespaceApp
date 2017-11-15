@@ -96,6 +96,7 @@ public class DocumentActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        finish();
 
     }
 
