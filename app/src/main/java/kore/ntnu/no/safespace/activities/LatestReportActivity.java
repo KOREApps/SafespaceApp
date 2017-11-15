@@ -13,7 +13,6 @@ import java.util.List;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.DocumentationAdapter;
 import kore.ntnu.no.safespace.data.Documentation;
-import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
@@ -49,16 +48,6 @@ public class LatestReportActivity extends AppCompatActivity {
             for(Documentation d : list){
                 adapter.addReport(d);
             }
-            adapter.addReport(new IncidentReport(null, "One", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Two", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Three", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Four", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Five", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Six", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Seven", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Eight", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Nine", null, null, null));
-            adapter.addReport(new IncidentReport(null, "Ten", null, null, null));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {

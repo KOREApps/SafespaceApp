@@ -92,7 +92,9 @@ public class DocumentActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         finish();
-
+        Intent intent = new Intent(this, DisplayReportActivity.class);
+        intent.putExtra(LatestReportActivity.REPORT, documentation);
+        startActivity(intent);
     }
 
     private void displayImageOptions(Image image) {
