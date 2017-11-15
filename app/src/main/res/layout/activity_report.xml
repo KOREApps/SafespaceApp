@@ -78,15 +78,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/navigationmenu_border"
                 android:gravity="start"
                 android:hint="Incident description.."
                 android:inputType="textMultiLine"
                 android:labelFor="@id/reportDescription"
-                android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/takePhotoBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/takePhotoBtn"
+                android:background="@drawable/navigationmenu_border"
+                android:padding="1dp"/>
+
 
             <Button
                 android:id="@+id/sendReportBtn"

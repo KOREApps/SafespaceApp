@@ -9,7 +9,7 @@ import android.widget.Toast;
 import kore.ntnu.no.safespace.R;
 
 /**
- * Created by OscarWika on 13.11.2017.
+ * Created by Oscar Wika on 13.11.2017.
  */
 
 public class ProjectActivity extends AppCompatActivity {
