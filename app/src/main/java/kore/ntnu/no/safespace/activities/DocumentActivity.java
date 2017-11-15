@@ -33,7 +33,6 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 public class DocumentActivity extends AppCompatActivity {
     public static final int TAKE_PICTURE_REQUEST = 33;
     private RecyclerView imageDisplay;
-    private Documentation doc;
     private TextView sender;
     private EditText title;
     private TextView description;
