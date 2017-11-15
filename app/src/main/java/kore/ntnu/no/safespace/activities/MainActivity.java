@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText loginUser = (EditText) findViewById(R.id.launch_username);
-        EditText loginPwd = (EditText) findViewById(R.id.launch_password);
-        Button loginButton = (Button) findViewById(R.id.launch_loginButton);
+        EditText loginUser = findViewById(R.id.launch_username);
+        EditText loginPwd = findViewById(R.id.launch_password);
+        Button loginButton =  findViewById(R.id.launch_loginButton);
         loginButton.setOnClickListener((View v) -> {
             // Check input -> login -> start ny activity
             String username = loginUser.getText().toString();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(USER, new User());
             startActivity(intent);
         });
-        Button registerButton = (Button) findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View v) -> {
             Intent intent = new Intent(this, RegisterUserActivity.class);
             startActivity(intent);

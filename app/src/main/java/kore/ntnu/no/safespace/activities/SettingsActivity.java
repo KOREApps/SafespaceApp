@@ -46,7 +46,6 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
     }
 
     public static void changeLang(Context context, String lang) {

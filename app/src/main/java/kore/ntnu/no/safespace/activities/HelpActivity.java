@@ -24,12 +24,7 @@ public class HelpActivity extends AppCompatActivity {
 
         Button bugBtn = findViewById(R.id.bugReportBtn);
 
-        bugBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonShowPopupWindow(view);
-            }
-        });
+        bugBtn.setOnClickListener(view -> onButtonShowPopupWindow(view));
     }
 
     public void onButtonShowPopupWindow(View view) {

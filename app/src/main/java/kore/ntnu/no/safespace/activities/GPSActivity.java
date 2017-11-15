@@ -42,7 +42,6 @@ public class GPSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
 
-
         getLocationBtn = findViewById(R.id.gpsButtonYo);
         getLocationView = findViewById(R.id.gpsTextView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);

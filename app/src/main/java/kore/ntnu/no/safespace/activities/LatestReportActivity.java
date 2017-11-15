@@ -35,13 +35,10 @@ public class LatestReportActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         fillReports();
 
-        adapter.setListener(new DocumentationAdapter.OnClickListener() {
-            @Override
-            public void onClick(int position) {
-                Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
-                intent.putExtra(REPORT, adapter.getReportFromList(position));
-                startActivity(intent);
-            }
+        adapter.setListener(position -> {
+            Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
+            intent.putExtra(REPORT, adapter.getReportFromList(position));
+            startActivity(intent);
         });
     }
 
