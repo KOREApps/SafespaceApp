@@ -26,8 +26,23 @@ public class StorageUtils {
         return saveReportToFile(report, new File(storageDir));
     }
 
-    private static boolean saveIncident(IncidentReport report, File storageDir) {
+    private static boolean saveIncident(IncidentReport report, File storageDir) throws IOException {
+        File doc = getIncidentFile(storageDir, "Incident");
+        FileOutputStream outputStream = new FileOutputStream(doc);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(report);
         return false;
+    }
+
+    private static File getIncidentFile(File storageDir, String prefix) throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = prefix + "_" + timeStamp + ".txt";
+        File incident = new File(storageDir, prefix + "/" + imageFileName);
+        if (!incident.getParentFile().exists()) {
+            incident.getParentFile().mkdirs();
+        }
+        incident.createNewFile();
+        return incident;
     }
 
     private static boolean saveDocumentation(Documentation report, File storageDir) throws IOException {
@@ -41,12 +56,12 @@ public class StorageUtils {
     public static File getDocumentFile(File storageDir, String prefix) throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = prefix + "_" + timeStamp + ".txt";
-        File image = new File(storageDir, prefix + "/" + imageFileName);
-        if (!image.getParentFile().exists()) {
-            image.getParentFile().mkdirs();
+        File document = new File(storageDir, prefix + "/" + imageFileName);
+        if (!document.getParentFile().exists()) {
+            document.getParentFile().mkdirs();
         }
-        image.createNewFile();
-        return image;
+        document.createNewFile();
+        return document;
     }
 
     public static boolean saveReportToFile(Report report, File storageDir) throws IOException {
@@ -81,6 +96,30 @@ public class StorageUtils {
             }
         }
         return list;
+    }
+
+    public static List<IncidentReport> getIncidentsFromFile(File storageDir) throws IOException, ClassNotFoundException {
+        List<IncidentReport> list = new ArrayList<>();
+        List<File> dirs = getDirectories(storageDir);
+        for (File dir : dirs) {
+            if (dir.getName().toLowerCase().contains("incident")) {
+                {
+                    File root = new File(storageDir, dir.getAbsolutePath());
+                    File[] documentations = root.listFiles();
+                    for (File f : documentations) {
+                        list.add(readIncidentFromFile(f));
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    private static IncidentReport readIncidentFromFile(File incident) throws IOException, ClassNotFoundException {
+        FileInputStream inputStream = new FileInputStream(incident);
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+        IncidentReport incidentReport = (IncidentReport) objectInputStream.readObject();
+        return incidentReport;
     }
 
     public static List<File> getDirectories(String storageDir) {

@@ -23,6 +23,7 @@
 
     <!-- ReportActivity -->
     <string name="incident">Hendelse..</string>
+    <string name="incident_description">Hendelse beskrivelse..</string>
     <string name="takePhoto">Bilde</string>
     <string name="takenPhoto">Tatt bilde</string>
     <string name="takenPhotos">Tatt bilder</string>
@@ -31,7 +32,7 @@
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
     <string name="documentation_sender">Sender:</string>
-    <string name="documentation_project_description">Prosjekt beskrivelse...</string>
+    <string name="documentation_project_description">Prosjekt beskrivelse…</string>
     <string name="image_description">Bilde beskrivelse</string>
 
     <!-- HelpActivity -->
@@ -40,6 +41,8 @@
     <string name="bugreport">Rapporter bug</string>
     <string name="settings">Innstillinger</string>
     <string name="help">Hjelp</string>
+    <string name="bug_description">Bug beskrivelse…</string>
+    <string name="bug_name">Bug navn</string>
 
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Rapporter bilde</string>

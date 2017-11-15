@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class DocumentActivity extends AppCompatActivity {
     private RecyclerView imageDisplay;
     private Documentation doc;
     private TextView sender;
+    private EditText title;
     private TextView description;
     private ProjectSpinnerAdapter dropDownAdapter;
     private ImageDisplayAdapter adapter;
@@ -48,6 +50,7 @@ public class DocumentActivity extends AppCompatActivity {
         sender = findViewById(R.id.docSenderID);
         description = findViewById(R.id.docDescription);
         project = findViewById(R.id.docProject);
+        title = findViewById(R.id.docTitle);
 
         imageList = new ArrayList<>();
 
@@ -86,9 +89,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void submitDocumentation() {
         //TODO: Sub
         Toast.makeText(DocumentActivity.this, "You pressed Submit, doesitwork? maybe", Toast.LENGTH_SHORT).show();
-        String title = null; //TODO Add title field to display'
-
-        Documentation documentation = new Documentation(title, description.toString(), imageList, MainNavigationMenuActivity.getCurrentUser());
+        Documentation documentation = new Documentation(title.getText().toString(), description.toString(), imageList, MainNavigationMenuActivity.getCurrentUser());
         try {
             StorageUtils.saveReportToFile(documentation, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
         } catch (IOException e) {
