@@ -91,7 +91,12 @@ public class ReportActivity extends AppCompatActivity {
             //Project project = new Project(1L, "", "", null);
             IncidentReport report = new IncidentReport(null, title, description, null, null, this.selectedProject);
             new SendReportTask((result -> {
-                System.out.println(result.getResult().getTitle());
+                if(result.isSuccess()) {
+                    System.out.println(result.getResult().getTitle());
+                    Toast.makeText(this, "Report was successfully sent!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
+                }
             })).execute(report);
         });
     }

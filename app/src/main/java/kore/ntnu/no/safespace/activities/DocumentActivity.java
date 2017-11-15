@@ -27,6 +27,7 @@ import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.tasks.SendDocumentationTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
@@ -79,9 +80,6 @@ public class DocumentActivity extends AppCompatActivity {
                 Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
             }
         }).execute();
-//        String[] projects = new String[]{"Robert blir ferdig", "Kristoffer får bank", "Oskar døde"}; //TODO erstatt dummy data med data fra server
-//        droptDownAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, projects);
-//        dropDown.setAdapter(droptDownAdapter);
 
     }
 
@@ -94,6 +92,13 @@ public class DocumentActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        new SendDocumentationTask(result -> {
+            if (result.isSuccess()) {
+                System.out.println("Documentation submitted");
+            } else {
+                Log.e(DocumentActivity.class.getSimpleName(), result.getError().getMessage());
+            }
+        }).execute(documentation);
         finish();
         Intent intent = new Intent(this, DisplayReportActivity.class);
         intent.putExtra(LatestReportActivity.REPORT, documentation);

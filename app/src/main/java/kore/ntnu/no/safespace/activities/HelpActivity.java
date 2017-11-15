@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.R;
@@ -54,13 +55,11 @@ public class HelpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String bugTitle = bugTitleView.getText().toString();
                 String bugDescription = bugDescriptionView.getText().toString();
-                //TODO sett in User
                 if (!bugTitle.equals("") && !bugDescription.equals("")) {
-                    BugReport report = new BugReport(bugTitle, bugDescription, null);
+                    BugReport report = new BugReport(bugTitle, bugDescription, MainNavigationMenuActivity.getCurrentUser());
                     System.out.println(bugTitle + bugDescription + report);
                 } else {
-                    //TODO Do something
-                    System.out.println("Lulllll");
+                    Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
                 }
 
             }

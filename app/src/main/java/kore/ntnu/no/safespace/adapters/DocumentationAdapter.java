@@ -47,7 +47,7 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
     public void onBindViewHolder(DocumentationViewHolder holder, int position) {
         Report report = list.get(position);
 
-        holder.textView.setText(report.getDescription()); //TODO FIKS IMGES OG SÅNT
+        holder.textView.setText(report.getDescription());
         if(report.getImages().isEmpty()) {
             holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
         } else {

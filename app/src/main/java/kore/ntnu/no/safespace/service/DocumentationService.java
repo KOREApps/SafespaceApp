@@ -19,7 +19,7 @@ import kore.ntnu.no.safespace.dto.DocumentDTO;
 
 public class DocumentationService implements RestClient<Documentation, Long> {
 
-    private static final String URL = MainActivity.URL  + "/documentations"; //TODO is /documentations the right folder?
+    private static final String URL = MainActivity.URL  + "/documentations";
     private static final Type LIST_TYPE = new TypeToken<List<DocumentDTO>>(){}.getType();
 
     private HttpService http;
