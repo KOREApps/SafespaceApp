@@ -2,6 +2,7 @@
     <!-- Global -->
     <string name="app_name">SafeSpace</string>
     <string name="empty_string">Empty String</string>
+
     <string name="settings_menu">Settings</string>
     <string name="submit">Submit</string>
     <string name="default_user">Robert</string>
@@ -10,6 +11,14 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+
+    <!-- MainNavigationActivity -->
+    <string name="nav_document">Document</string>
+    <string name="nav_report">Report</string>
+    <string name="nav_gps">GPS</string>
+    <string name="nav_latestrep">Latest reports</string>
+    <string name="nav_help">Help</string>
+    <string name="nav_settings">Settings</string>
 
     <!--RegisterUserActivity-->
     <string name="firstName">First Name</string>
@@ -25,6 +34,10 @@
     <string name="takenPhotos">Taken Photos</string>
     <string name="sendReport">Send</string>
 
+    <!-- ProjectActivity -->
+    <string name="project_description">Project description..</string>
+    <string name="project_dot">Project…</string>
+
     <!-- DocumentActivity -->
     <string name="project">Project name…</string>
     <string name="documentation_sender">Sender:</string>
@@ -37,7 +50,7 @@
     <string name="bugreport">Report bug</string>
     <string name="settings">Settings</string>
     <string name="help">Help</string>
-    <string name="bug_description">Bug description...</string>
+    <string name="bug_description">Bug description…</string>
     <string name="bug_name">Bug name</string>
 
     <!-- DisplayReportActivity -->
@@ -50,6 +63,5 @@
     <string name="lang_nor">Norwegian</string>
     <string name="lang_eng">English</string>
     <string name="gps">GPS</string>
-
 
 </resources>
