@@ -28,6 +28,10 @@
     <string name="takenPhotos">Tatt bilder</string>
     <string name="sendReport">Send</string>
 
+    <!-- ProjectActivity -->
+    <string name="project_description">Prosjekt beskrivelse..</string>
+    <string name="project_dot">Prosjekt…</string>
+
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
     <string name="documentation_sender">Sender:</string>
@@ -46,7 +50,7 @@
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Rapporter bilde</string>
     <string name="project1">Prosjekt</string>
-    <string name="create">Create</string>
+    <string name="create">Opprett</string>
 
     <!-- SettingsActivity -->
     <string name="lang_nor">Norsk</string>
