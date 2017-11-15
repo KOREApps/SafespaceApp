@@ -6,13 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.User;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
+    private static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
+
+        currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
@@ -50,5 +54,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+    }
+
+    public static User getCurrentUser(){
+        return currentUser;
     }
 }

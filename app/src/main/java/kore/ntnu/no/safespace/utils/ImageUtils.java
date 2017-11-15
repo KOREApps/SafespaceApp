@@ -94,7 +94,7 @@ public class ImageUtils {
         String imageFileName = prefix + "_" + timeStamp + ".jpg";
         File image = new File(storageDir, prefix + "/" + imageFileName);
         if (!image.getParentFile().exists()) {
-            image.getParentFile().mkdir();
+            image.getParentFile().mkdirs();
         }
         image.createNewFile();
         return image;
@@ -104,21 +104,9 @@ public class ImageUtils {
         return createImageFile(new File(storageDir), prefix);
     }
 
-    public static List<File> getDirectories(String storageDir){
-        List<File> list = new ArrayList<>();
-        File root = new File(storageDir);
-        String[] content = root.list();
-        for(String s: content){
-            if(!s.contains(".")){
-                list.add(new File(s));
-            }
-        }
-        return list;
-    }
-
     public static List<Image> getStoredImages(String storageDir){
         List<Image> list = new ArrayList<>();
-        List<File> directories = getDirectories(storageDir);
+        List<File> directories = StorageUtils.getDirectories(storageDir);
         for(File dir: directories){
             File imgPath = new File(storageDir, dir.getAbsolutePath());
             File[] images = imgPath.listFiles();
