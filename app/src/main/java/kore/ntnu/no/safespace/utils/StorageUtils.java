@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -74,48 +75,29 @@ public class StorageUtils {
         }
     }
 
-    private static Documentation readDocumentFromFile(File doc) throws IOException, ClassNotFoundException {
+    public static Documentation readDocumentFromFile(File doc) throws IOException, ClassNotFoundException {
         FileInputStream inputStream = new FileInputStream(doc);
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         Documentation documentation = (Documentation) objectInputStream.readObject();
         return documentation;
     }
 
-    public static List<Documentation> getDocumentationsFromFile(File storageDir) throws IOException, ClassNotFoundException {
-        List<Documentation> list = new ArrayList<>();
+    public static List<File> getDocumentations(File storageDir) throws IOException, ClassNotFoundException {
+        List<File> list = new ArrayList<>();
         List<File> dirs = getDirectories(storageDir);
         for (File dir : dirs) {
             if (dir.getName().toLowerCase().contains("document")) {
                 {
                     File root = new File(storageDir, dir.getAbsolutePath());
                     File[] documentations = root.listFiles();
-                    for (File f : documentations) {
-                        list.add(readDocumentFromFile(f));
-                    }
+                    list.addAll(Arrays.asList(documentations));
                 }
             }
         }
         return list;
     }
 
-    public static List<IncidentReport> getIncidentsFromFile(File storageDir) throws IOException, ClassNotFoundException {
-        List<IncidentReport> list = new ArrayList<>();
-        List<File> dirs = getDirectories(storageDir);
-        for (File dir : dirs) {
-            if (dir.getName().toLowerCase().contains("incident")) {
-                {
-                    File root = new File(storageDir, dir.getAbsolutePath());
-                    File[] documentations = root.listFiles();
-                    for (File f : documentations) {
-                        list.add(readIncidentFromFile(f));
-                    }
-                }
-            }
-        }
-        return list;
-    }
-
-    private static IncidentReport readIncidentFromFile(File incident) throws IOException, ClassNotFoundException {
+    public static IncidentReport readIncidentFromFile(File incident) throws IOException, ClassNotFoundException {
         FileInputStream inputStream = new FileInputStream(incident);
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         IncidentReport incidentReport = (IncidentReport) objectInputStream.readObject();
@@ -132,6 +114,25 @@ public class StorageUtils {
         for (String s : content) {
             if (!s.contains(".")) {
                 list.add(new File(s));
+            }
+        }
+        return list;
+    }
+
+    public static void removeFile(File file) {
+        file.delete();
+    }
+
+    public static List<File> getIncidents(File externalFilesDir) {
+        List<File> list = new ArrayList<>();
+        List<File> dirs = getDirectories(externalFilesDir);
+        for (File dir : dirs) {
+            if (dir.getName().toLowerCase().contains("incident")) {
+                {
+                    File root = new File(externalFilesDir, dir.getAbsolutePath());
+                    File[] documentations = root.listFiles();
+                    list.addAll(Arrays.asList(documentations));
+                }
             }
         }
         return list;

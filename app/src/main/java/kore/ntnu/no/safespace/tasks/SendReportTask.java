@@ -26,9 +26,9 @@ public class SendReportTask extends AsyncTask<IncidentReport, Integer, AsyncTask
         IncidentReport newReport = incidentReports[0];
         try {
             newReport = reportService.add(newReport);
-            return new AsyncTaskResult<IncidentReport>(newReport);
+            return new AsyncTaskResult<>(newReport);
         } catch (IOException ex) {
-            return new AsyncTaskResult<IncidentReport>(null, ex);
+            return new AsyncTaskResult<>(null, ex);
         }
     }
 
