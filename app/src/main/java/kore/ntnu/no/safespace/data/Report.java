@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.data;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,7 +19,11 @@ public abstract class Report implements Serializable {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.images = images;
+        if (images == null) {
+            this.images = Collections.EMPTY_LIST;
+        } else {
+            this.images = images;
+        }
         this.project = project;
     }
 

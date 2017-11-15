@@ -3,6 +3,7 @@
     <!-- Global -->
     <string name="app_name">SafeSpace</string>
     <string name="empty_string">Tom String</string>
+
     <string name="settings_menu">Innstillinger</string>
     <string name="submit">Send</string>
     <string name="default_user">Robert</string>
@@ -50,11 +51,16 @@
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Rapporter bilde</string>
     <string name="project1">Prosjekt</string>
-    <string name="create">Opprett</string>
+    <string name="create">Lag ny</string>
 
     <!-- SettingsActivity -->
     <string name="lang_nor">Norsk</string>
     <string name="lang_eng">Engelsk</string>
     <string name="LogOut">Logg ut</string>
-    <string name="gps">GPS</string>
+
+    <!--RegisterUserActivity-->
+    <string name="firstName">Fornavn</string>
+    <string name="lastName">Etternavn</string>
+    <string name="confirmPassword">Bekreft Passord</string>
+    <string name="register">Registrer</string>
 </resources>

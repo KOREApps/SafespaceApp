@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.Report;
+import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
  * Created by KristoffMisbruker on 2017-10-27.
@@ -46,7 +48,15 @@ public class DocumentationAdapter extends RecyclerView.Adapter<DocumentationAdap
         Report report = list.get(position);
 
         holder.textView.setText(report.getDescription()); //TODO FIKS IMGES OG SÅNT
-        holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
+        if(report.getImages().isEmpty()) {
+            holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
+        } else {
+            try {
+                holder.imageView.setImageBitmap(ImageUtils.getBitmap(report.getImages().get(0),8));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

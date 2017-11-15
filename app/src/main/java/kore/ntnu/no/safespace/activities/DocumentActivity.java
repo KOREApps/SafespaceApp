@@ -25,6 +25,7 @@ import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
+import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
@@ -32,7 +33,6 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 public class DocumentActivity extends AppCompatActivity {
     public static final int TAKE_PICTURE_REQUEST = 33;
     private RecyclerView imageDisplay;
-    private Documentation doc;
     private TextView sender;
     private EditText title;
     private TextView description;
@@ -51,6 +51,7 @@ public class DocumentActivity extends AppCompatActivity {
         description = findViewById(R.id.docDescription);
         project = findViewById(R.id.docProject);
         title = findViewById(R.id.docTitle);
+        sender.setText(MainNavigationMenuActivity.getCurrentUser().getFirstName());
 
         imageList = new ArrayList<>();
 
@@ -68,7 +69,6 @@ public class DocumentActivity extends AppCompatActivity {
 
 
     }
-
     private void populateSpinner(){
 
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
@@ -89,12 +89,13 @@ public class DocumentActivity extends AppCompatActivity {
     private void submitDocumentation() {
         //TODO: Sub
         Toast.makeText(DocumentActivity.this, "You pressed Submit, doesitwork? maybe", Toast.LENGTH_SHORT).show();
-        Documentation documentation = new Documentation(title.getText().toString(), description.toString(), imageList, MainNavigationMenuActivity.getCurrentUser());
+        Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), MainNavigationMenuActivity.getCurrentUser());
         try {
             StorageUtils.saveReportToFile(documentation, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        finish();
 
     }
 

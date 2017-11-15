@@ -39,11 +39,13 @@ public class DisplayReportActivity extends AppCompatActivity {
         description = findViewById(R.id.display_report_description);
         description.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
-        report = (Report) intent.getSerializableExtra("ID"); //TODO: USE CORRECT ID!.
+        report = (Report) intent.getSerializableExtra(LatestReportActivity.REPORT);
         if(report == null){
             useTemplateReport();
         }
-        title.setText(report.getProject().getName());
+        if(report.getProject() != null) {
+            title.setText(report.getProject().getName());
+        }
         description.setText(report.getDescription());
         imagePreviewer = findViewById(R.id.display_report_recyclerView);
         imagePreviewer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

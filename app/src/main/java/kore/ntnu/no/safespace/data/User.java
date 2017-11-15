@@ -32,6 +32,9 @@ public class User implements Serializable {
         this(null,null,firstName,surName, null, role,null);
 
     }
+    public User(){
+        this("Anon","Ymous",null);
+    }
 
     @Override
     public boolean equals(Object o) {
