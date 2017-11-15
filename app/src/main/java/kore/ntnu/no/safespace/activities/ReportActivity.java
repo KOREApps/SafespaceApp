@@ -38,6 +38,7 @@ public class ReportActivity extends AppCompatActivity {
     private ImageView takenPhoto;
     private Bitmap bitmap;
     private ProjectSpinnerAdapter dropDownAdapter;
+    private Project selectedProject = null;
 
 
     @Override
@@ -65,6 +66,7 @@ public class ReportActivity extends AppCompatActivity {
         Spinner dropDown = findViewById(R.id.projectSpinner);
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
         dropDown.setAdapter(dropDownAdapter);
+        setSpinnerAdapterOnSelectListener(dropDown, dropDownAdapter);
         new GetAllProjectsTask((projects) -> {
             if (projects.isSuccess()) {
                 dropDownAdapter.setData(projects.getResult());
@@ -74,14 +76,21 @@ public class ReportActivity extends AppCompatActivity {
         }).execute();
     }
 
+    private void setSpinnerAdapterOnSelectListener(Spinner spinner, ProjectSpinnerAdapter adapter){
+        spinner.setOnItemSelectedListener(adapter);
+        adapter.setOnSelectListener((project -> {
+            this.selectedProject = project;
+        }));
+    }
+
     private void setUpSendButton(Button sendButton){
         sendButton.setOnClickListener((view) -> {
             EditText reportHeader = findViewById(R.id.reportHeaderText);
             String title = reportHeader.getText().toString();
             EditText reportDescription = findViewById(R.id.reportDescription);
             String description = reportDescription.getText().toString();
-            Project project = new Project(1L, "", "", null);
-            IncidentReport report = new IncidentReport(null, title, description, null, null, project);
+            //Project project = new Project(1L, "", "", null);
+            IncidentReport report = new IncidentReport(null, title, description, null, null, this.selectedProject);
             new SendReportTask((result -> {
                 System.out.println(result.getResult().getTitle());
             })).execute(report);

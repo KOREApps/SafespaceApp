@@ -29,6 +29,10 @@
     <string name="takenPhotos">Tatt bilder</string>
     <string name="sendReport">Send</string>
 
+    <!-- ProjectActivity -->
+    <string name="project_description">Prosjekt beskrivelse..</string>
+    <string name="project_dot">Prosjekt…</string>
+
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
     <string name="documentation_sender">Sender:</string>
