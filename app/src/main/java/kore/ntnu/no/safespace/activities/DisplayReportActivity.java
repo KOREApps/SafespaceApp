@@ -39,7 +39,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         description = findViewById(R.id.display_report_description);
         description.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
-        report = (Report) intent.getSerializableExtra("ID"); //TODO: USE CORRECT ID!.
+        report = (Report) intent.getSerializableExtra(LatestReportActivity.REPORT);
         if(report == null){
             useTemplateReport();
         }
