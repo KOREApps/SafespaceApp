@@ -21,9 +21,12 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
@@ -39,10 +42,12 @@ public class ReportActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
+    private UUID tempId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tempId = UUID.randomUUID();
         setContentView(R.layout.activity_report);
 
         EditText reportHeader = findViewById(R.id.reportHeaderText);
@@ -89,6 +94,7 @@ public class ReportActivity extends AppCompatActivity {
             EditText reportDescription = findViewById(R.id.reportDescription);
             String description = reportDescription.getText().toString();
             //Project project = new Project(1L, "", "", null);
+            //List<Image> images = getImages();
             IncidentReport report = new IncidentReport(null, title, description, null, null, this.selectedProject);
             new SendReportTask((result -> {
                 if(result.isSuccess()) {
@@ -101,6 +107,13 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
+    private List<Image> getImages(){
+        // TODO Get relevant images
+        List<Image> images = new ArrayList<>();
+        images = ImageUtils.getStoredImages(getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+        return images;
+    }
+
     private void takePhoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -108,7 +121,7 @@ public class ReportActivity extends AppCompatActivity {
             // Create the File where the photo should go
             imageFile = null;
             try {
-                imageFile = ImageUtils.createImageFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Report");
+                imageFile = ImageUtils.createImageFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Report-" + tempId);
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }
