@@ -1,13 +1,14 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
 
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Button anonLoginButton = findViewById(R.id.anonLoginButton);
         anonLoginButton.setOnClickListener((view) -> {
             Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
+            intent.putExtra(USER, new User());
             startActivity(intent);
         });
         Button registerButton = (Button) findViewById(R.id.registerButton);

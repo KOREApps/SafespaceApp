@@ -51,6 +51,7 @@ public class DocumentActivity extends AppCompatActivity {
         description = findViewById(R.id.docDescription);
         project = findViewById(R.id.docProject);
         title = findViewById(R.id.docTitle);
+        sender.setText(MainNavigationMenuActivity.getCurrentUser().getFirstName());
 
         imageList = new ArrayList<>();
 
