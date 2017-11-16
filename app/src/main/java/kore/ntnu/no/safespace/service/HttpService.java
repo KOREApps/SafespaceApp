@@ -2,6 +2,8 @@ package kore.ntnu.no.safespace.service;
 
 import java.io.IOException;
 
+import javax.net.ssl.SSLContext;
+
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,7 +24,7 @@ public class HttpService {
     private OkHttpClient http;
 
     public HttpService() {
-        this.http = new OkHttpClient();
+        this.http = HttpClientBuilder.getHttpClient();
     }
 
     public HttpResponse get(String url) throws IOException {
@@ -32,6 +34,7 @@ public class HttpService {
                 .build();
         Response response = http.newCall(request).execute();
         HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
+        response.close();
         return httpResponse;
     }
 
