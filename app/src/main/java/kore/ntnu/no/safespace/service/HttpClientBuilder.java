@@ -2,8 +2,6 @@ package kore.ntnu.no.safespace.service;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import java.io.IOException;
@@ -68,7 +66,6 @@ public class HttpClientBuilder extends ContextWrapper {
         return ks;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public KeyStore getKeyStoreFile() throws KeyStoreException {
         String file = "keystore";
         String path = "raw";
