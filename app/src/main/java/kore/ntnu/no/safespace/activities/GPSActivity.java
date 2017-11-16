@@ -4,12 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,6 +42,9 @@ public class GPSActivity extends AppCompatActivity {
     Location NTNULabBuilding;
     Location NTNUMainBuilding;
 
+    private SharedPreferences prefs;
+    private String currentLocation;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +55,14 @@ public class GPSActivity extends AppCompatActivity {
         getLongitudeView = findViewById(R.id.longitudeView);
         getLocationView = findViewById(R.id.locationView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
-
         clearLocationBtn.setOnClickListener(view -> stopAnyListener());
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        SharedPreferences preferencesX = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentLocation = preferencesX.getString("CurrentLocation", "");
+        this.currentLocation = currentLocation;
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -75,13 +86,20 @@ public class GPSActivity extends AppCompatActivity {
                 if(result[0] < 36){
                     getLocationView.setText("Location: You are at NTNU LAB building");
                     getLocationView.append("\nDistance from center: " + result[0]);
+                    GPSActivity.this.currentLocation = "NTNU lab";
                 } else if (result2[0] < 50) {
                     getLocationView.setText("Location: You are at the main building");
                     getLocationView.append("\nDistance from LAB center: " + result[0]);
+                    GPSActivity.this.currentLocation = "Main Building";
                 } else {
                     getLocationView.setText("");
                     getLocationView.append("\nYou are NOT in a building(hopefully)");
+                    GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + "Long: " + location.getLongitude();
                 }
+
+                editor.putString("CurrentLocation", currentLocation);
+                editor.apply();
+                System.out.println("Current Location: " + currentLocation);
             }
 
             @Override
@@ -147,6 +165,8 @@ public class GPSActivity extends AppCompatActivity {
     public void stopAnyListener() {
         locationManager.removeUpdates(locationListener);
     }
+
+    public String getLocation() { return currentLocation; }
 
     @Override
     protected void onPause() {
