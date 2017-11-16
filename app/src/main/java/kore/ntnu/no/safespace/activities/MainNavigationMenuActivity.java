@@ -1,9 +1,16 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
@@ -17,6 +24,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_navigation_menu);
 
         currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
+
+        //getKeyStoreFile();
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
@@ -69,4 +78,14 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     public static User getCurrentUser(){
         return currentUser;
     }
+
+    /* Test
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void getKeyStoreFile() {
+        //getResources().getIdentifier("keystore", "raw", getPackageName());
+
+        InputStream ins = getResources().openRawResource(getResources().getIdentifier("keystore", "raw", getPackageName()));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(ins));
+        System.out.println(reader.lines().collect(Collectors.joining(System.getProperty("line.separator"))));
+    }*/
 }

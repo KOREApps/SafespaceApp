@@ -2,23 +2,18 @@ package kore.ntnu.no.safespace.service;
 
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.content.res.Resources;
-import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Paths;
+
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.UnrecoverableKeyException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.security.cert.CertificateException;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -60,14 +55,32 @@ public class HttpClientBuilder extends ContextWrapper {
     }
 
     private static KeyStore readKeyStore(Object object) throws Exception {
-        String file = "keystore.p12";
+        String file = "keystore";
         KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         char[] password = getPassword().toCharArray();
         try {
             InputStream in = HttpClientBuilder.class.getResourceAsStream(file);
+
             ks.load(in, password);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+        return ks;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public KeyStore getKeyStoreFile() throws KeyStoreException {
+        String file = "keystore";
+        String path = "raw";
+        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+        char[] password = getPassword().toCharArray();
+        try {
+            InputStream stream = getResources().openRawResource(getResources().getIdentifier(file, path, getPackageName()));
+            ks.load(stream, password);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        } catch (CertificateException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
         return ks;
     }
