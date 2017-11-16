@@ -29,12 +29,14 @@ import kore.ntnu.no.safespace.R;
 
 public class GPSActivity extends AppCompatActivity {
 
+    // Layout
     Button getLocationBtn;
     Button clearLocationBtn;
     TextView getLongitudeView;
     TextView getLatitudeView;
     TextView getLocationView;
 
+    // Location Manager
     String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
     String locationProviderGPS = LocationManager.GPS_PROVIDER;
     LocationManager locationManager;
@@ -43,6 +45,7 @@ public class GPSActivity extends AppCompatActivity {
     Location NTNULabBuilding;
     Location NTNUMainBuilding;
 
+    // Preference Manager
     private SharedPreferences prefs;
     private String currentLocation;
 
@@ -56,17 +59,16 @@ public class GPSActivity extends AppCompatActivity {
         getLongitudeView = findViewById(R.id.longitudeView);
         getLocationView = findViewById(R.id.locationView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
+
+        getLocationBtn.setOnClickListener(view -> startGPSListener());
         clearLocationBtn.setOnClickListener(view -> stopAnyListener());
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-
-        SharedPreferences preferencesX = PreferenceManager.getDefaultSharedPreferences(this);
-        String currentLocation = preferencesX.getString("CurrentLocation", "");
+        String currentLocation = prefs.getString("CurrentLocation", "");
         this.currentLocation = currentLocation;
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -97,12 +99,12 @@ public class GPSActivity extends AppCompatActivity {
                 } else {
                     getLocationView.setText("");
                     getLocationView.append("\nYou are NOT in a building(hopefully)");
-                    GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + "Long: " + location.getLongitude();
+                    GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + " Long: " + location.getLongitude();
                 }
 
                 editor.putString("CurrentLocation", GPSActivity.this.currentLocation);
                 editor.apply();
-                System.out.println("Current Location: " + getLocation());
+                System.out.println("Current Location: " + GPSActivity.this.currentLocation);
             }
 
             @Override
@@ -147,29 +149,20 @@ public class GPSActivity extends AppCompatActivity {
     }
 
     private void startGPSListener() {
-        getLocationBtn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("MissingPermission")
-            @Override
-            public void onClick(View view) {
-                if(lastKnownLocation == null) {
-                    getLocationView.setText("Location: No previous coordinates found, fetching..");
-                    locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
-                } else {
-                    getLocationView.setText("Location: Fetching location..");
-                    getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
-                    getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
-                    locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
-                }
+        locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
 
+            if(lastKnownLocation == null) {
+                getLocationView.setText("Location: No previous coordinates found, fetching..");
+            } else {
+                getLocationView.setText("Location: Fetching location..");
+                getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
+                getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
             }
-        });
     }
 
     public void stopAnyListener() {
         locationManager.removeUpdates(locationListener);
     }
-
-    public String getLocation() { return currentLocation; }
 
     @Override
     protected void onPause() {
