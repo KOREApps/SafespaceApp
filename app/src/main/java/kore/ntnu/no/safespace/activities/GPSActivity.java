@@ -29,13 +29,14 @@ import kore.ntnu.no.safespace.R;
 
 public class GPSActivity extends AppCompatActivity {
 
-    String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
-    String locationProviderGPS = LocationManager.GPS_PROVIDER;
     Button getLocationBtn;
     Button clearLocationBtn;
     TextView getLongitudeView;
     TextView getLatitudeView;
     TextView getLocationView;
+
+    String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
+    String locationProviderGPS = LocationManager.GPS_PROVIDER;
     LocationManager locationManager;
     LocationListener locationListener;
     Location lastKnownLocation;
@@ -87,6 +88,8 @@ public class GPSActivity extends AppCompatActivity {
                     getLocationView.setText("Location: You are at NTNU LAB building");
                     getLocationView.append("\nDistance from center: " + result[0]);
                     GPSActivity.this.currentLocation = "NTNU lab";
+                    editor.putString("CurrentLocation", GPSActivity.this.currentLocation);
+                    editor.apply();
                 } else if (result2[0] < 50) {
                     getLocationView.setText("Location: You are at the main building");
                     getLocationView.append("\nDistance from LAB center: " + result[0]);
@@ -97,9 +100,9 @@ public class GPSActivity extends AppCompatActivity {
                     GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + "Long: " + location.getLongitude();
                 }
 
-                editor.putString("CurrentLocation", currentLocation);
+                editor.putString("CurrentLocation", GPSActivity.this.currentLocation);
                 editor.apply();
-                System.out.println("Current Location: " + currentLocation);
+                System.out.println("Current Location: " + getLocation());
             }
 
             @Override
@@ -149,7 +152,7 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(lastKnownLocation == null) {
-                    getLongitudeView.setText("Coordinates: No previous coordinates found, fetching..");
+                    getLocationView.setText("Location: No previous coordinates found, fetching..");
                     locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
                 } else {
                     getLocationView.setText("Location: Fetching location..");

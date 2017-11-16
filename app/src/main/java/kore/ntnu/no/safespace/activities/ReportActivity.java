@@ -1,11 +1,13 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +66,10 @@ public class ReportActivity extends AppCompatActivity {
 
         capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
+
+        SharedPreferences preferencesX = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentLocation = preferencesX.getString("CurrentLocation", "");
+        System.out.println("Current Location: " +  currentLocation);
     }
 
     private void populateSpinner(){
