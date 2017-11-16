@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Project;
-import kore.ntnu.no.safespace.tasks.CreateProjectTask;
+import kore.ntnu.no.safespace.tasks.SendProjectTask;
 
 /**
  * Created by Oscar Wika on 13.11.2017.
@@ -34,7 +34,7 @@ public class ProjectActivity extends AppCompatActivity {
         Button createButton = findViewById(R.id.createProjectBtn);
         createButton.setOnClickListener((View view) -> {
             Project newProject = getProject();
-            new CreateProjectTask((result -> {
+            new SendProjectTask((result -> {
                 if (result.isSuccess()) {
                     Toast.makeText(ProjectActivity.this, "Project successfully created", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(ProjectActivity.this, DisplayReportActivity.class);

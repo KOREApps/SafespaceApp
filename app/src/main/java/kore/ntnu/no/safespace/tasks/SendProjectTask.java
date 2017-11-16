@@ -11,12 +11,12 @@ import kore.ntnu.no.safespace.service.ProjectService;
  * Created by OscarWika on 15.11.2017.
  */
 
-public class CreateProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult<Project>> {
+public class SendProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult<Project>> {
 
     private AsyncOnPostExecute<Project> callback;
     private ProjectService projectService;
 
-    public CreateProjectTask(AsyncOnPostExecute<Project> callback) {
+    public SendProjectTask(AsyncOnPostExecute<Project> callback) {
         this.callback = callback;
         this.projectService = new ProjectService();
     }
