@@ -51,7 +51,7 @@ public class GPSActivity extends AppCompatActivity {
         getLocationView = findViewById(R.id.locationView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
-        clearLocationBtn.setOnClickListener(view -> stopGPSListener());
+        clearLocationBtn.setOnClickListener(view -> stopAnyListener());
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -115,7 +115,6 @@ public class GPSActivity extends AppCompatActivity {
         lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch(requestCode) {
@@ -125,7 +124,6 @@ public class GPSActivity extends AppCompatActivity {
                 return;
         }
     }
-
 
     private void startGPSListener() {
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
@@ -146,9 +144,38 @@ public class GPSActivity extends AppCompatActivity {
         });
     }
 
-    public void stopGPSListener() {
+    public void stopAnyListener() {
         locationManager.removeUpdates(locationListener);
     }
 
-    public void stopNetworkListener() { locationManager.removeUpdates(locationListener); }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Avoid consuming all the phones battery when the app is not used.
+        stopAnyListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startGPSListener();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopAnyListener();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startGPSListener();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopAnyListener();
+    }
 }

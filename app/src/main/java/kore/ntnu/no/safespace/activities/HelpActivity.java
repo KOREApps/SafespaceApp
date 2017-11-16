@@ -50,19 +50,16 @@ public class HelpActivity extends AppCompatActivity {
         Button RepBugBtn = popupView.findViewById(R.id.bugReportSendBtn);
         EditText bugDescriptionView = popupView.findViewById(R.id.bugReportDescription);
         EditText bugTitleView = popupView.findViewById(R.id.bugReportTitle);
-        RepBugBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String bugTitle = bugTitleView.getText().toString();
-                String bugDescription = bugDescriptionView.getText().toString();
-                if (!bugTitle.equals("") && !bugDescription.equals("")) {
-                    BugReport report = new BugReport(bugTitle, bugDescription, MainNavigationMenuActivity.getCurrentUser());
-                    System.out.println(bugTitle + bugDescription + report);
-                } else {
-                    Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
-                }
-
+        RepBugBtn.setOnClickListener(view1 -> {
+            String bugTitle = bugTitleView.getText().toString();
+            String bugDescription = bugDescriptionView.getText().toString();
+            if (!bugTitle.equals("") && !bugDescription.equals("")) {
+                BugReport report = new BugReport(bugTitle, bugDescription, MainNavigationMenuActivity.getCurrentUser());
+                System.out.println(bugTitle + bugDescription + report);
+            } else {
+                Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
             }
+
         });
 
     }
