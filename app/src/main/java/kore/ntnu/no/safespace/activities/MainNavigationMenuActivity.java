@@ -79,15 +79,12 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_items, menu);
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if(id == R.id.action_logout){
             Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
             startActivity(intent);
@@ -96,8 +93,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
             startActivity(intent);
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

@@ -2,25 +2,20 @@ package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.io.IOException;
-import java.util.List;
-
 import kore.ntnu.no.safespace.R;
-import kore.ntnu.no.safespace.adapters.DocumentationAdapter;
-import kore.ntnu.no.safespace.data.Documentation;
-import kore.ntnu.no.safespace.utils.StorageUtils;
+import kore.ntnu.no.safespace.adapters.LatestReportAdapter;
 
 /**
  * Created by OscarWika on 31.10.2017.
  */
 
 public class LatestReportActivity extends AppCompatActivity {
-    DocumentationAdapter adapter;
+
+    LatestReportAdapter adapter;
     public static final String REPORT = "kore.ntnu.safespace.REPORT";
 
     @Override
@@ -28,7 +23,7 @@ public class LatestReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_latestreport);
 
-        adapter = new DocumentationAdapter(this);
+        adapter = new LatestReportAdapter(this);
 
         RecyclerView rv = findViewById(R.id.rv_reports);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
