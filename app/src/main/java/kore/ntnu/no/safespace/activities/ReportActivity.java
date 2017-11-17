@@ -2,8 +2,6 @@ package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -11,12 +9,12 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
@@ -40,8 +39,8 @@ public class ReportActivity extends AppCompatActivity {
     public static final String PICTURE_ID = "kore.ntnu.safespace.PICTURE_ID";
     public static final int TAKE_PICTURE_REQUEST = 1;
     private File imageFile;
-    private ImageView takenPhoto;
-    private Bitmap bitmap;
+    private RecyclerView imageDisplay;
+    private ImageDisplayAdapter adapter;
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
     private UUID tempId;
@@ -53,9 +52,11 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report);
 
         EditText reportHeader = findViewById(R.id.reportHeaderText);
-        takenPhoto = findViewById(R.id.reportTakenPhoto);
+        imageDisplay = findViewById(R.id.reportTakenPhoto);
+        adapter = new ImageDisplayAdapter(this);
+        imageDisplay.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        imageDisplay.setAdapter(adapter);
         ImageButton capturePhoto = findViewById(R.id.takePhotoBtn);
-        ImageView takenPhotos = findViewById(R.id.reportTakenPhotos);
         EditText reportDescription = findViewById(R.id.reportDescription);
         Button sendReport = findViewById(R.id.sendReportBtn);
 
@@ -146,12 +147,8 @@ public class ReportActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(requestCode == TAKE_PICTURE_REQUEST){
             if(resultCode == RESULT_OK){
-                if (bitmap != null) {
-                    bitmap.recycle();
-                }
-                bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-                takenPhoto.setImageBitmap(bitmap);
-
+                adapter.addImage(new Image(imageFile));
+                imageFile = null;
             }
         }
     }

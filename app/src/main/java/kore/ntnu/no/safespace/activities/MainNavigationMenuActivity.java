@@ -1,18 +1,11 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
@@ -24,8 +17,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
-
-        currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
+        if(currentUser == null) {
+            currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
+        }
         
 
         Button reportBtn = findViewById(R.id.rapportBtn);
