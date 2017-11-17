@@ -8,15 +8,16 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private final Long id;
-    private final String username, firstName, lastName;
+    private final String username, firstName, lastName, password;
     private final Role role;
     private final Long eid;
 
-    public User(Long id, String username, String firstName, String surName, Role role, Long eid) {
+    public User(Long id, String username, String firstName, String surName,String password, Role role, Long eid) {
         this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = surName;
+        this.password = password;
         this.role = role;
         this.eid = eid;
     }
@@ -27,12 +28,12 @@ public class User implements Serializable {
      * @param surName the second name of the user.
      * @param role the role of the user.
      */
-    public User(String firstName, String surName, Role role) {
-        this(null,null,firstName,surName, role,null);
+    public User(String firstName, String surName, String password, Role role) {
+        this(null,null,firstName,surName,password, role,null);
 
     }
     public User(){
-        this("Anon","Ymous",null);
+        this("Anon","Ymous", null,null);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class HttpService {
     private OkHttpClient http;
 
     public HttpService() {
-        this.http = HttpClientBuilder.getHttpClient();
+        this.http = HttpClientBuilder.getUnsafeOkHttpClient();
     }
 
     public HttpResponse get(String url) throws IOException {
