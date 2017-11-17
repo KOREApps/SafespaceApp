@@ -5,6 +5,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import java.io.BufferedReader;
@@ -73,6 +75,31 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_items, menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.action_logout){
+            Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        if(id == R.id.action_settings) {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     public static User getCurrentUser(){

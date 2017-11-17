@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/navigationmenu_border"
         android:padding="8dp"
-        android:text="@string/LogOut"
+        android:text="@string/logout"
         android:textAlignment="center"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -56,7 +56,7 @@
     <!-- SettingsActivity -->
     <string name="lang_nor">Norsk</string>
     <string name="lang_eng">Engelsk</string>
-    <string name="LogOut">Logg ut</string>
+    <string name="logout">Logg ut</string>
 
     <!--RegisterUserActivity-->
     <string name="firstName">Fornavn</string>
