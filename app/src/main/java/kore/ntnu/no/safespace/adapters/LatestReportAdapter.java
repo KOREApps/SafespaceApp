@@ -47,7 +47,7 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
     public void onBindViewHolder(ReportViewHolder holder, int position) {
         Report report = list.get(position);
 
-        holder.textView.setText(report.getDescription());
+        holder.textView.setText(report.getTitle());
         if(report.getImages().isEmpty()) {
             holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
         } else {
@@ -95,6 +95,16 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
         notifyDataSetChanged();
     }
 
+    public void setReports(List<? extends Report> reports){
+        list.clear();
+        list.addAll(reports);
+        notifyDataSetChanged();
+    }
+
+    public void addReports(List<? extends Report> reports){
+        list.addAll(reports);
+        notifyDataSetChanged();
+    }
     public Report getReportFromList(int position) {
         return list.get(position);
     }

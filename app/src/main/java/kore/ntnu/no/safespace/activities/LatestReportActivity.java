@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.LatestReportAdapter;
+import kore.ntnu.no.safespace.tasks.GetDocumentationsTask;
+import kore.ntnu.no.safespace.tasks.GetReportsTask;
 
 /**
  * Created by OscarWika on 31.10.2017.
@@ -28,6 +30,8 @@ public class LatestReportActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rv_reports);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
+        new GetDocumentationsTask(c-> adapter.addReports(c.getResult())).execute();
+        new GetReportsTask(c-> adapter.addReports(c.getResult())).execute();
 //        fillReports();
 
         adapter.setListener(position -> {
