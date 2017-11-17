@@ -21,6 +21,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 import kore.ntnu.no.safespace.R;
 
 /**
@@ -32,9 +39,12 @@ public class GPSActivity extends AppCompatActivity {
     // Layout
     Button getLocationBtn;
     Button clearLocationBtn;
+    TextView getLocationView;
+    TextView getAccuracyView;
     TextView getLongitudeView;
     TextView getLatitudeView;
-    TextView getLocationView;
+    TextView getTimeSinceLastView;
+    TextView getTimeAtLastView;
 
     // Location Manager
     String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
@@ -55,9 +65,12 @@ public class GPSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gps);
 
         getLocationBtn = findViewById(R.id.gpsButtonYo);
+        getLocationView = findViewById(R.id.locationView);
+        getAccuracyView = findViewById(R.id.accuracyView);
         getLatitudeView = findViewById(R.id.latitudeView);
         getLongitudeView = findViewById(R.id.longitudeView);
-        getLocationView = findViewById(R.id.locationView);
+        getTimeSinceLastView = findViewById(R.id.timeSinceLastView);
+        getTimeAtLastView = findViewById(R.id.timeAtLastUpdateView);
         clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
         getLocationBtn.setOnClickListener(view -> startGPSListener());
@@ -77,6 +90,17 @@ public class GPSActivity extends AppCompatActivity {
                 getLatitudeView.append("\n" + location.getLatitude());
                 getLongitudeView.setText("Longitude:");
                 getLongitudeView.append("\n" + location.getLongitude());
+
+                long prevTime = lastKnownLocation.getElapsedRealtimeNanos();
+                long currentTime = location.getElapsedRealtimeNanos();
+                long diffTime = currentTime - prevTime;
+                SimpleDateFormat format= new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
+                String myDate = format.format(new Date());
+
+                getAccuracyView.setText("Accuracy:" + "\n" + location.getAccuracy());
+                getTimeSinceLastView.setText("Time since last update:" + "\n" + diffTime/1000000000.0);
+                getTimeAtLastView.setText("Time at last update:" + "\n" + myDate);
 
                 lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
 
@@ -161,6 +185,7 @@ public class GPSActivity extends AppCompatActivity {
     }
 
     public void stopAnyListener() {
+        getTimeSinceLastView.append(" (STOPPED)");
         locationManager.removeUpdates(locationListener);
     }
 

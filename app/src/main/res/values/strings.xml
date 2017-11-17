@@ -71,5 +71,8 @@
     <string name="location">Location:</string>
     <string name="longitude">Longitude:</string>
     <string name="latitude">Latitude:</string>
+    <string name="accuracy">Accuracy:</string>
+    <string name="time_since_last_update">Time since last update:</string>
+    <string name="time_at_last_update">Time at last update:</string>
 
 </resources>
