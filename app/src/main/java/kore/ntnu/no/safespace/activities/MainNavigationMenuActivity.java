@@ -24,8 +24,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_navigation_menu);
 
         currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
-
-        //getKeyStoreFile();
+        
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
@@ -79,13 +78,4 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         return currentUser;
     }
 
-    /* Test
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void getKeyStoreFile() {
-        //getResources().getIdentifier("keystore", "raw", getPackageName());
-
-        InputStream ins = getResources().openRawResource(getResources().getIdentifier("keystore", "raw", getPackageName()));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(ins));
-        System.out.println(reader.lines().collect(Collectors.joining(System.getProperty("line.separator"))));
-    }*/
 }

@@ -1,41 +1,40 @@
 package kore.ntnu.no.safespace.service;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.util.Log;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
 
+import kore.ntnu.no.safespace.ApplicationContext;
+import kore.ntnu.no.safespace.service.keystore.KeyStoreReader;
 import okhttp3.OkHttpClient;
 
 /**
  * Created by robert on 11/16/17.
  */
 
-public class HttpClientBuilder extends ContextWrapper {
-
-    public HttpClientBuilder(Context base) {
-        super(base);
-    }
+public class HttpClientBuilder {
 
     public static OkHttpClient getHttpClient() {
         return new OkHttpClient();
     }
 
-    public static OkHttpClient getHttpSelfSignedCertClient(Object object) {
+    public static OkHttpClient getHttpSelfSignedCertClient() {
         try {
-            KeyStore keyStore = readKeyStore(object);
+            Context context = ApplicationContext.getContext();
+            KeyStoreReader keyStoreReader = new KeyStoreReader();
+            KeyStore keyStore = keyStoreReader.readKeyStore(getPassword());
             SSLContext sslContext = SSLContext.getInstance("SSL");
             TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             trustManagerFactory.init(keyStore);
@@ -52,37 +51,49 @@ public class HttpClientBuilder extends ContextWrapper {
         }
     }
 
-    private static KeyStore readKeyStore(Object object) throws Exception {
-        String file = "keystore";
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        char[] password = getPassword().toCharArray();
+    public static OkHttpClient getUnsafeOkHttpClient() {
         try {
-            InputStream in = HttpClientBuilder.class.getResourceAsStream(file);
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[] {
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
 
-            ks.load(in, password);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager)trustAllCerts[0]);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+
+            OkHttpClient okHttpClient = builder.build();
+            return okHttpClient;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return ks;
     }
 
-    public KeyStore getKeyStoreFile() throws KeyStoreException {
-        String file = "keystore";
-        String path = "raw";
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        char[] password = getPassword().toCharArray();
-        try {
-            InputStream stream = getResources().openRawResource(getResources().getIdentifier(file, path, getPackageName()));
-            ks.load(stream, password);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } catch (CertificateException | NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return ks;
-    }
-
-    private static String getPassword(){
+    private static String getPassword() {
         return "asdf1234";
     }
 
