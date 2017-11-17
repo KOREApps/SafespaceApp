@@ -43,9 +43,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         if(report == null){
             useTemplateReport();
         }
-        if(report.getProject() != null) {
-            title.setText(report.getProject().getName());
-        }
+        title.setText(report.getTitle());
         description.setText(report.getDescription());
         imagePreviewer = findViewById(R.id.display_report_recyclerView);
         imagePreviewer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
