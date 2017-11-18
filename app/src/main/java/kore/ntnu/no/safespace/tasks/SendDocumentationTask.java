@@ -48,27 +48,11 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
 
     private void sendImages(Long documentationId, List<Image> images) throws IOException {
         for (Image image : images) {
-            image.setData(getImageData(image));
+            image.setData(ImageUtils.getB64ImageData(image));
             image.setDocumentation(new Documentation(documentationId, null, null, null));
             image.setFileExtension(image.getFileExtension().replace(".", ""));
             imageService.add(image);
         }
-    }
-
-    private String getImageData(Image image) throws IOException {
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        Bitmap bitmap = ImageUtils.getBitmap(image);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteStream);
-//        byte[] dataBytes = getBitmapData(bitmap);
-        bitmap.recycle();
-        return Base64.encodeToString(byteStream.toByteArray(), Base64.NO_WRAP);
-    }
-
-    private byte[] getBitmapData(Bitmap bitmap) {
-        int size = bitmap.getRowBytes() * bitmap.getHeight();
-        ByteBuffer byteBuffer = ByteBuffer.allocate(size);
-        bitmap.copyPixelsToBuffer(byteBuffer);
-        return byteBuffer.array();
     }
 
     @Override

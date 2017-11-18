@@ -110,42 +110,6 @@ public class DocumentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    private void sendImages(Documentation documentation, List<Image> images){
-//        for (Image image : images) {
-//            try {
-//                Bitmap bitmap = ImageUtils.getBitmap(image);
-//                byte[] data = getBitmapData(bitmap);
-//                bitmap.recycle();
-//                String encoded = Base64.encodeToString(data, Base64.DEFAULT);
-//                image.setData(encoded);
-//
-//            } catch (IOException e) {
-//                Log.e(DocumentActivity.class.getSimpleName(), "Failed to load image");
-//            }
-//        }
-//    }
-//
-//    private void getImageData(List<Image> images){
-//        for (Image image : images) {
-//            try {
-//                Bitmap bitmap = ImageUtils.getBitmap(image);
-//                byte[] data = getBitmapData(bitmap);
-//                bitmap.recycle();
-//                String encoded = Base64.encodeToString(data, Base64.DEFAULT);
-//                image.setData(encoded);
-//            } catch (IOException e) {
-//                Log.e(DocumentActivity.class.getSimpleName(), "Failed to load image");
-//            }
-//        }
-//    }
-//
-//    private byte[] getBitmapData(Bitmap bitmap) {
-//        int size = bitmap.getRowBytes() * bitmap.getHeight();
-//        ByteBuffer byteBuffer = ByteBuffer.allocate(size);
-//        bitmap.copyPixelsToBuffer(byteBuffer);
-//        return byteBuffer.array();
-//    }
-
     private void displayImageOptions(Image image) {
         //TODO: display alert to user about removing picture or taking a new one.
     }

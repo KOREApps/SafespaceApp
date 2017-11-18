@@ -43,12 +43,10 @@ public class ReportActivity extends AppCompatActivity {
     private ImageDisplayAdapter adapter;
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
-    private UUID tempId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tempId = UUID.randomUUID();
         setContentView(R.layout.activity_report);
 
         EditText reportHeader = findViewById(R.id.reportHeaderText);
@@ -103,6 +101,7 @@ public class ReportActivity extends AppCompatActivity {
             //Project project = new Project(1L, "", "", null);
             //List<Image> images = getImages();
             IncidentReport report = new IncidentReport(null, title, description, null, null, this.selectedProject);
+            report.setImages(adapter.getImages());
             new SendReportTask((result -> {
                 if(result.isSuccess()) {
                     System.out.println(result.getResult().getTitle());
@@ -128,7 +127,7 @@ public class ReportActivity extends AppCompatActivity {
             // Create the File where the photo should go
             imageFile = null;
             try {
-                imageFile = ImageUtils.createImageFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Report-" + tempId);
+                imageFile = ImageUtils.createImageFile(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "Report");
             } catch (IOException ex) {
                 // Error occurred while creating the File
             }

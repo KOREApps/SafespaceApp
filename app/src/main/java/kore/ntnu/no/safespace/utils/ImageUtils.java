@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.util.Base64;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -118,6 +120,14 @@ public class ImageUtils {
     }
     public static List<Image> getStoredImages(File storageDir){
         return getStoredImages(storageDir.getAbsolutePath());
+    }
+
+    public static String getB64ImageData(Image image) throws IOException {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        Bitmap bitmap = ImageUtils.getBitmap(image);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteStream);
+        bitmap.recycle();
+        return Base64.encodeToString(byteStream.toByteArray(), Base64.NO_WRAP);
     }
 
 }
