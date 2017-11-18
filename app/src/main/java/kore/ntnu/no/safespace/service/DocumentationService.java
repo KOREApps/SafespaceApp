@@ -1,5 +1,7 @@
 package kore.ntnu.no.safespace.service;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -10,6 +12,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.Documentation;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.DocumentDTO;
 
@@ -21,6 +24,7 @@ public class DocumentationService implements RestClient<Documentation, Long> {
 
     private static final String URL = MainActivity.URL  + "/documentations";
     private static final Type LIST_TYPE = new TypeToken<List<DocumentDTO>>(){}.getType();
+    private static final Type IMAGE_LIST_TYPE = new TypeToken<List<Image>>(){}.getType();
 
     private HttpService http;
     private Gson gson;
@@ -64,6 +68,17 @@ public class DocumentationService implements RestClient<Documentation, Long> {
     @Override
     public Documentation update(Documentation documentation) throws IOException {
         return null;
+    }
+
+    public List<Image> getImagesForDocumentation(Long documentationId){
+        try {
+            final String url = URL + "/" + documentationId + "/images";
+            HttpResponse response = http.get(url);
+            return gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE);
+        } catch (IOException ex) {
+            Log.e(ImageService.class.getSimpleName(), "Failed to post image");
+            return null;
+        }
     }
 
     private Documentation getReport(DocumentDTO dto) {

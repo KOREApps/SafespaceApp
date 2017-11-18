@@ -1,5 +1,7 @@
 package kore.ntnu.no.safespace.service;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kore.ntnu.no.safespace.activities.MainActivity;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.ReportDTO;
@@ -21,6 +24,7 @@ public class ReportService implements RestClient<IncidentReport, Long> {
 
     private static final String URL = MainActivity.URL  + "/reports";
     private static final Type LIST_TYPE = new TypeToken<List<ReportDTO>>(){}.getType();
+    private static final Type IMAGE_LIST_TYPE = new TypeToken<List<Image>>(){}.getType();
 
     private HttpService http;
     private Gson gson;
@@ -64,6 +68,17 @@ public class ReportService implements RestClient<IncidentReport, Long> {
     @Override
     public IncidentReport update(IncidentReport incidentReport) throws IOException {
         return null;
+    }
+
+    public List<Image> getImagesForReport(Long reportId){
+        try {
+            final String url = URL + "/" + reportId + "/images";
+            HttpResponse response = http.get(url);
+            return gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE);
+        } catch (IOException ex) {
+            Log.e(ImageService.class.getSimpleName(), "Failed to post image");
+            return null;
+        }
     }
 
     private IncidentReport getReport(ReportDTO dto) {
