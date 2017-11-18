@@ -49,6 +49,7 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
     private void sendImages(Long documentationId, List<Image> images) throws IOException {
         for (Image image : images) {
             image.setData(getImageData(image));
+            image.setDocumentation(new Documentation(documentationId, null, null, null));
             image.setFileExtension(image.getFileExtension().replace(".", ""));
             imageService.add(image);
         }

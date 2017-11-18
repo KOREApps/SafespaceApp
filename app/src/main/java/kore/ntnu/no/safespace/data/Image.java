@@ -14,7 +14,27 @@ public class Image  implements Serializable {
     private String fileExtension;
     private final String description;
     private String data;
+    private IncidentReport report = null;
+    private Documentation documentation = null;
 
+    public Image(Long id, String name, String filePath, String fileExtension, String description, String data, IncidentReport report) {
+        this.id = id;
+        this.name = name;
+        this.filePath = filePath;
+        this.fileExtension = fileExtension;
+        this.description = description;
+        this.data = data;
+        this.report = report;
+    }
+    public Image(Long id, String name, String filePath, String fileExtension, String description, String data, Documentation documentation) {
+        this.id = id;
+        this.name = name;
+        this.filePath = filePath;
+        this.fileExtension = fileExtension;
+        this.description = description;
+        this.data = data;
+        this.documentation = documentation;
+    }
     public Image(Long id, String name, String filePath, String fileExtension, String description, String data) {
         this.id = id;
         this.name = name;
@@ -103,6 +123,22 @@ public class Image  implements Serializable {
 
     public File getImageFile() {
         return new File(filePath + fileExtension);
+    }
+
+    public IncidentReport getReport() {
+        return report;
+    }
+
+    public Documentation getDocumentation() {
+        return documentation;
+    }
+
+    public void setReport(IncidentReport report) {
+        this.report = report;
+    }
+
+    public void setDocumentation(Documentation documentation) {
+        this.documentation = documentation;
     }
 
     public void setImageFile(File imageFile) {
