@@ -91,18 +91,26 @@ public class GPSActivity extends AppCompatActivity {
                 getLongitudeView.setText("Longitude:");
                 getLongitudeView.append("\n" + location.getLongitude());
 
-                long prevTime = lastKnownLocation.getElapsedRealtimeNanos();
-                long currentTime = location.getElapsedRealtimeNanos();
-                long diffTime = currentTime - prevTime;
-                SimpleDateFormat format= new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                editor.putFloat("CurrentLatitude", (float) location.getLatitude());
+                editor.putFloat("CurrentLongitude", (float) location.getLongitude());
 
-                String myDate = format.format(new Date());
+                if(lastKnownLocation != null) {
+                    long prevTime = lastKnownLocation.getElapsedRealtimeNanos();
+                    long currentTime = location.getElapsedRealtimeNanos();
+                    long diffTime = currentTime - prevTime;
+                    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
-                getAccuracyView.setText("Accuracy:" + "\n" + location.getAccuracy());
-                getTimeSinceLastView.setText("Time since last update:" + "\n" + diffTime/1000000000.0);
-                getTimeAtLastView.setText("Time at last update:" + "\n" + myDate);
+                    lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
 
-                lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
+                    String myDate = format.format(new Date());
+
+                    getAccuracyView.setText("Accuracy:" + "\n" + location.getAccuracy());
+                    getTimeSinceLastView.setText("Time since last update:" + "\n" + diffTime / 1000000000.0);
+                    getTimeAtLastView.setText("Time at last update:" + "\n" + myDate);
+
+                } else {
+                    lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
+                }
 
                 float result[] = new float[10];
                 NTNULabBuilding.distanceBetween(62.472171, 6.233951, location.getLatitude(), location.getLongitude(), result);
@@ -110,7 +118,7 @@ public class GPSActivity extends AppCompatActivity {
                 float result2[] = new float[10];
                 NTNUMainBuilding.distanceBetween(62.472144, 6.235740, location.getLatitude(), location.getLongitude(), result2);
 
-                if(result[0] < 36){
+                if (result[0] < 36) {
                     getLocationView.setText("Location: You are at NTNU LAB building");
                     getLocationView.append("\nDistance from center: " + result[0]);
                     GPSActivity.this.currentLocation = "NTNU lab";
@@ -149,8 +157,8 @@ public class GPSActivity extends AppCompatActivity {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[] {
-                        Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.INTERNET,
+                requestPermissions(new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.INTERNET,
                         Manifest.permission.ACCESS_COARSE_LOCATION
                 }, 10);
             }
@@ -164,9 +172,9 @@ public class GPSActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode) {
+        switch (requestCode) {
             case 10:
-                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     startGPSListener();
                 return;
         }
@@ -175,13 +183,13 @@ public class GPSActivity extends AppCompatActivity {
     private void startGPSListener() {
         locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
 
-            if(lastKnownLocation == null) {
-                getLocationView.setText("Location: No previous coordinates found, fetching..");
-            } else {
-                getLocationView.setText("Location: Fetching location..");
-                getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
-                getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
-            }
+        if (lastKnownLocation == null) {
+            getLocationView.setText("Location: No previous coordinates found, fetching..");
+        } else {
+            getLocationView.setText("Location: Fetching location..");
+            getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
+            getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
+        }
     }
 
     public void stopAnyListener() {

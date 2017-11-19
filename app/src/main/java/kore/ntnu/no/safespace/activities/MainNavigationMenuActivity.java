@@ -1,7 +1,9 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,7 +22,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         if(currentUser == null) {
             currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
         }
-        
 
         Button reportBtn = findViewById(R.id.rapportBtn);
         Button documentBtn = findViewById(R.id.dokumBtn);
@@ -85,6 +86,10 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         }
         if(id == R.id.action_settings) {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        if(id == R.id.action_GPS) {
+            Intent intent = new Intent (MainNavigationMenuActivity.this, GPSActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

@@ -3,13 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_logout"
+        android:id="@+id/action_GPS"
         android:orderInCategory="100"
-        android:title="@string/logout"
-        app:showAsAction="never" />
+        android:title="@string/gps"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/settings"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:title="@string/logout"
         app:showAsAction="never" />
 </menu>

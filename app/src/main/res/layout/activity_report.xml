@@ -31,6 +31,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <Spinner
+                android:id="@+id/projectSpinner"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/takePhotoBtn"
+                app:layout_constraintEnd_toStartOf="@+id/takePhotoBtn"
+                app:layout_constraintStart_toEndOf="@+id/projectLabel"
+                app:layout_constraintTop_toTopOf="@+id/takePhotoBtn" />
+
+            <TextView
+                android:id="@+id/projectLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/project1"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/projectSpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/projectSpinner" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/reportTakenPhoto"
                 android:layout_width="match_parent"
@@ -72,43 +96,41 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportTakenPhoto" />
 
-
             <Button
                 android:id="@+id/sendReportBtn"
                 android:layout_width="65dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/sendReport"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
 
-            <Spinner
-                android:id="@+id/projectSpinner"
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_marginBottom="8dp"
+            <Button
+                android:id="@+id/getLocationBtn"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="28dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/takePhotoBtn"
-                app:layout_constraintEnd_toStartOf="@+id/takePhotoBtn"
-                app:layout_constraintStart_toEndOf="@+id/projectLabel"
-                app:layout_constraintTop_toTopOf="@+id/takePhotoBtn" />
+                android:text="Get Location"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/displayLocationView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/sendReportBtn"
+                app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
 
             <TextView
-                android:id="@+id/projectLabel"
-                android:layout_width="wrap_content"
+                android:id="@+id/displayLocationView"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/project1"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/projectSpinner"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/projectSpinner" />
+                android:layout_marginEnd="92dp"
+                android:layout_marginTop="16dp"
+                android:hint="@string/location"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
+
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
