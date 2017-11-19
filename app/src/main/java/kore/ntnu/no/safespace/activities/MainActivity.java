@@ -1,7 +1,9 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,10 @@ import kore.ntnu.no.safespace.tasks.GetUserTask;
 public class MainActivity extends AppCompatActivity {
 
     public static final String USER = "kore.ntnu.no.safespace.activities.MainActivity.USER";
+
+    public static final String USERNAME = "kore.ntnu.no.safespace.activities.MainActivity.USERNAME";
+    public static final String PASSWORD = "kore.ntnu.no.safespace.activities.MainActivity.PASSWORD";
+
     public static final String URL = "https://roberris-ss.uials.no:8080";
     // "http://roberris-ss.uials.no:8080"
     
@@ -28,8 +34,9 @@ public class MainActivity extends AppCompatActivity {
         Button loginButton =  findViewById(R.id.launch_loginButton);
         loginButton.setOnClickListener((View v) -> {
             // Check input -> login -> start ny activity
-            String username = loginUser.getText().toString();
-            String password = loginPwd.getText().toString();
+            final String username = loginUser.getText().toString();
+            final String password = loginPwd.getText().toString();
+            storeCredentialsInSharedPreferences(username, password);
             new GetUserTask((result) -> {
                 if (result.isSuccess() && result.getResult() != null) {
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
@@ -52,4 +59,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+    private void storeCredentialsInSharedPreferences(String username, String password){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(USERNAME, username);
+        editor.putString(PASSWORD, password);
+        editor.apply();
+    }
+
 }

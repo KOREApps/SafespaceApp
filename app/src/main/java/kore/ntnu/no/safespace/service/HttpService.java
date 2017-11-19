@@ -1,9 +1,16 @@
 package kore.ntnu.no.safespace.service;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.io.IOException;
 
 import javax.net.ssl.SSLContext;
 
+import kore.ntnu.no.safespace.ApplicationContext;
+import kore.ntnu.no.safespace.activities.MainActivity;
+import kore.ntnu.no.safespace.data.User;
+import kore.ntnu.no.safespace.data.UserCredentials;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,15 +29,33 @@ public class HttpService {
             =  MediaType.parse("application/octet-stream");
 
     private OkHttpClient http;
+    private UserCredentials credentials;
 
     public HttpService() {
         this.http = HttpClientBuilder.getUnsafeOkHttpClient();
+        this.credentials = getCredentials();
+    }
+
+    private UserCredentials getCredentials() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ApplicationContext.getContext());
+        final String username = prefs.getString(MainActivity.USERNAME, "");
+        final String password = prefs.getString(MainActivity.PASSWORD, "");
+        return new UserCredentials(username, password);
+    }
+
+    private String getCredentialsHeader(UserCredentials credentials) {
+        if (credentials.getUsername().equals("")) {
+            return "";
+        } else {
+            return "Basic " + HttpBasicService.getBasicCredentials(credentials);
+        }
     }
 
     public HttpResponse get(String url) throws IOException {
         Request request = new Request.Builder()
                 .url(url)
                 .get()
+                .addHeader("Authorization", getCredentialsHeader(credentials))
                 .build();
         Response response = http.newCall(request).execute();
         HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
@@ -43,6 +68,7 @@ public class HttpService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .addHeader("Authorization", getCredentialsHeader(credentials))
                 .build();
         Response response = http.newCall(request).execute();
         HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
@@ -55,6 +81,7 @@ public class HttpService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .addHeader("Authorization", getCredentialsHeader(credentials))
                 .build();
         Response response = http.newCall(request).execute();
         HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
