@@ -22,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String PASSWORD = "kore.ntnu.no.safespace.activities.MainActivity.PASSWORD";
 
     public static final String URL = "https://roberris-ss.uials.no:8080";
-    // "http://roberris-ss.uials.no:8080"
+    // public static final String URL = "https://158.38.198.168:8080";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        clearCredentialsInSharedPreferences();
         setContentView(R.layout.activity_main);
 
         EditText loginUser = findViewById(R.id.launch_username);
@@ -58,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RegisterUserActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void clearCredentialsInSharedPreferences() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(USERNAME, "");
+        editor.putString(PASSWORD, "");
+        editor.apply();
     }
 
     private void storeCredentialsInSharedPreferences(String username, String password){
