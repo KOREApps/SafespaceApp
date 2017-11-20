@@ -25,7 +25,7 @@ public class GetUserTask extends AsyncTask<UserCredentials, Integer, AsyncTaskRe
     protected AsyncTaskResult<User> doInBackground(UserCredentials... credentials) {
         UserCredentials userCredentials = credentials[0];
         ServiceResult<User> serviceResult = userService.getByCredentials(userCredentials);
-        return new AsyncTaskResult<User>(serviceResult.getObject());
+        return new AsyncTaskResult<>(serviceResult.getObject(), serviceResult.getMessage(), serviceResult.isSuccess());
     }
 
     @Override

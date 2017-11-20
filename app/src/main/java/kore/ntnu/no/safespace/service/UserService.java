@@ -85,11 +85,16 @@ public class UserService implements RestClient<User, Long> {
     public ServiceResult<User> getByCredentials(UserCredentials userCredentials){
         try {
             HttpResponse response = http.post(URL + "/login", gson.toJson(userCredentials));
-            ServiceResult<User> serviceResult = new ServiceResult<>(
-                    gson.fromJson(response.getResponse(), User.class), true, "OK");
+            ServiceResult<User> serviceResult = null;
+            if (response.isSuccess()) {
+                serviceResult = new ServiceResult<>(
+                        gson.fromJson(response.getResponse(), User.class), true, "OK");
+            } else {
+                serviceResult = new ServiceResult<>(null, false, "Wrong username or password");
+            }
             return serviceResult;
         } catch (IOException ex) {
-            return null;
+            return new ServiceResult<>(null, false, ex.getMessage());
         }
     }
 
