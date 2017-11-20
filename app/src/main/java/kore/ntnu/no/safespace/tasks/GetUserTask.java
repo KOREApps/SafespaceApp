@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
+import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.service.UserService;
 
 /**
@@ -23,7 +24,8 @@ public class GetUserTask extends AsyncTask<UserCredentials, Integer, AsyncTaskRe
     @Override
     protected AsyncTaskResult<User> doInBackground(UserCredentials... credentials) {
         UserCredentials userCredentials = credentials[0];
-        return new AsyncTaskResult<User>(userService.getByCredentials(userCredentials));
+        ServiceResult<User> serviceResult = userService.getByCredentials(userCredentials);
+        return new AsyncTaskResult<User>(serviceResult.getObject());
     }
 
     @Override

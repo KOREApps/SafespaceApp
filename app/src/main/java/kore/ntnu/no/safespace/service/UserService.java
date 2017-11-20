@@ -45,8 +45,8 @@ public class UserService implements RestClient<User, Long> {
             return serviceResult;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch users");
+            return new ServiceResult<>(Collections.emptyList(), false, e.getMessage());
         }
-        return Collections.emptyList();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class UserService implements RestClient<User, Long> {
             return serviceResult;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch user with id: " + id);
+            return new ServiceResult<>(null, false, e.getMessage());
         }
-        return null;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class UserService implements RestClient<User, Long> {
         if (response.getCode() == 200) {
             ServiceResult<User> serviceResult = new ServiceResult<>(
                     gson.fromJson(response.getResponse(), User.class), true, "OK");
-            return ;
+            return serviceResult;
         } else {
             ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
             throw new IOException(result.getMessage());
@@ -82,10 +82,12 @@ public class UserService implements RestClient<User, Long> {
         return null;
     }
 
-    public User getByCredentials(UserCredentials userCredentials){
+    public ServiceResult<User> getByCredentials(UserCredentials userCredentials){
         try {
             HttpResponse response = http.post(URL + "/login", gson.toJson(userCredentials));
-            return gson.fromJson(response.getResponse(), User.class);
+            ServiceResult<User> serviceResult = new ServiceResult<>(
+                    gson.fromJson(response.getResponse(), User.class), true, "OK");
+            return serviceResult;
         } catch (IOException ex) {
             return null;
         }

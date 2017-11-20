@@ -8,6 +8,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.service.ReportService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
  * Created by Kristoffer on 2017-11-17.
@@ -26,7 +27,8 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
     @Override
     protected AsyncTaskResult<List<IncidentReport>> doInBackground(Void... voids) {
         try {
-            return new AsyncTaskResult<>(reportService.getAll());
+            ServiceResult<List<IncidentReport>> serviceResult = reportService.getAll();
+            return new AsyncTaskResult<>(serviceResult.getObject());
         } catch (IOException e) {
             e.printStackTrace();
         }

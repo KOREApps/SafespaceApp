@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import java.io.IOException;
 
 import kore.ntnu.no.safespace.data.User;
+import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.service.UserService;
 
 /**
@@ -25,10 +26,11 @@ public class RegisterUserTask extends AsyncTask<User, Integer, AsyncTaskResult<U
     protected AsyncTaskResult<User> doInBackground(User... users) {
         User newUser = users[0];
         try {
-            newUser = userService.add(newUser);
-            return new AsyncTaskResult<User>(newUser);
+            ServiceResult<User> serviceResult = userService.add(newUser);
+            newUser = serviceResult.getObject();
+            return new AsyncTaskResult<>(newUser);
         } catch (IOException ex) {
-            return new AsyncTaskResult<User>(null, ex);
+            return new AsyncTaskResult<>(null, ex);
         }
     }
 

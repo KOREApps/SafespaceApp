@@ -31,21 +31,26 @@ public class ProjectService implements RestClient<Project, Long> {
     }
 
     @Override
-    public List<Project> getAll() throws IOException {
-        return gson.fromJson(http.get(URL).getResponse(), LIST_TYPE);
+    public ServiceResult<List<Project>> getAll() throws IOException {
+        ServiceResult<List<Project>> serviceResult = new ServiceResult<>(
+                gson.fromJson(http.get(URL).getResponse(), LIST_TYPE), true, "OK");
+        return serviceResult;
     }
 
     @Override
-    public Project getOne(Long id) throws IOException {
-        return gson.fromJson(http.get(URL + "/" + id).getResponse(), Project.class);
+    public ServiceResult<Project> getOne(Long id) throws IOException {
+        ServiceResult<Project> serviceResult = new ServiceResult<>(
+                gson.fromJson(http.get(URL + "/" + id).getResponse(), Project.class), true, "OK");
+        return serviceResult;
     }
 
     @Override
-    public Project add(Project project) throws IOException {
+    public ServiceResult<Project> add(Project project) throws IOException {
         HttpResponse response = http.post(URL, gson.toJson(project));
         if (response.getCode() == 200) {
             Project newProject = gson.fromJson(response.getResponse(), Project.class);
-            return newProject;
+            ServiceResult<Project> serviceResult = new ServiceResult<>(newProject, true, "OK");
+            return serviceResult;
         } else {
             ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
             throw new IOException(result.getMessage());
@@ -53,7 +58,7 @@ public class ProjectService implements RestClient<Project, Long> {
     }
 
     @Override
-    public Project update(Project project) throws IOException {
+    public ServiceResult<Project> update(Project project) throws IOException {
         return null;
     }
 }
