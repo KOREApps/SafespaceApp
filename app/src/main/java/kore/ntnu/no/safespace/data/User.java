@@ -33,7 +33,7 @@ public class User implements Serializable {
 
     }
     public User(){
-        this("Anon","Ymous", null,null);
+        this("","", null,null);
     }
 
     @Override

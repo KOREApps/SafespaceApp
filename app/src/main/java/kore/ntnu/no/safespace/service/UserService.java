@@ -15,6 +15,8 @@ import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
+import kore.ntnu.no.safespace.service.http.HttpResponse;
+import kore.ntnu.no.safespace.service.http.HttpService;
 
 /**
  * Created by robert on 11/1/17.
@@ -35,35 +37,39 @@ public class UserService implements RestClient<User, Long> {
     }
 
     @Override
-    public List<User> getAll() {
+    public ServiceResult<List<User>> getAll() {
         try {
             HttpResponse response = http.get(URL);
             List<User> users = gson.fromJson(response.getResponse(), LIST_TYPE);
-            return users;
+            ServiceResult<List<User>> serviceResult = new ServiceResult<>(users, true, "OK");
+            return serviceResult;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch users");
+            return new ServiceResult<>(Collections.emptyList(), false, e.getMessage());
         }
-        return Collections.emptyList();
     }
 
     @Override
-    public User getOne(Long id) {
+    public ServiceResult<User> getOne(Long id) {
         try {
             HttpResponse response = http.get(URL + "/" + id);
             User user = gson.fromJson(response.getResponse(), User.class);
-            return user;
+            ServiceResult<User> serviceResult = new ServiceResult<>(user, true, "OK");
+            return serviceResult;
         } catch (IOException e) {
             Log.e(UserService.class.getSimpleName(), "Failed to fetch user with id: " + id);
+            return new ServiceResult<>(null, false, e.getMessage());
         }
-        return null;
     }
 
     @Override
-    public User add(User user) throws IOException {
+    public ServiceResult<User> add(User user) throws IOException {
         HttpResponse response = null;
         response = http.post(URL, gson.toJson(user));
         if (response.getCode() == 200) {
-            return gson.fromJson(response.getResponse(), User.class);
+            ServiceResult<User> serviceResult = new ServiceResult<>(
+                    gson.fromJson(response.getResponse(), User.class), true, "OK");
+            return serviceResult;
         } else {
             ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
             throw new IOException(result.getMessage());
@@ -72,16 +78,23 @@ public class UserService implements RestClient<User, Long> {
     }
 
     @Override
-    public User update(User user) {
+    public ServiceResult<User> update(User user) {
         return null;
     }
 
-    public User getByCredentials(UserCredentials userCredentials){
+    public ServiceResult<User> getByCredentials(UserCredentials userCredentials){
         try {
             HttpResponse response = http.post(URL + "/login", gson.toJson(userCredentials));
-            return gson.fromJson(response.getResponse(), User.class);
+            ServiceResult<User> serviceResult = null;
+            if (response.isSuccess()) {
+                serviceResult = new ServiceResult<>(
+                        gson.fromJson(response.getResponse(), User.class), true, "OK");
+            } else {
+                serviceResult = new ServiceResult<>(null, false, "Wrong username or password");
+            }
+            return serviceResult;
         } catch (IOException ex) {
-            return null;
+            return new ServiceResult<>(null, false, ex.getMessage());
         }
     }
 

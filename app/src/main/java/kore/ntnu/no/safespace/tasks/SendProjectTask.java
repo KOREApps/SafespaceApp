@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.ProjectService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
  * Created by OscarWika on 15.11.2017.
@@ -25,10 +26,11 @@ public class SendProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult
     protected AsyncTaskResult<Project> doInBackground(Project... projects) {
         Project newProject = projects[0];
         try {
-            newProject = projectService.add(newProject);
+            ServiceResult<Project> serviceResult = projectService.add(newProject);
+            newProject = serviceResult.getObject();
             return new AsyncTaskResult<Project>(newProject);
         } catch (IOException ex) {
-            return new AsyncTaskResult<Project>(null, ex);
+            return new AsyncTaskResult<Project>(ex.getMessage());
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.tasks.RegisterUserTask;
@@ -29,7 +30,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    System.out.println(result.getError().getMessage());
+                    ErrorDialog.showErrorDialog(this, result.getMessage());
                 }
             })).execute(newUser);
         });

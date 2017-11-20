@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.service;
+package kore.ntnu.no.safespace.service.http;
 
 import android.util.Base64;
 

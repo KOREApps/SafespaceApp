@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 import kore.ntnu.no.safespace.data.Documentation;
+import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.service.DocumentationService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
  * Created by Kristoffer on 2017-11-17.
@@ -16,17 +18,18 @@ import kore.ntnu.no.safespace.service.DocumentationService;
 public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskResult<List<Documentation>>> {
 
     private AsyncOnPostExecute<List<Documentation>> callback;
-    private DocumentationService reportService;
+    private DocumentationService documentationService;
 
     public GetDocumentationsTask(AsyncOnPostExecute<List<Documentation>> callback) {
         this.callback = callback;
-        this.reportService = new DocumentationService();
+        this.documentationService = new DocumentationService();
     }
 
     @Override
     protected AsyncTaskResult<List<Documentation>> doInBackground(Void... voids) {
         try {
-            return new AsyncTaskResult<>(reportService.getAll());
+            ServiceResult<List<Documentation>> serviceResult = documentationService.getAll();
+            return new AsyncTaskResult<>(serviceResult.getObject());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.ProjectService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
  * Created by robert on 11/13/17.
@@ -25,9 +26,10 @@ public class GetAllProjectsTask extends AsyncTask<Void, Integer, AsyncTaskResult
     @Override
     protected AsyncTaskResult<List<Project>> doInBackground(Void... voids) {
         try {
-            return new AsyncTaskResult<List<Project>>(projectService.getAll());
+            ServiceResult<List<Project>> serviceResult = projectService.getAll();
+            return new AsyncTaskResult<>(serviceResult.getObject());
         } catch (IOException ex) {
-            return new AsyncTaskResult<List<Project>>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

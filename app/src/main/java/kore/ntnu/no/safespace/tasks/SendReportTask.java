@@ -9,6 +9,7 @@ import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.service.ImageService;
 import kore.ntnu.no.safespace.service.ReportService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
@@ -31,13 +32,14 @@ public class SendReportTask extends AsyncTask<IncidentReport, Integer, AsyncTask
     protected AsyncTaskResult<IncidentReport> doInBackground(IncidentReport... incidentReports) {
         IncidentReport report = incidentReports[0];
         try {
-            IncidentReport newReport = reportService.add(report);
+            ServiceResult<IncidentReport> serviceResult = reportService.add(report);
+            IncidentReport newReport = serviceResult.getObject();
             if (newReport.getImages() != null) {
                 sendImages(newReport.getId(), report.getImages());
             }
             return new AsyncTaskResult<>(newReport);
         } catch (IOException ex) {
-            return new AsyncTaskResult<>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

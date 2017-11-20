@@ -1,15 +1,12 @@
-package kore.ntnu.no.safespace.service;
+package kore.ntnu.no.safespace.service.http;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.io.IOException;
 
-import javax.net.ssl.SSLContext;
-
 import kore.ntnu.no.safespace.ApplicationContext;
 import kore.ntnu.no.safespace.activities.MainActivity;
-import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;

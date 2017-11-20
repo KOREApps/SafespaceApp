@@ -15,6 +15,8 @@ import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.ReportDTO;
+import kore.ntnu.no.safespace.service.http.HttpResponse;
+import kore.ntnu.no.safespace.service.http.HttpService;
 
 /**
  * Created by Robert on 11-Nov-17.
@@ -35,30 +37,33 @@ public class ReportService implements RestClient<IncidentReport, Long> {
     }
 
     @Override
-    public List<IncidentReport> getAll() throws IOException {
+    public ServiceResult<List<IncidentReport>> getAll() throws IOException {
         HttpResponse response = http.get(URL);
         List<ReportDTO> reports = gson.fromJson(response.getResponse(), LIST_TYPE);
         List<IncidentReport> incidentReports = new ArrayList<>();
         for (ReportDTO reportDTO : reports) {
             incidentReports.add(getReport(reportDTO));
         }
-        return incidentReports;
+        ServiceResult<List<IncidentReport>> serviceResult = new ServiceResult<>(incidentReports, true, "OK");
+        return serviceResult;
     }
 
     @Override
-    public IncidentReport getOne(Long id) throws IOException {
+    public ServiceResult<IncidentReport> getOne(Long id) throws IOException {
         HttpResponse response = http.get(URL + "/" + id);
         ReportDTO report = gson.fromJson(response.getResponse(), ReportDTO.class);
-        return getReport(report);
+        ServiceResult<IncidentReport> serviceResult = new ServiceResult<>(getReport(report), true, "OK");
+        return serviceResult;
     }
 
     @Override
-    public IncidentReport add(IncidentReport incidentReport) throws IOException {
+    public ServiceResult<IncidentReport> add(IncidentReport incidentReport) throws IOException {
         ReportDTO newReportDTO = getDto(incidentReport);
         HttpResponse response = http.post(URL, gson.toJson(newReportDTO));
         if (response.getCode() == 200) {
             ReportDTO reportDTO = gson.fromJson(response.getResponse(), ReportDTO.class);
-            return getReport(reportDTO);
+            ServiceResult<IncidentReport> serviceResult = new ServiceResult<>(getReport(reportDTO), true, "OK");
+            return serviceResult;
         } else {
             ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
             throw new IOException(result.getMessage());
@@ -66,7 +71,7 @@ public class ReportService implements RestClient<IncidentReport, Long> {
     }
 
     @Override
-    public IncidentReport update(IncidentReport incidentReport) throws IOException {
+    public ServiceResult<IncidentReport> update(IncidentReport incidentReport) throws IOException {
         return null;
     }
 

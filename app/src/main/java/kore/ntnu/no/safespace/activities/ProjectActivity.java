@@ -40,7 +40,7 @@ public class ProjectActivity extends AppCompatActivity {
                     Intent intent = new Intent(ProjectActivity.this, DisplayReportActivity.class);
                     startActivity(intent);
                 } else {
-                    System.out.println(result.getError().getMessage());
+                    System.out.println(result.getMessage());
                 }
             })).execute(newProject);
         });

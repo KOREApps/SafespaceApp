@@ -9,12 +9,12 @@ import java.util.List;
 
 public interface RestClient<T, I> {
 
-    public List<T> getAll() throws IOException;
+    public ServiceResult<List<T>> getAll() throws IOException;
 
-    public T getOne(I id) throws IOException;
+    public ServiceResult<T> getOne(I id) throws IOException;
 
-    public T add(T t) throws IOException;
+    public ServiceResult<T> add(T t) throws IOException;
 
-    public T update(T t) throws IOException;
+    public ServiceResult<T> update(T t) throws IOException;
 
 }

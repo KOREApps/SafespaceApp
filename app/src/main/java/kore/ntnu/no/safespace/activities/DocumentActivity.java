@@ -101,7 +101,7 @@ public class DocumentActivity extends AppCompatActivity {
             if (result.isSuccess()) {
                 System.out.println("Documentation submitted");
             } else {
-                Log.e(DocumentActivity.class.getSimpleName(), result.getError().getMessage());
+                Log.e(DocumentActivity.class.getSimpleName(), result.getMessage());
             }
         }).execute(documentation);
         finish();

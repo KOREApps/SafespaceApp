@@ -8,6 +8,7 @@ import java.util.List;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.DocumentationService;
 import kore.ntnu.no.safespace.service.ReportService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 import static org.junit.Assert.*;
 
@@ -33,7 +34,8 @@ public class GetImagesTest {
     public void getImagesByDocumentationId() throws Exception {
         Long id = 53L;
         DocumentationService service = new DocumentationService();
-        List<Image> images = service.getImagesForDocumentation(id);
+        ServiceResult<List<Image>> serviceResult = service.getImagesForDocumentation(id);
+        List<Image> images = serviceResult.getObject();
         for (Image image : images) {
             assertEquals(id, image.getDocumentation().getId());
         }

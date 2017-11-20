@@ -6,27 +6,40 @@ package kore.ntnu.no.safespace.tasks;
 
 public class AsyncTaskResult<T> {
 
-    private T result;
-    private Throwable error = null;
+    private T result = null;
+    private String message = null;
+    private boolean success;
 
     public AsyncTaskResult(T result) {
         this.result = result;
+        this.success = true;
     }
 
-    public AsyncTaskResult(T result, Throwable error) {
+    public AsyncTaskResult(String message) {
+        this.message = message;
+        this.success = false;
+    }
+
+    public AsyncTaskResult(String message, boolean success) {
+        this.message = message;
+        this.success = success;
+    }
+
+    public AsyncTaskResult(T result, String message, boolean success) {
         this.result = result;
-        this.error = error;
+        this.message = message;
+        this.success = success;
     }
 
     public T getResult() {
         return result;
     }
 
-    public Throwable getError() {
-        return error;
+    public String getMessage() {
+        return message;
     }
 
     public boolean isSuccess() {
-        return error == null;
+        return success;
     }
 }

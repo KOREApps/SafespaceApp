@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.URL;
@@ -10,13 +11,14 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.ImageService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 
 import static org.junit.Assert.*;
 
 /**
- * Created by robert on 11/2/17.
+ * This test class is only meant to show how the ImageService class can be used.
  */
-
+@Ignore
 public class ImageServiceTest {
 
     ImageService imageService;
@@ -28,13 +30,15 @@ public class ImageServiceTest {
 
     @Test
     public void getImages() throws Exception {
-        List<Image> images = imageService.getAll();
+        ServiceResult<List<Image>> serviceResult = imageService.getAll();
+        List<Image> images = serviceResult.getObject();
         assertTrue(images.size() > 0);
     }
 
     @Test
     public void getImage() throws Exception {
-        Image image = imageService.getOne(1L);
+        ServiceResult<Image> serviceResult = imageService.getOne(1L);
+        Image image = serviceResult.getObject();
         assertNotNull(image);
         assertNotNull(image.getName());
         assertNotNull(image.getFileExtension());
@@ -42,7 +46,8 @@ public class ImageServiceTest {
 
     @Test
     public void getImageWithData() throws Exception {
-        Image image = imageService.getOneWithData(1L);
+        ServiceResult<Image> serviceResult = imageService.getOneWithData(1L);
+        Image image = serviceResult.getObject();
         assertNotNull(image.getData());
     }
 
@@ -54,7 +59,8 @@ public class ImageServiceTest {
         String b64String = Files.readAllLines(path).get(0);
         //byte[] data = Files.readAllBytes(path);
         Image image = new Image(null, "ASDF", "1234", "jpg", "an asdf image", b64String);
-        Image postedImage = imageService.add(image);
+        ServiceResult<Image> serviceResult = imageService.add(image);
+        Image postedImage = serviceResult.getObject();
 
         assertEquals(image.getData(), postedImage.getData());
     }
@@ -62,7 +68,8 @@ public class ImageServiceTest {
     @Test
     public void addImage() throws Exception {
         Image image = new Image(null, "ASDF", "1234", "jpg", "an asdf image", null);
-        Image postedImage = imageService.add(image);
+        ServiceResult<Image> serviceResult = imageService.add(image);
+        Image postedImage = serviceResult.getObject();
         assertEquals(image.getName(), postedImage.getName());
         assertEquals(image.getFileExtension(), postedImage.getFileExtension());
     }
@@ -70,7 +77,8 @@ public class ImageServiceTest {
     @Test
     public void addImageWithData() throws  Exception {
         Image image = new Image(null, "ASDF", "1234", "jpg", "an asdf image", null);
-        Image postedImage = imageService.add(image);
+        ServiceResult<Image> serviceResult = imageService.add(image);
+        Image postedImage = serviceResult.getObject();
         assertEquals(image.getName(), postedImage.getName());
         assertEquals(image.getFileExtension(), postedImage.getFileExtension());
     }
