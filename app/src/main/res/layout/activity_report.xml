@@ -122,11 +122,11 @@
 
             <TextView
                 android:id="@+id/displayLocationView"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="92dp"
+                android:layout_width="136dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginTop="16dp"
-                android:hint="@string/location"
+                android:text="@string/location"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
