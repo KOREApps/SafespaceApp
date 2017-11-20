@@ -29,7 +29,7 @@ public class GetAllProjectsTask extends AsyncTask<Void, Integer, AsyncTaskResult
             ServiceResult<List<Project>> serviceResult = projectService.getAll();
             return new AsyncTaskResult<>(serviceResult.getObject());
         } catch (IOException ex) {
-            return new AsyncTaskResult<>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

@@ -30,7 +30,7 @@ public class RegisterUserTask extends AsyncTask<User, Integer, AsyncTaskResult<U
             newUser = serviceResult.getObject();
             return new AsyncTaskResult<>(newUser);
         } catch (IOException ex) {
-            return new AsyncTaskResult<>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

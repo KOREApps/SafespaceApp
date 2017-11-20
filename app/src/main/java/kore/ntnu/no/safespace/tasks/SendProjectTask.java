@@ -30,7 +30,7 @@ public class SendProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult
             newProject = serviceResult.getObject();
             return new AsyncTaskResult<Project>(newProject);
         } catch (IOException ex) {
-            return new AsyncTaskResult<Project>(null, ex);
+            return new AsyncTaskResult<Project>(ex.getMessage());
         }
     }
 

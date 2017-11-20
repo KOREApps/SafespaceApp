@@ -39,7 +39,7 @@ public class SendReportTask extends AsyncTask<IncidentReport, Integer, AsyncTask
             }
             return new AsyncTaskResult<>(newReport);
         } catch (IOException ex) {
-            return new AsyncTaskResult<>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

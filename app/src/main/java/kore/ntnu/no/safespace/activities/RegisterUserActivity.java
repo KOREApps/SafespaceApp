@@ -30,7 +30,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    ErrorDialog.showErrorDialog(this, result.getError().getMessage());
+                    ErrorDialog.showErrorDialog(this, result.getMessage());
                 }
             })).execute(newUser);
         });

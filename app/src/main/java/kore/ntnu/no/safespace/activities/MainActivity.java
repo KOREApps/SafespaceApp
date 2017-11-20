@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra(USER, result.getResult());
                     startActivity(intent);
                 } else {
-                    System.out.println("Failed to log in");
+                    ErrorDialog.showErrorDialog(this, result.getMessage());
                 }
             }).execute(new UserCredentials(username, password));
         });

@@ -44,7 +44,7 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
             }
             return new AsyncTaskResult<>(newReport);
         } catch (IOException ex) {
-            return new AsyncTaskResult<>(null, ex);
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 
