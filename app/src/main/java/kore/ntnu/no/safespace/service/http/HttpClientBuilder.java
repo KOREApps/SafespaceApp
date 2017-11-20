@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace.service;
+package kore.ntnu.no.safespace.service.http;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,10 +26,20 @@ import okhttp3.OkHttpClient;
 
 public class HttpClientBuilder {
 
+    /**
+     * @return Default OkHttpClient
+     */
     public static OkHttpClient getHttpClient() {
         return new OkHttpClient();
     }
 
+    /**
+     * !!! NOT WORKING !!!
+     * Returns an OkHttpClient that accepts the loaded certificate. This should allow for use
+     * of self signed certificates.
+     * @return an OkHttpClient that accepts the loaded certificate. This should allow for use
+     * of self signed certificates.
+     */
     public static OkHttpClient getHttpSelfSignedCertClient() {
         try {
             Context context = ApplicationContext.getContext();
@@ -51,6 +61,9 @@ public class HttpClientBuilder {
         }
     }
 
+    /**
+     * @return Returns an unsafe OkHttpClient that will accept any certificate.
+     */
     public static OkHttpClient getUnsafeOkHttpClient() {
         try {
             // Create a trust manager that does not validate certificate chains
@@ -93,6 +106,9 @@ public class HttpClientBuilder {
         }
     }
 
+    /**
+     * @return password string for keystore
+     */
     private static String getPassword() {
         return "asdf1234";
     }

@@ -15,6 +15,8 @@ import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.DocumentDTO;
+import kore.ntnu.no.safespace.service.http.HttpResponse;
+import kore.ntnu.no.safespace.service.http.HttpService;
 
 /**
  * Created by Robert on 11-Nov-17.
@@ -35,30 +37,30 @@ public class DocumentationService implements RestClient<Documentation, Long> {
     }
 
     @Override
-    public List<Documentation> getAll() throws IOException {
+    public ServiceResult<List<Documentation>> getAll() throws IOException {
         HttpResponse response = http.get(URL);
         List<DocumentDTO> documentDTOs = gson.fromJson(response.getResponse(), LIST_TYPE);
         List<Documentation> documentations = new ArrayList<>();
         for (DocumentDTO reportDTO : documentDTOs) {
             documentations.add(getReport(reportDTO));
         }
-        return documentations;
+        return new ServiceResult<>(documentations, true, "OK");
     }
 
     @Override
-    public Documentation getOne(Long id) throws IOException {
+    public ServiceResult<Documentation> getOne(Long id) throws IOException {
         HttpResponse response = http.get(URL + "/" + id);
         DocumentDTO documentDTO = gson.fromJson(response.getResponse(), DocumentDTO.class);
-        return getReport(documentDTO);
+        return new ServiceResult<>(getReport(documentDTO), true, "OK");
     }
 
     @Override
-    public Documentation add(Documentation documentation) throws IOException {
+    public ServiceResult<Documentation> add(Documentation documentation) throws IOException {
         DocumentDTO newDocumentDTO = getDto(documentation);
         HttpResponse response = http.post(URL, gson.toJson(newDocumentDTO));
         if (response.getCode() == 200) {
             DocumentDTO documentDTO = gson.fromJson(response.getResponse(), DocumentDTO.class);
-            return getReport(documentDTO);
+            return new ServiceResult<>(getReport(documentDTO), true, "OK");
         } else {
             ValidCheckResult result = gson.fromJson(response.getResponse(), ValidCheckResult.class);
             throw new IOException(result.getMessage());
@@ -66,15 +68,15 @@ public class DocumentationService implements RestClient<Documentation, Long> {
     }
 
     @Override
-    public Documentation update(Documentation documentation) throws IOException {
+    public ServiceResult<Documentation> update(Documentation documentation) throws IOException {
         return null;
     }
 
-    public List<Image> getImagesForDocumentation(Long documentationId){
+    public ServiceResult<List<Image>> getImagesForDocumentation(Long documentationId){
         try {
             final String url = URL + "/" + documentationId + "/images";
             HttpResponse response = http.get(url);
-            return gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE);
+            return new ServiceResult<>(gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE), true, "OK");
         } catch (IOException ex) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image");
             return null;

@@ -15,6 +15,8 @@ import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.ReportDTO;
+import kore.ntnu.no.safespace.service.http.HttpResponse;
+import kore.ntnu.no.safespace.service.http.HttpService;
 
 /**
  * Created by Robert on 11-Nov-17.

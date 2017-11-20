@@ -10,6 +10,8 @@ import java.util.List;
 import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
+import kore.ntnu.no.safespace.service.http.HttpResponse;
+import kore.ntnu.no.safespace.service.http.HttpService;
 
 /**
  * Created by robert on 11/13/17.

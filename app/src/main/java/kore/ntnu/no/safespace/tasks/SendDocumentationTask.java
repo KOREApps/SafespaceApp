@@ -13,6 +13,7 @@ import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.DocumentationService;
 import kore.ntnu.no.safespace.service.ImageService;
+import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
@@ -36,7 +37,8 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
     protected AsyncTaskResult<Documentation> doInBackground(Documentation... documentations) {
         Documentation report = documentations[0];
         try {
-            Documentation newReport = documentationService.add(report);
+            ServiceResult<Documentation> serviceResult = documentationService.add(report);
+            Documentation newReport = serviceResult.getObject();
             if (report.getImages() != null) {
                 sendImages(newReport.getId(), report.getImages());
             }
