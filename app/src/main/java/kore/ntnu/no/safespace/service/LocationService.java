@@ -71,6 +71,8 @@ public class LocationService extends IntentService {
         return START_STICKY;
     }
 
+
+
     @Override
     public void onDestroy() {
         Toast.makeText(this, "GPS Stopped", Toast.LENGTH_SHORT).show();

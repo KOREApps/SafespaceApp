@@ -20,7 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -56,7 +55,7 @@ public class ReportActivity extends AppCompatActivity {
     private Project selectedProject = null;
     private SharedPreferences prefs;
     private BroadcastReceiver broadcastReceiver;
-    TextView getLocationView;
+    private TextView getLocationView;
     private Button getLocationBtn;
 
     @Override
@@ -74,7 +73,7 @@ public class ReportActivity extends AppCompatActivity {
         Button sendReport = findViewById(R.id.sendReportBtn);
         getLocationBtn = findViewById(R.id.getLocationBtn);
         getLocationBtn.setTag(1);
-        getLocationView = findViewById(R.id.locationView);
+        getLocationView = findViewById(R.id.displayLocationView);
 
         populateSpinner();
 
@@ -183,8 +182,7 @@ public class ReportActivity extends AppCompatActivity {
                 public void onReceive(Context context, Intent intent) {
                     System.out.println(intent.getExtras().get("coordinates"));
                     Toast.makeText(context, "" + intent.getExtras().get("coordinates"), Toast.LENGTH_SHORT).show();
-                    // TODO Find out why this textview is null.
-                    //getLocationView.append((CharSequence) intent.getExtras().get("coordinates"));
+                    getLocationView.setText((CharSequence) intent.getExtras().get("coordinates"));
                 }
             };
         }
@@ -201,11 +199,11 @@ public class ReportActivity extends AppCompatActivity {
     protected void onStop() {
         try {
             if (broadcastReceiver != null) {
+                Intent intent = new Intent(ReportActivity.this, LocationService.class);
+                stopService(intent);
                 unregisterReceiver(broadcastReceiver);
             }
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
         super.onStop();
     }
 
@@ -215,22 +213,19 @@ public class ReportActivity extends AppCompatActivity {
             if (broadcastReceiver != null) {
                 unregisterReceiver(broadcastReceiver);
             }
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-
         try {
             if (broadcastReceiver != null) {
+                Intent intent = new Intent(ReportActivity.this, LocationService.class);
+                stopService(intent);
                 unregisterReceiver(broadcastReceiver);
             }
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
         super.onDestroy();
     }
 
