@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
             // Check input -> login -> start ny activity
             final String username = loginUser.getText().toString();
             final String password = loginPwd.getText().toString();
+            loginUser.setText("");
+            loginPwd.setText("");
             storeCredentialsInSharedPreferences(username, password);
             new GetUserTask((result) -> {
                 if (result.isSuccess() && result.getResult() != null) {

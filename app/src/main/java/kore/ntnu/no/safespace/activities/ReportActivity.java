@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
@@ -128,7 +129,8 @@ public class ReportActivity extends AppCompatActivity {
                     System.out.println(result.getResult().getTitle());
                     Toast.makeText(this, "Report was successfully sent!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
+                    ErrorDialog.showErrorDialog(this, result.getMessage());
+                    //Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
                 }
             })).execute(report);
         });

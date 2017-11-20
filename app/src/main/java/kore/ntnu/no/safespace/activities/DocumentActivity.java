@@ -24,6 +24,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
@@ -89,7 +90,6 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void submitDocumentation() {
         //TODO: Sub
-        Toast.makeText(DocumentActivity.this, "You pressed Submit, doesitwork? maybe", Toast.LENGTH_SHORT).show();
         Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), MainNavigationMenuActivity.getCurrentUser());
         documentation.setImages(imageList);
         try {
@@ -99,15 +99,15 @@ public class DocumentActivity extends AppCompatActivity {
         }
         new SendDocumentationTask(result -> {
             if (result.isSuccess()) {
-                System.out.println("Documentation submitted");
+                finish();
+                Intent intent = new Intent(this, DisplayReportActivity.class);
+                intent.putExtra(LatestReportActivity.REPORT, documentation);
+                startActivity(intent);
             } else {
-                Log.e(DocumentActivity.class.getSimpleName(), result.getMessage());
+                ErrorDialog.showErrorDialog(this, result.getMessage());
             }
         }).execute(documentation);
-        finish();
-        Intent intent = new Intent(this, DisplayReportActivity.class);
-        intent.putExtra(LatestReportActivity.REPORT, documentation);
-        startActivity(intent);
+
     }
 
     private void displayImageOptions(Image image) {

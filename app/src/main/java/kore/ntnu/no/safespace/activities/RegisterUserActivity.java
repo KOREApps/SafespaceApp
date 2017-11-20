@@ -24,16 +24,28 @@ public class RegisterUserActivity extends AppCompatActivity {
     private void setRegisterButtonOnClick(){
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View view) -> {
-            User newUser = getUser();
-            new RegisterUserTask((result -> {
-                if (result.isSuccess()) {
-                    Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
-                    startActivity(intent);
-                } else {
-                    ErrorDialog.showErrorDialog(this, result.getMessage());
-                }
-            })).execute(newUser);
+            if (isPasswordFieldsEqual()) {
+                User newUser = getUser();
+                new RegisterUserTask((result -> {
+                    if (result.isSuccess()) {
+                        Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        ErrorDialog.showErrorDialog(this, result.getMessage());
+                    }
+                })).execute(newUser);
+            } else {
+                ErrorDialog.showErrorDialog(this, "Password field need to match");
+            }
         });
+    }
+
+    private boolean isPasswordFieldsEqual(){
+        EditText passwordInput = findViewById(R.id.passwordInput);
+        String password = passwordInput.getText().toString();
+        EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
+        String confirmPassword = confirmPasswordInput.getText().toString();
+        return password.equals(confirmPassword);
     }
 
     private User getUser(){
@@ -45,12 +57,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         String lastName = lastNameInput.getText().toString();
         EditText passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
-        EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
-        String confirmPassword = confirmPasswordInput.getText().toString();
-        if (password.equals(confirmPassword)) {
-            return new User(null, username, firstName, lastName, password, null, null);
-        } else {
-            return null;
-        }
+        return new User(null, username, firstName, lastName, password, null, null);
     }
 }
