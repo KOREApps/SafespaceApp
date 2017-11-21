@@ -27,9 +27,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import kore.ntnu.no.safespace.R;
@@ -40,6 +44,7 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
@@ -95,13 +100,22 @@ public class ReportActivity extends AppCompatActivity {
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
         dropDown.setAdapter(dropDownAdapter);
         setSpinnerAdapterOnSelectListener(dropDown, dropDownAdapter);
-        new GetAllProjectsTask((projects) -> {
-            if (projects.isSuccess()) {
-                dropDownAdapter.setData(projects.getResult());
-            } else {
-                Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
-            }
-        }).execute();
+        if(ConnectionUtil.isConnected(this)) {
+            new GetAllProjectsTask((projects) -> {
+                if (projects.isSuccess()) {
+                    dropDownAdapter.setData(projects.getResult());
+                } else {
+                    Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
+                }
+            }).execute();
+        } else {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            Gson gson = new Gson();
+            String json = prefs.getString(IdUtils.PROJECTS, gson.toJson(Collections.EMPTY_LIST));
+            List<Project> projects = gson.fromJson(json, new TypeToken<List<Project>>(){}.getType());
+            dropDownAdapter.setData(projects);
+
+        }
     }
 
     private void setSpinnerAdapterOnSelectListener(Spinner spinner, ProjectSpinnerAdapter adapter) {

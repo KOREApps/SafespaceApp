@@ -1,9 +1,11 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +16,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import kore.ntnu.no.safespace.R;
@@ -26,6 +32,7 @@ import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
@@ -71,14 +78,22 @@ public class DocumentActivity extends AppCompatActivity {
 
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
         project.setAdapter(dropDownAdapter);
-        new GetAllProjectsTask((projects) -> {
-            if (projects.isSuccess()) {
-                dropDownAdapter.setData(projects.getResult());
-            } else {
-                Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
-            }
-        }).execute();
+        if(ConnectionUtil.isConnected(this)) {
+            new GetAllProjectsTask((projects) -> {
+                if (projects.isSuccess()) {
+                    dropDownAdapter.setData(projects.getResult());
+                } else {
+                    Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
+                }
+            }).execute();
+        } else {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            Gson gson = new Gson();
+            String json = prefs.getString(IdUtils.PROJECTS, gson.toJson(Collections.EMPTY_LIST));
+            List<Project> projects = gson.fromJson(json, new TypeToken<List<Project>>(){}.getType());
+            dropDownAdapter.setData(projects);
 
+        }
     }
 
     private void submitDocumentation() {

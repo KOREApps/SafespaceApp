@@ -31,4 +31,14 @@ public class ConnectionUtil {
 
         return false;
     }
+
+    public static boolean hasWiFi(Context context){
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (wifiNetwork != null && wifiNetwork.isConnected()) {
+            return true;
+        }
+        return false;
+    }
 }
