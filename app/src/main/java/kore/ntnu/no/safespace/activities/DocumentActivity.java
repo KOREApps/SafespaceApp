@@ -108,7 +108,7 @@ public class DocumentActivity extends AppCompatActivity {
     private void displayImageOptions(Image image) {
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Remove image");
-        alertDialog.setMessage("Do you wish to remove the image from the documentation");
+        alertDialog.setMessage("Do you wish to remove the image from the documentation?");
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
                 (dialog, which) -> dialog.dismiss());
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which)-> {adapter.removeImage(image); StorageUtils.deleteImage(image);});

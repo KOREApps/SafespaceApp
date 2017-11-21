@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -78,6 +79,10 @@ public class ReportActivity extends AppCompatActivity {
         getLocationBtn.setTag(1);
         getLocationView = findViewById(R.id.displayLocationView);
 
+
+        adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
+        adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
+
         populateSpinner();
 
         reportHeader.setFocusableInTouchMode(true);
@@ -123,6 +128,23 @@ public class ReportActivity extends AppCompatActivity {
         if(dropDownAdapter.getCount() == 0){
             //TODO: display alert that there is no projects and the user can therefore not submit reports
         }
+    }
+
+    private void displayImageOptions(Image image) {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Remove image");
+        alertDialog.setMessage("Do you wish to remove the image from the incident report?");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which)-> {adapter.removeImage(image); StorageUtils.deleteImage(image);});
+        alertDialog.show();
+    }
+
+    private void openImage(Image image){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri data = Uri.parse("file://" + image.getImageFile().getAbsolutePath());
+        intent.setDataAndType(data, "image/*");
+        startActivity(intent);
     }
 
     private void setSpinnerAdapterOnSelectListener(Spinner spinner, ProjectSpinnerAdapter adapter) {
@@ -229,6 +251,9 @@ public class ReportActivity extends AppCompatActivity {
                 unregisterReceiver(broadcastReceiver);
             }
         } catch (Exception e) {}
+        for(Image i : adapter.getImages()){
+            StorageUtils.deleteImage(i);
+        }
         super.onStop();
     }
 

@@ -145,6 +145,8 @@ public class StorageUtils {
     }
 
     public static void deleteImage(Image image) {
-        new File(image.getFilePath()).delete();
+        File f = image.getImageFile();
+        boolean result = f.delete();
+        System.out.println(result);
     }
 }

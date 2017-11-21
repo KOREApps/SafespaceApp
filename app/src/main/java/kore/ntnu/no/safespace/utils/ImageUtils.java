@@ -47,6 +47,7 @@ public class ImageUtils {
         Bitmap imageBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), opts);
         Matrix matrix = new Matrix();
         matrix.setRotate(rotation, (float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
+//        matrix.postScale(-1,1,(float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
         imageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageBitmap.getWidth(), imageBitmap.getHeight(), matrix, true);
         return imageBitmap;
     }
