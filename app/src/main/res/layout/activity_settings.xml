@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context="kore.ntnu.no.safespace.activities.SettingsActivity">
 
+    <Button
+        android:id="@+id/mapsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpsBtn" />
+
     <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
@@ -28,17 +41,14 @@
         android:id="@+id/gpsBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="8dp"
         android:text="@string/gps"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
 
     <Button
         android:id="@+id/bt_nor"

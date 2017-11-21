@@ -21,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         TextView logOut = findViewById(R.id.tv_logout);
         Button gpsBtn = findViewById(R.id.gpsBtn);
+        Button mapsBtn = findViewById(R.id.mapsBtn);
         Button nor = findViewById(R.id.bt_nor);
         Button eng = findViewById(R.id.bt_eng);
 
@@ -43,6 +44,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         gpsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
+            startActivity(intent);
+        });
+
+        mapsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, MapsActivity.class);
             startActivity(intent);
         });
 
