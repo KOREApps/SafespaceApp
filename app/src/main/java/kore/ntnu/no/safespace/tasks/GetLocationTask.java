@@ -20,6 +20,7 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
     private LocationListener locationListener;
     private Location location;
     private AsyncOnPostExecute<Location> callback;
+    //private final Object LOCK = new Object();
 
     public GetLocationTask(AsyncOnPostExecute<Location> callback) {
         this.callback = callback;
@@ -27,7 +28,9 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
 
     @Override
     protected AsyncTaskResult<Location> doInBackground(Void... voids) {
-        while (location.getLatitude() == 0.0) {}
+        while (location.getLatitude() == 0.0 || location.getAccuracy() > 10) {
+
+            }
         return new AsyncTaskResult<>(location);
     }
 
@@ -37,6 +40,7 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
         location = new Location(0.0, 0.0, 9001);
         locationListener = new TaskLocationListener(this);
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates("gps", 0,0,locationListener);
     }
 
     @Override
@@ -46,13 +50,14 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
 
     @Override
     protected void onPostExecute(AsyncTaskResult<Location> locationAsyncTaskResult) {
+        locationManager.removeUpdates(locationListener);
         if (callback != null) {
             callback.onPostExecute(locationAsyncTaskResult);
         }
     }
 
     public void setLocation(Location location){
-        this.location = location;
+            this.location = location;
     }
 
     private class TaskLocationListener implements LocationListener {
@@ -69,6 +74,7 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
             double log = location.getLongitude();
             int acc = (int) location.getAccuracy();
             locationTask.setLocation(new Location(lat, log, acc));
+            System.out.println("Accuracy: " + acc);
         }
 
         @Override
@@ -83,7 +89,7 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
 
         @Override
         public void onProviderDisabled(String provider) {
-            Log.i(TaskLocationListener.class.getSimpleName(), "onroviderDisabled");
+            Log.i(TaskLocationListener.class.getSimpleName(), "onProviderDisabled");
         }
     }
 
