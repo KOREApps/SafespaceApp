@@ -143,4 +143,8 @@ public class StorageUtils {
         }
         return list;
     }
+
+    public static void deleteImage(Image image) {
+        new File(image.getFilePath()).delete();
+    }
 }

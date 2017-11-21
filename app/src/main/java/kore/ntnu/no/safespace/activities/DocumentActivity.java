@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.activities;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -44,7 +45,6 @@ public class DocumentActivity extends AppCompatActivity {
     private TextView description;
     private ProjectSpinnerAdapter dropDownAdapter;
     private ImageDisplayAdapter adapter;
-    private List<Image> imageList;
     private File imageFile;
     private Spinner project;
 
@@ -58,8 +58,6 @@ public class DocumentActivity extends AppCompatActivity {
         project = findViewById(R.id.docProject);
         title = findViewById(R.id.docTitle);
         sender.setText(IdUtils.CURRENT_USER.getFirstName());
-
-        imageList = new ArrayList<>();
 
         populateSpinner();
 
@@ -98,8 +96,8 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void submitDocumentation() {
         //TODO: Sub
-        Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), IdUtils.CURRENT_USER);
-        documentation.setImages(imageList);
+        Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),  (Project) project.getSelectedItem(), IdUtils.CURRENT_USER);
+        documentation.setImages(adapter.getImages());
         try {
             StorageUtils.saveReportToFile(documentation, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
         } catch (IOException e) {
@@ -108,7 +106,13 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     private void displayImageOptions(Image image) {
-        //TODO: display alert to user about removing picture or taking a new one.
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("Remove image");
+        alertDialog.setMessage("Do you wish to remove the image from the documentation");
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which)-> {adapter.removeImage(image); StorageUtils.deleteImage(image);});
+        alertDialog.show();
     }
 
     private void openImage(Image image){
@@ -152,6 +156,5 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void addImageToList(Image image) {
         adapter.addImage(image);
-        imageList.add(image);
     }
 }

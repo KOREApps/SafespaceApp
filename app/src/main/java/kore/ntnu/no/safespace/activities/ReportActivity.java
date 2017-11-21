@@ -107,6 +107,7 @@ public class ReportActivity extends AppCompatActivity {
                 } else {
                     Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
                 }
+                checkProjects();
             }).execute();
         } else {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -114,7 +115,13 @@ public class ReportActivity extends AppCompatActivity {
             String json = prefs.getString(IdUtils.PROJECTS, gson.toJson(Collections.EMPTY_LIST));
             List<Project> projects = gson.fromJson(json, new TypeToken<List<Project>>(){}.getType());
             dropDownAdapter.setData(projects);
+            checkProjects();
+        }
+    }
 
+    private void checkProjects() {
+        if(dropDownAdapter.getCount() == 0){
+            //TODO: display alert that there is no projects and the user can therefore not submit reports
         }
     }
 

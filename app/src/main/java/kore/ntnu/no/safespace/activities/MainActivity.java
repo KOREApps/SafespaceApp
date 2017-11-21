@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
-import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
 import kore.ntnu.no.safespace.utils.IdUtils;
@@ -22,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        clearCredentialsInSharedPreferences();
         setContentView(R.layout.activity_main);
 
         EditText loginUser = findViewById(R.id.launch_username);
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
             // Check input -> login -> start ny activity
             final String username = loginUser.getText().toString();
             final String password = loginPwd.getText().toString();
-            loginUser.setText("");
             loginPwd.setText("");
             storeCredentialsInSharedPreferences(username, password);
             new GetUserTask((result) -> {
@@ -49,9 +46,16 @@ public class MainActivity extends AppCompatActivity {
         });
         Button anonLoginButton = findViewById(R.id.anonLoginButton);
         anonLoginButton.setOnClickListener((view) -> {
-            Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
-            intent.putExtra(IdUtils.USER, new User());
-            startActivity(intent);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            new GetUserTask((result) -> {
+                if (result.isSuccess() && result.getResult() != null) {
+                    Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
+                    intent.putExtra(IdUtils.USER, result.getResult());
+                    startActivity(intent);
+                } else {
+                    ErrorDialog.showErrorDialog(this, result.getMessage());
+                }
+            }).execute(new UserCredentials(prefs.getString(IdUtils.USERNAME, ""), prefs.getString(IdUtils.PASSWORD, "")));
         });
         Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View v) -> {
@@ -68,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private void clearCredentialsInSharedPreferences() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(IdUtils.USERNAME, "");
         editor.putString(IdUtils.PASSWORD, "");
         editor.apply();
     }
@@ -76,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(IdUtils.USERNAME, username);
+        editor.putString(IdUtils.PASSWORD, password);
         editor.apply();
     }
 
