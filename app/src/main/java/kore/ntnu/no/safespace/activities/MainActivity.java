@@ -18,7 +18,7 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class MainActivity extends AppCompatActivity {
     // public static final String URL = "https://158.38.198.168:8080";
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         EditText loginUser = findViewById(R.id.launch_username);
         EditText loginPwd = findViewById(R.id.launch_password);
         Button loginButton =  findViewById(R.id.launch_loginButton);
+        String lastUser = getLastUser();
+        loginUser.setText(lastUser);
         loginButton.setOnClickListener((View v) -> {
             // Check input -> login -> start ny activity
             final String username = loginUser.getText().toString();
@@ -58,10 +60,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private String getLastUser() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getString(IdUtils.USERNAME, "");
+    }
+
     private void clearCredentialsInSharedPreferences() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(IdUtils.USERNAME, "");
         editor.putString(IdUtils.PASSWORD, "");
         editor.apply();
     }
@@ -70,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(IdUtils.USERNAME, username);
-        editor.putString(IdUtils.PASSWORD, password);
         editor.apply();
     }
 
