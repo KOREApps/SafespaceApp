@@ -19,5 +19,8 @@ public class IdUtils {
 
     public static final String REPORT = "kore.ntnu.safespace.activities.ID.REPORT";
 
+    public static final String MAPS_LAT = "kore.ntnu.safespace.activities.MAPS.LAT";
+    public static final String MAPS_LOG= "kore.ntnu.safespace.activities.MAPS.LOG";
+
     public static final int TAKE_PICTURE_REQUEST = 88;
 }
