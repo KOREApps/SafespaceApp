@@ -14,15 +14,9 @@ import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String USER = "kore.ntnu.no.safespace.activities.MainActivity.USER";
-
-    public static final String USERNAME = "kore.ntnu.no.safespace.activities.MainActivity.USERNAME";
-    public static final String PASSWORD = "kore.ntnu.no.safespace.activities.MainActivity.PASSWORD";
-
-    public static final String URL = "https://roberris-ss.uials.no:8080";
     // public static final String URL = "https://158.38.198.168:8080";
     
     @Override
@@ -44,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             new GetUserTask((result) -> {
                 if (result.isSuccess() && result.getResult() != null) {
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
-                    intent.putExtra(USER, result.getResult());
+                    intent.putExtra(IdUtils.USER, result.getResult());
                     startActivity(intent);
                 } else {
                     ErrorDialog.showErrorDialog(this, result.getMessage());
@@ -54,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Button anonLoginButton = findViewById(R.id.anonLoginButton);
         anonLoginButton.setOnClickListener((view) -> {
             Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
-            intent.putExtra(USER, new User());
+            intent.putExtra(IdUtils.USER, new User());
             startActivity(intent);
         });
         Button registerButton = findViewById(R.id.registerButton);
@@ -67,16 +61,16 @@ public class MainActivity extends AppCompatActivity {
     private void clearCredentialsInSharedPreferences() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(USERNAME, "");
-        editor.putString(PASSWORD, "");
+        editor.putString(IdUtils.USERNAME, "");
+        editor.putString(IdUtils.PASSWORD, "");
         editor.apply();
     }
 
     private void storeCredentialsInSharedPreferences(String username, String password){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(USERNAME, username);
-        editor.putString(PASSWORD, password);
+        editor.putString(IdUtils.USERNAME, username);
+        editor.putString(IdUtils.PASSWORD, password);
         editor.apply();
     }
 

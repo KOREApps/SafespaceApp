@@ -6,8 +6,8 @@ import android.preference.PreferenceManager;
 import java.io.IOException;
 
 import kore.ntnu.no.safespace.ApplicationContext;
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.UserCredentials;
+import kore.ntnu.no.safespace.utils.IdUtils;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -35,8 +35,8 @@ public class HttpService {
 
     private UserCredentials getCredentials() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ApplicationContext.getContext());
-        final String username = prefs.getString(MainActivity.USERNAME, "");
-        final String password = prefs.getString(MainActivity.PASSWORD, "");
+        final String username = prefs.getString(IdUtils.USERNAME, "");
+        final String password = prefs.getString(IdUtils.PASSWORD, "");
         return new UserCredentials(username, password);
     }
 

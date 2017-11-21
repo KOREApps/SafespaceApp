@@ -20,6 +20,7 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.data.Image;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 
 public class DisplayReportActivity extends AppCompatActivity {
@@ -39,7 +40,7 @@ public class DisplayReportActivity extends AppCompatActivity {
         description = findViewById(R.id.display_report_description);
         description.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
-        report = (Report) intent.getSerializableExtra(LatestReportActivity.REPORT);
+        report = (Report) intent.getSerializableExtra(IdUtils.REPORT);
         if(report == null){
             useTemplateReport();
         }

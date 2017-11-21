@@ -11,12 +11,12 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.service.http.HttpResponse;
 import kore.ntnu.no.safespace.service.http.HttpService;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
  * Created by robert on 11/1/17.
@@ -24,7 +24,7 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 
 public class UserService implements RestClient<User, Long> {
 
-    private static final String URL = MainActivity.URL + "/users";
+    private static final String URL = IdUtils.URL + "/users";
 
     private static final Type LIST_TYPE = new TypeToken<List<User>>(){}.getType();
 

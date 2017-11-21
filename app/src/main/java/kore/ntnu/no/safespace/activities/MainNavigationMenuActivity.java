@@ -1,24 +1,32 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.google.gson.Gson;
+
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
+import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.tasks.InternetConnectionThread;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
-    private static User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
-        if(currentUser == null) {
-            currentUser = (User) getIntent().getSerializableExtra(MainActivity.USER);
+        if(IdUtils.CURRENT_USER == null) {
+            IdUtils.CURRENT_USER = (User) getIntent().getSerializableExtra(IdUtils.USER);
         }
 
         Button reportBtn = findViewById(R.id.rapportBtn);
@@ -27,6 +35,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         Button latestRepBtn = findViewById(R.id.latestBtn);
         Button helpBtn = findViewById(R.id.helpBtn);
         Button settingsBtn = findViewById(R.id.settingsBtn);
+        new InternetConnectionThread(this);
+
+        getProjects();
 
         reportBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
@@ -57,6 +68,25 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void getProjects() {
+        if(ConnectionUtil.isConnected(this)){
+            new GetAllProjectsTask((projects) -> {
+                if (projects.isSuccess()) {
+                    Gson gson = new Gson();
+                    String json = gson.toJson(projects.getResult());
+
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(IdUtils.PROJECTS, json);
+                    editor.apply();
+                } else {
+                    Log.e(DocumentActivity.class.getSimpleName(), "Failed to set spinner values");
+                }
+            }).execute();
+        }
+
     }
 
     @Override
@@ -91,10 +121,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public static User getCurrentUser(){
-        return currentUser;
     }
 
 }

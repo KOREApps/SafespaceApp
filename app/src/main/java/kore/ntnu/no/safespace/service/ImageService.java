@@ -10,10 +10,10 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.http.HttpResponse;
 import kore.ntnu.no.safespace.service.http.HttpService;
+import kore.ntnu.no.safespace.utils.IdUtils;
 import okhttp3.MediaType;
 
 /**
@@ -22,7 +22,7 @@ import okhttp3.MediaType;
 
 public class ImageService implements RestClient<Image, Long> {
 
-    private static final String IMAGE_URL = MainActivity.URL + "/images";
+    private static final String IMAGE_URL = IdUtils.URL + "/images";
     private static Type LIST_TYPE = new TypeToken<List<Image>>(){}.getType();
 
     private HttpService http;

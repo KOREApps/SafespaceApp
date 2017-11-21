@@ -31,9 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
@@ -42,13 +40,12 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
-import kore.ntnu.no.safespace.tasks.SendReportTask;
+import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
+import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class ReportActivity extends AppCompatActivity {
 
-    public static final String PICTURE_ID = "kore.ntnu.safespace.PICTURE_ID";
-    public static final int TAKE_PICTURE_REQUEST = 1;
     private File imageFile;
     private RecyclerView imageDisplay;
     private ImageDisplayAdapter adapter;
@@ -122,17 +119,22 @@ public class ReportActivity extends AppCompatActivity {
             String description = reportDescription.getText().toString();
             //Project project = new Project(1L, "", "", null);
             //List<Image> images = getImages();
-            IncidentReport report = new IncidentReport(null, title, description, null, null, this.selectedProject);
-            report.setImages(adapter.getImages());
-            new SendReportTask((result -> {
-                if (result.isSuccess()) {
-                    System.out.println(result.getResult().getTitle());
-                    Toast.makeText(this, "Report was successfully sent!", Toast.LENGTH_SHORT).show();
-                } else {
-                    ErrorDialog.showErrorDialog(this, result.getMessage());
-                    //Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
-                }
-            })).execute(report);
+            IncidentReport report = new IncidentReport(null, title, description, adapter.getImages(), null, this.selectedProject);
+
+            try {
+                StorageUtils.saveReportToFile(report, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//            new SendReportTask((result -> {
+//                if (result.isSuccess()) {
+//                    System.out.println(result.getResult().getTitle());
+//                    Toast.makeText(this, "Report was successfully sent!", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    ErrorDialog.showErrorDialog(this, result.getMessage());
+//                    //Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
+//                }
+//            })).execute(report);
         });
     }
 
@@ -160,14 +162,14 @@ public class ReportActivity extends AppCompatActivity {
                         "no.ntnu.kore.fileprovider",
                         imageFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST);
+                startActivityForResult(takePictureIntent, IdUtils.TAKE_PICTURE_REQUEST);
             }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == TAKE_PICTURE_REQUEST) {
+        if (requestCode == IdUtils.TAKE_PICTURE_REQUEST) {
             if (resultCode == RESULT_OK) {
                 adapter.addImage(new Image(imageFile));
                 imageFile = null;

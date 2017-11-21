@@ -10,6 +10,7 @@ import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.LatestReportAdapter;
 import kore.ntnu.no.safespace.tasks.GetDocumentationsTask;
 import kore.ntnu.no.safespace.tasks.GetReportsTask;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
  * Created by OscarWika on 31.10.2017.
@@ -18,7 +19,6 @@ import kore.ntnu.no.safespace.tasks.GetReportsTask;
 public class LatestReportActivity extends AppCompatActivity {
 
     LatestReportAdapter adapter;
-    public static final String REPORT = "kore.ntnu.safespace.REPORT";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class LatestReportActivity extends AppCompatActivity {
 
         adapter.setListener(position -> {
             Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
-            intent.putExtra(REPORT, adapter.getReportFromList(position));
+            intent.putExtra(IdUtils.REPORT, adapter.getReportFromList(position));
             startActivity(intent);
         });
     }

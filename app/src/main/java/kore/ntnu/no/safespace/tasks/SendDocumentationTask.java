@@ -1,12 +1,8 @@
 package kore.ntnu.no.safespace.tasks;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.util.Base64;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.List;
 
 import kore.ntnu.no.safespace.data.Documentation;
@@ -15,7 +11,6 @@ import kore.ntnu.no.safespace.service.DocumentationService;
 import kore.ntnu.no.safespace.service.ImageService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.ImageUtils;
-import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
  * Created by Robert on 11-Nov-17.
@@ -35,14 +30,14 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
 
     @Override
     protected AsyncTaskResult<Documentation> doInBackground(Documentation... documentations) {
-        Documentation report = documentations[0];
+        Documentation documentation = documentations[0];
         try {
-            ServiceResult<Documentation> serviceResult = documentationService.add(report);
-            Documentation newReport = serviceResult.getObject();
-            if (report.getImages() != null) {
-                sendImages(newReport.getId(), report.getImages());
+            ServiceResult<Documentation> serviceResult = documentationService.add(documentation);
+            Documentation newDocumentation = serviceResult.getObject();
+            if (documentation.getImages() != null) {
+                sendImages(newDocumentation.getId(), documentation.getImages());
             }
-            return new AsyncTaskResult<>(newReport);
+            return new AsyncTaskResult<>(newDocumentation);
         } catch (IOException ex) {
             return new AsyncTaskResult<>(ex.getMessage());
         }

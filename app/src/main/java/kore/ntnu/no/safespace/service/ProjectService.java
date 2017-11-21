@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.service.http.HttpResponse;
 import kore.ntnu.no.safespace.service.http.HttpService;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
  * Created by robert on 11/13/17.
@@ -19,7 +19,7 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 
 public class ProjectService implements RestClient<Project, Long> {
 
-    private static final String URL = MainActivity.URL + "/projects";
+    private static final String URL = IdUtils.URL + "/projects";
     private static final Type LIST_TYPE = new TypeToken<List<Project>>(){}.getType();
 
     private HttpService http;

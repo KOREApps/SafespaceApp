@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -54,7 +55,7 @@ public class HelpActivity extends AppCompatActivity {
             String bugTitle = bugTitleView.getText().toString();
             String bugDescription = bugDescriptionView.getText().toString();
             if (!bugTitle.equals("") && !bugDescription.equals("")) {
-                BugReport report = new BugReport(bugTitle, bugDescription, MainNavigationMenuActivity.getCurrentUser());
+                BugReport report = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
                 System.out.println(bugTitle + bugDescription + report);
             } else {
                 Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();

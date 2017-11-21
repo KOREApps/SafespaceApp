@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 import kore.ntnu.no.safespace.data.Documentation;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Report;
 
@@ -79,6 +80,8 @@ public class StorageUtils {
         FileInputStream inputStream = new FileInputStream(doc);
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
         Documentation documentation = (Documentation) objectInputStream.readObject();
+        inputStream.close();
+        objectInputStream.close();
         return documentation;
     }
 
@@ -119,8 +122,11 @@ public class StorageUtils {
         return list;
     }
 
-    public static void removeFile(File file) {
-        file.delete();
+    public static void removeReport(Report report, File filepath) {
+        for (Image i : report.getImages()){
+            new File(i.getFilePath()).delete();
+        }
+        filepath.delete();
     }
 
     public static List<File> getIncidents(File externalFilesDir) {

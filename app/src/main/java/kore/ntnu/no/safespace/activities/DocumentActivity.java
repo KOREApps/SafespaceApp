@@ -1,7 +1,6 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -10,21 +9,16 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
@@ -32,12 +26,11 @@ import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
-import kore.ntnu.no.safespace.tasks.SendDocumentationTask;
+import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class DocumentActivity extends AppCompatActivity {
-    public static final int TAKE_PICTURE_REQUEST = 33;
     private RecyclerView imageDisplay;
     private TextView sender;
     private EditText title;
@@ -57,7 +50,7 @@ public class DocumentActivity extends AppCompatActivity {
         description = findViewById(R.id.docDescription);
         project = findViewById(R.id.docProject);
         title = findViewById(R.id.docTitle);
-        sender.setText(MainNavigationMenuActivity.getCurrentUser().getFirstName());
+        sender.setText(IdUtils.CURRENT_USER.getFirstName());
 
         imageList = new ArrayList<>();
 
@@ -90,24 +83,13 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void submitDocumentation() {
         //TODO: Sub
-        Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), MainNavigationMenuActivity.getCurrentUser());
+        Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),imageList,  (Project) project.getSelectedItem(), IdUtils.CURRENT_USER);
         documentation.setImages(imageList);
         try {
             StorageUtils.saveReportToFile(documentation, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        new SendDocumentationTask(result -> {
-            if (result.isSuccess()) {
-                finish();
-                Intent intent = new Intent(this, DisplayReportActivity.class);
-                intent.putExtra(LatestReportActivity.REPORT, documentation);
-                startActivity(intent);
-            } else {
-                ErrorDialog.showErrorDialog(this, result.getMessage());
-            }
-        }).execute(documentation);
-
     }
 
     private void displayImageOptions(Image image) {
@@ -138,14 +120,14 @@ public class DocumentActivity extends AppCompatActivity {
                         "no.ntnu.kore.fileprovider",
                         imageFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, TAKE_PICTURE_REQUEST);
+                startActivityForResult(takePictureIntent, IdUtils.TAKE_PICTURE_REQUEST);
             }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(requestCode == TAKE_PICTURE_REQUEST){
+        if(requestCode == IdUtils.TAKE_PICTURE_REQUEST){
             if(resultCode == RESULT_OK){
                 Image image = new Image(imageFile);
                 addImageToList(image);

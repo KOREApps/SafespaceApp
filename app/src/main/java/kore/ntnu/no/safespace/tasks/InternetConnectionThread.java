@@ -1,14 +1,15 @@
 package kore.ntnu.no.safespace.tasks;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Environment;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import kore.ntnu.no.safespace.data.Documentation;
+import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
@@ -20,77 +21,52 @@ public class InternetConnectionThread extends Thread {
 
     public InternetConnectionThread(Context context) {
         this.context = context;
+        start();
     }
 
     @Override
     public void run() {
-        if (!hasConnection()) {
+        if (!ConnectionUtil.isConnected(context)) {
             try {
                 sleep(60000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
-            while (hasConnection()) {
+            while (ConnectionUtil.isConnected(context)) {
                 //TODO: send Images.
                 try {
-                    List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-                    if (docs.isEmpty()) {
-                        for (File doc : docs) {
-                            new SendDocumentationTask(result -> {
+                    List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+                    if (!docs.isEmpty()) {
+                        for (File docFile : docs) {
+                            Documentation doc = StorageUtils.readDocumentFromFile(docFile);
+                            SendDocumentationTask sdt = new SendDocumentationTask(result -> {
+                                System.out.println("Sent");
                                 if (result != null) {
-                                    StorageUtils.removeFile(doc);
+                                    StorageUtils.removeReport(doc, docFile);
                                 }
-                            }).execute(StorageUtils.readDocumentFromFile(doc));
+                            });
+                            sdt.execute(doc);
+                            System.out.println("Executed");
                         }
                     }
-                    List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-                    if (reports.isEmpty()) {
+                    List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+                    if (!reports.isEmpty()) {
                         for (File report : reports) {
+                            IncidentReport incident = StorageUtils.readIncidentFromFile(report);
                             new SendReportTask(result -> {
                                 if (result != null) {
-                                    StorageUtils.removeFile(report);
+                                    StorageUtils.removeReport(incident, report);
                                 }
-                            }).execute(StorageUtils.readIncidentFromFile(report));
+                            }).execute(incident);
                         }
                     }
-                    docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-                    reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-                    if(docs.isEmpty() && reports.isEmpty()){
-                        sleep(120000);
-                    }
+                    sleep(300000);
                 } catch (IOException | ClassNotFoundException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
 
-    }
-
-    /**
-     * Checks if the device has Internet connection.
-     *
-     * @return <code>true</code> if the phone is connected to the Internet.
-     */
-    public boolean hasConnection() {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(
-                Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null && wifiNetwork.isConnected()) {
-            return true;
-        }
-
-        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (mobileNetwork != null && mobileNetwork.isConnected()) {
-            return true;
-        }
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null && activeNetwork.isConnected()) {
-            return true;
-        }
-
-        return false;
     }
 }

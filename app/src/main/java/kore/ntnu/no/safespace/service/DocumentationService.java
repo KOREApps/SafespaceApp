@@ -10,13 +10,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.dto.DocumentDTO;
 import kore.ntnu.no.safespace.service.http.HttpResponse;
 import kore.ntnu.no.safespace.service.http.HttpService;
+import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
  * Created by Robert on 11-Nov-17.
@@ -24,7 +24,7 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 
 public class DocumentationService implements RestClient<Documentation, Long> {
 
-    private static final String URL = MainActivity.URL  + "/documentations";
+    private static final String URL = IdUtils.URL  + "/documentations";
     private static final Type LIST_TYPE = new TypeToken<List<DocumentDTO>>(){}.getType();
     private static final Type IMAGE_LIST_TYPE = new TypeToken<List<Image>>(){}.getType();
 
