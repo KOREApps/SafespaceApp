@@ -103,6 +103,11 @@ public class DocumentActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Intent intent = new Intent(this, DisplayReportActivity.class);
+        intent.putExtra(IdUtils.REPORT, documentation);
+        startActivity(intent);
+        finish();
     }
 
     private void displayImageOptions(Image image) {

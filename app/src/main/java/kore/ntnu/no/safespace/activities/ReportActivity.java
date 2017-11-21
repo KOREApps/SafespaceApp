@@ -169,15 +169,11 @@ public class ReportActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-//            new SendReportTask((result -> {
-//                if (result.isSuccess()) {
-//                    System.out.println(result.getResult().getTitle());
-//                    Toast.makeText(this, "Report was successfully sent!", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    ErrorDialog.showErrorDialog(this, result.getMessage());
-//                    //Toast.makeText(this, "Report was NOT sent", Toast.LENGTH_SHORT).show();
-//                }
-//            })).execute(report);
+
+            Intent intent = new Intent(this, DisplayReportActivity.class);
+            intent.putExtra(IdUtils.REPORT, report);
+            startActivity(intent);
+            finish();
         });
     }
 
