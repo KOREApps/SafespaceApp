@@ -8,7 +8,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private final Long id;
-    private final String username, firstName, lastName, password;
+    private final String username, firstName, lastName;
+    private String password;
     private final Role role;
     private final Long eid;
 
@@ -90,4 +91,8 @@ public class User implements Serializable {
     public Long getEid() {
         return eid;
     }
+
+    public String getPassword() { return password;}
+
+    public void setPassword(String password) {this.password = password;}
 }

@@ -9,10 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.gson.Gson;
+
 import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,8 +38,25 @@ public class MainActivity extends AppCompatActivity {
             final String password = loginPwd.getText().toString();
             loginPwd.setText("");
             storeCredentialsInSharedPreferences(username, password);
+            login(username, password);
+        });
+        Button anonLoginButton = findViewById(R.id.anonLoginButton);
+        anonLoginButton.setOnClickListener((view) -> {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            login(prefs.getString(IdUtils.USERNAME, ""), prefs.getString(IdUtils.PASSWORD, ""));
+        });
+        Button registerButton = findViewById(R.id.registerButton);
+        registerButton.setOnClickListener((View v) -> {
+            Intent intent = new Intent(this, RegisterUserActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void login(String username, String password) {
+        if(ConnectionUtil.isConnected(this)){
             new GetUserTask((result) -> {
                 if (result.isSuccess() && result.getResult() != null) {
+                    storeUser(result.getResult());
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                     intent.putExtra(IdUtils.USER, result.getResult());
                     startActivity(intent);
@@ -43,25 +64,28 @@ public class MainActivity extends AppCompatActivity {
                     ErrorDialog.showErrorDialog(this, result.getMessage());
                 }
             }).execute(new UserCredentials(username, password));
-        });
-        Button anonLoginButton = findViewById(R.id.anonLoginButton);
-        anonLoginButton.setOnClickListener((view) -> {
+        } else {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            new GetUserTask((result) -> {
-                if (result.isSuccess() && result.getResult() != null) {
-                    Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
-                    intent.putExtra(IdUtils.USER, result.getResult());
-                    startActivity(intent);
-                } else {
-                    ErrorDialog.showErrorDialog(this, result.getMessage());
-                }
-            }).execute(new UserCredentials(prefs.getString(IdUtils.USERNAME, ""), prefs.getString(IdUtils.PASSWORD, "")));
-        });
-        Button registerButton = findViewById(R.id.registerButton);
-        registerButton.setOnClickListener((View v) -> {
-            Intent intent = new Intent(this, RegisterUserActivity.class);
-            startActivity(intent);
-        });
+            String jsonUser = prefs.getString(IdUtils.USER, "");
+            User storedUser = new Gson().fromJson(jsonUser, User.class);
+
+            //TODO: get hash type or something (Bcrypt)
+            if(storedUser.getUsername().equals(username) && storedUser.getPassword().equals(password)){
+                Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
+                intent.putExtra(IdUtils.USER, storedUser);
+                startActivity(intent);
+            }
+
+        }
+    }
+
+    private void storeUser(User loggedInUser) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String jsonUser = gson.toJson(loggedInUser);
+        editor.putString(IdUtils.USER, jsonUser);
+        editor.apply();
     }
 
     private String getLastUser() {
