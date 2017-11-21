@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -33,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
@@ -42,6 +46,7 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.tasks.GetLocationTask;
 import kore.ntnu.no.safespace.tasks.SendReportTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
@@ -57,7 +62,7 @@ public class ReportActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private BroadcastReceiver broadcastReceiver;
     private TextView getLocationView;
-    private Button getLocationBtn;
+    private CircularProgressButton getLocationBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -246,7 +251,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void enableButtons() {
         getLocationBtn.setOnClickListener(view -> {
-            final int status = (Integer) view.getTag();
+            /*final int status = (Integer) view.getTag();
             if (status == 1) {
                 Intent intent = new Intent(ReportActivity.this, LocationService.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -258,7 +263,12 @@ public class ReportActivity extends AppCompatActivity {
                 stopService(intent);
                 getLocationBtn.setText("GET LOCATION");
                 view.setTag(1);
-            }
+            }*/
+            getLocationBtn.startAnimation();
+            new GetLocationTask((result -> {
+                getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
+                (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
+            })).execute();
         });
     }
 
