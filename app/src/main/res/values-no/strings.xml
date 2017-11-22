@@ -35,6 +35,7 @@
 
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
+    <string name="document_title">Sett inn dokumentasjon tittel...</string>
     <string name="documentation_sender">Sender:</string>
     <string name="documentation_project_description">Prosjekt beskrivelse…</string>
     <string name="image_description">Bilde beskrivelse</string>
@@ -47,6 +48,7 @@
     <string name="help">Hjelp</string>
     <string name="bug_description">Bug beskrivelse…</string>
     <string name="bug_name">Bug navn</string>
+    <string name="rofl">rolf</string>
 
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Rapporter bilde</string>
@@ -63,4 +65,14 @@
     <string name="lastName">Etternavn</string>
     <string name="confirmPassword">Bekreft Passord</string>
     <string name="register">Registrer</string>
+
+    <!-- GPSActivity -->
+    <string name="get_location">Hent lokasjon</string>
+    <string name="stop_location">Stopp</string>
+    <string name="location">Lokasjon:</string>
+    <string name="longitude">Lengdegrad:</string>
+    <string name="latitude">Breddegrad:</string>
+    <string name="accuracy">Nøyaktighet:</string>
+    <string name="time_since_last_update">Tid siden forrige oppdatering:</string>
+    <string name="time_at_last_update">Tid når forrige oppdatering:</string>
 </resources>
