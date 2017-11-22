@@ -1,5 +1,7 @@
 package kore.ntnu.no.safespace.tasks;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.IOException;
@@ -18,11 +20,23 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
 
     private AsyncOnPostExecute<List<IncidentReport>> callback;
     private ReportService reportService;
+    private ProgressDialog dialog;
+    private Context mContext;
 
-    public GetReportsTask(AsyncOnPostExecute<List<IncidentReport>> callback) {
+    public GetReportsTask(AsyncOnPostExecute<List<IncidentReport>> callback, Context context) {
         this.callback = callback;
         this.reportService = new ReportService();
+        mContext = context;
+        dialog = new ProgressDialog(mContext);
     }
+
+    @Override
+    protected void onPreExecute() {
+        dialog.setMessage("Fetching latest reports");
+        dialog.show();
+        super.onPreExecute();
+    }
+
 
     @Override
     protected AsyncTaskResult<List<IncidentReport>> doInBackground(Void... voids) {
@@ -40,5 +54,6 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
         if (callback != null) {
             callback.onPostExecute(result);
         }
+        dialog.dismiss();
     }
 }

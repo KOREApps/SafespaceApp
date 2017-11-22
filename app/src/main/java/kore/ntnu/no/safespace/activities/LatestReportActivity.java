@@ -39,7 +39,7 @@ public class LatestReportActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         if(ConnectionUtil.isConnected(this)) {
             new GetDocumentationsTask(c -> adapter.addReports(c.getResult()),this).execute();
-            new GetReportsTask(c -> adapter.addReports(c.getResult())).execute();
+            new GetReportsTask(c -> adapter.addReports(c.getResult()), this).execute();
         } else{
         localReports();
         }

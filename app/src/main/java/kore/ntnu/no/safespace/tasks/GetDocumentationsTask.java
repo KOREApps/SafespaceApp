@@ -42,7 +42,7 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
 
     @Override
     protected void onPreExecute() {
-        dialog.setMessage("Fetching latest reports and documentation");
+        dialog.setMessage("Fetching latest documentation");
         dialog.show();
         super.onPreExecute();
     }
