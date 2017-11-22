@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             String jsonUser = prefs.getString(IdUtils.USER, "");
             User storedUser = new Gson().fromJson(jsonUser, User.class);
 
-            //TODO: get hash type or something (Bcrypt)
             boolean result = BCrypt.checkpw(password, storedUser.getPassword());
             if(storedUser.getUsername().equals(username) && result){
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);

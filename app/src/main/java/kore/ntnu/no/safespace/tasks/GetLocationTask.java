@@ -28,7 +28,7 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
 
     @Override
     protected AsyncTaskResult<Location> doInBackground(Void... voids) {
-        while (location.getLatitude() == 0.0 || location.getAccuracy() > 10) {
+        while (location.getLatitude() == 0.0 || location.getAccuracy() > 50) {
 
             }
         return new AsyncTaskResult<>(location);

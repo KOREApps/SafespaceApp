@@ -38,7 +38,6 @@ public class InternetConnectionThread extends Thread {
         } else {
             while (ConnectionUtil.isConnected(context)) {
                 if (tasks.size() == 0) {
-                    //TODO: send Images.
                     try {
                         List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
                         if (!docs.isEmpty()) {
@@ -70,16 +69,17 @@ public class InternetConnectionThread extends Thread {
                         e.printStackTrace();
                     }
                 } else {
-                    try {
-                        for(AsyncTask task : tasks){
-                            if(task.getStatus() == AsyncTask.Status.FINISHED){
-                                tasks.remove(task);
-                            }
+                    for (AsyncTask task : tasks) {
+                        if (task.getStatus() == AsyncTask.Status.FINISHED) {
+                            tasks.remove(task);
                         }
-                        sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
+                }
+
+                try {
+                    sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }

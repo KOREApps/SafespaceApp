@@ -95,7 +95,6 @@ public class DocumentActivity extends AppCompatActivity {
     }
 
     private void submitDocumentation() {
-        //TODO: Sub
         Documentation documentation = new Documentation(title.getText().toString(), description.getText().toString(),  (Project) project.getSelectedItem(), IdUtils.CURRENT_USER);
         documentation.setImages(adapter.getImages());
         try {

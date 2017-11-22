@@ -41,7 +41,6 @@ import java.util.Collections;
 import java.util.List;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
-import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
@@ -50,9 +49,9 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.tasks.GetLocationTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
-import kore.ntnu.no.safespace.tasks.GetLocationTask;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
@@ -181,14 +180,6 @@ public class ReportActivity extends AppCompatActivity {
             finish();
         });
     }
-
-    private List<Image> getImages() {
-        // TODO Get relevant images
-        List<Image> images = new ArrayList<>();
-        images = ImageUtils.getStoredImages(getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-        return images;
-    }
-
     private void takePhoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent

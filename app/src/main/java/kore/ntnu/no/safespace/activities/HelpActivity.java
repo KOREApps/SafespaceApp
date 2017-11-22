@@ -1,8 +1,8 @@
 package kore.ntnu.no.safespace.activities;
 
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,8 +12,10 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import kore.ntnu.no.safespace.data.BugReport;
+import java.util.Random;
+
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class HelpActivity extends AppCompatActivity {
@@ -56,7 +58,8 @@ public class HelpActivity extends AppCompatActivity {
             String bugDescription = bugDescriptionView.getText().toString();
             if (!bugTitle.equals("") && !bugDescription.equals("")) {
                 BugReport report = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
-                System.out.println(bugTitle + bugDescription + report);
+                Toast.makeText(this, "Thanks for the bug report. Report id: " + Math.abs(new Random().nextInt()) % 2500, Toast.LENGTH_LONG).show();
+                finish();
             } else {
                 Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
             }
