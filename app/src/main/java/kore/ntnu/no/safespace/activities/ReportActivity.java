@@ -85,7 +85,6 @@ public class ReportActivity extends AppCompatActivity {
         getLocationBtn.setTag(1);
         getLocationView = findViewById(R.id.displayLocationView);
 
-
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
         adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
 
@@ -296,23 +295,11 @@ public class ReportActivity extends AppCompatActivity {
 
     private void enableButtons() {
         getLocationBtn.setOnClickListener(view -> {
-            /*final int status = (Integer) view.getTag();
-            if (status == 1) {
-                Intent intent = new Intent(ReportActivity.this, LocationService.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startService(intent);
-                getLocationBtn.setText("OK");
-                view.setTag(0);
-            } else {
-                Intent intent = new Intent(ReportActivity.this, LocationService.class);
-                stopService(intent);
-                getLocationBtn.setText("GET LOCATION");
-                view.setTag(1);
-            }*/
             getLocationBtn.startAnimation();
             new GetLocationTask((result -> {
                 getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
                 (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
+                getLocationView.setText("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
             })).execute();
         });
     }

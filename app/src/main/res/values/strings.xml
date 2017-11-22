@@ -41,7 +41,7 @@
 
     <!-- DocumentActivity -->
     <string name="project">Project name…</string>
-    <string name="document_title">Enter title of document report...</string>
+    <string name="document_title">Document title…</string>
     <string name="documentation_sender">Sender:</string>
     <string name="documentation_project_description">Project description..</string>
     <string name="image_description">Image Description</string>

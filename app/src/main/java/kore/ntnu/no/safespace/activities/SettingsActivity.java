@@ -20,9 +20,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         TextView logOut = findViewById(R.id.tv_logout);
-        Button gpsBtn = findViewById(R.id.gpsBtn);
-        Button nor = findViewById(R.id.bt_nor);
-        Button eng = findViewById(R.id.bt_eng);
+        TextView gpsBtn = findViewById(R.id.gpsBtn);
+        TextView nor = findViewById(R.id.bt_nor);
+        TextView eng = findViewById(R.id.bt_eng);
 
         nor.setOnClickListener(view -> {
             changeLang(this, "no");
