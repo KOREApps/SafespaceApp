@@ -20,4 +20,6 @@ public class IdUtils {
     public static final String REPORT = "kore.ntnu.safespace.activities.ID.REPORT";
 
     public static final int TAKE_PICTURE_REQUEST = 88;
+
+    public static final int REQUEST_CODE = 0;
 }
