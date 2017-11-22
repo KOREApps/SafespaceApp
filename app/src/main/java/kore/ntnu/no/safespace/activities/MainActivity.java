@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new GetLocationTask((result -> {
-            System.out.println(result.getResult().getAccuracy());
-        })).execute();
+//        new GetLocationTask((result -> {
+//        System.out.println(result.getResult().getAccuracy());
+//        })).execute();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

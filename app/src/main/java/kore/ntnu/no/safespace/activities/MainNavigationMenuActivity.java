@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
+    int REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +68,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            startActivity(intent);
+            //startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE);
+
         });
     }
 
@@ -96,6 +100,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        getLayoutInflater().inflate(R.layout.activity_main_navigation_menu, null);
         super.onResume();
     }
 
@@ -122,5 +127,12 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finish();
+        startActivity(getIntent());
+    }
+
 
 }
