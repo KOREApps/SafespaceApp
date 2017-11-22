@@ -37,23 +37,23 @@ import kore.ntnu.no.safespace.R;
 public class GPSActivity extends AppCompatActivity {
 
     // Layout
-    Button getLocationBtn;
-    Button clearLocationBtn;
-    TextView getLocationView;
-    TextView getAccuracyView;
-    TextView getLongitudeView;
-    TextView getLatitudeView;
-    TextView getTimeSinceLastView;
-    TextView getTimeAtLastView;
+    private Button getLocationBtn;
+    private Button clearLocationBtn;
+    private TextView getLocationView;
+    private TextView getAccuracyView;
+    private TextView getLongitudeView;
+    private TextView getLatitudeView;
+    private TextView getTimeSinceLastView;
+    private TextView getTimeAtLastView;
 
     // Location Manager
-    String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
-    String locationProviderGPS = LocationManager.GPS_PROVIDER;
-    LocationManager locationManager;
-    LocationListener locationListener;
-    Location lastKnownLocation;
-    Location NTNULabBuilding;
-    Location NTNUMainBuilding;
+    private String locationProviderNetwork = LocationManager.NETWORK_PROVIDER;
+    private String locationProviderGPS = LocationManager.GPS_PROVIDER;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private Location lastKnownLocation;
+    private Location NTNULabBuilding;
+    private Location NTNUMainBuilding;
 
     // Preference Manager
     private SharedPreferences prefs;

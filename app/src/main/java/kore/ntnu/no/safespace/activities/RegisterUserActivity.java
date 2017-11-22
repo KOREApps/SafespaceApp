@@ -14,6 +14,11 @@ import kore.ntnu.no.safespace.tasks.RegisterUserTask;
 
 public class RegisterUserActivity extends AppCompatActivity {
 
+    private Button registerButton;
+    private EditText passwordInput;
+    private EditText confirmPasswordInput;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +27,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void setRegisterButtonOnClick(){
-        Button registerButton = findViewById(R.id.registerButton);
+        registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View view) -> {
             if (isPasswordFieldsEqual()) {
                 User newUser = getUser();
@@ -41,9 +46,9 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private boolean isPasswordFieldsEqual(){
-        EditText passwordInput = findViewById(R.id.passwordInput);
+        passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
-        EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
+        confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         String confirmPassword = confirmPasswordInput.getText().toString();
         return password.equals(confirmPassword);
     }

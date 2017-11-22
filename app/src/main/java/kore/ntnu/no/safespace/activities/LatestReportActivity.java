@@ -25,7 +25,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class LatestReportActivity extends AppCompatActivity {
 
-    LatestReportAdapter adapter;
+    private LatestReportAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

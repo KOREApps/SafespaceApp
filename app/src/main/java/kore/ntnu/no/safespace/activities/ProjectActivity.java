@@ -17,14 +17,17 @@ import kore.ntnu.no.safespace.tasks.SendProjectTask;
 
 public class ProjectActivity extends AppCompatActivity {
 
+    private EditText projectTitleField;
+    EditText projectDescriptionField;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
         setCreateButtonOnClick();
 
-        EditText projectTitleField = findViewById(R.id.projectHeaderText);
-        EditText projectDescriptionField = findViewById(R.id.projectDescription);
+        projectTitleField = findViewById(R.id.projectHeaderText);
+        projectDescriptionField = findViewById(R.id.projectDescription);
         projectTitleField.setFocusableInTouchMode(true);
         projectTitleField.requestFocus();
     }

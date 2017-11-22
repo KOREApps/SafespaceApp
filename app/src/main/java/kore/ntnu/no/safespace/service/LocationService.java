@@ -12,6 +12,8 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import kore.ntnu.no.safespace.activities.MainActivity;
+
 /**
  * Created by OscarWika on 19.11.2017.
  */
@@ -38,18 +40,19 @@ public class LocationService extends IntentService {
             @Override
             public void onLocationChanged(Location location) {
                 Intent intent = new Intent("location_update");
-                intent.putExtra("coordinates", location.getLongitude() + " " + location.getLatitude());
+                intent.putExtra("coordinates", "Accuracy: " + location.getAccuracy());
                 sendBroadcast(intent);
+                if(location.getAccuracy() < 20) {
+                    stopService(new Intent(getApplicationContext(), LocationService.class));
+                }
             }
 
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle) {
-
             }
 
             @Override
             public void onProviderEnabled(String s) {
-
             }
 
             @Override
@@ -59,18 +62,16 @@ public class LocationService extends IntentService {
                 startActivity(intent);
             }
         };
+
         locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates("gps", 3000, 0, listener);
+        locationManager.requestLocationUpdates("gps", 0, 0, listener);
     }
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-
         Toast.makeText(this, "Starting GPS", Toast.LENGTH_SHORT).show();
-
         return START_STICKY;
     }
-
 
 
     @Override
@@ -83,9 +84,7 @@ public class LocationService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-
-    }
+    protected void onHandleIntent(@Nullable Intent intent) {}
 
     public void stopLocationListener() {
         locationManager.removeUpdates(listener);
