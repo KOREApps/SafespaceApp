@@ -21,7 +21,6 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
-    int REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            startActivityForResult(intent, REQUEST_CODE);
+            startActivityForResult(intent, IdUtils.REQUEST_CODE);
 
         });
     }
