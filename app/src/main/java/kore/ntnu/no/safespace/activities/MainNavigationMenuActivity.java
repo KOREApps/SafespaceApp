@@ -68,7 +68,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            //startActivity(intent);
             startActivityForResult(intent, REQUEST_CODE);
 
         });
@@ -100,7 +99,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        getLayoutInflater().inflate(R.layout.activity_main_navigation_menu, null);
         StorageUtils.deleteTempImages();
         super.onResume();
     }
