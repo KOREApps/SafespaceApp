@@ -37,7 +37,7 @@ public class ProjectActivity extends AppCompatActivity {
             new SendProjectTask((result -> {
                 if (result.isSuccess()) {
                     Toast.makeText(ProjectActivity.this, "Project successfully created", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ProjectActivity.this, DisplayReportActivity.class);
+                    Intent intent = new Intent(ProjectActivity.this, MainNavigationMenuActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
