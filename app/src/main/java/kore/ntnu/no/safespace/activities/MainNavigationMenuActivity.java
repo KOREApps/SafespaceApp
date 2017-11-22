@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +18,7 @@ import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.tasks.InternetConnectionThread;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
+import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
     int REQUEST_CODE = 0;
@@ -101,6 +101,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         getLayoutInflater().inflate(R.layout.activity_main_navigation_menu, null);
+        StorageUtils.deleteTempImages();
         super.onResume();
     }
 

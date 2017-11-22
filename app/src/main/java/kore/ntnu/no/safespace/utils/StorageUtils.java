@@ -168,4 +168,14 @@ public class StorageUtils {
         out.close();
         return imageFile;
     }
+
+    public static void deleteTempImages() {
+        File path = ApplicationContext.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File[] files = path.listFiles();
+        for(File f: files){
+            if(f.getAbsolutePath().contains("jpg")){
+                f.delete();
+            }
+        }
+    }
 }
