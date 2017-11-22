@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:layout_editor_absoluteY="81dp"
-    android:background="@drawable/navigationmenu_border">
+    android:background="@drawable/navigationmenu_border"
+    tools:layout_editor_absoluteY="81dp">
 
 
     <EditText
@@ -15,11 +15,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/navigationmenu_border"
         android:hint="@string/bug_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/navigationmenu_border"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/bugReportDescription"
@@ -28,12 +28,12 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/navigationmenu_border"
         android:hint="@string/bug_description"
         app:layout_constraintBottom_toTopOf="@+id/bugReportSendBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bugReportTitle"
-        android:background="@drawable/navigationmenu_border"/>
+        app:layout_constraintTop_toBottomOf="@+id/bugReportTitle" />
 
     <Button
         android:id="@+id/bugReportSendBtn"
@@ -42,6 +42,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/ic_shape_black"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/bugreport"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

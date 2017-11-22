@@ -86,9 +86,9 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called every time the location is updated.
-                getLatitudeView.setText("Latitude:");
+                getLatitudeView.setText(R.string.latitude);
                 getLatitudeView.append("\n" + location.getLatitude());
-                getLongitudeView.setText("Longitude:");
+                getLongitudeView.setText(R.string.longitude);
                 getLongitudeView.append("\n" + location.getLongitude());
 
                 editor.putFloat("CurrentLatitude", (float) location.getLatitude());
@@ -104,9 +104,12 @@ public class GPSActivity extends AppCompatActivity {
 
                     String myDate = format.format(new Date());
 
-                    getAccuracyView.setText("Accuracy:" + "\n" + location.getAccuracy());
-                    getTimeSinceLastView.setText("Time since last update:" + "\n" + diffTime / 1000000000.0);
-                    getTimeAtLastView.setText("Time at last update:" + "\n" + myDate);
+                    getAccuracyView.setText(R.string.accuracy);
+                    getAccuracyView.append("\n" + location.getAccuracy());
+                    getTimeSinceLastView.setText(R.string.time_since_last_update);
+                    getTimeSinceLastView.append("\n" + diffTime / 1000000000.0);
+                    getTimeAtLastView.setText(R.string.time_at_last_update);
+                    getTimeAtLastView.append("\n" + myDate);
 
                 } else {
                     lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
@@ -187,8 +190,10 @@ public class GPSActivity extends AppCompatActivity {
             getLocationView.setText("Location: No previous coordinates found, fetching..");
         } else {
             getLocationView.setText("Location: Fetching location..");
-            getLatitudeView.setText("Latitude:" + "\n" + lastKnownLocation.getLatitude() + "(last known)");
-            getLongitudeView.setText("Longitude" + "\n" + lastKnownLocation.getLongitude() + "(last known)");
+            getLatitudeView.setText(R.string.latitude);
+            getLatitudeView.append("\n" + lastKnownLocation.getLatitude() + "(last known)");
+            getLongitudeView.setText(R.string.longitude);
+            getLongitudeView.append("\n" + lastKnownLocation.getLongitude() + "(last known)");
         }
     }
 

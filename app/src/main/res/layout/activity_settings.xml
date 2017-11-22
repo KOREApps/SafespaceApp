@@ -45,9 +45,9 @@
         android:id="@+id/bt_nor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="4dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginLeft="4dp"
         android:background="@drawable/ic_shape_black"
         android:padding="8dp"
         android:text="@string/lang_nor"
@@ -61,9 +61,9 @@
         android:id="@+id/bt_eng"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/ic_shape_black"
         android:padding="8dp"
         android:text="@string/lang_eng"
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="180dp" />
+        app:layout_constraintGuide_percent="0.50" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -34,11 +34,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"
-                android:gravity="start"
                 android:background="@drawable/navigationmenu_border"
-                android:padding="1dp"
+                android:gravity="start"
                 android:hint="@string/project_description"
+                android:inputType="textMultiLine"
+                android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectHeaderText" />
@@ -49,6 +49,9 @@
                 android:layout_height="49dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/ic_shape_black"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:text="@string/create"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
