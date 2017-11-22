@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -39,8 +40,7 @@ import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class DocumentActivity extends AppCompatActivity {
-    private RecyclerView imageDisplay;
-    private TextView sender;
+
     private EditText title;
     private TextView description;
     private ProjectSpinnerAdapter dropDownAdapter;
@@ -52,8 +52,8 @@ public class DocumentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document);
-        imageDisplay = findViewById(R.id.docTakenPhotos);
-        sender = findViewById(R.id.docSenderID);
+        RecyclerView imageDisplay = findViewById(R.id.docTakenPhotos);
+        TextView sender = findViewById(R.id.docSenderID);
         description = findViewById(R.id.docDescription);
         project = findViewById(R.id.docProject);
         title = findViewById(R.id.docTitle);
@@ -160,5 +160,15 @@ public class DocumentActivity extends AppCompatActivity {
 
     private void addImageToList(Image image) {
         adapter.addImage(image);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

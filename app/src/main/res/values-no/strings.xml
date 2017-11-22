@@ -35,7 +35,7 @@
 
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
-    <string name="document_title">Sett inn dokumentasjon tittel...</string>
+    <string name="document_title">Sett inn dokumentasjon tittel…</string>
     <string name="documentation_sender">Sender:</string>
     <string name="documentation_project_description">Prosjekt beskrivelse…</string>
     <string name="image_description">Bilde beskrivelse</string>
@@ -59,6 +59,7 @@
     <string name="lang_nor">Norsk</string>
     <string name="lang_eng">Engelsk</string>
     <string name="logout">Logg ut</string>
+    <string name="ok">OK</string>
 
     <!--RegisterUserActivity-->
     <string name="firstName">Fornavn</string>
@@ -69,10 +70,14 @@
     <!-- GPSActivity -->
     <string name="get_location">Hent lokasjon</string>
     <string name="stop_location">Stopp</string>
-    <string name="location">Lokasjon:</string>
-    <string name="longitude">Lengdegrad:</string>
-    <string name="latitude">Breddegrad:</string>
-    <string name="accuracy">Nøyaktighet:</string>
-    <string name="time_since_last_update">Tid siden forrige oppdatering:</string>
-    <string name="time_at_last_update">Tid når forrige oppdatering:</string>
+    <string name="location">Lokasjon: </string>
+    <string name="longitude">Lengdegrad: </string>
+    <string name="latitude">Breddegrad: </string>
+    <string name="accuracy">Nøyaktighet: </string>
+    <string name="time_since_last_update">Tid siden forrige oppdatering: </string>
+    <string name="time_at_last_update">Tid når forrige oppdatering: </string>
+    <string name="fetching_new_location">Lokasjon: Ingen tidligere lokasjon funnet, henter…</string>
+    <string name="fetching_location">Lokasjon: Henter lokasjon…</string>
+    <string name="ntnu_lab">Lokasjon: Du er i NTNU lab bygget</string>
+    <string name="ntnu_main">Lokasjon: Du er i NTNU hovedbygget</string>
 </resources>

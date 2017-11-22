@@ -2,10 +2,7 @@ package kore.ntnu.no.safespace.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -24,12 +21,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -58,12 +55,9 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 public class ReportActivity extends AppCompatActivity {
 
     private File imageFile;
-    private RecyclerView imageDisplay;
     private ImageDisplayAdapter adapter;
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
-    private SharedPreferences prefs;
-    private BroadcastReceiver broadcastReceiver;
     private TextView getLocationView;
     private CircularProgressButton getLocationBtn;
 
@@ -73,7 +67,7 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report);
 
         EditText reportHeader = findViewById(R.id.reportHeaderText);
-        imageDisplay = findViewById(R.id.reportTakenPhoto);
+        RecyclerView imageDisplay = findViewById(R.id.reportTakenPhoto);
         adapter = new ImageDisplayAdapter(this);
         imageDisplay.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         imageDisplay.setAdapter(adapter);
@@ -95,11 +89,10 @@ public class ReportActivity extends AppCompatActivity {
         capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         float currentLatitude = prefs.getFloat("CurrentLatitude", 0);
         float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
 
-        registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
         if (!runtime_permission())
             enableButtons();
     }
@@ -212,65 +205,6 @@ public class ReportActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (broadcastReceiver == null) {
-            broadcastReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    System.out.println(intent.getExtras().get("coordinates"));
-                    Toast.makeText(context, "" + intent.getExtras().get("coordinates"), Toast.LENGTH_SHORT).show();
-                    getLocationView.setText((CharSequence) intent.getExtras().get("coordinates"));
-                }
-            };
-        }
-        registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
-    }
-
-    @Override
-    protected void onStart() {
-        registerReceiver(broadcastReceiver, new IntentFilter("location_update"));
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        try {
-            if (broadcastReceiver != null) {
-                Intent intent = new Intent(ReportActivity.this, LocationService.class);
-                stopService(intent);
-                unregisterReceiver(broadcastReceiver);
-            }
-        } catch (Exception e) {}
-        for(Image i : adapter.getImages()){
-            StorageUtils.deleteImage(i);
-        }
-        super.onStop();
-    }
-
-    @Override
-    protected void onPause() {
-        try {
-            if (broadcastReceiver != null) {
-                unregisterReceiver(broadcastReceiver);
-            }
-        } catch (Exception e) {}
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        try {
-            if (broadcastReceiver != null) {
-                Intent intent = new Intent(ReportActivity.this, LocationService.class);
-                stopService(intent);
-                unregisterReceiver(broadcastReceiver);
-            }
-        } catch (Exception e) {}
-        super.onDestroy();
-    }
-
     private boolean runtime_permission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -290,7 +224,8 @@ public class ReportActivity extends AppCompatActivity {
             new GetLocationTask((result -> {
                 getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
                 (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
-                getLocationView.setText("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
+                getLocationView.setText("");
+                getLocationView.append("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
             })).execute();
         });
     }
@@ -306,4 +241,15 @@ public class ReportActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

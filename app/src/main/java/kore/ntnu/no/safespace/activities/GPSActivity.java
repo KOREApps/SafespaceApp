@@ -1,7 +1,6 @@
 package kore.ntnu.no.safespace.activities;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,14 +16,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -36,9 +32,6 @@ import kore.ntnu.no.safespace.R;
 
 public class GPSActivity extends AppCompatActivity {
 
-    // Layout
-    private Button getLocationBtn;
-    private Button clearLocationBtn;
     private TextView getLocationView;
     private TextView getAccuracyView;
     private TextView getLongitudeView;
@@ -52,11 +45,8 @@ public class GPSActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private Location lastKnownLocation;
-    private Location NTNULabBuilding;
-    private Location NTNUMainBuilding;
 
-    // Preference Manager
-    private SharedPreferences prefs;
+    // Strings
     private String currentLocation;
 
     @Override
@@ -64,19 +54,19 @@ public class GPSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
 
-        getLocationBtn = findViewById(R.id.gpsButtonYo);
+        Button getLocationBtn = findViewById(R.id.gpsButtonYo);
         getLocationView = findViewById(R.id.locationView);
         getAccuracyView = findViewById(R.id.accuracyView);
         getLatitudeView = findViewById(R.id.latitudeView);
         getLongitudeView = findViewById(R.id.longitudeView);
         getTimeSinceLastView = findViewById(R.id.timeSinceLastView);
         getTimeAtLastView = findViewById(R.id.timeAtLastUpdateView);
-        clearLocationBtn = findViewById(R.id.gpsClearBtn);
+        Button clearLocationBtn = findViewById(R.id.gpsClearBtn);
 
         getLocationBtn.setOnClickListener(view -> startGPSListener());
         clearLocationBtn.setOnClickListener(view -> stopAnyListener());
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();
         String currentLocation = prefs.getString("CurrentLocation", "");
         this.currentLocation = currentLocation;
@@ -115,20 +105,22 @@ public class GPSActivity extends AppCompatActivity {
                     lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
                 }
 
+                // NTNU LAB
                 float result[] = new float[10];
-                NTNULabBuilding.distanceBetween(62.472171, 6.233951, location.getLatitude(), location.getLongitude(), result);
+                Location.distanceBetween(62.472171, 6.233951, location.getLatitude(), location.getLongitude(), result);
 
+                // NTNU Main Building
                 float result2[] = new float[10];
-                NTNUMainBuilding.distanceBetween(62.472144, 6.235740, location.getLatitude(), location.getLongitude(), result2);
+                Location.distanceBetween(62.472144, 6.235740, location.getLatitude(), location.getLongitude(), result2);
 
                 if (result[0] < 36) {
-                    getLocationView.setText("Location: You are at NTNU LAB building");
+                    getLocationView.setText(R.string.ntnu_lab);
                     getLocationView.append("\nDistance from center: " + result[0]);
                     GPSActivity.this.currentLocation = "NTNU lab";
                     editor.putString("CurrentLocation", GPSActivity.this.currentLocation);
                     editor.apply();
                 } else if (result2[0] < 50) {
-                    getLocationView.setText("Location: You are at the main building");
+                    getLocationView.setText(R.string.ntnu_main);
                     getLocationView.append("\nDistance from LAB center: " + result[0]);
                     GPSActivity.this.currentLocation = "Main Building";
                 } else {
@@ -187,9 +179,9 @@ public class GPSActivity extends AppCompatActivity {
         locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
 
         if (lastKnownLocation == null) {
-            getLocationView.setText("Location: No previous coordinates found, fetching..");
+            getLocationView.setText(R.string.fetching_new_location);
         } else {
-            getLocationView.setText("Location: Fetching location..");
+            getLocationView.setText(R.string.fetching_location);
             getLatitudeView.setText(R.string.latitude);
             getLatitudeView.append("\n" + lastKnownLocation.getLatitude() + "(last known)");
             getLongitudeView.setText(R.string.longitude);
@@ -231,5 +223,15 @@ public class GPSActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         stopAnyListener();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

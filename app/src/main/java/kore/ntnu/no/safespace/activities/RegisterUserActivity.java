@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,11 +15,6 @@ import kore.ntnu.no.safespace.tasks.RegisterUserTask;
 
 public class RegisterUserActivity extends AppCompatActivity {
 
-    private Button registerButton;
-    private EditText passwordInput;
-    private EditText confirmPasswordInput;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +23,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void setRegisterButtonOnClick(){
-        registerButton = findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View view) -> {
             if (isPasswordFieldsEqual()) {
                 User newUser = getUser();
@@ -46,9 +42,9 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private boolean isPasswordFieldsEqual(){
-        passwordInput = findViewById(R.id.passwordInput);
+        EditText passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
-        confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
+        EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         String confirmPassword = confirmPasswordInput.getText().toString();
         return password.equals(confirmPassword);
     }
@@ -63,5 +59,15 @@ public class RegisterUserActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
         return new User(null, username, firstName, lastName, password, null, null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -2,6 +2,7 @@ package kore.ntnu.no.safespace.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,17 +18,14 @@ import kore.ntnu.no.safespace.tasks.SendProjectTask;
 
 public class ProjectActivity extends AppCompatActivity {
 
-    private EditText projectTitleField;
-    EditText projectDescriptionField;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
         setCreateButtonOnClick();
 
-        projectTitleField = findViewById(R.id.projectHeaderText);
-        projectDescriptionField = findViewById(R.id.projectDescription);
+        EditText projectTitleField = findViewById(R.id.projectHeaderText);
+        EditText projectDescriptionField = findViewById(R.id.projectDescription);
         projectTitleField.setFocusableInTouchMode(true);
         projectTitleField.requestFocus();
     }
@@ -58,5 +56,15 @@ public class ProjectActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter a project Title", Toast.LENGTH_SHORT).show();
             return null;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -6,7 +6,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,15 +21,13 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 
 public class HelpActivity extends AppCompatActivity {
 
-    private Button bugBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        bugBtn = findViewById(R.id.bugReportBtn);
-        bugBtn.setOnClickListener(view -> onButtonShowPopupWindow(view));
+        Button bugBtn = findViewById(R.id.bugReportBtn);
+        bugBtn.setOnClickListener(this::onButtonShowPopupWindow);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -64,6 +62,16 @@ public class HelpActivity extends AppCompatActivity {
             }
 
         });
-
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

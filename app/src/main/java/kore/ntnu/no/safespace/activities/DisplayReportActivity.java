@@ -3,7 +3,6 @@ package kore.ntnu.no.safespace.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,23 +18,19 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 
 
 public class DisplayReportActivity extends AppCompatActivity {
+
     private RecyclerView imagePreviewer;
     private ImageDisplayAdapter adapter;
-    private Report report;
-    private TextView title;
-    private TextView description;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_report);
-        title = findViewById(R.id.display_report_title);
-        description = findViewById(R.id.display_report_description);
+        TextView title = findViewById(R.id.display_report_title);
+        TextView description = findViewById(R.id.display_report_description);
         description.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
-        report = (Report) intent.getSerializableExtra(IdUtils.REPORT);
+        Report report = (Report) intent.getSerializableExtra(IdUtils.REPORT);
         title.setText(report.getTitle());
         description.setText(report.getDescription());
         imagePreviewer = findViewById(R.id.display_report_recyclerView);

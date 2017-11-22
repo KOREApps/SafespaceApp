@@ -67,15 +67,19 @@
     <string name="lang_nor">Norwegian</string>
     <string name="lang_eng">English</string>
     <string name="gps">GPS</string>
-    <string name="ok">ok</string>
+    <string name="ok">OK</string>
 
     <!-- GPSActivity -->
     <string name="get_location">Get location</string>
     <string name="stop_location">Stop</string>
-    <string name="location">Location:</string>
-    <string name="longitude">Longitude:</string>
-    <string name="latitude">Latitude:</string>
-    <string name="accuracy">Accuracy:</string>
-    <string name="time_since_last_update">Time since last update:</string>
-    <string name="time_at_last_update">Time at last update:</string>
+    <string name="location">Location: </string>
+    <string name="longitude">Longitude: </string>
+    <string name="latitude">Latitude: </string>
+    <string name="accuracy">Accuracy: </string>
+    <string name="time_since_last_update">Time since last update: </string>
+    <string name="time_at_last_update">Time at last update: </string>
+    <string name="fetching_new_location">Location: No previous coordinates found, fetching…</string>
+    <string name="fetching_location">Location: Fetching location…</string>
+    <string name="ntnu_lab">Location: You are at NTNU LAB building</string>
+    <string name="ntnu_main">Location: You are at NTNU Main building</string>
 </resources>
