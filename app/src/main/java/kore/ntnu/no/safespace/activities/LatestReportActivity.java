@@ -38,7 +38,7 @@ public class LatestReportActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
         if(ConnectionUtil.isConnected(this)) {
-            new GetDocumentationsTask(c -> adapter.addReports(c.getResult())).execute();
+            new GetDocumentationsTask(c -> adapter.addReports(c.getResult()),this).execute();
             new GetReportsTask(c -> adapter.addReports(c.getResult())).execute();
         } else{
         localReports();
