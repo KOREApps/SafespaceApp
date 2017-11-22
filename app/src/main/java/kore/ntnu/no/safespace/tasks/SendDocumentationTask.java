@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.tasks;
 
 import android.os.AsyncTask;
+import android.util.Base64;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,7 +46,7 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
 
     private void sendImages(Long documentationId, List<Image> images) throws IOException {
         for (Image image : images) {
-            image.setData(ImageUtils.getB64ImageData(image));
+            image.setData(Base64.encodeToString(ImageUtils.getRawImageData(image), Base64.NO_WRAP));
             image.setDocumentation(new Documentation(documentationId, null, null, null));
             image.setFileExtension(image.getFileExtension().replace(".", ""));
             imageService.add(image);

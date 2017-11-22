@@ -5,9 +5,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -39,16 +41,24 @@ public class ImageUtils {
         if (scaleFactor < 1) {
             scaleFactor = 1 / scaleFactor;
         }
-        ExifInterface exif = new ExifInterface(imageFile.getAbsolutePath());
-        int rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        ExifInterface exif = null;
+        int rotation = 0;
+        try{
+            exif = new ExifInterface(imageFile.getAbsolutePath());
+            rotation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        } catch (IOException e){
+            Log.e(ImageUtils.class.getSimpleName(), "Invalid image type for Exif");
+        }
         rotation = exifToDegrees(rotation);
         BitmapFactory.Options opts = new BitmapFactory.Options();
         opts.inSampleSize = scaleFactor;
         Bitmap imageBitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), opts);
-        Matrix matrix = new Matrix();
-        matrix.setRotate(rotation, (float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
+        if(imageBitmap != null) {
+            Matrix matrix = new Matrix();
+            matrix.setRotate(rotation, (float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
 //        matrix.postScale(-1,1,(float) imageBitmap.getWidth() / 2, (float) imageBitmap.getHeight() / 2);
-        imageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageBitmap.getWidth(), imageBitmap.getHeight(), matrix, true);
+            imageBitmap = Bitmap.createBitmap(imageBitmap, 0, 0, imageBitmap.getWidth(), imageBitmap.getHeight(), matrix, true);
+        }
         return imageBitmap;
     }
 
@@ -123,6 +133,23 @@ public class ImageUtils {
         return getStoredImages(storageDir.getAbsolutePath());
     }
 
+    public static byte[] getRawImageData(Image image) throws IOException {
+        FileInputStream in = new FileInputStream(image.getImageFile());
+        byte[] rawData = new byte[in.available()];
+        in.read(rawData);
+        printByteArray(rawData);
+        return rawData;
+    }
+
+    public static void printByteArray(byte[] ar){
+//        for(int i = 0; i < ar.length/100; i++){
+//            System.out.print(ar[i]);
+//            if(i%500 == 0){
+//                System.out.println();
+//            }
+//        }
+        System.out.println(ar.length);
+    }
     public static String getB64ImageData(Image image) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         Bitmap bitmap = ImageUtils.getBitmap(image);
@@ -130,5 +157,4 @@ public class ImageUtils {
         bitmap.recycle();
         return Base64.encodeToString(byteStream.toByteArray(), Base64.NO_WRAP);
     }
-
 }

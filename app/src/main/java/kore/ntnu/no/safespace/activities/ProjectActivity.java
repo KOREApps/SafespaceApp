@@ -1,6 +1,5 @@
 package kore.ntnu.no.safespace.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -37,8 +36,6 @@ public class ProjectActivity extends AppCompatActivity {
             new SendProjectTask((result -> {
                 if (result.isSuccess()) {
                     Toast.makeText(ProjectActivity.this, "Project successfully created", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ProjectActivity.this, MainNavigationMenuActivity.class);
-                    startActivity(intent);
                     finish();
                 } else {
                     System.out.println(result.getMessage());

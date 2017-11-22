@@ -1,15 +1,21 @@
 package kore.ntnu.no.safespace.tasks;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import kore.ntnu.no.safespace.data.Documentation;
-import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.DocumentationService;
+import kore.ntnu.no.safespace.service.ImageService;
 import kore.ntnu.no.safespace.service.ServiceResult;
+import kore.ntnu.no.safespace.utils.ImageUtils;
+import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
  * Created by Kristoffer on 2017-11-17.
@@ -19,16 +25,32 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
 
     private AsyncOnPostExecute<List<Documentation>> callback;
     private DocumentationService documentationService;
+    private ImageService imageService;
 
     public GetDocumentationsTask(AsyncOnPostExecute<List<Documentation>> callback) {
         this.callback = callback;
         this.documentationService = new DocumentationService();
+        this.imageService = new ImageService();
     }
 
     @Override
     protected AsyncTaskResult<List<Documentation>> doInBackground(Void... voids) {
         try {
             ServiceResult<List<Documentation>> serviceResult = documentationService.getAll();
+            if(serviceResult != null) {
+                for (Documentation d : serviceResult.getObject()) {
+                    List<Image> images = new ArrayList<>();
+                    for (Image i : documentationService.getImagesForDocumentation(d.getId()).getObject()) {
+                        byte[] rawData = imageService.getImageData(i);
+                        ImageUtils.printByteArray(rawData);
+                        File image = StorageUtils.saveToDisk(rawData, i.getName(), i.getFileExtension());
+                        images.add(new Image(image));
+                    }
+                    d.setImages(images);
+                }
+            } else {
+                Log.e(GetDocumentationsTask.class.getSimpleName(), "Failed to get Documentation");
+            }
             return new AsyncTaskResult<>(serviceResult.getObject());
         } catch (IOException e) {
             e.printStackTrace();

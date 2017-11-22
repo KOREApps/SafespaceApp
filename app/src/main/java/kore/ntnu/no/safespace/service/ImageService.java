@@ -102,7 +102,7 @@ public class ImageService implements RestClient<Image, Long> {
     public byte[] getImageData(Image image) {
         try {
             final String url = IMAGE_URL + "/data/" + image.getId();
-             return http.get(url).getResponse().getBytes();
+             return http.getByte(url);
         } catch (IOException e) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image data");
             return new byte[0];

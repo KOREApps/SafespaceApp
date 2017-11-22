@@ -60,6 +60,18 @@ public class HttpService {
         return httpResponse;
     }
 
+    public byte[] getByte(String url) throws IOException {
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("Authorization", getCredentialsHeader(credentials))
+                .build();
+        Response response = http.newCall(request).execute();
+        byte[] b = response.body().bytes();
+        response.close();
+        return b;
+    }
+
     public HttpResponse post(String url, String bodyString) throws IOException {
         RequestBody body = RequestBody.create(JSON, bodyString);
         Request request = new Request.Builder()
