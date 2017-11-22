@@ -21,42 +21,50 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/docProject"
+            <EditText
+                android:id="@+id/docTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:ellipsize="start"
-                android:gravity="center_horizontal"
-                android:spinnerMode="dropdown"
+                android:layout_marginTop="8dp"
+                android:hint="@string/document_title"
+                android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/docSender"
-                android:layout_width="wrap_content"
+            <Spinner
+                android:id="@+id/docProject"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/documentation_sender"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/docSubmitDocumentation"
-                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
-
-            <TextView
-                android:id="@+id/docSenderID"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:text="@string/default_user"
-                app:layout_constraintBaseline_toBaselineOf="@+id/docSender"
-                app:layout_constraintStart_toEndOf="@+id/docSender" />
+                android:layout_marginTop="8dp"
+                android:ellipsize="start"
+                android:gravity="center_horizontal"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toStartOf="@+id/docTakePhotoBtn"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
 
+            <ImageButton
+                android:id="@+id/docTakePhotoBtn"
+                android:layout_width="65dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_shape_black"
+                android:contentDescription="@string/takenPhoto"
+                android:padding="1dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_takenphoto"
+                app:layout_constraintBottom_toBottomOf="@+id/docProject"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/docTakenPhotos"
@@ -67,22 +75,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn" />
-
-            <ImageButton
-                android:id="@+id/docTakePhotoBtn"
-                android:layout_width="65dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/takenPhoto"
-                android:padding="1dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_takenphoto"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/docTitle"
-                app:layout_constraintTop_toBottomOf="@+id/docProject" />
 
             <EditText
                 android:id="@+id/docDescription"
@@ -106,24 +98,31 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/ic_shape_black"
                 android:text="@string/submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/docDescription" />
 
-            <EditText
-                android:id="@+id/docTitle"
+            <TextView
+                android:id="@+id/docSender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/navigationmenu_border"
-                android:hint="@string/document_title"
-                app:layout_constraintBottom_toBottomOf="@+id/docTakePhotoBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/docTakePhotoBtn" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/documentation_sender"
+                app:layout_constraintStart_toEndOf="@+id/docSubmitDocumentation"
+                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
+
+            <TextView
+                android:id="@+id/docSenderID"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginStart="12dp"
+                android:text="@string/default_user"
+                app:layout_constraintBaseline_toBaselineOf="@+id/docSender"
+                app:layout_constraintStart_toEndOf="@+id/docSender" />
 
 
         </android.support.constraint.ConstraintLayout>
