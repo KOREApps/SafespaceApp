@@ -21,9 +21,9 @@ import kore.ntnu.no.safespace.utils.ImageUtils;
  */
 
 public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapter.ReportViewHolder> {
-    List<Report> list = new ArrayList<>();
+    private List<Report> list = new ArrayList<>();
     private final Context context;
-    OnClickListener listener;
+    private OnClickListener listener;
 
     public interface OnClickListener {
         void onClick(int position);

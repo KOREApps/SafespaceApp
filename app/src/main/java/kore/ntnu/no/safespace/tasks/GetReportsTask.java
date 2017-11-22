@@ -21,13 +21,11 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
     private AsyncOnPostExecute<List<IncidentReport>> callback;
     private ReportService reportService;
     private ProgressDialog dialog;
-    private Context mContext;
 
     public GetReportsTask(AsyncOnPostExecute<List<IncidentReport>> callback, Context context) {
         this.callback = callback;
         this.reportService = new ReportService();
-        mContext = context;
-        dialog = new ProgressDialog(mContext);
+        dialog = new ProgressDialog(context);
     }
 
     @Override

@@ -30,14 +30,12 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
     private DocumentationService documentationService;
     private ImageService imageService;
     private ProgressDialog dialog;
-    private Context mContext;
 
     public GetDocumentationsTask(AsyncOnPostExecute<List<Documentation>> callback, Context context) {
         this.callback = callback;
         this.documentationService = new DocumentationService();
         this.imageService = new ImageService();
-        mContext = context;
-        dialog = new ProgressDialog(mContext);
+        dialog = new ProgressDialog(context);
     }
 
     @Override
