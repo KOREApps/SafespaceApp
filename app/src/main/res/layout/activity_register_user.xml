@@ -6,128 +6,117 @@
     android:layout_height="match_parent"
     tools:context="kore.ntnu.no.safespace.activities.RegisterUserActivity">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="329dp"
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="328dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="328dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/registerButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.502"
-            tools:layout_editor_absoluteX="5dp">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
+            <TextView
+                android:id="@+id/usernameLabel"
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:text="@string/username" />
+
+            <EditText
+                android:id="@+id/usernameInput"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/username"
+                android:inputType="textPersonName" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/firstNameLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/firstName" />
 
-                <TextView
-                    android:id="@+id/usernameLabel"
-                    android:layout_width="103dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/username" />
+            <EditText
+                android:id="@+id/firstNameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/firstName"
+                android:inputType="textPersonName" />
+        </TableRow>
 
-                <EditText
-                    android:id="@+id/usernameInput"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/username"
-                    android:inputType="textPersonName" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            </TableRow>
-
-            <TableRow
+            <TextView
+                android:id="@+id/lastNameLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/lastName" />
 
-                <TextView
-                    android:id="@+id/firstNameLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/firstName" />
+            <EditText
+                android:id="@+id/lastNameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/lastName"
+                android:inputType="textPersonName" />
+        </TableRow>
 
-                <EditText
-                    android:id="@+id/firstNameInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/firstName"
-                    android:inputType="textPersonName" />
-            </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TableRow
+            <TextView
+                android:id="@+id/passwordLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/password" />
 
-                <TextView
-                    android:id="@+id/lastNameLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lastName" />
+            <EditText
+                android:id="@+id/passwordInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword" />
 
-                <EditText
-                    android:id="@+id/lastNameInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/lastName"
-                    android:inputType="textPersonName" />
-            </TableRow>
+        </TableRow>
 
-            <TableRow
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/confirmPasswordLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:text="@string/confirmPassword" />
 
-                <TextView
-                    android:id="@+id/passwordLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/password" />
-
-                <EditText
-                    android:id="@+id/passwordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/passwordLabel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/confirmPassword" />
-
-                <EditText
-                    android:id="@+id/confirmPasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/confirmPassword"
-                    android:inputType="textPassword" />
-            </TableRow>
-        </TableLayout>
-
-    </android.support.constraint.ConstraintLayout>
+            <EditText
+                android:id="@+id/confirmPasswordInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/confirmPassword"
+                android:inputType="textPassword" />
+        </TableRow>
+    </TableLayout>
 
     <Button
         android:id="@+id/registerButton"
@@ -136,13 +125,9 @@
         android:layout_marginBottom="100dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.021"
         tools:text="@string/register" />
 
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
+import kore.ntnu.no.safespace.BCrypt;
 import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
@@ -74,15 +75,14 @@ public class MainActivity extends AppCompatActivity {
             User storedUser = new Gson().fromJson(jsonUser, User.class);
 
             //TODO: get hash type or something (Bcrypt)
-            if(storedUser.getUsername().equals(username) && storedUser.getPassword().equals(password)){
+            boolean result = BCrypt.checkpw(password, storedUser.getPassword());
+            if(storedUser.getUsername().equals(username) && result){
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                 intent.putExtra(IdUtils.USER, storedUser);
                 startActivity(intent);
             }
-
         }
     }
-
     private void storeUser(User loggedInUser) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();

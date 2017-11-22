@@ -120,7 +120,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/navigationmenu_border"
-                android:hint="Enter title of document report..."
+                android:hint="@string/document_title"
                 app:layout_constraintBottom_toBottomOf="@+id/docTakePhotoBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/docTakePhotoBtn" />

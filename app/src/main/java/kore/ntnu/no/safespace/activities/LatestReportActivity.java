@@ -2,15 +2,22 @@ package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.adapters.LatestReportAdapter;
 import kore.ntnu.no.safespace.tasks.GetDocumentationsTask;
 import kore.ntnu.no.safespace.tasks.GetReportsTask;
+import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
+import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
  * Created by OscarWika on 31.10.2017.
@@ -30,9 +37,12 @@ public class LatestReportActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rv_reports);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
-        new GetDocumentationsTask(c-> adapter.addReports(c.getResult())).execute();
-        new GetReportsTask(c-> adapter.addReports(c.getResult())).execute();
-//        fillReports();
+        if(ConnectionUtil.isConnected(this)) {
+            new GetDocumentationsTask(c -> adapter.addReports(c.getResult())).execute();
+            new GetReportsTask(c -> adapter.addReports(c.getResult())).execute();
+        } else{
+        localReports();
+        }
 
         adapter.setListener(position -> {
             Intent intent = new Intent(LatestReportActivity.this, DisplayReportActivity.class);
@@ -41,16 +51,21 @@ public class LatestReportActivity extends AppCompatActivity {
         });
     }
 
-//    void fillReports() {
-//        try {
-//            List<Documentation> list = StorageUtils.getDocumentationsFromFile(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
-//            for(Documentation d : list){
-//                adapter.addReport(d);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    void localReports() {
+        try {
+            List<File> list = StorageUtils.getDocumentations(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+            for(File f : list){
+                adapter.addReport(StorageUtils.readDocumentFromFile(f));
+            }
+            list.clear();
+            list = StorageUtils.getIncidents(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+            for(File f : list){
+                adapter.addReport(StorageUtils.readIncidentFromFile(f));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
