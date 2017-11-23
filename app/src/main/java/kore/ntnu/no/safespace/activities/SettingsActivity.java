@@ -22,8 +22,24 @@ public class SettingsActivity extends AppCompatActivity {
 
         TextView logOut = findViewById(R.id.tv_logout);
         TextView gpsBtn = findViewById(R.id.gpsBtn);
+        TextView mapsBtn = findViewById(R.id.mapsBtn);
         TextView nor = findViewById(R.id.bt_nor);
         TextView eng = findViewById(R.id.bt_eng);
+
+        logOut.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        gpsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
+            startActivity(intent);
+        });
+
+        mapsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, MapsActivity.class);
+            startActivity(intent);
+        });
 
         nor.setOnClickListener(view -> {
             changeLang(this, "no");
@@ -35,16 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
             changeLang(this, "en");
             finish();
             startActivity(getIntent());
-        });
-
-        logOut.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-        gpsBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
-            startActivity(intent);
         });
 
     }

@@ -7,6 +7,23 @@
     tools:context="kore.ntnu.no.safespace.activities.SettingsActivity">
 
     <TextView
+        android:id="@+id/mapsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_shape_black"
+        android:padding="8dp"
+        android:text="@string/map"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gpsBtn" />
+
+    <TextView
         android:id="@+id/tv_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,8 +62,8 @@
         android:id="@+id/bt_nor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_shape_black"
         android:padding="8dp"
@@ -54,15 +71,16 @@
         android:textAlignment="center"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gpsBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/mapsBtn" />
 
     <TextView
         android:id="@+id/bt_eng"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_shape_black"
         android:padding="8dp"
@@ -70,8 +88,9 @@
         android:textAlignment="center"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/gpsBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/mapsBtn" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

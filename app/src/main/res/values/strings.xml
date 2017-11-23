@@ -82,4 +82,14 @@
     <string name="fetching_location">Location: Fetching location…</string>
     <string name="ntnu_lab">Location: You are at NTNU LAB building</string>
     <string name="ntnu_main">Location: You are at NTNU Main building</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="map">Map</string>
+
+    <!-- RegisterLocationActivity-->
+    <string name="location_name">Location name</string>
+    <string name="location_lat">Latitude</string>
+    <string name="location_log">Longitude</string>
+    <string name="location_radius">Radius</string>
+
+>>>>>>> map
 </resources>

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import kore.ntnu.no.safespace.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
+import kore.ntnu.no.safespace.tasks.AsyncTaskResult;
 import kore.ntnu.no.safespace.tasks.RegisterUserTask;
 
 public class RegisterUserActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         registerButton.setOnClickListener((View view) -> {
             if (isPasswordFieldsEqual()) {
                 User newUser = getUser();
-                new RegisterUserTask((result -> {
+                new RegisterUserTask(((AsyncTaskResult<User> result) -> {
                     if (result.isSuccess()) {
                         Intent intent = new Intent(RegisterUserActivity.this, MainActivity.class);
                         startActivity(intent);
