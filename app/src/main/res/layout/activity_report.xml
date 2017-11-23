@@ -77,7 +77,8 @@
                 android:contentDescription="@string/takenPhoto"
                 android:padding="1dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_takenphoto"
+                android:src="@drawable/ic_camera"
+                android:background="@drawable/ic_shape_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/reportHeaderText" />
 

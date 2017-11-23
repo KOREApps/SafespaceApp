@@ -44,7 +44,7 @@ import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Project;
-import kore.ntnu.no.safespace.service.LocationService;
+import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.tasks.GetLocationTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
@@ -94,7 +94,7 @@ public class ReportActivity extends AppCompatActivity {
         float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
 
         if (!runtime_permission())
-            enableButtons();
+            getLocationButton();
     }
 
     private void populateSpinner() {
@@ -218,14 +218,16 @@ public class ReportActivity extends AppCompatActivity {
         return false;
     }
 
-    private void enableButtons() {
+    private void getLocationButton() {
         getLocationBtn.setOnClickListener(view -> {
             getLocationBtn.startAnimation();
             new GetLocationTask((result -> {
-                getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
+                getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
                 (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
                 getLocationView.setText("");
                 getLocationView.append("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
+                double latitude = result.getResult().getLatitude();
+                double longitude = result.getResult().getLatitude();
             })).execute();
         });
     }
@@ -235,7 +237,7 @@ public class ReportActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 10) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                enableButtons();
+                getLocationButton();
             } else {
                 runtime_permission();
             }

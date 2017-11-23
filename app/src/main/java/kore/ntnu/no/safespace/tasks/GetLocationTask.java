@@ -20,7 +20,6 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
     private LocationListener locationListener;
     private Location location;
     private AsyncOnPostExecute<Location> callback;
-    //private final Object LOCK = new Object();
 
     public GetLocationTask(AsyncOnPostExecute<Location> callback) {
         this.callback = callback;
