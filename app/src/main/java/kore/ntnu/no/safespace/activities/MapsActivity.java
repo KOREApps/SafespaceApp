@@ -112,12 +112,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         intent.putExtra(IdUtils.MAPS_LOG, latLng.longitude);
 
         String radius = mapRadiusField.getText().toString();
-        int markerRadius = Integer.parseInt(radius);
-        intent.putExtra(IdUtils.MAPS_RAD, markerRadius);
+        if(!radius.isEmpty()) {
+            int markerRadius = Integer.parseInt(radius);
+            intent.putExtra(IdUtils.MAPS_RAD, markerRadius);
+            System.out.println("Radius: " + markerRadius);
+        } else {
+            intent.putExtra(IdUtils.MAPS_RAD, 0);
+        }
 
         System.out.println("Latitude: " + latLng.latitude);
         System.out.println("Longitude: " + latLng.longitude);
-        System.out.println("Radius: " + markerRadius);
         startActivity(intent);
     }
 
