@@ -34,23 +34,26 @@ public class RegisterLocationActivity extends AppCompatActivity {
         locationRadius = findViewById(R.id.locRadiusInput);
         registerLocationBtn = findViewById(R.id.registerLocationButton);
 
+        setRegisterLocationFields();
+        setRegisterLocationBtn();
+    }
+
+    private void setRegisterLocationFields() {
         Intent intent = getIntent();
         locationLatText.setText(Double.toString(intent.getDoubleExtra(IdUtils.MAPS_LAT, 0.0)));
         locationLogText.setText(Double.toString(intent.getDoubleExtra(IdUtils.MAPS_LOG, 0.0)));
-        setRegisterLocationBtn();
+        locationRadius.setText(Integer.toString(intent.getIntExtra(IdUtils.MAPS_RAD, 0)));
     }
 
     private void setRegisterLocationBtn() {
         registerLocationBtn = findViewById(R.id.registerLocationButton);
         registerLocationBtn.setOnClickListener((View view) -> {
-
-            KnownLocationService locationService = new KnownLocationService();
             KnownLocation newKnownLocation = getKnownLocation();
             new RegisterNewLocationTask(result -> {
                 if (result.isSuccess()) {
                     Intent intent = new Intent(RegisterLocationActivity.this, MapsActivity.class);
                     startActivity(intent);
-                    Toast.makeText(this, "Location registered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Location registered", Toast.LENGTH_LONG).show();
                 } else {
                     ErrorDialog.showErrorDialog(this ,result.getMessage());
                 }
@@ -59,24 +62,20 @@ public class RegisterLocationActivity extends AppCompatActivity {
     }
 
     private KnownLocation getKnownLocation(){
-        double latitudeDouble;
-        double longitudeDouble;
-        int radiusInt;
-
         locationNameText = findViewById(R.id.locNameInput);
         String locationName = locationNameText.getText().toString();
 
         locationLatText = findViewById(R.id.locLatInput);
         String latitude = locationLatText.getText().toString();
-        latitudeDouble = Double.parseDouble(latitude);
+        double latitudeDouble = Double.parseDouble(latitude);
 
         locationLogText = findViewById(R.id.locLogInput);
         String longitude = locationLogText.getText().toString();
-        longitudeDouble = Double.parseDouble(longitude);
+        double longitudeDouble = Double.parseDouble(longitude);
 
         locationRadius = findViewById(R.id.locRadiusInput);
         String radius = locationRadius.getText().toString();
-        radiusInt = Integer.parseInt(radius);
+        int radiusInt = Integer.parseInt(radius);
 
         return new KnownLocation(null, locationName, latitudeDouble, longitudeDouble, radiusInt);
     }

@@ -68,5 +68,5 @@
         android:hint="Radius"
         android:padding="8dp"
         android:imeOptions="actionSearch"
-        android:inputType="text" />
+        android:inputType="number" />
 </RelativeLayout>

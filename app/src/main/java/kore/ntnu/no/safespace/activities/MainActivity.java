@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             if(storedUser.getUsername().equals(username) && result){
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                 intent.putExtra(IdUtils.USER, storedUser);
+                ErrorDialog.dismissErrorDialog(this);
                 startActivity(intent);
             }
         }
@@ -148,5 +149,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

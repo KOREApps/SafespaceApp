@@ -13,7 +13,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
  * Created by OscarWika on 23.11.2017.
  */
 
-public class GetNearestLocationTask extends AsyncTask<Location, Integer, AsyncTaskResult<KnownLocation>> {
+public class GetNearestLocationTask extends AsyncTask<KnownLocation, Integer, AsyncTaskResult<KnownLocation>> {
 
     private KnownLocationService knownLocationService;
     private AsyncOnPostExecute<KnownLocation> callback;
@@ -24,10 +24,10 @@ public class GetNearestLocationTask extends AsyncTask<Location, Integer, AsyncTa
     }
 
     @Override
-    protected AsyncTaskResult<KnownLocation> doInBackground(Location... locations) {
-        Location location = locations[0];
+    protected AsyncTaskResult<KnownLocation> doInBackground(KnownLocation... locations) {
+        KnownLocation location = locations[0];
         try {
-            ServiceResult<KnownLocation> serviceResult = knownLocationService.getCurrentLocation(location);
+            ServiceResult<KnownLocation> serviceResult = knownLocationService.getNearestLocations(location);
             KnownLocation knownLocation = serviceResult.getObject();
             return new AsyncTaskResult<>(knownLocation);
         } catch (IOException e) {

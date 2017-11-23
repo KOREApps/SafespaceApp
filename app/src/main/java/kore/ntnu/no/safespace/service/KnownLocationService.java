@@ -63,10 +63,10 @@ public class KnownLocationService implements RestClient<KnownLocation, Long> {
         }
     }
 
-    public ServiceResult<List<KnownLocation>> getNearestLocations(Location location) throws IOException {
+    public ServiceResult<KnownLocation> getNearestLocations(KnownLocation location) throws IOException {
         HttpResponse response = httpService.post(URL + "/nearest" + "?number=1", gson.toJson(location));
         if (response.isSuccess()) {
-            List<KnownLocation> knownLocations = gson.fromJson(response.getResponse(), LIST_TYPE);
+            KnownLocation knownLocations = gson.fromJson(response.getResponse(), KnownLocation.class);
             return new ServiceResult<>(knownLocations, true, "OK");
         } else {
             ValidCheckResult checkResult = gson.fromJson(response.getResponse(), ValidCheckResult.class);

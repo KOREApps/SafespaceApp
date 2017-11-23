@@ -19,4 +19,11 @@ public class ErrorDialog {
             .show();
     }
 
+    public static void dismissErrorDialog(Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        AlertDialog dialog;
+        dialog = builder.create();
+        dialog.dismiss();
+    }
+
 }

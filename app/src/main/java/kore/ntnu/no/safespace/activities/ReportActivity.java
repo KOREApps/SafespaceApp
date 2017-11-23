@@ -22,11 +22,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,10 +45,13 @@ import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.data.KnownLocation;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.tasks.GetLocationTask;
+import kore.ntnu.no.safespace.tasks.GetNearestLocationTask;
+import kore.ntnu.no.safespace.tasks.RegisterNewLocationTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
@@ -93,8 +98,8 @@ public class ReportActivity extends AppCompatActivity {
         float currentLatitude = prefs.getFloat("CurrentLatitude", 0);
         float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
 
-        if (!runtime_permission())
-            getLocationButton();
+        if (!runtime_permission());
+            //getNearestLocationButton();
     }
 
     private void populateSpinner() {
@@ -173,6 +178,7 @@ public class ReportActivity extends AppCompatActivity {
             finish();
         });
     }
+
     private void takePhoto() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -226,18 +232,31 @@ public class ReportActivity extends AppCompatActivity {
                 (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
                 getLocationView.setText("");
                 getLocationView.append("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
-                double latitude = result.getResult().getLatitude();
-                double longitude = result.getResult().getLatitude();
             })).execute();
         });
     }
+
+   /* private void getNearestLocationButton() {
+        getLocationBtn.setOnClickListener(view -> {
+            getLocationBtn.startAnimation();
+            KnownLocation currentLocation = getCurrentLocation();
+            new GetNearestLocationTask((result -> {
+                if(result.isSuccess()) {
+                    getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
+                    getLocationView.setText("Location: " + result.getResult().getName());
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
+                }
+            })).execute(currentLocation);
+        });
+    }*/
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 10) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                getLocationButton();
+                //getNearestLocationButton();
             } else {
                 runtime_permission();
             }
@@ -253,5 +272,16 @@ public class ReportActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+  /*  private KnownLocation getCurrentLocation() {
+        double latitude;
+        double longitude;
+        new GetLocationTask((result -> {
+           // latitude = result.getResult().getLatitude();
+            //longitude = result.getResult().getLongitude();
+        })).execute();
+
+        return new KnownLocation(null,"test", latitude, longitude, null);
+    }*/
 
 }
