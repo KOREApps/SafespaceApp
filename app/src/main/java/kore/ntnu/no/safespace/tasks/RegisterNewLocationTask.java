@@ -17,8 +17,8 @@ public class RegisterNewLocationTask extends AsyncTask<KnownLocation, Integer, A
     private KnownLocationService locationService;
     private AsyncOnPostExecute<KnownLocation> callback;
 
-    public RegisterNewLocationTask(KnownLocationService locationService, AsyncOnPostExecute<KnownLocation> callback) {
-        this.locationService = locationService;
+    public RegisterNewLocationTask(AsyncOnPostExecute<KnownLocation> callback) {
+        this.locationService = new KnownLocationService();
         this.callback = callback;
     }
 

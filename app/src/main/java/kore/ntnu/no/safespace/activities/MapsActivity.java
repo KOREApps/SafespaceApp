@@ -65,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         init();
         mMap = googleMap;
+        mMap.setPadding(0,150,0,0);
 
         LatLng alesund = new LatLng(62.47, 6.22);
         marker = new MarkerOptions();
