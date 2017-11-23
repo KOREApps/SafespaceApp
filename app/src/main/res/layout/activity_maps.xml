@@ -55,4 +55,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="7dp"
         android:text="@string/register" />
+
+    <EditText
+        android:id="@+id/setRadiusField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/okBtn"
+        android:layout_alignBottom="@+id/okBtn"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/okBtn"
+        android:background="@drawable/white_border"
+        android:hint="Radius"
+        android:padding="8dp"
+        android:imeOptions="actionSearch"
+        android:inputType="text" />
 </RelativeLayout>

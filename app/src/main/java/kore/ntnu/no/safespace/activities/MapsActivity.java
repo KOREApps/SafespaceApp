@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private MarkerOptions marker;
     private EditText mapSearchField;
+    private EditText mapRadiusField;
     private CircleOptions circleOptions = new CircleOptions();
 
     @Override
@@ -44,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         mapSearchField = findViewById(R.id.searchMapField);
+        mapRadiusField = findViewById(R.id.setRadiusField);
         Button okBtn = findViewById(R.id.okBtn);
         okBtn.setOnClickListener(view -> registerLocationBtn());
     }
@@ -60,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         init();
+        initTwo();
         mMap = googleMap;
         mMap.setPadding(0,150,0,0);
 
@@ -85,6 +90,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .fillColor(adjustAlpha(0x33FFFFFF, 1f))
                     .strokeWidth(4);
             mMap.addCircle(circleOptions);
+
+            // Radius
+            if(!mapRadiusField.getText().toString().isEmpty()) {
+                int markerRadius;
+                String radius = mapRadiusField.getText().toString();
+                markerRadius = Integer.parseInt(radius);
+                mMap.clear();
+                mMap.addMarker(marker.position(currentPosition).title("Where we at tho?"));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10.0f));
+                circleOptions.center(new LatLng(latLng.latitude, latLng.longitude))
+                        .radius(markerRadius)
+                        .fillColor(adjustAlpha(0x33FFFFFF, 1f))
+                        .strokeWidth(4);
+                mMap.addCircle(circleOptions);
+            }
+
         });
     }
 
@@ -119,6 +140,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         hideKeyboard();
     }
 
+    private void initTwo() {
+        mapRadiusField.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if( i == EditorInfo.IME_ACTION_SEARCH
+                    || i == EditorInfo.IME_ACTION_DONE
+                    || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                    || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER) {
+                //setRadius();
+            }
+            return false;
+        });
+        hideKeyboard();
+    }
+
     private void hideKeyboard() {
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -138,8 +172,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.clear();
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom((currentPosition), 10.0f));
             mMap.addMarker(marker.position(currentPosition).title(address.getAddressLine(0)));
-
-            circleOptions = new CircleOptions();
             circleOptions.center(currentPosition)
                     .radius(10000)
                     .fillColor(adjustAlpha(0x33FFFFFF, 1f))
@@ -148,9 +180,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         hideKeyboard();
     }
-
-    private void setRadius() {
-    }
-
 
 }
