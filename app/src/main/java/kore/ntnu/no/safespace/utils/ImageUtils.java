@@ -137,18 +137,7 @@ public class ImageUtils {
         FileInputStream in = new FileInputStream(image.getImageFile());
         byte[] rawData = new byte[in.available()];
         in.read(rawData);
-        printByteArray(rawData);
         return rawData;
-    }
-
-    public static void printByteArray(byte[] ar){
-//        for(int i = 0; i < ar.length/100; i++){
-//            System.out.print(ar[i]);
-//            if(i%500 == 0){
-//                System.out.println();
-//            }
-//        }
-        System.out.println(ar.length);
     }
     public static String getB64ImageData(Image image) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();

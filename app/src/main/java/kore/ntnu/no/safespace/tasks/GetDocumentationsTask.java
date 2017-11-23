@@ -11,13 +11,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.LatestReportActivity;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.DocumentationService;
 import kore.ntnu.no.safespace.service.ImageService;
 import kore.ntnu.no.safespace.service.ServiceResult;
-import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
@@ -54,7 +52,6 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
                     List<Image> images = new ArrayList<>();
                     for (Image i : documentationService.getImagesForDocumentation(d.getId()).getObject()) {
                         byte[] rawData = imageService.getImageData(i);
-                        ImageUtils.printByteArray(rawData);
                         File image = StorageUtils.saveToDisk(rawData, i.getName(), i.getFileExtension());
                         images.add(new Image(image));
                     }
