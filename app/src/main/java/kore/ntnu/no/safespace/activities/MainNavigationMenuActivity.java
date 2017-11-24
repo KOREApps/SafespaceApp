@@ -2,6 +2,10 @@ package kore.ntnu.no.safespace.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -68,8 +72,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
             startActivityForResult(intent, IdUtils.REQUEST_CODE);
-
         });
+
     }
 
     private void getProjects() {

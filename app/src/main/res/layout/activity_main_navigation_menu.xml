@@ -17,7 +17,10 @@
         android:layout_row="0"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/nav_report" />
+        android:text="@string/nav_report"
+        android:drawableTop="@drawable/ic_report_problem"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp"/>
 
     <Button
         android:id="@+id/dokumBtn"
@@ -28,7 +31,10 @@
         android:layout_row="0"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/nav_document" />
+        android:text="@string/nav_document"
+        android:drawableTop="@drawable/ic_document"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp" />
 
     <Button
         android:id="@+id/projectBtn"
@@ -39,7 +45,10 @@
         android:layout_row="1"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/project1" />
+        android:text="@string/project1"
+        android:drawableTop="@drawable/ic_project_assignment"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp" />
 
     <Button
         android:id="@+id/latestBtn"
@@ -50,7 +59,10 @@
         android:layout_row="1"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/nav_latestrep" />
+        android:text="@string/nav_latestrep"
+        android:drawableTop="@drawable/ic_bug_report"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp" />
 
     <Button
         android:id="@+id/helpBtn"
@@ -61,7 +73,10 @@
         android:layout_row="2"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/nav_help" />
+        android:text="@string/nav_help"
+        android:drawableTop="@drawable/ic_bug_report"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp" />
 
     <Button
         android:id="@+id/settingsBtn"
@@ -72,6 +87,9 @@
         android:layout_row="2"
         android:layout_rowWeight="1"
         android:gravity="center"
-        android:text="@string/nav_settings" />
+        android:text="@string/nav_settings"
+        android:drawableTop="@drawable/ic_settings_art"
+        android:paddingTop="55dp"
+        android:paddingBottom="87dp" />
 
 </GridLayout>

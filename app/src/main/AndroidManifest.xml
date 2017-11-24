@@ -18,6 +18,9 @@
 
     <uses-feature android:name="android.hardware.location.gps" />
 
+    <uses-sdk
+        android:minSdkVersion="21"/>
+
     <application
         android:name=".utils.ApplicationContext"
         android:allowBackup="true"
