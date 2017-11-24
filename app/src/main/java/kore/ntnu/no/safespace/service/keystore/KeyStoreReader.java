@@ -1,7 +1,6 @@
 package kore.ntnu.no.safespace.service.keystore;
 
 import android.content.Context;
-import android.content.ContextWrapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +9,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
-import kore.ntnu.no.safespace.ApplicationContext;
+import kore.ntnu.no.safespace.utils.ApplicationContext;
 
 /**
  * Created by robert on 11/17/17.

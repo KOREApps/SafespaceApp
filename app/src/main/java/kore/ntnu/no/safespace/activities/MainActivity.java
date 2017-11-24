@@ -16,8 +16,8 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
-import kore.ntnu.no.safespace.BCrypt;
-import kore.ntnu.no.safespace.ErrorDialog;
+import kore.ntnu.no.safespace.utils.hashfunctions.BCrypt;
+import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
     private void storeUser(User loggedInUser) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = prefs.edit();

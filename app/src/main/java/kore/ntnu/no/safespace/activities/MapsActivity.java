@@ -79,7 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(marker.position(myPosition()).title("Marker in Ålesund").draggable(marker.isDraggable()));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition(), 10.0f));
         circleOptions.center(myPosition())
-                .radius(10000)
+                .radius(getRadiusFieldInt())
                 .fillColor(adjustAlpha(0x3300ffff, 0.5f))
                 .strokeWidth(4);
         mMap.addCircle(circleOptions);
@@ -98,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.addMarker(marker.position(currentPosition).title("Where we at tho?"));
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10.0f));
             circleOptions.center(currentPosition)
-                    .radius(10000)
+                    .radius(getRadiusFieldInt())
                     .fillColor(adjustAlpha(0x33FFFFFF, 1f))
                     .strokeWidth(4);
             mMap.addCircle(circleOptions);
@@ -139,20 +139,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void afterTextChanged(Editable editable) {
-                String radius = mapRadiusField.getText().toString();
-                if(!radius.isEmpty()) {
-                    System.out.println(radius);
-                    int markerRadius = Integer.parseInt(radius);
                     mMap.clear();
                     mMap.addMarker(marker);
                     circleOptions
-                            .radius(markerRadius)
+                            .radius(getRadiusFieldInt())
                             .fillColor(adjustAlpha(0x33FFFFFF, 1f))
                             .strokeWidth(4);
                     mMap.addCircle(circleOptions);
-                }
+
             }
         });
+    }
+
+    private Integer getRadiusFieldInt() {
+        int locationRadius;
+        String radius = mapRadiusField.getText().toString();
+        if(!radius.isEmpty()) {
+            System.out.println(radius);
+            locationRadius = Integer.parseInt(radius);
+        } else {
+            locationRadius = 1000;
+        }
+        return locationRadius;
     }
 
     private void searchForLocation() {
@@ -170,7 +178,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom((currentPosition), 10.0f));
             mMap.addMarker(marker.position(currentPosition).title(address.getAddressLine(0)));
             circleOptions.center(currentPosition)
-                    .radius(10000)
+                    .radius(getRadiusFieldInt())
                     .fillColor(adjustAlpha(0x33FFFFFF, 1f))
                     .strokeWidth(4);
             mMap.addCircle(circleOptions);

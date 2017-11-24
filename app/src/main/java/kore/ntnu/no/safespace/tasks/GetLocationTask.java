@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import kore.ntnu.no.safespace.ApplicationContext;
+import kore.ntnu.no.safespace.utils.ApplicationContext;
 import kore.ntnu.no.safespace.data.Location;
 
 /**

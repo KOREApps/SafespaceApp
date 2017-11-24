@@ -1,4 +1,4 @@
-package kore.ntnu.no.safespace;
+package kore.ntnu.no.safespace.utils;
 
 import android.app.Application;
 import android.content.Context;

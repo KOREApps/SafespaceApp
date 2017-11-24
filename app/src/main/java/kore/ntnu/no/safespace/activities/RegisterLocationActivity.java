@@ -9,10 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import kore.ntnu.no.safespace.ErrorDialog;
+import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.KnownLocation;
-import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.RegisterNewLocationTask;
 import kore.ntnu.no.safespace.utils.IdUtils;
 

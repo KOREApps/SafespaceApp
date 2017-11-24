@@ -1,5 +1,5 @@
 
-package kore.ntnu.no.safespace;
+package kore.ntnu.no.safespace.utils.hashfunctions;
 //package org.mindrot;
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>

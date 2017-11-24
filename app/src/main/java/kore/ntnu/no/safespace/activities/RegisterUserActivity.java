@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import kore.ntnu.no.safespace.ErrorDialog;
+import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.tasks.AsyncTaskResult;
