@@ -3,8 +3,8 @@
     <!-- Global -->
     <string name="app_name">SafeSpace</string>
     <string name="empty_string">Empty String</string>
-
     <string name="settings_menu">Settings</string>
+    <string name="search">Search</string>
     <string name="submit">Submit</string>
     <string name="default_user">Robert</string>
 
@@ -91,5 +91,4 @@
     <string name="location_log">Longitude</string>
     <string name="location_radius">Radius</string>
 
->>>>>>> map
 </resources>

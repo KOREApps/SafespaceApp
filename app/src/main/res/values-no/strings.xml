@@ -3,7 +3,7 @@
     <!-- Global -->
     <string name="app_name">SafeSpace</string>
     <string name="empty_string">Tom String</string>
-
+    <string name="search">Søk</string>
     <string name="settings_menu">Innstillinger</string>
     <string name="submit">Send</string>
     <string name="default_user">Robert</string>

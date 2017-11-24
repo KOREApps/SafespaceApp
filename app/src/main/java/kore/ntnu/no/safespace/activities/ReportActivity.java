@@ -49,6 +49,7 @@ import kore.ntnu.no.safespace.data.KnownLocation;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
+import kore.ntnu.no.safespace.tasks.GetCurrentLocationTask;
 import kore.ntnu.no.safespace.tasks.GetLocationTask;
 import kore.ntnu.no.safespace.tasks.GetNearestLocationTask;
 import kore.ntnu.no.safespace.tasks.RegisterNewLocationTask;
@@ -78,7 +79,7 @@ public class ReportActivity extends AppCompatActivity {
         imageDisplay.setAdapter(adapter);
         ImageButton capturePhoto = findViewById(R.id.takePhotoBtn);
         EditText reportDescription = findViewById(R.id.reportDescription);
-        Button sendReport = findViewById(R.id.sendReportBtn);
+        ImageButton sendReport = findViewById(R.id.sendReportBtn);
         getLocationBtn = findViewById(R.id.getLocationBtn);
         getLocationBtn.setTag(1);
         getLocationView = findViewById(R.id.displayLocationView);
@@ -98,8 +99,11 @@ public class ReportActivity extends AppCompatActivity {
         float currentLatitude = prefs.getFloat("CurrentLatitude", 0);
         float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
 
-        if (!runtime_permission());
+        if (!runtime_permission()) {
+            getLocationButton();
+            //getCurrentLocationButton();
             //getNearestLocationButton();
+        }
     }
 
     private void populateSpinner() {
@@ -156,7 +160,7 @@ public class ReportActivity extends AppCompatActivity {
         }));
     }
 
-    private void setUpSendButton(Button sendButton) {
+    private void setUpSendButton(ImageButton sendButton) {
         sendButton.setOnClickListener((view) -> {
             EditText reportHeader = findViewById(R.id.reportHeaderText);
             String title = reportHeader.getText().toString();
@@ -236,20 +240,17 @@ public class ReportActivity extends AppCompatActivity {
         });
     }
 
-   /* private void getNearestLocationButton() {
+    private void getCurrentLocationButton() {
         getLocationBtn.setOnClickListener(view -> {
             getLocationBtn.startAnimation();
-            KnownLocation currentLocation = getCurrentLocation();
-            new GetNearestLocationTask((result -> {
-                if(result.isSuccess()) {
-                    getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
-                    getLocationView.setText("Location: " + result.getResult().getName());
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
-                }
-            })).execute(currentLocation);
+            new GetCurrentLocationTask((result1 -> {
+                getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
+                (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
+                getLocationView.setText("");
+                getLocationView.append("Location: " + result1.getResult().getName() + "\nLongitude: " + result1.getResult().getLongitude());
+            })).execute();
         });
-    }*/
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

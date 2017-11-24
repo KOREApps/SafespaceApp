@@ -60,7 +60,7 @@
         android:layout_rowWeight="1"
         android:gravity="center"
         android:text="@string/nav_latestrep"
-        android:drawableTop="@drawable/ic_bug_report"
+        android:drawableTop="@drawable/ic_file_download"
         android:paddingTop="55dp"
         android:paddingBottom="87dp" />
 

@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class InternetConnectionThread extends Thread {
                                 SendDocumentationTask sdt = new SendDocumentationTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(doc, docFile);
+                                        Toast.makeText(context, "The document: " + result.getResult().getTitle().toString() + " has been sent.", Toast.LENGTH_LONG).show();
                                     }
                                 });
                                 tasks.add(sdt);
@@ -59,6 +61,7 @@ public class InternetConnectionThread extends Thread {
                                 SendReportTask srt = new SendReportTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(incident, report);
+                                        Toast.makeText(context, "The report: " + result.getResult().getTitle().toString() + " has been sent.", Toast.LENGTH_LONG).show();
                                     }
                                 });
                                 tasks.add(srt);
