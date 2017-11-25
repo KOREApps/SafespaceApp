@@ -33,6 +33,11 @@ import java.util.List;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;

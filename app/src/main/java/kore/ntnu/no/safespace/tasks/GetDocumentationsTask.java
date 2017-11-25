@@ -19,9 +19,10 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Created by Kristoffer on 2017-11-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskResult<List<Documentation>>> {
 
     private AsyncOnPostExecute<List<Documentation>> callback;

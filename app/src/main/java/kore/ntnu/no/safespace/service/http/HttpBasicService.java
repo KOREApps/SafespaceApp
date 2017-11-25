@@ -5,9 +5,10 @@ import android.util.Base64;
 import kore.ntnu.no.safespace.data.UserCredentials;
 
 /**
- * Created by robert on 11/19/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class HttpBasicService {
 
     public static String getBasicCredentials(String username, String password){

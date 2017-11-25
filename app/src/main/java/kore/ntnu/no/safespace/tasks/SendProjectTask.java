@@ -9,9 +9,10 @@ import kore.ntnu.no.safespace.service.ProjectService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Created by OscarWika on 15.11.2017.
+ * Class description..
+ *
+ * @author Oscar
  */
-
 public class SendProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult<Project>> {
 
     private AsyncOnPostExecute<Project> callback;

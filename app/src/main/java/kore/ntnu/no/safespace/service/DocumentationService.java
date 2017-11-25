@@ -19,9 +19,10 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class DocumentationService implements RestClient<Documentation, Long> {
 
     private static final String URL = IdUtils.URL  + "/documentations";

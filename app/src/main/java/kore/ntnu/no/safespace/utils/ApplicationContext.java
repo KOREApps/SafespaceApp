@@ -3,6 +3,11 @@ package kore.ntnu.no.safespace.utils;
 import android.app.Application;
 import android.content.Context;
 
+/**
+ * Class description..
+ *
+ * @author Kristoffer
+ */
 public class ApplicationContext extends Application {
 
     private static Application instance;

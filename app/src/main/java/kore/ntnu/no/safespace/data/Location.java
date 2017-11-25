@@ -3,9 +3,10 @@ package kore.ntnu.no.safespace.data;
 import java.io.Serializable;
 
 /**
- * Created by robert on 11/21/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class Location implements Serializable {
 
     private Double latitude;

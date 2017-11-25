@@ -13,9 +13,10 @@ import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.tasks.SendProjectTask;
 
 /**
- * Created by Oscar Wika on 13.11.2017.
+ * Class description..
+ *
+ * @author x
  */
-
 public class ProjectActivity extends AppCompatActivity {
 
     @Override

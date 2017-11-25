@@ -23,6 +23,11 @@ import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class MainNavigationMenuActivity extends AppCompatActivity {
 
     private Button reportBtn;

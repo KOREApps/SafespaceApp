@@ -1,9 +1,10 @@
 package kore.ntnu.no.safespace.service.http;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class HttpResponse {
 
     private int code;

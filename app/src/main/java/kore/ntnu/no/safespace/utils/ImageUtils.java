@@ -19,11 +19,11 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.data.Image;
 
-
 /**
- * Created by Kristoffer on 2017-11-08.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class ImageUtils {
 
     public static Bitmap getBitmap(Image image) throws IOException {

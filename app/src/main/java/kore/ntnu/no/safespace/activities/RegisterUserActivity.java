@@ -14,6 +14,11 @@ import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.tasks.AsyncTaskResult;
 import kore.ntnu.no.safespace.tasks.RegisterUserTask;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class RegisterUserActivity extends AppCompatActivity {
 
     @Override

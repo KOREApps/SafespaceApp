@@ -14,9 +14,10 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class SendDocumentationTask extends AsyncTask<Documentation, Integer, AsyncTaskResult<Documentation>> {
 
     private AsyncOnPostExecute<Documentation> callback;

@@ -11,9 +11,10 @@ import kore.ntnu.no.safespace.utils.ApplicationContext;
 import kore.ntnu.no.safespace.data.Location;
 
 /**
- * Created by robert on 11/21/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Location>> {
 
     private LocationManager locationManager;

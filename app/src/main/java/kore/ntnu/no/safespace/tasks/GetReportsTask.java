@@ -13,9 +13,10 @@ import kore.ntnu.no.safespace.service.ReportService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Created by Kristoffer on 2017-11-17.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<List<IncidentReport>>> {
 
     private AsyncOnPostExecute<List<IncidentReport>> callback;

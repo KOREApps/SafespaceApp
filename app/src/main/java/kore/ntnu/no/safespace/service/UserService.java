@@ -19,9 +19,10 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Created by robert on 11/1/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class UserService implements RestClient<User, Long> {
 
     private static final String URL = IdUtils.URL + "/users";

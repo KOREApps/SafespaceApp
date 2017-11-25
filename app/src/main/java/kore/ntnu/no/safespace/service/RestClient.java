@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by robert on 11/1/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public interface RestClient<T, I> {
 
     public ServiceResult<List<T>> getAll() throws IOException;

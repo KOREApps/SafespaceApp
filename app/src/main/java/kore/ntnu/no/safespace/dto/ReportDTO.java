@@ -1,15 +1,14 @@
 package kore.ntnu.no.safespace.dto;
 
-import java.security.Policy;
-
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.Project;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class ReportDTO {
 
     private Long id;

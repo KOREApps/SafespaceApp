@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Kristoffer on 2017-11-01.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class IncidentReport extends Report implements Serializable {
     private final List<String> keywords;
     private Location location;

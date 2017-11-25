@@ -19,6 +19,11 @@ import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
+/**
+ * Class description..
+ *
+ * @author Erik
+ */
 public class HelpActivity extends AppCompatActivity {
 
     @Override

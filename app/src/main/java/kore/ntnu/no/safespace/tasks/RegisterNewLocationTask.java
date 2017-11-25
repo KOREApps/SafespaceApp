@@ -9,9 +9,10 @@ import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Created by robert on 11/21/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class RegisterNewLocationTask extends AsyncTask<KnownLocation, Integer, AsyncTaskResult<KnownLocation>> {
 
     private KnownLocationService locationService;

@@ -15,6 +15,11 @@ import kore.ntnu.no.safespace.data.KnownLocation;
 import kore.ntnu.no.safespace.tasks.RegisterNewLocationTask;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class RegisterLocationActivity extends AppCompatActivity {
 
     private EditText locationNameText;

@@ -5,9 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Kristoffer on 2017-11-01.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public abstract class Report implements Serializable {
     private final Long id;
     private final String title;

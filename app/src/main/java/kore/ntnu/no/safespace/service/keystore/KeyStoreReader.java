@@ -12,9 +12,10 @@ import java.security.cert.CertificateException;
 import kore.ntnu.no.safespace.utils.ApplicationContext;
 
 /**
- * Created by robert on 11/17/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class KeyStoreReader {
 
     public KeyStore readKeyStore(String passwordString) throws KeyStoreException {

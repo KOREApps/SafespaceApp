@@ -21,9 +21,10 @@ import kore.ntnu.no.safespace.service.keystore.KeyStoreReader;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by robert on 11/16/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class HttpClientBuilder {
 
     /**

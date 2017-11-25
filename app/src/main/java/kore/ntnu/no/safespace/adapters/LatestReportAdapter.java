@@ -17,9 +17,10 @@ import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
- * Created by KristoffMisbruker on 2017-10-27.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapter.ReportViewHolder> {
     private List<Report> list = new ArrayList<>();
     private final Context context;

@@ -4,9 +4,10 @@ import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.data.User;
 
 /**
- * Created by Kristoffer on 2017-11-15.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class DocumentDTO extends ReportDTO {
     private User user;
     public DocumentDTO(Long id, String title, String description, Project project, User submitter) {

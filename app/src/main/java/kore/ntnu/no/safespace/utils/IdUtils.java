@@ -3,9 +3,10 @@ package kore.ntnu.no.safespace.utils;
 import kore.ntnu.no.safespace.data.User;
 
 /**
- * Created by Kristoffer on 2017-11-21.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class IdUtils {
     public static User CURRENT_USER;
     public final static String PROJECTS = "kore.ntnu.no.safespace.activities.ID.PROJECTS";

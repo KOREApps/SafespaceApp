@@ -15,9 +15,10 @@ import java.util.List;
 import kore.ntnu.no.safespace.data.Project;
 
 /**
- * Created by robert on 11/13/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements AdapterView.OnItemSelectedListener {
 
     private Context context;

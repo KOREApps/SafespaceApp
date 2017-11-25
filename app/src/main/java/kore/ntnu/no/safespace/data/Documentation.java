@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by Kristoffer on 2017-11-01.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class Documentation extends Report implements Serializable {
     private final User submitter;
 

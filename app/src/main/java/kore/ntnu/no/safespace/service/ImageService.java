@@ -17,9 +17,10 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import okhttp3.MediaType;
 
 /**
- * Created by robert on 11/2/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class ImageService implements RestClient<Image, Long> {
 
     private static final String IMAGE_URL = IdUtils.URL + "/images";

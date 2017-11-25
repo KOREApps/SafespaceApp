@@ -39,6 +39,11 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class DocumentActivity extends AppCompatActivity {
 
     private EditText title;

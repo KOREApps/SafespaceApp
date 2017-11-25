@@ -5,9 +5,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * Created by Kristoffer on 2017-11-21.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class ConnectionUtil {
 
     public static boolean isConnected(Context context){

@@ -22,9 +22,10 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Created by OscarWika on 31.10.2017.
+ * Class description..
+ *
+ * @author x
  */
-
 public class LatestReportActivity extends AppCompatActivity {
 
     private LatestReportAdapter adapter;

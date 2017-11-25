@@ -9,9 +9,10 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.service.UserService;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class RegisterUserTask extends AsyncTask<User, Integer, AsyncTaskResult<User>> {
 
     private AsyncOnPostExecute<User> callback;

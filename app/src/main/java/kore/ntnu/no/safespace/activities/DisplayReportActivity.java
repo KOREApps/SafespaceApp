@@ -16,7 +16,11 @@ import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
-
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class DisplayReportActivity extends AppCompatActivity {
 
     private RecyclerView imagePreviewer;

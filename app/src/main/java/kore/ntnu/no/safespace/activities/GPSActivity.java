@@ -27,9 +27,10 @@ import java.util.Locale;
 import kore.ntnu.no.safespace.R;
 
 /**
- * Created by OscarWika on 01.11.2017.
+ * Class description..
+ *
+ * @author Oscar Wika,
  */
-
 public class GPSActivity extends AppCompatActivity {
 
     private TextView getLocationView;
@@ -124,7 +125,7 @@ public class GPSActivity extends AppCompatActivity {
                     getLocationView.append("\nDistance from LAB center: " + result[0]);
                     GPSActivity.this.currentLocation = "Main Building";
                 } else {
-                    getLocationView.setText("");
+                    getLocationView.setText("\nDistance from LAB center: " + result[0]);
                     getLocationView.append("\nYou are NOT in a building(hopefully)");
                     GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + " Long: " + location.getLongitude();
                 }

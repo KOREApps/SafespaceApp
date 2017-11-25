@@ -3,9 +3,10 @@ package kore.ntnu.no.safespace.data;
 import java.io.Serializable;
 
 /**
- * Created by Kristoffer on 2017-11-01.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class Role implements Serializable {
     private final Long id;
     private final String rolename;

@@ -15,9 +15,10 @@ import android.widget.Toast;
 import kore.ntnu.no.safespace.activities.MainActivity;
 
 /**
- * Created by OscarWika on 19.11.2017.
+ * Class description..
+ *
+ * @author Oscar
  */
-
 public class LocationService extends IntentService {
 
     private LocationListener listener;
@@ -79,7 +80,6 @@ public class LocationService extends IntentService {
         Toast.makeText(this, "GPS Stopped", Toast.LENGTH_SHORT).show();
         if(locationManager != null) {
             locationManager.removeUpdates(listener);
-            // TODO Find out how to remove the listener when user leaves the report activity.
         }
     }
 

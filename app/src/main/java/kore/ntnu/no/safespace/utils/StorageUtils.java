@@ -20,9 +20,10 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Report;
 
 /**
- * Created by Kristoffer on 2017-11-15.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class StorageUtils {
 
 

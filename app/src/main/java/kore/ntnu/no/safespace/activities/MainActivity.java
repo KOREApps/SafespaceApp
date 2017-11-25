@@ -26,6 +26,11 @@ import kore.ntnu.no.safespace.tasks.GetUserTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class MainActivity extends AppCompatActivity {
 
     private EditText loginUser;
@@ -86,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                 intent.putExtra(IdUtils.USER, storedUser);
                 // TODO FIX
-                ErrorDialog.dismissErrorDialog(this);
+                ErrorDialog.dismissErrorDialog(getApplicationContext());
                 startActivity(intent);
             }
         }

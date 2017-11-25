@@ -10,9 +10,10 @@ import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Created by OscarWika on 23.11.2017.
+ * Class description..
+ *
+ * @author Oscar
  */
-
 public class GetNearestLocationTask extends AsyncTask<KnownLocation, Integer, AsyncTaskResult<KnownLocation>> {
 
     private KnownLocationService knownLocationService;

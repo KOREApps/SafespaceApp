@@ -1,9 +1,10 @@
 package kore.ntnu.no.safespace.service.http;
 
 /**
- * Created by robert on 11/20/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public enum HttpStatus {
     OK, UNAUTHORIZED, NOT_FOUND, BAD_REQUEST, SERVER_ERROR, UNKNOWN;
 

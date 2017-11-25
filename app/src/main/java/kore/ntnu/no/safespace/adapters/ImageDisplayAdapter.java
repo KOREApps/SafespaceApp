@@ -17,9 +17,10 @@ import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
- * Created by Kristoffer on 2017-11-01.
+ * Class description..
+ *
+ * @author Kristoffer,
  */
-
 public class ImageDisplayAdapter extends RecyclerView.Adapter<ImageDisplayAdapter.ImageDisplayViewHolder> {
 
     public interface OnClickListener {

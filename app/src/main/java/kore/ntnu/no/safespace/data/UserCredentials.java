@@ -1,9 +1,10 @@
 package kore.ntnu.no.safespace.data;
 
 /**
- * Created by Robert on 11-Nov-17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class UserCredentials {
 
     private String username;

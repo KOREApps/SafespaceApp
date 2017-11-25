@@ -58,7 +58,13 @@ import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
+import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class ReportActivity extends AppCompatActivity {
 
     private File imageFile;
@@ -66,6 +72,7 @@ public class ReportActivity extends AppCompatActivity {
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
     private TextView getLocationView;
+    private ImageButton sendReport;
     private Location currentLocation = null;
     private CircularProgressButton getLocationBtn;
     private Handler handler = new Handler();
@@ -82,7 +89,7 @@ public class ReportActivity extends AppCompatActivity {
         imageDisplay.setAdapter(adapter);
         ImageButton capturePhoto = findViewById(R.id.takePhotoBtn);
         EditText reportDescription = findViewById(R.id.reportDescription);
-        ImageButton sendReport = findViewById(R.id.sendReportBtn);
+        sendReport = findViewById(R.id.sendReportBtn);
         getLocationBtn = findViewById(R.id.getLocationBtn);
         getLocationBtn.setTag(1);
         getLocationView = findViewById(R.id.displayLocationView);
@@ -135,7 +142,8 @@ public class ReportActivity extends AppCompatActivity {
 
     private void checkProjects() {
         if(dropDownAdapter.getCount() == 0){
-            //TODO: display alert that there is no projects and the user can therefore not submit reports
+            ErrorDialog.showReportErrorDialog(this);
+            sendReport.setEnabled(false);
         }
     }
 

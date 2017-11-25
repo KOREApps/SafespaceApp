@@ -13,6 +13,11 @@ import java.util.Locale;
 
 import kore.ntnu.no.safespace.R;
 
+/**
+ * Class description..
+ *
+ * @author x
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override

@@ -1,9 +1,11 @@
 package kore.ntnu.no.safespace.data;
 
-/**
- * Created by robert on 11/21/17.
- */
 
+/**
+ * Class description..
+ *
+ * @author Robert
+ */
 public class KnownLocation {
 
     private Long id;

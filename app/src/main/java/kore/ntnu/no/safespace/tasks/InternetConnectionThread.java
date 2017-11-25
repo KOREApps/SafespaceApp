@@ -16,9 +16,10 @@ import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Created by Kristoffer on 2017-11-15.
+ * Class description..
+ *
+ * @author Kristoffer
  */
-
 public class InternetConnectionThread extends Thread {
     private Context context;
     private List<AsyncTask> tasks = new ArrayList<>();

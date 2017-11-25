@@ -1,9 +1,10 @@
 package kore.ntnu.no.safespace.service;
 
 /**
- * Created by robert on 11/20/17.
+ * Class description..
+ *
+ * @author Robert
  */
-
 public class ServiceResult<T> {
 
     private T object;
