@@ -53,6 +53,7 @@
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Rapporter bilde</string>
     <string name="project1">Prosjekt</string>
+    <string name="projectSpinner">Prosjekt:</string>
     <string name="create">Lag ny</string>
 
     <!-- SettingsActivity -->
@@ -80,4 +81,11 @@
     <string name="fetching_location">Lokasjon: Henter lokasjon…</string>
     <string name="ntnu_lab">Lokasjon: Du er i NTNU lab bygget</string>
     <string name="ntnu_main">Lokasjon: Du er i NTNU hovedbygget</string>
+
+    <!-- RegisterLocationActivity-->
+    <string name="location_name">Location name</string>
+    <string name="location_lat">Latitude</string>
+    <string name="location_log">Longitude</string>
+    <string name="location_radius">Radius</string>
+    <string name="enter_location">Enter location…</string>
 </resources>

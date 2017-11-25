@@ -5,4 +5,5 @@
     <color name="colorAccent">#4e4e4e</color>
     <color name="colorGreyBtn">#D6D7D7</color>
     <color name="yellowTitle">#fff700</color>
+    <color name="mapTransparent">#90FFFFFF</color>
 </resources>

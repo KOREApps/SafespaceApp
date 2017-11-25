@@ -1,13 +1,11 @@
 package kore.ntnu.no.safespace.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -116,6 +114,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_logout){
+            //logOutDialog();
+            // TODO Fix "You need to use a theme appcompat or descendant with this activity".
             Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
             startActivity(intent);
         }
@@ -136,5 +136,23 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         startActivity(getIntent());
     }
 
+    private void logOutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.hide();
+                    break;
+            }
+        };
+        builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
 
 }

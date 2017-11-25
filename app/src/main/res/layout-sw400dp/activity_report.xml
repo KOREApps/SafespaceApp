@@ -31,6 +31,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/projectLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/projectSpinner"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/projectSpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/projectSpinner" />
+
             <Spinner
                 android:id="@+id/projectSpinner"
                 android:layout_width="0dp"
@@ -43,17 +54,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/takePhotoBtn"
                 app:layout_constraintStart_toEndOf="@+id/projectLabel"
                 app:layout_constraintTop_toTopOf="@+id/takePhotoBtn" />
-
-            <TextView
-                android:id="@+id/projectLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/project1"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/projectSpinner"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/projectSpinner" />
 
             <ImageButton
                 android:id="@+id/takePhotoBtn"
@@ -117,16 +117,13 @@
                 android:id="@+id/getLocationBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="28dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/ic_shape_black"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/get_location"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/displayLocationView"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/sendReportBtn"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
 
@@ -135,10 +132,12 @@
                 android:layout_width="161dp"
                 android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/location"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/getLocationBtn"
                 app:layout_constraintTop_toBottomOf="@+id/reportDescription" />
 
 

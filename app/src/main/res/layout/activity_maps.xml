@@ -21,27 +21,28 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:elevation="10dp"
-        android:background="@drawable/white_border">
+        android:background="@color/mapTransparent">
 
         <ImageView
             android:id="@+id/searchMapIcon"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/ic_search"/>
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_search"
+            android:elevation="5dp"/>
 
         <EditText
             android:id="@+id/searchMapField"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/searchMapIcon"
+            android:layout_toEndOf="@id/searchMapIcon"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:textSize="15dp"
+            android:layout_marginStart="10dp"
+            android:textSize="15sp"
             android:textColor="#000"
             android:background="@null"
-            android:hint="Enter location.."
+            android:hint="@string/enter_location"
             android:imeOptions="actionSearch"
             android:inputType="text"/>
 
@@ -54,19 +55,21 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="7dp"
+        android:background="@drawable/ic_shape_black"
         android:text="@string/register" />
 
     <EditText
         android:id="@+id/setRadiusField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/okBtn"
-        android:layout_alignBottom="@+id/okBtn"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@+id/okBtn"
         android:layout_marginStart="13dp"
         android:layout_toEndOf="@+id/okBtn"
-        android:background="@drawable/white_border"
-        android:hint="Radius"
-        android:padding="8dp"
+        android:background="@color/mapTransparent"
+        android:elevation="10dp"
+        android:hint="@string/location_radius"
         android:imeOptions="actionSearch"
-        android:inputType="number" />
+        android:inputType="number"
+        android:padding="8dp"
+        android:textSize="15sp" />
 </RelativeLayout>

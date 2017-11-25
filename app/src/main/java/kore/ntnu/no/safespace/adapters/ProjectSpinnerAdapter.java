@@ -72,6 +72,7 @@ public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements Adap
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setText(values.get(position).getName());
+        label.setTextSize(15);
         label.setOnClickListener(v -> {
 
         });

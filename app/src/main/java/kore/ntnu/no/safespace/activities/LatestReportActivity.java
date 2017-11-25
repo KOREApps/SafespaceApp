@@ -85,4 +85,7 @@ public class LatestReportActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.search_menu, menu);
         return true;
     }
+
+    // TODO Add search functionality.
+
 }

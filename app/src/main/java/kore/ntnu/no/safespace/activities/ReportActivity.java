@@ -66,6 +66,7 @@ public class ReportActivity extends AppCompatActivity {
     private Project selectedProject = null;
     private TextView getLocationView;
     private CircularProgressButton getLocationBtn;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +234,7 @@ public class ReportActivity extends AppCompatActivity {
             getLocationBtn.startAnimation();
             new GetLocationTask((result -> {
                 getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
-                (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
+                handler.postDelayed(() -> getLocationBtn.revertAnimation(), 2500);
                 getLocationView.setText("");
                 getLocationView.append("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
             })).execute();
@@ -245,7 +246,7 @@ public class ReportActivity extends AppCompatActivity {
             getLocationBtn.startAnimation();
             new GetCurrentLocationTask((result1 -> {
                 getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
-                (new Handler()).postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
+                handler.postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
                 getLocationView.setText("");
                 getLocationView.append("Location: " + result1.getResult().getName() + "\nLongitude: " + result1.getResult().getLongitude());
             })).execute();
@@ -268,6 +269,8 @@ public class ReportActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case android.R.id.home:
+                handler.removeCallbacksAndMessages(null);
+                getLocationBtn.revertAnimation();
                 finish();
                 return true;
         }
@@ -284,5 +287,17 @@ public class ReportActivity extends AppCompatActivity {
 
         return new KnownLocation(null,"test", latitude, longitude, null);
     }*/
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getLocationBtn.revertAnimation();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        getLocationBtn.revertAnimation();
+    }
 
 }

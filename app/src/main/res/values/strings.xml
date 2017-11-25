@@ -56,11 +56,11 @@
     <string name="bug_name">Bug name</string>
     <string name="rofl">rofl</string>
 
-
     <!-- DisplayReportActivity -->
     <string name="image_card_display_description">Report image</string>
     <string name="logout">Log Out</string>
     <string name="project1">Project</string>
+    <string name="projectSpinner">Project:</string>
     <string name="create">Create</string>
 
     <!-- SettingsActivity -->
@@ -90,5 +90,6 @@
     <string name="location_lat">Latitude</string>
     <string name="location_log">Longitude</string>
     <string name="location_radius">Radius</string>
+    <string name="enter_location">Enter location…</string>
 
 </resources>

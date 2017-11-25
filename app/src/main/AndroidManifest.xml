@@ -39,7 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainNavigationMenuActivity" />
+        <activity
+            android:name=".activities.MainNavigationMenuActivity"
+            android:configChanges="orientation|screenSize"/>
         <activity
             android:name=".activities.ReportActivity"
             android:configChanges="orientation|screenSize"

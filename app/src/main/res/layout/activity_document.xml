@@ -13,13 +13,15 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <EditText
                 android:id="@+id/docTitle"
@@ -30,9 +32,21 @@
                 android:layout_marginTop="8dp"
                 android:hint="@string/document_title"
                 android:textAlignment="center"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/projectLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/projectSpinner"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
 
             <Spinner
                 android:id="@+id/docProject"
@@ -45,9 +59,9 @@
                 android:ellipsize="start"
                 android:gravity="center_horizontal"
                 android:spinnerMode="dropdown"
+                android:scrollbarSize="20dp"
                 app:layout_constraintEnd_toStartOf="@+id/docTakePhotoBtn"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/projectLabel"
                 app:layout_constraintTop_toBottomOf="@+id/docTitle" />
 
             <ImageButton
@@ -98,6 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/ic_shape_black"
                 android:paddingLeft="10dp"
@@ -108,25 +123,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/docDescription" />
 
-            <TextView
-                android:id="@+id/docSender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="28dp"
-                android:text="@string/documentation_sender"
-                app:layout_constraintStart_toEndOf="@+id/docSubmitDocumentation"
-                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
+            <RelativeLayout
+                android:id="@+id/relativeLayout2"
+                android:layout_width="92dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.013"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/docSubmitDocumentation">
 
-            <TextView
-                android:id="@+id/docSenderID"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginStart="12dp"
-                android:text="@string/default_user"
-                app:layout_constraintBaseline_toBaselineOf="@+id/docSender"
-                app:layout_constraintStart_toEndOf="@+id/docSender" />
+                <TextView
+                    android:id="@+id/docSender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/documentation_sender" />
 
+                <TextView
+                    android:id="@+id/docSenderID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/default_user" />
+            </RelativeLayout>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
