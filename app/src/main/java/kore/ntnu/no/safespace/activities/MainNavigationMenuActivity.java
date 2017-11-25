@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
@@ -24,6 +25,13 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 
 public class MainNavigationMenuActivity extends AppCompatActivity {
 
+    private Button reportBtn;
+    private Button documentBtn;
+    private Button projectBtn;
+    private Button latestRepBtn;
+    private Button helpBtn;
+    private Button settingsBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +40,15 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
             IdUtils.CURRENT_USER = (User) getIntent().getSerializableExtra(IdUtils.USER);
         }
 
-        Button reportBtn = findViewById(R.id.rapportBtn);
-        Button documentBtn = findViewById(R.id.dokumBtn);
-        Button projectBtn = findViewById(R.id.projectBtn);
-        Button latestRepBtn = findViewById(R.id.latestBtn);
-        Button helpBtn = findViewById(R.id.helpBtn);
-        Button settingsBtn = findViewById(R.id.settingsBtn);
+        reportBtn = findViewById(R.id.rapportBtn);
+        documentBtn = findViewById(R.id.dokumBtn);
+        projectBtn = findViewById(R.id.projectBtn);
+        latestRepBtn = findViewById(R.id.latestBtn);
+        helpBtn = findViewById(R.id.helpBtn);
+        settingsBtn = findViewById(R.id.settingsBtn);
         new InternetConnectionThread(this);
+
+        // buttonDrawableResizer();
 
         getProjects();
 
@@ -153,6 +163,38 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         };
         builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
+    }
+
+    /**
+     * This will resize the icon on the buttons
+     * Height is set by = left - right
+     * Width is set by = top - bottom
+     * setBounds(0,0,190,190) -> Height = 190
+     */
+    private void buttonDrawableResizer() {
+        Drawable drawable1 = getApplicationContext().getResources().getDrawable(R.drawable.ic_report_problem);
+        drawable1.setBounds(0, 0, 190, 190);
+        reportBtn.setCompoundDrawables(null, drawable1, null, null);
+
+        Drawable drawable2 = getApplicationContext().getResources().getDrawable(R.drawable.ic_document);
+        drawable2.setBounds(0, 0, 190, 190);
+        documentBtn.setCompoundDrawables(null, drawable2, null, null);
+
+        Drawable drawable3 = getApplicationContext().getResources().getDrawable(R.drawable.ic_project_assignment);
+        drawable3.setBounds(0, 0, 190, 190);
+        projectBtn.setCompoundDrawables(null, drawable3, null, null);
+
+        Drawable drawable4 = getApplicationContext().getResources().getDrawable(R.drawable.ic_file_download);
+        drawable4.setBounds(0, 0, 190, 190);
+        latestRepBtn.setCompoundDrawables(null, drawable4, null, null);
+
+        Drawable drawable5 = getApplicationContext().getResources().getDrawable(R.drawable.ic_bug_report);
+        drawable5.setBounds(0, 0, 190, 190);
+        helpBtn.setCompoundDrawables(null, drawable5, null, null);
+
+        Drawable drawable6 = getApplicationContext().getResources().getDrawable(R.drawable.ic_settings_art);
+        drawable6.setBounds(0, 0, 190, 190);
+        settingsBtn.setCompoundDrawables(null, drawable6, null, null);
     }
 
 }
