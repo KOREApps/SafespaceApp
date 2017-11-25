@@ -10,6 +10,15 @@ import java.util.List;
 
 public class IncidentReport extends Report implements Serializable {
     private final List<String> keywords;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public IncidentReport(Long id, String title, String description, List<Image> images, List<String> keywords, Project project) {
         super(id,title,description,images,project);

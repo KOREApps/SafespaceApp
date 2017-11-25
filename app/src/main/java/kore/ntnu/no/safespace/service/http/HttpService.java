@@ -85,6 +85,18 @@ public class HttpService {
         return httpResponse;
     }
 
+    public HttpResponse postNoAuth(String url, String bodyString) throws IOException {
+        RequestBody body = RequestBody.create(JSON, bodyString);
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Response response = http.newCall(request).execute();
+        HttpResponse httpResponse = new HttpResponse(response.code(), response.body().string());
+        response.close();
+        return httpResponse;
+    }
+
     public HttpResponse post(String url, byte[] bodyBytes, MediaType mediaType) throws IOException {
         RequestBody body = RequestBody.create(mediaType, bodyBytes);
         Request request = new Request.Builder()

@@ -91,6 +91,6 @@ public class ReportService implements RestClient<IncidentReport, Long> {
     }
 
     private ReportDTO getDto(IncidentReport report) {
-        return new ReportDTO(report.getId(), report.getTitle(), report.getDescription(), report.getProject());
+        return new ReportDTO(report);
     }
 }

@@ -46,6 +46,7 @@ import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.KnownLocation;
+import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.Project;
 import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
@@ -65,6 +66,7 @@ public class ReportActivity extends AppCompatActivity {
     private ProjectSpinnerAdapter dropDownAdapter;
     private Project selectedProject = null;
     private TextView getLocationView;
+    private Location currentLocation = null;
     private CircularProgressButton getLocationBtn;
     private Handler handler = new Handler();
 
@@ -101,8 +103,8 @@ public class ReportActivity extends AppCompatActivity {
         float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
 
         if (!runtime_permission()) {
-            getLocationButton();
-            //getCurrentLocationButton();
+            //getLocationButton();
+            getCurrentLocationButton();
             //getNearestLocationButton();
         }
     }
@@ -170,6 +172,7 @@ public class ReportActivity extends AppCompatActivity {
             //Project project = new Project(1L, "", "", null);
             //List<Image> images = getImages();
             IncidentReport report = new IncidentReport(null, title, description, adapter.getImages(), null, this.selectedProject);
+                report.setLocation(currentLocation);
 
             try {
                 StorageUtils.saveReportToFile(report, getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
@@ -244,11 +247,22 @@ public class ReportActivity extends AppCompatActivity {
     private void getCurrentLocationButton() {
         getLocationBtn.setOnClickListener(view -> {
             getLocationBtn.startAnimation();
-            new GetCurrentLocationTask((result1 -> {
+            new GetLocationTask((result1 -> {
                 getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
                 handler.postDelayed(() -> getLocationBtn.revertAnimation(), 6000);
                 getLocationView.setText("");
-                getLocationView.append("Location: " + result1.getResult().getName() + "\nLongitude: " + result1.getResult().getLongitude());
+                getLocationView.append("Location: " + result1.getResult().getLatitude() + "\nLongitude: " + result1.getResult().getLongitude());
+                Location location = new Location(result1.getResult().getLatitude(), result1.getResult().getLongitude(), result1.getResult().getAccuracy());
+                currentLocation = location;
+                new GetCurrentLocationTask(( result -> {
+                    if(result.isSuccess()) {
+                        if(result.getResult() != null) {
+                            String name = result.getResult().getName();
+                            getLocationView.setText("");
+                            getLocationView.append("Location: " + name);
+                        }
+                    }
+                })).execute(location);
             })).execute();
         });
     }

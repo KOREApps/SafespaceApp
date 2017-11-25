@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             if(storedUser.getUsername().equals(username) && result){
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                 intent.putExtra(IdUtils.USER, storedUser);
+                // TODO FIX
                 ErrorDialog.dismissErrorDialog(this);
                 startActivity(intent);
             }

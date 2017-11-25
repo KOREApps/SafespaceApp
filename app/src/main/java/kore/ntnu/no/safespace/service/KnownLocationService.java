@@ -1,7 +1,5 @@
 package kore.ntnu.no.safespace.service;
 
-import android.location.Location;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -9,8 +7,8 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
 import kore.ntnu.no.safespace.data.KnownLocation;
+import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.ValidCheckResult;
 import kore.ntnu.no.safespace.service.http.HttpResponse;
 import kore.ntnu.no.safespace.service.http.HttpService;

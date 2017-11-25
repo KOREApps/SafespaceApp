@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.dto;
 import java.security.Policy;
 
 import kore.ntnu.no.safespace.data.IncidentReport;
+import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.Project;
 
 /**
@@ -15,6 +16,7 @@ public class ReportDTO {
     private String title;
     private String description;
     private Project project;
+    private Location location;
 
     public ReportDTO(Long id, String title, String description, Project project) {
         this.id = id;
@@ -28,6 +30,7 @@ public class ReportDTO {
         this.title = report.getTitle();
         this.description = report.getDescription();
         this.project = report.getProject();
+        this.location = report.getLocation();
     }
 
     public Long getId() {

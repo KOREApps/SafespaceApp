@@ -65,7 +65,7 @@ public class UserService implements RestClient<User, Long> {
     @Override
     public ServiceResult<User> add(User user) throws IOException {
         HttpResponse response = null;
-        response = http.post(URL, gson.toJson(user));
+        response = http.postNoAuth(URL, gson.toJson(user));
         if (response.getCode() == 200) {
             ServiceResult<User> serviceResult = new ServiceResult<>(
                     gson.fromJson(response.getResponse(), User.class), true, "OK");

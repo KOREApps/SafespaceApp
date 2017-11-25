@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         onMapClickListener();
         setRadiusCircleListener();
 
-        mMap.addMarker(marker.position(myPosition()).title("Marker in Ålesund").draggable(marker.isDraggable()));
+        mMap.addMarker(marker.position(myPosition()).title("New Location")).setDraggable(true);
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myPosition(), 10.0f));
         circleOptions.center(myPosition())
                 .radius(getRadiusFieldInt())
@@ -95,8 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             System.out.println(latLng.latitude + " " + latLng.longitude);
             mMap.clear();
             LatLng currentPosition = new LatLng(latLng.latitude, latLng.longitude);
-            mMap.addMarker(marker.position(currentPosition).title("Where we at tho?"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 10.0f));
+            mMap.addMarker(marker.position(currentPosition).title("New Location")).setDraggable(true);
+            mMap.animateCamera(CameraUpdateFactory.newLatLng(currentPosition));
             circleOptions.center(currentPosition)
                     .radius(getRadiusFieldInt())
                     .fillColor(adjustAlpha(0x33FFFFFF, 1f))
@@ -140,7 +140,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void afterTextChanged(Editable editable) {
                     mMap.clear();
-                    mMap.addMarker(marker);
+                    mMap.addMarker(marker).setDraggable(true);
                     circleOptions
                             .radius(getRadiusFieldInt())
                             .fillColor(adjustAlpha(0x33FFFFFF, 1f))
