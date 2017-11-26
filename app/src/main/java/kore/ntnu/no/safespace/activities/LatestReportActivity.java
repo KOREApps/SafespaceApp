@@ -49,7 +49,7 @@ public class LatestReportActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
-        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.white_border));
+        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.border_recyclerview));
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -78,13 +78,10 @@ public class LatestReportActivity extends AppCompatActivity {
         ArrayList<Report> filteredList = new ArrayList<>();
 
         for(Report report : arrayList) {
-            if(report.getTitle().contains(text.toLowerCase())) {
+            if(report.getTitle().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(report);
             }
         }
-        // TODO Prevent that the arrayList become empty.
-        System.out.println("first: "  + adapter.getArrayListYo().size());
-        System.out.println("second: " + filteredList.size());
         adapter.filterList(filteredList);
     }
 
