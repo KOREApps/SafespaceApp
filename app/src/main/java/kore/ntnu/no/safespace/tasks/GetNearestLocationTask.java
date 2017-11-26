@@ -1,6 +1,5 @@
 package kore.ntnu.no.safespace.tasks;
 
-import android.location.Location;
 import android.os.AsyncTask;
 
 import java.io.IOException;

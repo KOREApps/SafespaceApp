@@ -2,7 +2,6 @@ package kore.ntnu.no.safespace.utils.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 
 /**
  * Class description..

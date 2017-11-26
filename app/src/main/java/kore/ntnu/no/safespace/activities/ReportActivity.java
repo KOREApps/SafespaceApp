@@ -22,13 +22,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,15 +42,11 @@ import kore.ntnu.no.safespace.adapters.ImageDisplayAdapter;
 import kore.ntnu.no.safespace.adapters.ProjectSpinnerAdapter;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
-import kore.ntnu.no.safespace.data.KnownLocation;
 import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.Project;
-import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
 import kore.ntnu.no.safespace.tasks.GetCurrentLocationTask;
 import kore.ntnu.no.safespace.tasks.GetLocationTask;
-import kore.ntnu.no.safespace.tasks.GetNearestLocationTask;
-import kore.ntnu.no.safespace.tasks.RegisterNewLocationTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.ImageUtils;
@@ -105,14 +98,8 @@ public class ReportActivity extends AppCompatActivity {
         capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        float currentLatitude = prefs.getFloat("CurrentLatitude", 0);
-        float currentLongitude = prefs.getFloat("CurrentLongitude", 0);
-
         if (!runtime_permission()) {
-            //getLocationButton();
             getCurrentLocationButton();
-            //getNearestLocationButton();
         }
     }
 
@@ -177,8 +164,6 @@ public class ReportActivity extends AppCompatActivity {
             String title = reportHeader.getText().toString();
             EditText reportDescription = findViewById(R.id.reportDescription);
             String description = reportDescription.getText().toString();
-            //Project project = new Project(1L, "", "", null);
-            //List<Image> images = getImages();
             IncidentReport report = new IncidentReport(null, title, description, adapter.getImages(), null, this.selectedProject);
                 report.setLocation(currentLocation);
 
@@ -238,18 +223,6 @@ public class ReportActivity extends AppCompatActivity {
             return true;
         }
         return false;
-    }
-
-    private void getLocationButton() {
-        getLocationBtn.setOnClickListener(view -> {
-            getLocationBtn.startAnimation();
-            new GetLocationTask((result -> {
-                getLocationBtn.doneLoadingAnimation(Color.parseColor("#D6D7D7"), BitmapFactory.decodeResource(getResources(), R.drawable.ic_complete_symbol));
-                handler.postDelayed(() -> getLocationBtn.revertAnimation(), 2500);
-                getLocationView.setText("");
-                getLocationView.append("Latitude: " + result.getResult().getLatitude() + "\nLongitude: " + result.getResult().getLongitude());
-            })).execute();
-        });
     }
 
     private void getCurrentLocationButton() {

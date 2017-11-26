@@ -16,8 +16,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import kore.ntnu.no.safespace.utils.ApplicationContext;
 import kore.ntnu.no.safespace.service.keystore.KeyStoreReader;
+import kore.ntnu.no.safespace.utils.ApplicationContext;
 import okhttp3.OkHttpClient;
 
 /**

@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.widget.SearchView;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +46,12 @@ public class LatestReportActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.rv_reports);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.white_border));
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
         if(ConnectionUtil.isConnected(this)) {
             new GetDocumentationsTask(c -> {

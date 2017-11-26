@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@drawable/navigationmenu_border"
     android:orientation="vertical"
     android:padding="4dp">
 
@@ -34,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="18sp"
-        android:background="@drawable/ic_shape_black" />
+        android:background="@drawable/ic_shape_black"
+        android:textSize="18sp" />
 
 </LinearLayout>

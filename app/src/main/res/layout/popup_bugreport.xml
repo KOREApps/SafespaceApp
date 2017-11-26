@@ -7,7 +7,6 @@
     android:background="@drawable/navigationmenu_border"
     tools:layout_editor_absoluteY="81dp">
 
-
     <EditText
         android:id="@+id/bugReportTitle"
         android:layout_width="300dp"
@@ -17,6 +16,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:hint="@string/bug_name"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,9 +30,9 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/navigationmenu_border"
         android:gravity="start"
+        android:hint="@string/bug_description"
         android:inputType="textMultiLine"
         android:scrollHorizontally="true"
-        android:hint="@string/bug_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bugReportTitle" />
@@ -47,8 +47,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_shape_black"
         android:drawableTop="@drawable/ic_bug_report"
-        android:paddingBottom="1dp"
         android:elevation="3dp"
+        android:paddingBottom="1dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/bugreport"

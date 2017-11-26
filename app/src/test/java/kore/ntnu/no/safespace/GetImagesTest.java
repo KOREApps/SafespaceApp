@@ -10,7 +10,7 @@ import kore.ntnu.no.safespace.service.DocumentationService;
 import kore.ntnu.no.safespace.service.ReportService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by robert on 11/18/17.

@@ -2,11 +2,10 @@ package kore.ntnu.no.safespace.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -14,7 +13,7 @@ import java.util.Locale;
 import kore.ntnu.no.safespace.R;
 
 /**
- * Class description..
+ * This class represents the settings menu.
  *
  * @author x
  */
@@ -69,11 +68,26 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_items_settings, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+        int id = item.getItemId();
+        if(id == R.id.action_logout_settings){
+            //logOutDialog();
+            // TODO Fix "You need to use a theme appcompat or descendant with this activity".
+            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        if(id == R.id.action_GPS_settings) {
+            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
+            startActivity(intent);
+        }
+        if(id == android.R.id.home) {
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

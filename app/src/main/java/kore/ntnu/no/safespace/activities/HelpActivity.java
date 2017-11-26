@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import java.util.Random;
-
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.BugReport;
 import kore.ntnu.no.safespace.tasks.SendBugReportTask;

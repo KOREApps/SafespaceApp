@@ -12,8 +12,6 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import kore.ntnu.no.safespace.activities.MainActivity;
-
 /**
  * Class description..
  *

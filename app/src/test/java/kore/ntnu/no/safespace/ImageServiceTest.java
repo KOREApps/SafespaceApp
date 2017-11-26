@@ -13,7 +13,9 @@ import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.ImageService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * This test class is only meant to show how the ImageService class can be used.

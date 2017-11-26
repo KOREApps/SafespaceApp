@@ -16,8 +16,6 @@ import android.widget.EditText;
 
 import com.google.gson.Gson;
 
-import kore.ntnu.no.safespace.utils.hashfunctions.BCrypt;
-import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
@@ -25,6 +23,8 @@ import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
+import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
+import kore.ntnu.no.safespace.utils.hashfunctions.BCrypt;
 
 /**
  * Class description..
@@ -164,4 +164,12 @@ public class MainActivity extends AppCompatActivity {
     private void enableLoginBtn() {loginButton.setEnabled(true);}
 
     private void disableLoginBtn() {loginButton.setEnabled(false);}
+
+    @Override
+    protected void onResume() {
+        loginButton.setEnabled(true);
+        super.onResume();
+    }
+
+
 }

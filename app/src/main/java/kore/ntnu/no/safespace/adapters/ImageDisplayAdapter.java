@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**

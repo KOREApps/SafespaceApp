@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 
-import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.data.KnownLocation;
+import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 

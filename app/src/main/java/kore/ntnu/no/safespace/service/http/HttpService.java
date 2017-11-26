@@ -5,8 +5,8 @@ import android.preference.PreferenceManager;
 
 import java.io.IOException;
 
-import kore.ntnu.no.safespace.utils.ApplicationContext;
 import kore.ntnu.no.safespace.data.UserCredentials;
+import kore.ntnu.no.safespace.utils.ApplicationContext;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
