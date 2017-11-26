@@ -19,7 +19,8 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * Class that handles communication with backend when performing Create, Read or Update operations
+ * on reports.
  *
  * @author Robert
  */
@@ -76,6 +77,11 @@ public class ReportService implements RestClient<IncidentReport, Long> {
         return null;
     }
 
+    /**
+     * Retrieves all images that belong to given report
+     * @param reportId id of report to retrieve images for
+     * @return list of images for given report id
+     */
     public ServiceResult<List<Image>> getImagesForReport(Long reportId){
         try {
             final String url = URL + "/" + reportId + "/images";

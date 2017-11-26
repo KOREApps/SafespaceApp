@@ -17,7 +17,8 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import okhttp3.MediaType;
 
 /**
- * Class description..
+ * Class that handles communication with backend when performing Create, Read or Update operations
+ * on images
  *
  * @author Robert
  */
@@ -60,6 +61,11 @@ public class ImageService implements RestClient<Image, Long> {
         }
     }
 
+    /**
+     * Get one image object with data included
+     * @param id id of image to retrieve
+     * @return image object with given id
+     */
     public ServiceResult<Image> getOneWithData(Long id) {
         try {
             HttpResponse response = http.get(IMAGE_URL + "/" + id + "?data=true");
@@ -100,6 +106,11 @@ public class ImageService implements RestClient<Image, Long> {
         }
     }
 
+    /**
+     * Retrieves the data for the given image in byte format
+     * @param image image to retrieve data for
+     * @return image data as bytes
+     */
     public byte[] getImageData(Image image) {
         try {
             final String url = IMAGE_URL + "/data/" + image.getId();

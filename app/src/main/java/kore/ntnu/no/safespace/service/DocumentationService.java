@@ -19,7 +19,8 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * Class that handles communication with backend when performing Create, Read or Update operations
+ * on documentations.
  *
  * @author Robert
  */
@@ -73,6 +74,11 @@ public class DocumentationService implements RestClient<Documentation, Long> {
         return null;
     }
 
+    /**
+     * Retrieve all images that belong to given documentation
+     * @param documentationId id of documentation to retrieve images for
+     * @return list of images for given documentation
+     */
     public ServiceResult<List<Image>> getImagesForDocumentation(Long documentationId){
         try {
             final String url = URL + "/" + documentationId + "/images";

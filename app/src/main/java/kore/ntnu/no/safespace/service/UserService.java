@@ -19,7 +19,8 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * Class that handles communication with backend when performing Create, Read or Update operations
+ * on users. Has some functions to check if user credentials are valid.
  *
  * @author Robert
  */
@@ -83,6 +84,11 @@ public class UserService implements RestClient<User, Long> {
         return null;
     }
 
+    /**
+     * Retrieves a user object for the given user credentials
+     * @param userCredentials user credentials to find user object for
+     * @return user belonging to given credentials
+     */
     public ServiceResult<User> getByCredentials(UserCredentials userCredentials){
         try {
             HttpResponse response = http.post(URL + "/login", gson.toJson(userCredentials));
@@ -98,13 +104,5 @@ public class UserService implements RestClient<User, Long> {
             return new ServiceResult<>(null, false, ex.getMessage());
         }
     }
-
-    private boolean isResponseACheckResult(String response){
-        try {
-            gson.fromJson(response, ValidCheckResult.class);
-            return true;
-        } catch (JsonParseException ex) {
-            return false;
-        }
-    }
+    
 }

@@ -1,7 +1,9 @@
 package kore.ntnu.no.safespace.service;
 
 /**
- * Class description..
+ * Class that represents a result returned by a service class. Wraps the object to be returned.
+ * Used so that errors messages can be returned if something goes wrong when service is performing
+ * an operation
  *
  * @author Robert
  */

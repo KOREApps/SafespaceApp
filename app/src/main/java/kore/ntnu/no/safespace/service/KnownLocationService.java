@@ -15,7 +15,8 @@ import kore.ntnu.no.safespace.service.http.HttpService;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * Class that handles communication with backend when performing Create, Read or Update operations
+ * on known locations.
  *
  * @author Robert
  */
