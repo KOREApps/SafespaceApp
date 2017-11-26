@@ -17,6 +17,7 @@ import java.util.Random;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.BugReport;
+import kore.ntnu.no.safespace.tasks.SendBugReportTask;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
@@ -58,14 +59,29 @@ public class HelpActivity extends AppCompatActivity {
         RepBugBtn.setOnClickListener(view1 -> {
             String bugTitle = bugTitleView.getText().toString();
             String bugDescription = bugDescriptionView.getText().toString();
-            if (!bugTitle.equals("") && !bugDescription.equals("")) {
-                BugReport report = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
-                Toast.makeText(this, "Thanks for the bug report. Report id: " + Math.abs(new Random().nextInt()) % 2500, Toast.LENGTH_LONG).show();
-                finish();
-            } else {
-                Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
-            }
-
+            BugReport bugReport = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
+            new SendBugReportTask(result -> {
+                if (result.isSuccess()) {
+                    Toast.makeText(
+                            this,
+                            "Thanks for the bug report. Report id: " + result.getResult().getId(),
+                            Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(
+                            this,
+                            "Failed to submit report: " + result.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }).execute(bugReport);
+//            if (!bugTitle.equals("") && !bugDescription.equals("")) {
+//                BugReport report = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
+//                Toast.makeText(this, "Thanks for the bug report. Report id: " + Math.abs(new Random().nextInt()) % 2500, Toast.LENGTH_LONG).show();
+//                finish();
+//            } else {
+//                Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
+//            }
+            popupWindow.dismiss();
         });
     }
 

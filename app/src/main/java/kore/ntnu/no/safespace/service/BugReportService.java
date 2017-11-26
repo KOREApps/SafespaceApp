@@ -20,7 +20,7 @@ import kore.ntnu.no.safespace.utils.IdUtils;
  */
 public class BugReportService implements RestClient<BugReport, Long> {
 
-    private static final String URL = IdUtils.URL + "/bug-reports";
+    private static final String URL = IdUtils.URL + "/bugs";
     private static final Type LIST_TYPE = new TypeToken<List<BugReport>>(){}.getType();
 
     private HttpService http;
