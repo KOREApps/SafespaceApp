@@ -76,14 +76,23 @@ public class ReportService implements RestClient<IncidentReport, Long> {
         return null;
     }
 
-    public List<Image> getImagesForReport(Long reportId){
+    public ServiceResult<List<Image>> getImagesForReport(Long reportId){
         try {
             final String url = URL + "/" + reportId + "/images";
             HttpResponse response = http.get(url);
-            return gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE);
+            ServiceResult<List<Image>> serviceResult;
+            if (response.getCode() == 200) {
+                serviceResult =
+                        new ServiceResult<>(
+                                gson.fromJson(response.getResponse(), IMAGE_LIST_TYPE),
+                                true, "OK");
+            } else {
+                serviceResult = new ServiceResult<>(null, false, response.getMessage());
+            }
+            return serviceResult;
         } catch (IOException ex) {
             Log.e(ImageService.class.getSimpleName(), "Failed to post image");
-            return null;
+            return new ServiceResult<>(null, false, ex.getMessage());
         }
     }
 
