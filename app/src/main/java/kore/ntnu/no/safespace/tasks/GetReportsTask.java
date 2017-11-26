@@ -50,15 +50,7 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
         try {
             ServiceResult<List<IncidentReport>> serviceResult = reportService.getAll();
             if(serviceResult != null) {
-                for (IncidentReport d : serviceResult.getObject()) {
-                    List<Image> images = new ArrayList<>();
-                    for (Image i : reportService.getImagesForReport(d.getId()).getObject()) {
-                        byte[] rawData = imageService.getImageData(i);
-                        File image = StorageUtils.saveToDisk(rawData, i.getName(), i.getFileExtension());
-                        images.add(new Image(image));
-                    }
-                    d.setImages(images);
-                }
+                loadImagesForReports(serviceResult.getObject());
             } else {
                 Log.e(GetDocumentationsTask.class.getSimpleName(), "Failed to get Documentation");
             }
@@ -67,6 +59,23 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
             e.printStackTrace();
         }
         return new AsyncTaskResult<>(Collections.EMPTY_LIST);
+    }
+
+    private void loadImagesForReports(List<IncidentReport> reports) throws IOException {
+        for (IncidentReport r : reports) {
+            ServiceResult<List<Image>> images = reportService.getImagesForReport(r.getId());
+            r.setImages(loadDataForImages(images.getObject()));
+        }
+    }
+
+    private List<Image> loadDataForImages(List<Image> images) throws IOException {
+        List<Image> imgs = new ArrayList<>();
+        for (Image i : images) {
+            byte[] rawData = imageService.getImageData(i);
+            File image = StorageUtils.saveToDisk(rawData, i.getName(), i.getFileExtension());
+            imgs.add(new Image(image));
+        }
+        return imgs;
     }
 
     @Override
