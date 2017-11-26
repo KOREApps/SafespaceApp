@@ -11,7 +11,8 @@ import kore.ntnu.no.safespace.data.Location;
 import kore.ntnu.no.safespace.utils.ApplicationContext;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve a location using the GPS.
+ * The task is stopped when a relatively accurate location has been received.
  *
  * @author Robert
  */

@@ -14,7 +14,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
- * Class description..
+ * The purpose of this class is to send a Documentation to the server.
  *
  * @author Robert
  */
@@ -45,6 +45,12 @@ public class SendDocumentationTask extends AsyncTask<Documentation, Integer, Asy
         }
     }
 
+    /**
+     * Converts an image to a base64 string and adds it to the ImageService so it can be sent to the server.
+     * @param documentationId
+     * @param images
+     * @throws IOException
+     */
     private void sendImages(Long documentationId, List<Image> images) throws IOException {
         for (Image image : images) {
             image.setData(Base64.encodeToString(ImageUtils.getRawImageData(image), Base64.NO_WRAP));

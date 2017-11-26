@@ -9,7 +9,7 @@ import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Class description..
+ * The purpose of this class is to register a new location.
  *
  * @author Robert
  */
@@ -28,7 +28,8 @@ public class RegisterNewLocationTask extends AsyncTask<KnownLocation, Integer, A
         KnownLocation location = knownLocations[0];
         try {
             ServiceResult<KnownLocation> serviceResult = locationService.add(location);
-            return new AsyncTaskResult<>(serviceResult.getObject());
+            KnownLocation newKnownLocation = serviceResult.getObject();
+            return new AsyncTaskResult<>(newKnownLocation);
         } catch (IOException e) {
             return new AsyncTaskResult<>(e.getMessage());
         }

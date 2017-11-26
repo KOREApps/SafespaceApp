@@ -19,7 +19,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve all reports from the server.
  *
  * @author Kristoffer
  */
@@ -43,7 +43,6 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
         dialog.show();
         super.onPreExecute();
     }
-
 
     @Override
     protected AsyncTaskResult<List<IncidentReport>> doInBackground(Void... voids) {

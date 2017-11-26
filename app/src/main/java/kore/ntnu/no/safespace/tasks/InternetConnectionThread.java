@@ -16,7 +16,8 @@ import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Class description..
+ * The purpose of this class is to check whether internet connection is available.
+ * If connection is available - get documents/reports from storage and send them to the server.
  *
  * @author Kristoffer
  */

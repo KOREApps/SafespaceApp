@@ -84,7 +84,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            startActivityForResult(intent, IdUtils.REQUEST_CODE);
+            //startActivityForResult(intent, IdUtils.REQUEST_CODE);
+            startActivity(intent);
         });
 
     }

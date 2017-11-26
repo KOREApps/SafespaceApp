@@ -13,8 +13,9 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 /**
- * Class description..
- *  TODO Oscar
+ * The purpose of this service is to start the GPS when the application launches and stop it
+ * when it finds a sufficient accuracy.
+ *
  * @author Oscar
  */
 public class LocationService extends IntentService {

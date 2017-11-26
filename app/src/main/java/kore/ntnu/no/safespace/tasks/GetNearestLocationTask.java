@@ -9,7 +9,7 @@ import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve the nearest location from the server.
  *
  * @author Oscar
  */

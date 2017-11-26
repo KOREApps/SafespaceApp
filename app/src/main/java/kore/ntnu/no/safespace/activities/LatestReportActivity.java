@@ -78,7 +78,7 @@ public class LatestReportActivity extends AppCompatActivity {
         ArrayList<Report> filteredList = new ArrayList<>();
 
         for(Report report : arrayList) {
-            if(report.getTitle().toLowerCase().contains(text.toLowerCase())) {
+            if(report.getTitle().toLowerCase().contains(text.toLowerCase()) || report.getDescription().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(report);
             }
         }

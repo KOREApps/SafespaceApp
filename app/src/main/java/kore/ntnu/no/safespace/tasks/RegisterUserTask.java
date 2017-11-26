@@ -9,7 +9,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.service.UserService;
 
 /**
- * Class description..
+ * The purpose of this class is to register a new user.
  *
  * @author Robert
  */
@@ -25,10 +25,10 @@ public class RegisterUserTask extends AsyncTask<User, Integer, AsyncTaskResult<U
 
     @Override
     protected AsyncTaskResult<User> doInBackground(User... users) {
-        User newUser = users[0];
+        User user = users[0];
         try {
-            ServiceResult<User> serviceResult = userService.add(newUser);
-            newUser = serviceResult.getObject();
+            ServiceResult<User> serviceResult = userService.add(user);
+            User newUser = serviceResult.getObject();
             return new AsyncTaskResult<>(newUser);
         } catch (IOException ex) {
             return new AsyncTaskResult<>(ex.getMessage());

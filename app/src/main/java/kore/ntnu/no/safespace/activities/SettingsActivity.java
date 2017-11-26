@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Button;
 
 import java.util.Locale;
 
@@ -24,16 +24,10 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        TextView logOut = findViewById(R.id.tv_logout);
-        TextView gpsBtn = findViewById(R.id.gpsBtn);
-        TextView mapsBtn = findViewById(R.id.mapsBtn);
-        TextView nor = findViewById(R.id.bt_nor);
-        TextView eng = findViewById(R.id.bt_eng);
-
-        logOut.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
+        Button gpsBtn = findViewById(R.id.gpsBtn);
+        Button mapsBtn = findViewById(R.id.mapsBtn);
+        Button nor = findViewById(R.id.bt_nor);
+        Button eng = findViewById(R.id.bt_eng);
 
         gpsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);

@@ -19,7 +19,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve all documents from the server.
  *
  * @author Robert
  */

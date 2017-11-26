@@ -10,9 +10,10 @@ import kore.ntnu.no.safespace.service.BugReportService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Created by robert on 11/26/17.
+ * The purpose of this class is to send a BugReport to the server.
+ *
+ * @author r
  */
-
 public class SendBugReportTask extends AsyncTask<BugReport, Integer, AsyncTaskResult<BugReport>> {
 
     private BugReportService bugReportService;
@@ -24,12 +25,13 @@ public class SendBugReportTask extends AsyncTask<BugReport, Integer, AsyncTaskRe
     }
 
     @Override
-    protected AsyncTaskResult doInBackground(BugReport... bugReports) {
+    protected AsyncTaskResult<BugReport> doInBackground(BugReport... bugReports) {
         BugReport bugReport = bugReports[0];
         try {
             ServiceResult<BugReport> serviceResult = bugReportService.add(bugReport);
+            BugReport newBugReport = serviceResult.getObject();
             if (serviceResult.isSuccess()) {
-                return new AsyncTaskResult<>(serviceResult.getObject(), "OK", true);
+                return new AsyncTaskResult<>(newBugReport, "OK", true);
             } else {
                 return new AsyncTaskResult<>(null, serviceResult.getMessage(), false);
             }

@@ -8,7 +8,7 @@ import kore.ntnu.no.safespace.service.ServiceResult;
 import kore.ntnu.no.safespace.service.UserService;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve a user from the server.
  *
  * @author Robert
  */

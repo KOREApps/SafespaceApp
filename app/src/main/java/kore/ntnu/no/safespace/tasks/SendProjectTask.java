@@ -9,7 +9,7 @@ import kore.ntnu.no.safespace.service.ProjectService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Class description..
+ * The purpose of this class is to send a Project to the server.
  *
  * @author Oscar
  */
@@ -25,13 +25,13 @@ public class SendProjectTask extends AsyncTask<Project, Integer, AsyncTaskResult
 
     @Override
     protected AsyncTaskResult<Project> doInBackground(Project... projects) {
-        Project newProject = projects[0];
+        Project project = projects[0];
         try {
-            ServiceResult<Project> serviceResult = projectService.add(newProject);
-            newProject = serviceResult.getObject();
-            return new AsyncTaskResult<Project>(newProject);
+            ServiceResult<Project> serviceResult = projectService.add(project);
+            Project newProject = serviceResult.getObject();
+            return new AsyncTaskResult<>(newProject);
         } catch (IOException ex) {
-            return new AsyncTaskResult<Project>(ex.getMessage());
+            return new AsyncTaskResult<>(ex.getMessage());
         }
     }
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Project;
 
 /**
@@ -73,7 +74,7 @@ public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements Adap
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setText(values.get(position).getName());
-        label.setTextSize(15);
+        label.setTextSize(18);
         label.setOnClickListener(v -> {
 
         });
@@ -85,6 +86,9 @@ public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements Adap
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setText(values.get(position).getName());
+        label.setTextSize(18);
+        label.setPadding(4,2,4,2);
+        label.setBackgroundResource(R.drawable.border_rectangle_thin);
         return label;
     }
 

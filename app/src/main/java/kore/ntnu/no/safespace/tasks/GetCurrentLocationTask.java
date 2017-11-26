@@ -10,7 +10,9 @@ import kore.ntnu.no.safespace.service.KnownLocationService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Class description..
+ * The purpose of this class is to get your current location from the server.
+ * If you are within the radius of a location that is stored on the server, you will receive a
+ * location, else you will get back latitude/longitude coordinates.
  *
  * @author Robert
  */

@@ -10,7 +10,7 @@ import kore.ntnu.no.safespace.service.ProjectService;
 import kore.ntnu.no.safespace.service.ServiceResult;
 
 /**
- * Class description..
+ * The purpose of this class is to retrieve all projects from the server.
  *
  * @author Robert
  */

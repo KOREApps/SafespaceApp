@@ -12,7 +12,7 @@
 
         <TextView
             android:id="@+id/locationView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/accuracyView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/latitudeView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -59,7 +59,7 @@
 
         <TextView
             android:id="@+id/longitudeView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/timeSinceLastView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -90,7 +90,7 @@
 
         <TextView
             android:id="@+id/timeAtLastUpdateView"
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="39dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"

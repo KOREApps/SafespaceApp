@@ -1,7 +1,7 @@
 package kore.ntnu.no.safespace.tasks;
 
 /**
- * Class description..
+ * The purpose of this class is to display the results, messages and status of an asynchronous task.
  *
  * @author Robert
  */
