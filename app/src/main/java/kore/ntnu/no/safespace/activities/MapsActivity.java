@@ -195,8 +195,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
-        double lat = location.getLatitude();
-        double lng = location.getLongitude();
+        double lat;
+        double lng;
+        if(location != null) {
+            lat = location.getLatitude();
+            lng = location.getLongitude();
+        } else {
+            lat = 62.472171;
+            lng = 6.233951;
+        }
         LatLng myPosition = new LatLng(lat, lng);
         return myPosition;
     }

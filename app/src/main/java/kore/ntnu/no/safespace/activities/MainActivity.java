@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText loginUser;
     private EditText loginPwd;
+    private Button loginButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginUser = findViewById(R.id.launch_username);
         loginPwd = findViewById(R.id.launch_password);
-        Button loginButton = findViewById(R.id.launch_loginButton);
+        loginButton = findViewById(R.id.launch_loginButton);
         String lastUser = getLastUser();
         loginUser.setText(lastUser);
         loginButton.setOnClickListener((View v) -> {
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(String username, String password) {
+        disableLoginBtn();
         if(ConnectionUtil.isConnected(this)){
             new GetUserTask((result) -> {
                 if (result.isSuccess() && result.getResult() != null) {
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     ErrorDialog.showErrorDialog(this, result.getMessage());
+                    enableLoginBtn();
                 }
             }).execute(new UserCredentials(username, password));
         } else {
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             if(storedUser.getUsername().equals(username) && result){
                 Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                 intent.putExtra(IdUtils.USER, storedUser);
-                // TODO FIX
+                disableLoginBtn();
                 ErrorDialog.dismissErrorDialog(getApplicationContext());
                 startActivity(intent);
             }
@@ -156,4 +160,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void enableLoginBtn() {loginButton.setEnabled(true);}
+
+    private void disableLoginBtn() {loginButton.setEnabled(false);}
 }
