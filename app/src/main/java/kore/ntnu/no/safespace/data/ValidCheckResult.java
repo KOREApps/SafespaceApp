@@ -1,7 +1,8 @@
 package kore.ntnu.no.safespace.data;
 
 /**
- * Class description..
+ * This class defines what a ValidCheckResult object looks like.
+ * It is used for retrieving error messages if something goes wrong.
  *
  * @author Robert
  */

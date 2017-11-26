@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Class description..
+ * This class defines what a Report object looks like.
  *
  * @author Kristoffer
  */

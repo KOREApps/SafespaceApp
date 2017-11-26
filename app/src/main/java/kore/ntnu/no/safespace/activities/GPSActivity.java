@@ -27,7 +27,7 @@ import java.util.Locale;
 import kore.ntnu.no.safespace.R;
 
 /**
- * Class description..
+ * The purpose of this activity is to show detailed GPS information.
  *
  * @author Oscar Wika,
  */

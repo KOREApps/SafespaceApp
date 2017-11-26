@@ -13,7 +13,7 @@ import java.util.Locale;
 import kore.ntnu.no.safespace.R;
 
 /**
- * This class represents the settings menu.
+ * The purpose if this activity is to display the different kind of settings/options the application has.
  *
  * @author x
  */

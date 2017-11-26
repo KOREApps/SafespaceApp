@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Class description..
+ * This class defines what a Documentation object looks like.
  *
  * @author Kristoffer
  */

@@ -19,7 +19,7 @@ import kore.ntnu.no.safespace.tasks.SendBugReportTask;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * The purpose of this activity is to report a bug / contact customer support.
  *
  * @author Erik
  */

@@ -54,7 +54,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 
 /**
- * Class description..
+ * The purpose of this activity is to create a new report.
  *
  * @author x
  */

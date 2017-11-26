@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.Serializable;
 
 /**
- * Class description..
+ * This class defines what an Image object looks like.
+ * (..)
  *
  * @author Kristoffer
  */

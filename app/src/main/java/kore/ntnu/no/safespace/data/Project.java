@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class description..
+ * This class defines what a Project object looks like.
  *
  * @author Kristoffer
  */

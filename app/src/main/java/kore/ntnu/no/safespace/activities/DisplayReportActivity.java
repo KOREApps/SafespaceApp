@@ -17,7 +17,7 @@ import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * This purpose of this activity is to display a report in details.
  *
  * @author x
  */

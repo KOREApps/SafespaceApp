@@ -16,7 +16,7 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 
 /**
- * Class description..
+ * The purpose of this activity is to register a new location that the user can use when they send a incident report.
  *
  * @author x
  */

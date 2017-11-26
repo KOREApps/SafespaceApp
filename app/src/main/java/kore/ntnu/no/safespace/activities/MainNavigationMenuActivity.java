@@ -24,7 +24,7 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Class description..
+ * This activity serves as a navigation menu and defines how the user navigates around the application.
  *
  * @author x
  */

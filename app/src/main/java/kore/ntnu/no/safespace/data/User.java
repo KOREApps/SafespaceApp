@@ -3,7 +3,7 @@ package kore.ntnu.no.safespace.data;
 import java.io.Serializable;
 
 /**
- * Class description..
+ * This project defines what a User object looks like.
  *
  * @author Kristoffer
  */

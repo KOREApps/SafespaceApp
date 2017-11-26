@@ -40,7 +40,7 @@ import kore.ntnu.no.safespace.utils.ImageUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
 
 /**
- * Class description..
+ * The purpose of this activity is to create a new document.
  *
  * @author x
  */

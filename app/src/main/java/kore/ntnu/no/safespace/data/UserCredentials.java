@@ -1,7 +1,8 @@
 package kore.ntnu.no.safespace.data;
 
 /**
- * Class description..
+ * This class defines what a UserCredentials object looks like.
+ * It is used for checking the users credentials.
  *
  * @author Robert
  */

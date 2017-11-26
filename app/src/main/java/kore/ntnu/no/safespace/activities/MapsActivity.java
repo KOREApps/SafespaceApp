@@ -34,7 +34,7 @@ import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.utils.IdUtils;
 
 /**
- * Class description..
+ * The purpose of this activity is to display google maps, search for a location and edit the radius of a location.
  *
  * @author x
  */

@@ -3,7 +3,7 @@ package kore.ntnu.no.safespace.data;
 import java.io.Serializable;
 
 /**
- * Class description..
+ * This class defines what a BugReport object looks like.
  *
  * @author Kristoffer
  */

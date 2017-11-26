@@ -2,7 +2,7 @@ package kore.ntnu.no.safespace.data;
 
 
 /**
- * Class description..
+ * This class defines what a KnownLocation object looks like.
  *
  * @author Robert
  */

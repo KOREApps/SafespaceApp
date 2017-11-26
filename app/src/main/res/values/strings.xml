@@ -27,22 +27,22 @@
     <string name="register">Register</string>
 
     <!-- ReportActivity -->
-    <string name="incident">Incident..</string>
-    <string name="incident_description">Incident description..</string>
+    <string name="incident">Incident…</string>
+    <string name="incident_description">Incident description…</string>
     <string name="takePhoto">Photo</string>
     <string name="takenPhoto">Taken Photo</string>
     <string name="takenPhotos">Taken Photos</string>
     <string name="sendReport">Send</string>
 
     <!-- ProjectActivity -->
-    <string name="project_description">Project description..</string>
+    <string name="project_description">Project description…</string>
     <string name="project_dot">Project…</string>
 
     <!-- DocumentActivity -->
     <string name="project">Project name…</string>
     <string name="document_title">Document title…</string>
     <string name="documentation_sender">Sender:</string>
-    <string name="documentation_project_description">Project description..</string>
+    <string name="documentation_project_description">Project description…</string>
     <string name="image_description">Image Description</string>
 
     <!-- HelpActivity -->

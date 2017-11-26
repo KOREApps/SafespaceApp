@@ -15,7 +15,7 @@ import kore.ntnu.no.safespace.tasks.RegisterUserTask;
 import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 
 /**
- * Class description..
+ * The purpose of this activity is to register a new user.
  *
  * @author x
  */
