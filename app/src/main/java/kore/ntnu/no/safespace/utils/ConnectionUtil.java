@@ -5,7 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 /**
- * Class description..
+ * The purpose of this class is to check whether the user has internet, wifi or mobile connection.
+ * Return false if all id disabled.
  *
  * @author Kristoffer
  */

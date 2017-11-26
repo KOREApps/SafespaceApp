@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 /**
- * Class description..
+ * The purpose of this class is to get the application context in places where it would be problematic to receive it.
  *
  * @author Kristoffer
  */

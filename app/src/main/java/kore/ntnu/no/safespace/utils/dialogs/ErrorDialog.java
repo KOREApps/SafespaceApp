@@ -4,7 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 
 /**
- * Class description..
+ * The purpose of this class is to provide the user with feedback when something goes wrong.
+ * It greates a new ErrorDialog and displays it.
  *
  * @author Robert
  */

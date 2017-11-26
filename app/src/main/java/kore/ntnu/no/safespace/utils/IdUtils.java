@@ -3,7 +3,7 @@ package kore.ntnu.no.safespace.utils;
 import kore.ntnu.no.safespace.data.User;
 
 /**
- * Class description..
+ * The purpose of this class is to enable retrieval of fields used for different purposes.
  *
  * @author Kristoffer
  */

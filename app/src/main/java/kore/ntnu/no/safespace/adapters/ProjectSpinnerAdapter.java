@@ -15,8 +15,8 @@ import java.util.List;
 import kore.ntnu.no.safespace.data.Project;
 
 /**
- * Class description..
- *
+ * The purpose of this class is to serve as an interface between the spinner view and the list of
+ * projects received from the AsyncTask GetAllProjectsTask.
  * @author Robert
  */
 public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements AdapterView.OnItemSelectedListener {

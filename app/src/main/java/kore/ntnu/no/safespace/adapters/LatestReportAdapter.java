@@ -17,7 +17,9 @@ import kore.ntnu.no.safespace.data.Report;
 import kore.ntnu.no.safespace.utils.ImageUtils;
 
 /**
- * Class description..
+ * The purpose of this class is to serve as an interface between the recycler view that is created
+ * in the LatestReportActivity and the Report object data received from the AsyncTasks -
+ * GetDocumentationTask & GetReportsTask
  *
  * @author Kristoffer
  */
