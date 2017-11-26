@@ -89,6 +89,11 @@ public class SettingsActivity extends AppCompatActivity {
         if(id == android.R.id.home) {
             finish();
         }
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

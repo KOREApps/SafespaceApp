@@ -272,17 +272,6 @@ public class ReportActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-  /*  private KnownLocation getCurrentLocation() {
-        double latitude;
-        double longitude;
-        new GetLocationTask((result -> {
-           // latitude = result.getResult().getLatitude();
-            //longitude = result.getResult().getLongitude();
-        })).execute();
-
-        return new KnownLocation(null,"test", latitude, longitude, null);
-    }*/
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

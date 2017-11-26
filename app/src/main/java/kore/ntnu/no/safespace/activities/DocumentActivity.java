@@ -66,6 +66,9 @@ public class DocumentActivity extends AppCompatActivity {
 
         populateSpinner();
 
+        title.setFocusableInTouchMode(true);
+        title.requestFocus();
+
         adapter = new ImageDisplayAdapter(this);
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
         adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
