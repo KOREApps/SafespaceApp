@@ -87,7 +87,7 @@ public class ProjectSpinnerAdapter extends ArrayAdapter<Project> implements Adap
         label.setTextColor(Color.BLACK);
         label.setText(values.get(position).getName());
         label.setTextSize(18);
-        label.setPadding(4,2,4,2);
+        label.setPadding(9,4,9,4);
         label.setBackgroundResource(R.drawable.border_rectangle_thin);
         return label;
     }

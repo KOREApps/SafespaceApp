@@ -3,6 +3,7 @@ package kore.ntnu.no.safespace.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import java.util.Locale;
 
 import kore.ntnu.no.safespace.R;
+import kore.ntnu.no.safespace.utils.ApplicationContext;
+
 
 /**
  * The purpose if this activity is to display the different kind of settings/options the application has.
@@ -71,10 +74,8 @@ public class SettingsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_logout_settings){
-            //logOutDialog();
-            // TODO Fix "You need to use a theme appcompat or descendant with this activity".
-            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-            startActivity(intent);
+            logOutDialog();
+
         }
         if(id == R.id.action_GPS_settings) {
             Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
@@ -89,5 +90,19 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void logOutDialog() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    Intent intent = new Intent(ApplicationContext.getContext(), MainActivity.class);
+                    ApplicationContext.getContext().startActivity(intent);
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

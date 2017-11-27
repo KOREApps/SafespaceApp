@@ -35,9 +35,9 @@
 
     <!-- DocumentActivity -->
     <string name="project">Prosjekt navn…</string>
-    <string name="document_title">Sett inn dokumentasjon tittel…</string>
+    <string name="document_title">Dokumentasjons tittel…</string>
     <string name="documentation_sender">Sender:</string>
-    <string name="documentation_project_description">Prosjekt beskrivelse…</string>
+    <string name="documentation_project_description">Beskrivelse…</string>
     <string name="image_description">Bilde beskrivelse</string>
 
     <!-- HelpActivity -->

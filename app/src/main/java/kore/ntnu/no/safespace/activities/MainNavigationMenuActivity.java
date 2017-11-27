@@ -1,6 +1,5 @@
 package kore.ntnu.no.safespace.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -84,8 +83,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
 
         settingsBtn.setOnClickListener(view -> {
             Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            //startActivityForResult(intent, IdUtils.REQUEST_CODE);
-            startActivity(intent);
+            startActivityForResult(intent, IdUtils.REQUEST_CODE);
+            //startActivity(intent);
         });
 
     }
@@ -130,13 +129,10 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.action_logout){
-            //logOutDialog();
-            // TODO Fix "You need to use a theme appcompat or descendant with this activity".
-            Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
-            startActivity(intent);
+            logOutDialog();
         }
-        if(id == R.id.action_settings) {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
+        if(id == R.id.action_maps) {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, MapsActivity.class);
             startActivity(intent);
         }
         if(id == R.id.action_GPS) {
@@ -152,23 +148,17 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         startActivity(getIntent());
     }
 
-    private void logOutDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
-            switch (which){
-                case DialogInterface.BUTTON_POSITIVE:
+    public void logOutDialog() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to exit the application.")
+                .setPositiveButton("Yes", (dialog, which) -> {
                     Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
                     startActivity(intent);
-                    break;
-
-                case DialogInterface.BUTTON_NEGATIVE:
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.hide();
-                    break;
-            }
-        };
-        builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     /**
