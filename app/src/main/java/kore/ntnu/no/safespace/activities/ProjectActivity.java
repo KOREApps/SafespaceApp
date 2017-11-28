@@ -19,16 +19,19 @@ import kore.ntnu.no.safespace.tasks.SendProjectTask;
  */
 public class ProjectActivity extends AppCompatActivity {
 
+    private EditText projectTitleField;
+    private EditText projectDescriptionField;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project);
         setCreateButtonOnClick();
 
-        EditText projectTitleField = findViewById(R.id.projectHeaderText);
-        EditText projectDescriptionField = findViewById(R.id.projectDescription);
+        projectTitleField = findViewById(R.id.projectHeaderText);
         projectTitleField.setFocusableInTouchMode(true);
         projectTitleField.requestFocus();
+        projectDescriptionField = findViewById(R.id.projectDescription);
     }
 
     private void setCreateButtonOnClick(){
@@ -47,9 +50,7 @@ public class ProjectActivity extends AppCompatActivity {
     }
 
     public Project getProject() {
-        EditText projectTitleField = findViewById(R.id.projectHeaderText);
         String projectTitle = projectTitleField.getText().toString();
-        EditText projectDescriptionField = findViewById(R.id.projectDescription);
         String projectDescription = projectDescriptionField.getText().toString();
         if (projectTitle.length() > 2) {
             return new Project(projectTitle, projectDescription);

@@ -22,37 +22,22 @@ import kore.ntnu.no.safespace.utils.ApplicationContext;
  */
 public class SettingsActivity extends AppCompatActivity {
 
+    private Button gpsBtn;
+    private Button mapsBtn;
+    private Button nor;
+    private Button eng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Button gpsBtn = findViewById(R.id.gpsBtn);
-        Button mapsBtn = findViewById(R.id.mapsBtn);
-        Button nor = findViewById(R.id.bt_nor);
-        Button eng = findViewById(R.id.bt_eng);
+        gpsBtn = findViewById(R.id.gpsBtn);
+        mapsBtn = findViewById(R.id.mapsBtn);
+        nor = findViewById(R.id.bt_nor);
+        eng = findViewById(R.id.bt_eng);
 
-        gpsBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
-            startActivity(intent);
-        });
-
-        mapsBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(SettingsActivity.this, MapsActivity.class);
-            startActivity(intent);
-        });
-
-        nor.setOnClickListener(view -> {
-            changeLang(this, "no");
-            finish();
-            startActivity(getIntent());
-        });
-
-        eng.setOnClickListener(view -> {
-            changeLang(this, "en");
-            finish();
-            startActivity(getIntent());
-        });
+        setUpSettingsButtons();
 
     }
 
@@ -90,6 +75,30 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setUpSettingsButtons() {
+        gpsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
+            startActivity(intent);
+        });
+
+        mapsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(SettingsActivity.this, MapsActivity.class);
+            startActivity(intent);
+        });
+
+        nor.setOnClickListener(view -> {
+            changeLang(this, "no");
+            finish();
+            startActivity(getIntent());
+        });
+
+        eng.setOnClickListener(view -> {
+            changeLang(this, "en");
+            finish();
+            startActivity(getIntent());
+        });
     }
 
 

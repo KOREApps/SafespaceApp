@@ -72,13 +72,6 @@ public class HelpActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                 }
             }).execute(bugReport);
-//            if (!bugTitle.equals("") && !bugDescription.equals("")) {
-//                BugReport report = new BugReport(bugTitle, bugDescription, IdUtils.CURRENT_USER);
-//                Toast.makeText(this, "Thanks for the bug report. Report id: " + Math.abs(new Random().nextInt()) % 2500, Toast.LENGTH_LONG).show();
-//                finish();
-//            } else {
-//                Toast.makeText(HelpActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
-//            }
             popupWindow.dismiss();
         });
     }

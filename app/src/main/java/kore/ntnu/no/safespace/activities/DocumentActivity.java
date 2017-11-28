@@ -47,37 +47,34 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 public class DocumentActivity extends AppCompatActivity {
 
     private EditText title;
+    private Spinner project;
     private TextView description;
     private ProjectSpinnerAdapter dropDownAdapter;
     private ImageDisplayAdapter adapter;
     private File imageFile;
-    private Spinner project;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_document);
-        RecyclerView imageDisplay = findViewById(R.id.docTakenPhotos);
-        TextView sender = findViewById(R.id.docSenderID);
-        description = findViewById(R.id.docDescription);
-        project = findViewById(R.id.docProject);
+
         title = findViewById(R.id.docTitle);
+        title.setFocusableInTouchMode(true);
+        title.requestFocus();
+        project = findViewById(R.id.docProject);
+        findViewById(R.id.docTakePhotoBtn).setOnClickListener(c->takePhoto());
+        RecyclerView imageDisplay = findViewById(R.id.docTakenPhotos);
+        description = findViewById(R.id.docDescription);
+        findViewById(R.id.docSubmitDocumentation).setOnClickListener(c->submitDocumentation());
+        TextView sender = findViewById(R.id.docSenderID);
         sender.setText(IdUtils.CURRENT_USER.getFirstName());
 
         populateSpinner();
-
-        title.setFocusableInTouchMode(true);
-        title.requestFocus();
-
         adapter = new ImageDisplayAdapter(this);
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
         adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
-
         imageDisplay.setAdapter(adapter);
         imageDisplay.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        findViewById(R.id.docTakePhotoBtn).setOnClickListener(c->takePhoto());
-        findViewById(R.id.docSubmitDocumentation).setOnClickListener(c->submitDocumentation());
     }
 
     private void populateSpinner(){

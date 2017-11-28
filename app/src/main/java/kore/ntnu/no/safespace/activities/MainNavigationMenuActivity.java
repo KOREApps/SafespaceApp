@@ -40,6 +40,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
+
         if(IdUtils.CURRENT_USER == null) {
             IdUtils.CURRENT_USER = (User) getIntent().getSerializableExtra(IdUtils.USER);
         }
@@ -52,40 +53,9 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         settingsBtn = findViewById(R.id.settingsBtn);
         new InternetConnectionThread(this);
 
-        // buttonDrawableResizer();
-
         getProjects();
-
-        reportBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
-            startActivity(intent);
-        });
-
-        documentBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
-            startActivity(intent);
-        });
-
-        projectBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, ProjectActivity.class);
-            startActivity(intent);
-        });
-
-        latestRepBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, LatestReportActivity.class);
-            startActivity(intent);
-        });
-
-        helpBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
-            startActivity(intent);
-        });
-
-        settingsBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
-            startActivityForResult(intent, IdUtils.REQUEST_CODE);
-            //startActivity(intent);
-        });
+        setUpNavigationButtons();
+        // buttonDrawableResizer();
 
     }
 
@@ -159,6 +129,40 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+
+    private void setUpNavigationButtons() {
+        reportBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, ReportActivity.class);
+            startActivity(intent);
+        });
+
+        documentBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, DocumentActivity.class);
+            startActivity(intent);
+        });
+
+        projectBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, ProjectActivity.class);
+            startActivity(intent);
+        });
+
+        latestRepBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, LatestReportActivity.class);
+            startActivity(intent);
+        });
+
+        helpBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, HelpActivity.class);
+            startActivity(intent);
+        });
+
+        settingsBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, SettingsActivity.class);
+            startActivityForResult(intent, IdUtils.REQUEST_CODE);
+            //startActivity(intent);
+        });
     }
 
     /**

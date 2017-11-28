@@ -60,14 +60,18 @@ import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
  */
 public class ReportActivity extends AppCompatActivity {
 
-    private File imageFile;
-    private ImageDisplayAdapter adapter;
+
+    private EditText reportHeader;
     private ProjectSpinnerAdapter dropDownAdapter;
-    private Project selectedProject = null;
-    private TextView getLocationView;
+    private Spinner dropDown;
+    private ImageDisplayAdapter adapter;
+    private EditText reportDescription;
     private ImageButton sendReport;
-    private Location currentLocation = null;
     private CircularProgressButton getLocationBtn;
+    private TextView getLocationView;
+    private File imageFile;
+    private Project selectedProject = null;
+    private Location currentLocation = null;
     private Handler handler = new Handler();
 
     @Override
@@ -75,27 +79,24 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        EditText reportHeader = findViewById(R.id.reportHeaderText);
+        reportHeader = findViewById(R.id.reportHeaderText);
+        reportHeader.setFocusableInTouchMode(true);
+        reportHeader.requestFocus();
+        dropDown = findViewById(R.id.projectSpinner);
+        findViewById(R.id.takePhotoBtn).setOnClickListener(c->takePhoto());
         RecyclerView imageDisplay = findViewById(R.id.reportTakenPhoto);
         adapter = new ImageDisplayAdapter(this);
         imageDisplay.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         imageDisplay.setAdapter(adapter);
-        ImageButton capturePhoto = findViewById(R.id.takePhotoBtn);
-        EditText reportDescription = findViewById(R.id.reportDescription);
+        reportDescription = findViewById(R.id.reportDescription);
         sendReport = findViewById(R.id.sendReportBtn);
         getLocationBtn = findViewById(R.id.getLocationBtn);
         getLocationBtn.setTag(1);
         getLocationView = findViewById(R.id.displayLocationView);
 
+        populateSpinner();
         adapter.setOnHoldListener(position -> displayImageOptions(adapter.getImage(position)));
         adapter.setOnClickListener(position -> openImage(adapter.getImage(position)));
-
-        populateSpinner();
-
-        reportHeader.setFocusableInTouchMode(true);
-        reportHeader.requestFocus();
-
-        capturePhoto.setOnClickListener(c -> takePhoto());
         setUpSendButton(sendReport);
 
         if (!runtime_permission()) {
@@ -104,7 +105,6 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private void populateSpinner() {
-        Spinner dropDown = findViewById(R.id.projectSpinner);
         dropDownAdapter = new ProjectSpinnerAdapter(this, R.layout.project_spinner_item, new ArrayList<>());
         dropDown.setAdapter(dropDownAdapter);
         setSpinnerAdapterOnSelectListener(dropDown, dropDownAdapter);
@@ -160,9 +160,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void setUpSendButton(ImageButton sendButton) {
         sendButton.setOnClickListener((view) -> {
-            EditText reportHeader = findViewById(R.id.reportHeaderText);
             String title = reportHeader.getText().toString();
-            EditText reportDescription = findViewById(R.id.reportDescription);
             String description = reportDescription.getText().toString();
             IncidentReport report = new IncidentReport(null, title, description, adapter.getImages(), null, this.selectedProject);
                 report.setLocation(currentLocation);

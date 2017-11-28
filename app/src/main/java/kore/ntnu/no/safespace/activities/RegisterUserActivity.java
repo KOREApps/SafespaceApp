@@ -21,15 +21,28 @@ import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
  */
 public class RegisterUserActivity extends AppCompatActivity {
 
+    private EditText usernameText;
+    private EditText firstNameInput;
+    private EditText lastNameInput;
+    private EditText passwordInput;
+    private EditText confirmPasswordInput;
+    private Button registerButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
         setRegisterButtonOnClick();
+
+        usernameText = findViewById(R.id.usernameInput);
+        firstNameInput = findViewById(R.id.firstNameInput);
+        lastNameInput = findViewById(R.id.lastNameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
+        registerButton = findViewById(R.id.registerButton);
     }
 
     private void setRegisterButtonOnClick(){
-        Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener((View view) -> {
             if (isPasswordFieldsEqual()) {
                 User newUser = getUser();
@@ -48,21 +61,15 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private boolean isPasswordFieldsEqual(){
-        EditText passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
-        EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         String confirmPassword = confirmPasswordInput.getText().toString();
         return password.equals(confirmPassword);
     }
 
     private User getUser(){
-        EditText usernameText = findViewById(R.id.usernameInput);
         String username = usernameText.getText().toString();
-        EditText firstNameInput = findViewById(R.id.firstNameInput);
         String firstName = firstNameInput.getText().toString();
-        EditText lastNameInput = findViewById(R.id.lastNameInput);
         String lastName = lastNameInput.getText().toString();
-        EditText passwordInput = findViewById(R.id.passwordInput);
         String password = passwordInput.getText().toString();
         return new User(null, username, firstName, lastName, password, null, null);
     }

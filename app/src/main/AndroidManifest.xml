@@ -52,6 +52,7 @@
             android:parentActivityName=".activities.MainNavigationMenuActivity" />
         <activity
             android:name=".activities.GPSActivity"
+            android:label="@string/gps"
             android:configChanges="orientation|screenSize"
             android:parentActivityName=".activities.SettingsActivity" />
         <activity
