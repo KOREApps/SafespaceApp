@@ -77,10 +77,10 @@ public class GPSActivity extends AppCompatActivity {
             @Override
             public void onLocationChanged(Location location) {
                 // This method is called every time the location is updated.
-                getLatitudeView.setText(R.string.latitude);
-                getLatitudeView.append("\n" + location.getLatitude());
-                getLongitudeView.setText(R.string.longitude);
-                getLongitudeView.append("\n" + location.getLongitude());
+                getLatitudeView.setText("");
+                getLatitudeView.append("" + location.getLatitude());
+                getLongitudeView.setText("");
+                getLongitudeView.append("" + location.getLongitude());
 
                 editor.putFloat("CurrentLatitude", (float) location.getLatitude());
                 editor.putFloat("CurrentLongitude", (float) location.getLongitude());
@@ -95,12 +95,12 @@ public class GPSActivity extends AppCompatActivity {
 
                     String myDate = format.format(new Date());
 
-                    getAccuracyView.setText(R.string.accuracy);
-                    getAccuracyView.append("\n" + location.getAccuracy());
-                    getTimeSinceLastView.setText(R.string.time_since_last_update);
-                    getTimeSinceLastView.append("\n" + diffTime / 1000000000.0);
-                    getTimeAtLastView.setText(R.string.time_at_last_update);
-                    getTimeAtLastView.append("\n" + myDate);
+                    getAccuracyView.setText("");
+                    getAccuracyView.append("" + location.getAccuracy());
+                    getTimeSinceLastView.setText("");
+                    getTimeSinceLastView.append("" + diffTime / 1000000000.0);
+                    getTimeAtLastView.setText("");
+                    getTimeAtLastView.append("" + myDate);
 
                 } else {
                     lastKnownLocation = locationManager.getLastKnownLocation(locationProviderGPS);
@@ -125,8 +125,8 @@ public class GPSActivity extends AppCompatActivity {
                     getLocationView.append("\nDistance from LAB center: " + result[0]);
                     GPSActivity.this.currentLocation = "Main Building";
                 } else {
-                    getLocationView.setText("\nDistance from LAB center: " + result[0]);
-                    getLocationView.append("\nYou are NOT in a building(hopefully)");
+                    getLocationView.setText("You are NOT in a building(hopefully)");
+                    getLocationView.append("\nDistance from LAB center: " + result[0]);
                     GPSActivity.this.currentLocation = "Lat: " + location.getLatitude() + " Long: " + location.getLongitude();
                 }
 
@@ -178,20 +178,21 @@ public class GPSActivity extends AppCompatActivity {
 
     private void startGPSListener() {
         locationManager.requestLocationUpdates("gps", 3000, 0, locationListener);
+        getTimeSinceLastView.setText("(FETCHING)");
 
         if (lastKnownLocation == null) {
             getLocationView.setText(R.string.fetching_new_location);
         } else {
             getLocationView.setText(R.string.fetching_location);
-            getLatitudeView.setText(R.string.latitude);
-            getLatitudeView.append("\n" + lastKnownLocation.getLatitude() + "(last known)");
-            getLongitudeView.setText(R.string.longitude);
-            getLongitudeView.append("\n" + lastKnownLocation.getLongitude() + "(last known)");
+            getLatitudeView.setText("");
+            getLatitudeView.append(lastKnownLocation.getLatitude() + "(last known)");
+            getLongitudeView.setText("");
+            getLongitudeView.append(lastKnownLocation.getLongitude() + "(last known)");
         }
     }
 
     public void stopAnyListener() {
-        getTimeSinceLastView.append(" (STOPPED)");
+        getTimeSinceLastView.setText("(STOPPED)");
         locationManager.removeUpdates(locationListener);
     }
 

@@ -91,7 +91,7 @@
                 android:background="@drawable/border_rectangle"
                 android:gravity="start"
                 android:hint="@string/incident_description"
-                android:inputType="textMultiLine"
+                android:inputType="textCapSentences|textMultiLine"
                 android:labelFor="@id/reportDescription"
                 android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"

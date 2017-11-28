@@ -77,10 +77,10 @@
     <string name="accuracy">Accuracy: </string>
     <string name="time_since_last_update">Time since last update: </string>
     <string name="time_at_last_update">Time at last update: </string>
-    <string name="fetching_new_location">Location: No previous coordinates found, fetching…</string>
-    <string name="fetching_location">Location: Fetching location…</string>
-    <string name="ntnu_lab">Location: You are at NTNU LAB building</string>
-    <string name="ntnu_main">Location: You are at NTNU Main building</string>
+    <string name="fetching_new_location">No previous coordinates found, fetching…</string>
+    <string name="fetching_location">Fetching location…</string>
+    <string name="ntnu_lab">You are at NTNU LAB building</string>
+    <string name="ntnu_main">You are at NTNU Main building</string>
     <string name="title_activity_maps">Map</string>
     <string name="map">Map</string>
 

@@ -77,10 +77,10 @@
     <string name="accuracy">Nøyaktighet: </string>
     <string name="time_since_last_update">Tid siden forrige oppdatering: </string>
     <string name="time_at_last_update">Tid når forrige oppdatering: </string>
-    <string name="fetching_new_location">Lokasjon: Ingen tidligere lokasjon funnet, henter…</string>
-    <string name="fetching_location">Lokasjon: Henter lokasjon…</string>
-    <string name="ntnu_lab">Lokasjon: Du er i NTNU lab bygget</string>
-    <string name="ntnu_main">Lokasjon: Du er i NTNU hovedbygget</string>
+    <string name="fetching_new_location">Ingen tidligere lokasjon funnet, henter…</string>
+    <string name="fetching_location">Henter lokasjon…</string>
+    <string name="ntnu_lab">Du er i NTNU lab bygget</string>
+    <string name="ntnu_main">Du er i NTNU hovedbygget</string>
 
     <!-- RegisterLocationActivity-->
     <string name="location_name">Location name</string>
