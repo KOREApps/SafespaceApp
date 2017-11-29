@@ -51,7 +51,7 @@ public class InternetConnectionThread extends Thread {
                                 SendDocumentationTask sdt = new SendDocumentationTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(doc, docFile);
-                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, 20), "Documentation");
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Documentation");
                                     }
                                 });
                                 tasks.add(sdt);
@@ -65,7 +65,7 @@ public class InternetConnectionThread extends Thread {
                                 SendReportTask srt = new SendReportTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(incident, report);
-                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, 20), "Report");
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Report");
                                     }
                                 });
                                 tasks.add(srt);
