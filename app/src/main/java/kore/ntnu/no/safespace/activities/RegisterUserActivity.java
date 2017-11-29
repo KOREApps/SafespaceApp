@@ -32,7 +32,6 @@ public class RegisterUserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
-        setRegisterButtonOnClick();
 
         usernameText = findViewById(R.id.usernameInput);
         firstNameInput = findViewById(R.id.firstNameInput);
@@ -40,6 +39,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.passwordInput);
         confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         registerButton = findViewById(R.id.registerButton);
+        setRegisterButtonOnClick();
     }
 
     private void setRegisterButtonOnClick(){

@@ -1,15 +1,17 @@
 package kore.ntnu.no.safespace.tasks;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.widget.Toast;
+import android.support.v7.app.NotificationCompat;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
@@ -49,7 +51,7 @@ public class InternetConnectionThread extends Thread {
                                 SendDocumentationTask sdt = new SendDocumentationTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(doc, docFile);
-                                        Toast.makeText(context, "The document: " + result.getResult().getTitle().toString() + " has been sent.", Toast.LENGTH_LONG).show();
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, 20), "Documentation");
                                     }
                                 });
                                 tasks.add(sdt);
@@ -63,7 +65,7 @@ public class InternetConnectionThread extends Thread {
                                 SendReportTask srt = new SendReportTask(result -> {
                                     if (result != null) {
                                         StorageUtils.removeReport(incident, report);
-                                        Toast.makeText(context, "The report: " + result.getResult().getTitle().toString() + " has been sent.", Toast.LENGTH_LONG).show();
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, 20), "Report");
                                     }
                                 });
                                 tasks.add(srt);
@@ -88,6 +90,21 @@ public class InternetConnectionThread extends Thread {
                 }
             }
         }
-
     }
+
+    public void fileSentNotification(String title, String message, String project) {
+        NotificationCompat.Builder b = new NotificationCompat.Builder(this.context);
+        b.setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_complete_symbol)
+                .setContentInfo(project)
+                //.setTicker("Project successfully sent!")
+                .setContentTitle('"' + title + '"' +  " has been sent!")
+                .setContentText(message + "...").setPriority(NotificationCompat.PRIORITY_HIGH);
+
+        NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.notify(1, b.build());
+    }
+
 }
