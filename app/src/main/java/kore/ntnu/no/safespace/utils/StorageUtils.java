@@ -150,18 +150,10 @@ public class StorageUtils {
     public static void deleteImage(Image image) {
         File f = image.getImageFile();
         boolean result = f.delete();
-        System.out.println(result);
     }
 
     public static File saveToDisk(byte[] rawData, String name, String fileExtension) throws IOException {
         File path = ApplicationContext.getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        System.out.println(rawData.length);
-//        for(int i = 0; i < rawData.length; i++){
-//            System.out.print(rawData[i]);
-//            if(i%500 == 0){
-//                System.out.println();
-//            }
-//        }
         File imageFile = new File(path, name+"."+fileExtension);
         FileOutputStream out = new FileOutputStream(imageFile);
         out.write(rawData);

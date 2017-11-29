@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.io.IOException;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
@@ -35,6 +39,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     private Button latestRepBtn;
     private Button helpBtn;
     private Button settingsBtn;
+    private Menu optionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +97,8 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_items, menu);
+        getMenuInflater().inflate(R.menu.file_progress, menu);
+        optionsMenu = menu;
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -108,6 +115,21 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         if(id == R.id.action_GPS) {
             Intent intent = new Intent (MainNavigationMenuActivity.this, GPSActivity.class);
             startActivity(intent);
+        }
+        if(id == R.id.file_upload_thing) {
+            try {
+                int listSize = StorageUtils.getDocumentations(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
+                int listSize2 = StorageUtils.getIncidents(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
+                int total = listSize+listSize2;
+                if(total == 0) {
+                    Toast.makeText(getApplicationContext(), "All files has been sent!", Toast.LENGTH_LONG).show();
+                    //optionsMenu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_done_white_48dp));
+                } else {
+                    Toast.makeText(getApplicationContext(), "Documents not sent: " + listSize + "\nReports not sent: " + listSize2, Toast.LENGTH_LONG).show();
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -22,8 +22,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_report_problem"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/nav_report" />
 
     <Button
@@ -41,8 +41,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_document"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/nav_document" />
 
     <Button
@@ -60,8 +60,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_project_assignment"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/project1" />
 
     <Button
@@ -79,8 +79,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_file_download"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/nav_latestrep" />
 
     <Button
@@ -98,8 +98,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_bug_report"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/nav_help" />
 
     <Button
@@ -117,8 +117,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_settings_art"
         android:gravity="center"
-        android:paddingBottom="60dp"
-        android:paddingTop="25dp"
+        android:paddingBottom="87dp"
+        android:paddingTop="55dp"
         android:text="@string/nav_settings" />
 
 </GridLayout>
