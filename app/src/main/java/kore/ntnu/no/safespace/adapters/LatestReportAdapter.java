@@ -2,6 +2,7 @@ package kore.ntnu.no.safespace.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import kore.ntnu.no.safespace.R;
@@ -28,6 +30,7 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
     private List<Report> list = new ArrayList<>();
     private final Context context;
     private OnClickListener listener;
+    private HashMap<ReportViewHolder, ImageLoaderTask> holderList = new HashMap<>();
 
     public interface OnClickListener {
         void onClick(int position);
@@ -50,14 +53,21 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
     @Override
     public void onBindViewHolder(ReportViewHolder holder, int position) {
         Report report = list.get(position);
-
         holder.textView.setText(report.getTitle());
-        if(report.getImages().isEmpty()) {
+        if (report.getImages().isEmpty()) {
             holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
         } else {
             try {
-                holder.imageView.setImageBitmap(Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888));
-                new ImageLoaderTask(8, bm->holder.imageView.setImageBitmap(bm)).execute(report.getImages().get(0));
+                AsyncTask task = holderList.get(holder);
+                if(task != null){
+                    task.cancel(false);
+                    holderList.remove(holder);
+                }
+                holder.imageView.setImageBitmap(Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888));
+                ImageLoaderTask imageTask = new ImageLoaderTask(8, bm -> {holder.imageView.setImageBitmap(bm);
+                holderList.remove(holder);});
+                holderList.put(holder, imageTask);
+                imageTask.execute(report.getImages().get(0));
 //                holder.imageView.setImageBitmap(ImageUtils.getBitmap(report.getImages().get(0),8));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -110,16 +120,17 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
         notifyDataSetChanged();
     }
 
-    public void setReports(List<? extends Report> reports){
+    public void setReports(List<? extends Report> reports) {
         list.clear();
         list.addAll(reports);
         notifyDataSetChanged();
     }
 
-    public void addReports(List<? extends Report> reports){
+    public void addReports(List<? extends Report> reports) {
         list.addAll(reports);
         notifyDataSetChanged();
     }
+
     public Report getReportFromList(int position) {
         return list.get(position);
     }
