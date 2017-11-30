@@ -28,7 +28,6 @@ public class KeyStoreReader {
             InputStream stream = c.getResources().openRawResource(c.getResources().getIdentifier(file, path, c.getPackageName()));
             ks.load(stream, password);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         } catch (CertificateException | NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

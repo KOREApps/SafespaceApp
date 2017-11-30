@@ -75,7 +75,6 @@ public class GetLocationTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lo
             double log = location.getLongitude();
             int acc = (int) location.getAccuracy();
             locationTask.setLocation(new Location(lat, log, acc));
-            System.out.println("Accuracy: " + acc);
         }
 
         @Override

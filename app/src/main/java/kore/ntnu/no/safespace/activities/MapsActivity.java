@@ -97,7 +97,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void onMapClickListener() {
         mMap.setOnMapClickListener(latLng -> {
-            System.out.println(latLng.latitude + " " + latLng.longitude);
             mMap.clear();
             LatLng currentPosition = new LatLng(latLng.latitude, latLng.longitude);
             mMap.addMarker(marker.position(currentPosition).title("New Location")).setDraggable(true);
@@ -120,13 +119,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(!radius.isEmpty()) {
             int markerRadius = Integer.parseInt(radius);
             intent.putExtra(IdUtils.MAPS_RAD, markerRadius);
-            System.out.println("Radius: " + markerRadius);
         } else {
             intent.putExtra(IdUtils.MAPS_RAD, 0);
         }
-
-        System.out.println("Latitude: " + latLng.latitude);
-        System.out.println("Longitude: " + latLng.longitude);
         startActivity(intent);
     }
 
@@ -160,7 +155,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         int locationRadius;
         String radius = mapRadiusField.getText().toString();
         if(!radius.isEmpty()) {
-            System.out.println(radius);
             locationRadius = Integer.parseInt(radius);
         } else {
             locationRadius = 1000;

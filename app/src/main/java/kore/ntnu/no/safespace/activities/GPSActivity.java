@@ -132,7 +132,6 @@ public class GPSActivity extends AppCompatActivity {
 
                 editor.putString("CurrentLocation", GPSActivity.this.currentLocation);
                 editor.apply();
-                System.out.println("Current Location: " + GPSActivity.this.currentLocation);
             }
 
             @Override

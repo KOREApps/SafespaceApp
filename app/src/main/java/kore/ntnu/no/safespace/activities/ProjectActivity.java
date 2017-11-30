@@ -43,7 +43,6 @@ public class ProjectActivity extends AppCompatActivity {
                     Toast.makeText(ProjectActivity.this, "Project successfully created", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    System.out.println(result.getMessage());
                 }
             })).execute(newProject);
         });
