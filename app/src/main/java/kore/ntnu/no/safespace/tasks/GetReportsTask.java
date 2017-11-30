@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.service.ImageService;
@@ -28,19 +29,15 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
     private AsyncOnPostExecute<List<IncidentReport>> callback;
     private ReportService reportService;
     private ImageService imageService;
-    private ProgressDialog dialog;
 
     public GetReportsTask(AsyncOnPostExecute<List<IncidentReport>> callback, Context context) {
         this.callback = callback;
         this.reportService = new ReportService();
         this.imageService = new ImageService();
-        dialog = new ProgressDialog(context);
     }
 
     @Override
     protected void onPreExecute() {
-        dialog.setMessage("Fetching latest reports");
-        dialog.show();
         super.onPreExecute();
     }
 
@@ -82,6 +79,5 @@ public class GetReportsTask extends AsyncTask<Void, Integer, AsyncTaskResult<Lis
         if (callback != null) {
             callback.onPostExecute(result);
         }
-        dialog.dismiss();
     }
 }

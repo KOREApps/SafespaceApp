@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Documentation;
 import kore.ntnu.no.safespace.data.Image;
 import kore.ntnu.no.safespace.service.DocumentationService;
@@ -28,19 +29,15 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
     private AsyncOnPostExecute<List<Documentation>> callback;
     private DocumentationService documentationService;
     private ImageService imageService;
-    private ProgressDialog dialog;
 
     public GetDocumentationsTask(AsyncOnPostExecute<List<Documentation>> callback, Context context) {
         this.callback = callback;
         this.documentationService = new DocumentationService();
         this.imageService = new ImageService();
-        dialog = new ProgressDialog(context);
     }
 
     @Override
     protected void onPreExecute() {
-        dialog.setMessage("Fetching latest documentation");
-        dialog.show();
         super.onPreExecute();
     }
 
@@ -82,6 +79,5 @@ public class GetDocumentationsTask extends AsyncTask<Void, Integer, AsyncTaskRes
         if (callback != null) {
             callback.onPostExecute(result);
         }
-        dialog.dismiss();
     }
 }
