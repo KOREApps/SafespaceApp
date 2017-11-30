@@ -146,8 +146,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to exit the application.")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    Intent intent = new Intent(MainNavigationMenuActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    finish();
                 })
                 .setNegativeButton("No", null)
                 .show();

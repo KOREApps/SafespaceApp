@@ -81,6 +81,8 @@
     <string name="fetching_location">Henter lokasjon…</string>
     <string name="ntnu_lab">Du er i NTNU lab bygget</string>
     <string name="ntnu_main">Du er i NTNU hovedbygget</string>
+    <string name="title_activity_maps">Kart</string>
+    <string name="map">Kart</string>
 
     <!-- RegisterLocationActivity-->
     <string name="location_name">Location name</string>

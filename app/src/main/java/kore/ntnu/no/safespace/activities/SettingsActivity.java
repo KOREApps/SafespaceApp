@@ -50,29 +50,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_items_settings, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_logout_settings){
-            logOutDialog();
-
-        }
-        if(id == R.id.action_GPS_settings) {
-            Intent intent = new Intent(SettingsActivity.this, GPSActivity.class);
-            startActivity(intent);
-        }
         if(id == android.R.id.home) {
             finish();
-        }
-        switch(item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -108,8 +89,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton("Yes", (dialog, which) -> {
-                    Intent intent = new Intent(ApplicationContext.getContext(), MainActivity.class);
-                    ApplicationContext.getContext().startActivity(intent);
+                    finish();
                 })
                 .setNegativeButton("No", null)
                 .show();
