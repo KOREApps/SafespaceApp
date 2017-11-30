@@ -56,7 +56,6 @@ public class ImageDisplayAdapter extends RecyclerView.Adapter<ImageDisplayAdapte
     public void onBindViewHolder(ImageDisplayAdapter.ImageDisplayViewHolder holder, int position) {
         try {
             Image image = images.get(position);
-            System.out.println(image.getImageFile().getAbsolutePath());
             holder.imageDisplay.setImageBitmap(ImageUtils.getBitmap(image, 3));
         } catch (IOException e) {
             e.printStackTrace();

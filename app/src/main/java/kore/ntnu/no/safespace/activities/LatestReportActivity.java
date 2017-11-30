@@ -30,7 +30,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 /**
  * This purpose of this activity is to display latest reports/documents in a list.
  *
- * @author x
+ * @author Erik
  */
 public class LatestReportActivity extends AppCompatActivity {
 
@@ -75,7 +75,7 @@ public class LatestReportActivity extends AppCompatActivity {
     }
 
     private void filter(String text) {
-        ArrayList<Report> filteredList = new ArrayList<>();
+        List<Report> filteredList = new ArrayList<>();
 
         for(Report report : arrayList) {
             if(report.getTitle().toLowerCase().contains(text.toLowerCase()) || report.getDescription().toLowerCase().contains(text.toLowerCase())) {

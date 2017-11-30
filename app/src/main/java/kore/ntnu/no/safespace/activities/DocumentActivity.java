@@ -42,7 +42,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 /**
  * The purpose of this activity is to create a new document.
  *
- * @author x
+ * @author Kristoffer, Erik
  */
 public class DocumentActivity extends AppCompatActivity {
 

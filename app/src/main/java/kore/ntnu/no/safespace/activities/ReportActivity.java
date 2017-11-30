@@ -56,7 +56,7 @@ import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 /**
  * The purpose of this activity is to create a new report.
  *
- * @author x
+ * @author KORE
  */
 public class ReportActivity extends AppCompatActivity {
 

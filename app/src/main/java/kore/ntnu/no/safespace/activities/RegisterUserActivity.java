@@ -17,7 +17,7 @@ import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
 /**
  * The purpose of this activity is to register a new user.
  *
- * @author x
+ * @author Robert
  */
 public class RegisterUserActivity extends AppCompatActivity {
 

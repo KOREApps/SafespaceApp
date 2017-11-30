@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="2"
-    android:rowCount="3"
+    android:columnCount="3"
+    android:rowCount="2"
     tools:context="kore.ntnu.no.safespace.activities.MainNavigationMenuActivity">
 
     <Button
@@ -17,20 +17,20 @@
         android:layout_marginEnd="1.5dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="3dp"
-        android:layout_row="0"
+        android:layout_row="1"
         android:layout_rowWeight="1"
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_report_problem"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/nav_report" />
 
     <Button
         android:id="@+id/dokumBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_column="1"
+        android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_marginBottom="1.5dp"
         android:layout_marginEnd="3dp"
@@ -41,15 +41,15 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_document"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/nav_document" />
 
     <Button
         android:id="@+id/projectBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_column="0"
+        android:layout_column="1"
         android:layout_columnWeight="1"
         android:layout_marginBottom="1.5dp"
         android:layout_marginEnd="1.5dp"
@@ -60,8 +60,8 @@
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_project_assignment"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/project1" />
 
     <Button
@@ -74,51 +74,51 @@
         android:layout_marginEnd="3dp"
         android:layout_marginStart="1.5dp"
         android:layout_marginTop="1.5dp"
-        android:layout_row="1"
+        android:layout_row="0"
         android:layout_rowWeight="1"
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_file_download"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/nav_latestrep" />
 
     <Button
         android:id="@+id/helpBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_column="0"
+        android:layout_column="2"
         android:layout_columnWeight="1"
         android:layout_marginBottom="3dp"
         android:layout_marginEnd="1.5dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="1.5dp"
-        android:layout_row="2"
+        android:layout_row="1"
         android:layout_rowWeight="1"
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_info_light"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/nav_help" />
 
     <Button
         android:id="@+id/settingsBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_column="1"
+        android:layout_column="2"
         android:layout_columnWeight="1"
         android:layout_marginBottom="3dp"
         android:layout_marginEnd="3dp"
         android:layout_marginStart="1.5dp"
         android:layout_marginTop="1.5dp"
-        android:layout_row="2"
+        android:layout_row="0"
         android:layout_rowWeight="1"
         android:background="@drawable/ic_button_background"
         android:drawableTop="@drawable/ic_settings_art"
         android:gravity="center"
-        android:paddingBottom="87dp"
-        android:paddingTop="55dp"
+        android:paddingBottom="60dp"
+        android:paddingTop="25dp"
         android:text="@string/nav_settings" />
 
 </GridLayout>
