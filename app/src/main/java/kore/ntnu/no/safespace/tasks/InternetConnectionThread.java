@@ -44,12 +44,12 @@ public class InternetConnectionThread extends Thread {
 
     @Override
     public void run() {
-        List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
-        List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
-        while(running) {
-            if(docs.isEmpty() && reports.isEmpty()){
-                StorageUtils.removeUnusedImages(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
-            }
+        while (running) {
+            List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+            List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+//            if (docs.isEmpty() && reports.isEmpty()) {
+//                StorageUtils.removeUnusedImages(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+//            }
             if (!ConnectionUtil.isConnected(context)) {
                 try {
                     sleep(60000);
@@ -57,49 +57,49 @@ public class InternetConnectionThread extends Thread {
                     e.printStackTrace();
                 }
             } else {
-                while (ConnectionUtil.isConnected(context)) {
-                    try {
-                        if (!docs.isEmpty()) {
-                            for (File docFile : docs) {
-                                if (currentlySending.get(docFile) == null) {
-                                    Documentation doc = StorageUtils.readDocumentFromFile(docFile);
-                                    SendDocumentationTask sdt = new SendDocumentationTask(result -> {
-                                        if (result != null) {
-                                            StorageUtils.removeReport(doc, docFile);
-                                            currentlySending.remove(docFile);
-                                            fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Documentation");
-                                        }
-                                    });
-                                    currentlySending.put(docFile, sdt);
-                                    sdt.execute(doc);
-                                }
+                try {
+                    if (!docs.isEmpty()) {
+                        for (File docFile : docs) {
+                            if (currentlySending.get(docFile) == null) {
+                                Documentation doc = StorageUtils.readDocumentFromFile(docFile);
+                                SendDocumentationTask sdt = new SendDocumentationTask(result -> {
+                                    if (result != null) {
+                                        System.out.println("sent");
+                                        StorageUtils.removeReport(doc, docFile);
+                                        currentlySending.remove(docFile);
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Documentation");
+                                    }
+                                });
+                                currentlySending.put(docFile, sdt);
+                                sdt.execute(doc);
                             }
                         }
-                        if (!reports.isEmpty()) {
-                            for (File report : reports) {
-                                if (currentlySending.get(report) == null) {
-                                    IncidentReport incident = StorageUtils.readIncidentFromFile(report);
-                                    SendReportTask srt = new SendReportTask(result -> {
-                                        if (result != null) {
-                                            StorageUtils.removeReport(incident, report);
-                                            currentlySending.remove(report);
-                                            fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Report");
-                                        }
-                                    });
-                                    currentlySending.put(report, srt);
-                                    srt.execute(incident);
-                                }
-                            }
-                        }
-                    } catch (IOException | ClassNotFoundException e) {
-                        e.printStackTrace();
                     }
+                    if (!reports.isEmpty()) {
+                        for (File report : reports) {
+                            if (currentlySending.get(report) == null) {
+                                IncidentReport incident = StorageUtils.readIncidentFromFile(report);
+                                SendReportTask srt = new SendReportTask(result -> {
+                                    if (result != null) {
+                                        StorageUtils.removeReport(incident, report);
+                                        currentlySending.remove(report);
+                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Report");
+                                    }
+                                });
+                                currentlySending.put(report, srt);
+                                srt.execute(incident);
+                            }
+                        }
+                    }
+                    sleep(10000);
+                } catch (IOException | ClassNotFoundException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
 
-    public void stopSender(){
+    public void stopSender() {
         running = false;
     }
 
