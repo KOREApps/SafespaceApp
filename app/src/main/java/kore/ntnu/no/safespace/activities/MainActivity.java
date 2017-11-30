@@ -21,6 +21,7 @@ import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.data.UserCredentials;
 import kore.ntnu.no.safespace.service.LocationService;
 import kore.ntnu.no.safespace.tasks.GetUserTask;
+import kore.ntnu.no.safespace.tasks.InternetConnectionThread;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.dialogs.ErrorDialog;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText loginUser;
     private EditText loginPwd;
     private Button loginButton;
+    private InternetConnectionThread sender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                     storeUser(result.getResult());
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                     intent.putExtra(IdUtils.USER, result.getResult());
+                    sender = new InternetConnectionThread(this);
+                    if(!sender.isRunning()) {
+                        sender.start();
+                    }
                     startActivity(intent);
                 } else {
                     ErrorDialog.showErrorDialog(this, result.getMessage());
