@@ -8,7 +8,7 @@ import android.support.v7.app.NotificationCompat;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import kore.ntnu.no.safespace.R;
@@ -25,71 +25,77 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
  */
 public class InternetConnectionThread extends Thread {
     private Context context;
-    private List<AsyncTask> tasks = new ArrayList<>();
+    private HashMap<File, AsyncTask> currentlySending = new HashMap<>();
+    private static boolean running = false;
 
     public InternetConnectionThread(Context context) {
         this.context = context;
-        start();
+        running = true;
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 
     @Override
     public void run() {
-        if (!ConnectionUtil.isConnected(context)) {
-            try {
-                sleep(60000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+        List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+        while(running) {
+            if(docs.isEmpty() && reports.isEmpty()){
+                StorageUtils.removeUnusedImages(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
             }
-        } else {
-            while (ConnectionUtil.isConnected(context)) {
-                if (tasks.size() == 0) {
+            if (!ConnectionUtil.isConnected(context)) {
+                try {
+                    sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                while (ConnectionUtil.isConnected(context)) {
                     try {
-                        List<File> docs = StorageUtils.getDocumentations(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
                         if (!docs.isEmpty()) {
                             for (File docFile : docs) {
-                                Documentation doc = StorageUtils.readDocumentFromFile(docFile);
-                                SendDocumentationTask sdt = new SendDocumentationTask(result -> {
-                                    if (result != null) {
-                                        StorageUtils.removeReport(doc, docFile);
-                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Documentation");
-                                    }
-                                });
-                                tasks.add(sdt);
-                                sdt.execute(doc);
+                                if (currentlySending.get(docFile) == null) {
+                                    Documentation doc = StorageUtils.readDocumentFromFile(docFile);
+                                    SendDocumentationTask sdt = new SendDocumentationTask(result -> {
+                                        if (result != null) {
+                                            StorageUtils.removeReport(doc, docFile);
+                                            currentlySending.remove(docFile);
+                                            fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Documentation");
+                                        }
+                                    });
+                                    currentlySending.put(docFile, sdt);
+                                    sdt.execute(doc);
+                                }
                             }
                         }
-                        List<File> reports = StorageUtils.getIncidents(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
                         if (!reports.isEmpty()) {
                             for (File report : reports) {
-                                IncidentReport incident = StorageUtils.readIncidentFromFile(report);
-                                SendReportTask srt = new SendReportTask(result -> {
-                                    if (result != null) {
-                                        StorageUtils.removeReport(incident, report);
-                                        fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Report");
-                                    }
-                                });
-                                tasks.add(srt);
-                                srt.execute(incident);
+                                if (currentlySending.get(report) == null) {
+                                    IncidentReport incident = StorageUtils.readIncidentFromFile(report);
+                                    SendReportTask srt = new SendReportTask(result -> {
+                                        if (result != null) {
+                                            StorageUtils.removeReport(incident, report);
+                                            currentlySending.remove(report);
+                                            fileSentNotification(result.getResult().getTitle(), result.getResult().getDescription().substring(0, Math.min(20, result.getResult().getDescription().length())), "Report");
+                                        }
+                                    });
+                                    currentlySending.put(report, srt);
+                                    srt.execute(incident);
+                                }
                             }
                         }
                     } catch (IOException | ClassNotFoundException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    for (AsyncTask task : tasks) {
-                        if (task.getStatus() == AsyncTask.Status.FINISHED) {
-                            tasks.remove(task);
-                        }
-                    }
-                }
-
-                try {
-                    sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         }
+    }
+
+    public void stopSender(){
+        running = false;
     }
 
     public void fileSentNotification(String title, String message, String project) {
@@ -100,7 +106,7 @@ public class InternetConnectionThread extends Thread {
                 .setSmallIcon(R.drawable.ic_complete_symbol)
                 .setContentInfo(project)
                 //.setTicker("Project successfully sent!")
-                .setContentTitle('"' + title + '"' +  " has been sent!")
+                .setContentTitle('"' + title + '"' + " has been sent!")
                 .setContentText(message + "...").setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManager nm = (NotificationManager) this.context.getSystemService(Context.NOTIFICATION_SERVICE);

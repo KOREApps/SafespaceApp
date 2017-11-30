@@ -88,7 +88,7 @@ public class StorageUtils {
         return documentation;
     }
 
-    public static List<File> getDocumentations(File storageDir) throws IOException, ClassNotFoundException {
+    public static List<File> getDocumentations(File storageDir) {
         List<File> list = new ArrayList<>();
         List<File> dirs = getDirectories(storageDir);
         for (File dir : dirs) {
@@ -167,6 +167,18 @@ public class StorageUtils {
         for(File f: files){
             if(f.getAbsolutePath().contains("jpg")){
                 f.delete();
+            }
+        }
+    }
+
+    public static void removeUnusedImages(File externalFilesDir) {
+        List<File> dirs = getDirectories(externalFilesDir);
+        for(File folder : dirs){
+            File currentDir = new File(externalFilesDir, folder.getAbsolutePath());
+            String[] content = currentDir.list();
+            for(String s : content){
+                File imageFile = new File(currentDir, s);
+                imageFile.delete();
             }
         }
     }
