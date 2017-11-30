@@ -1,5 +1,6 @@
 package kore.ntnu.no.safespace.activities;
 
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +37,7 @@ public class LatestReportActivity extends AppCompatActivity {
 
     private LatestReportAdapter adapter;
     private ArrayList<Report> arrayList;
+    private ProgressDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,18 +51,24 @@ public class LatestReportActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
-        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.border_recyclerview));
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.border_recyclerview));
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
+        dialog = new ProgressDialog(this);
+        dialog.setMessage(getString(R.string.fetching_latest_documents));
+        dialog.show();
         if(ConnectionUtil.isConnected(this)) {
             new GetDocumentationsTask(c -> {
                 arrayList.addAll(c.getResult());
                 adapter.addReports(c.getResult());
+                dialog.setMessage(getString(R.string.fetching_latest_reports));
             },this).execute();
             new GetReportsTask(c -> {
                 arrayList.addAll(c.getResult());
                 adapter.addReports(c.getResult());
+                dialog.dismiss();
             }, this).execute();
         } else{
         localReports();

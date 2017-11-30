@@ -6,6 +6,8 @@
     <string name="search">Search</string>
     <string name="submit">Submit</string>
     <string name="default_user">Robert</string>
+    <string name="fetching_latest_reports">Fetching latest reports…</string>
+    <string name="fetching_latest_documents">Fetching latest documents…</string>
 
     <!-- MainActivity -->
     <string name="username">Username</string>

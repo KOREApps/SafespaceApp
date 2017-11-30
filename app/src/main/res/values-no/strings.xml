@@ -7,6 +7,8 @@
     <string name="settings_menu">Innstillinger</string>
     <string name="submit">Send</string>
     <string name="default_user">Robert</string>
+    <string name="fetching_latest_reports">Henter seneste rapporter…</string>
+    <string name="fetching_latest_documents">Henter seneste dokumenter…</string>
 
     <!-- MainActivity -->
     <string name="username">Brukernavn…</string>
