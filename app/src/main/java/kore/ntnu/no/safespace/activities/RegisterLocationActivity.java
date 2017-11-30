@@ -56,8 +56,7 @@ public class RegisterLocationActivity extends AppCompatActivity {
             KnownLocation newKnownLocation = getKnownLocation();
             new RegisterNewLocationTask(result -> {
                 if (result.isSuccess()) {
-                    Intent intent = new Intent(RegisterLocationActivity.this, MapsActivity.class);
-                    startActivity(intent);
+                    finish();
                     Toast.makeText(this, "Location registered", Toast.LENGTH_LONG).show();
                 } else {
                     ErrorDialog.showErrorDialog(this ,result.getMessage());

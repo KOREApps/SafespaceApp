@@ -51,19 +51,19 @@ public class LatestReportActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation());
-        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.border_recyclerview));
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.border_recyclerview));
         recyclerView.addItemDecoration(dividerItemDecoration);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
         dialog = new ProgressDialog(this);
-        dialog.setMessage(getApplicationContext().getString(R.string.fetching_latest_documents));
+        dialog.setMessage(getString(R.string.fetching_latest_documents));
         dialog.show();
         if(ConnectionUtil.isConnected(this)) {
             new GetDocumentationsTask(c -> {
                 arrayList.addAll(c.getResult());
                 adapter.addReports(c.getResult());
-                dialog.setMessage(getApplicationContext().getString(R.string.fetching_latest_reports));
+                dialog.setMessage(getString(R.string.fetching_latest_reports));
             },this).execute();
             new GetReportsTask(c -> {
                 arrayList.addAll(c.getResult());
