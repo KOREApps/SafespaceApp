@@ -41,7 +41,7 @@
         </activity>
         <activity
             android:name=".activities.MainNavigationMenuActivity"
-            android:configChanges="orientation|screenSize"/>
+            />
         <activity
             android:name=".activities.ReportActivity"
             android:configChanges="orientation|screenSize"

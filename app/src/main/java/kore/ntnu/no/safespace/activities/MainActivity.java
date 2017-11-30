@@ -85,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     sender = new InternetConnectionThread(this);
                     if(!sender.isRunning()) {
                         sender.start();
+                        System.out.println("started");
+                    } else {
+                        System.out.println("already running");
                     }
                     startActivity(intent);
                 } else {

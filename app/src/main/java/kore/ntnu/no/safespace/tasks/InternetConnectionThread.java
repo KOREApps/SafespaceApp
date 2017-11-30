@@ -30,11 +30,16 @@ public class InternetConnectionThread extends Thread {
 
     public InternetConnectionThread(Context context) {
         this.context = context;
-        running = true;
     }
 
     public boolean isRunning() {
         return running;
+    }
+
+    @Override
+    public synchronized void start() {
+        running = true;
+        super.start();
     }
 
     @Override
