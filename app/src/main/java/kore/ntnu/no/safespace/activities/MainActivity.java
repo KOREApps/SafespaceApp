@@ -82,13 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     storeUser(result.getResult());
                     Intent intent = new Intent(MainActivity.this, MainNavigationMenuActivity.class);
                     intent.putExtra(IdUtils.USER, result.getResult());
-                    sender = new InternetConnectionThread(this);
-                    if(!sender.isRunning()) {
-                        sender.start();
-                        System.out.println("started");
-                    } else {
-                        System.out.println("already running");
-                    }
+                    startSender();
                     startActivity(intent);
                 } else {
                     ErrorDialog.showErrorDialog(this, result.getMessage());
@@ -106,8 +100,20 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(IdUtils.USER, storedUser);
                 disableLoginBtn();
                 ErrorDialog.dismissErrorDialog(getApplicationContext());
+                startSender();
                 startActivity(intent);
             }
+        }
+    }
+
+    private void startSender() {
+        sender = new InternetConnectionThread(this);
+        System.out.println("haekaksdlkasd");
+        if(!sender.isRunning()) {
+            sender.start();
+            System.out.println("started");
+        } else {
+            System.out.println("already running");
         }
     }
 
