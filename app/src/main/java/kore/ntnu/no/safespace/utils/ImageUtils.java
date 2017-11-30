@@ -20,7 +20,7 @@ import java.util.List;
 import kore.ntnu.no.safespace.data.Image;
 
 /**
- * Class description..
+ * Handles images to/from bitmap and file.
  *
  * @author Kristoffer
  */
