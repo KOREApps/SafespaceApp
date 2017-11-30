@@ -70,16 +70,12 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
         this.listener = listener;
     }
 
-    public List<Report> getArrayListYo() {
-        return list;
-    }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-    public void filterList(ArrayList<Report> filteredList) {
+    public void filterList(List<Report> filteredList) {
         list = filteredList;
         notifyDataSetChanged();
     }
