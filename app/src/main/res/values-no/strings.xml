@@ -11,7 +11,7 @@
     <!-- MainActivity -->
     <string name="username">Brukernavn…</string>
     <string name="password">Passord…</string>
-    <string name="login">Logginn</string>
+    <string name="login">Logg inn</string>
 
     <!-- MainNavigationActivity -->
     <string name="nav_document">Dokumenter</string>
