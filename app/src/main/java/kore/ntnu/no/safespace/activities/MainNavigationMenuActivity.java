@@ -29,7 +29,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 /**
  * This activity serves as a navigation menu and defines how the user navigates around the application.
  *
- * @author x
+ * @author KORE
  */
 public class MainNavigationMenuActivity extends AppCompatActivity {
 

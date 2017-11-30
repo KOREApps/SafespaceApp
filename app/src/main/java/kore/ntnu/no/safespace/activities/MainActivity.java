@@ -30,7 +30,7 @@ import kore.ntnu.no.safespace.utils.hashfunctions.BCrypt;
  * The purpose of this activity is to serve as the entry point of the application.
  * It is where the user can login to the application.
  *
- * @author x
+ * @author KORE
  */
 public class MainActivity extends AppCompatActivity {
 
