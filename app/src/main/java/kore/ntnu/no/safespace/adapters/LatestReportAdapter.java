@@ -15,7 +15,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Report;
-import kore.ntnu.no.safespace.tasks.TestThread;
+import kore.ntnu.no.safespace.tasks.ImageLoaderTask;
 
 /**
  * The purpose of this class is to serve as an interface between the recycler view that is created
@@ -57,7 +57,7 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
         } else {
             try {
                 holder.imageView.setImageBitmap(Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888));
-                new TestThread(8, bm->holder.imageView.setImageBitmap(bm)).execute(report.getImages().get(0));
+                new ImageLoaderTask(8, bm->holder.imageView.setImageBitmap(bm)).execute(report.getImages().get(0));
 //                holder.imageView.setImageBitmap(ImageUtils.getBitmap(report.getImages().get(0),8));
             } catch (IOException e) {
                 e.printStackTrace();

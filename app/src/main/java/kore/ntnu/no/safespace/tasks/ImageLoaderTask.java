@@ -12,7 +12,7 @@ import kore.ntnu.no.safespace.utils.ImageUtils;
  * Created by Kristoffer on 2017-11-30.
  */
 
-public class TestThread extends AsyncTask<Image,Void,Bitmap> {
+public class ImageLoaderTask extends AsyncTask<Image,Void,Bitmap> {
     private int scale = 8;
 
     @Override
@@ -30,7 +30,7 @@ public class TestThread extends AsyncTask<Image,Void,Bitmap> {
     }
 
     OnImageRead callback;
-    public TestThread(int scaleFactor, OnImageRead callback) throws IOException {
+    public ImageLoaderTask(int scaleFactor, OnImageRead callback) throws IOException {
         this.callback = callback;
         this.scale = scaleFactor;
     }
