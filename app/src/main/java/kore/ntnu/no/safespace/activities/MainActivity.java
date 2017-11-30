@@ -108,12 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void startSender() {
         sender = new InternetConnectionThread(this);
-        System.out.println("haekaksdlkasd");
         if(!sender.isRunning()) {
             sender.start();
-            System.out.println("started");
-        } else {
-            System.out.println("already running");
         }
     }
 
