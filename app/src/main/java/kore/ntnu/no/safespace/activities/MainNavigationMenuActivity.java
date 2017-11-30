@@ -16,8 +16,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import java.io.IOException;
-
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
@@ -46,7 +44,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_navigation_menu);
 
-        if(IdUtils.CURRENT_USER == null) {
+        if (IdUtils.CURRENT_USER == null) {
             IdUtils.CURRENT_USER = (User) getIntent().getSerializableExtra(IdUtils.USER);
         }
 
@@ -65,7 +63,7 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     }
 
     private void getProjects() {
-        if(ConnectionUtil.isConnected(this)){
+        if (ConnectionUtil.isConnected(this)) {
             new GetAllProjectsTask((projects) -> {
                 if (projects.isSuccess()) {
                     Gson gson = new Gson();
@@ -105,30 +103,26 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_logout){
+        if (id == R.id.action_logout) {
             logOutDialog();
         }
-        if(id == R.id.action_maps) {
+        if (id == R.id.action_maps) {
             Intent intent = new Intent(MainNavigationMenuActivity.this, MapsActivity.class);
             startActivity(intent);
         }
-        if(id == R.id.action_GPS) {
-            Intent intent = new Intent (MainNavigationMenuActivity.this, GPSActivity.class);
+        if (id == R.id.action_GPS) {
+            Intent intent = new Intent(MainNavigationMenuActivity.this, GPSActivity.class);
             startActivity(intent);
         }
-        if(id == R.id.file_upload_thing) {
-            try {
-                int listSize = StorageUtils.getDocumentations(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
-                int listSize2 = StorageUtils.getIncidents(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
-                int total = listSize+listSize2;
-                if(total == 0) {
-                    Toast.makeText(getApplicationContext(), "All files has been sent!", Toast.LENGTH_LONG).show();
-                    //optionsMenu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_done_white_48dp));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Documents not sent: " + listSize + "\nReports not sent: " + listSize2, Toast.LENGTH_LONG).show();
-                }
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+        if (id == R.id.file_upload_thing) {
+            int documentsNum = StorageUtils.getDocumentations(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
+            int incidentNum = StorageUtils.getIncidents(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS)).size();
+            int total = documentsNum + incidentNum;
+            if (total == 0) {
+                Toast.makeText(getApplicationContext(), "All files has been sent!", Toast.LENGTH_LONG).show();
+                //optionsMenu.getItem(0).setIcon(getResources().getDrawable(R.drawable.ic_done_white_48dp));
+            } else {
+                Toast.makeText(getApplicationContext(), "Documents not sent: " + documentsNum + "\nReports not sent: " + incidentNum, Toast.LENGTH_LONG).show();
             }
         }
         return super.onOptionsItemSelected(item);
