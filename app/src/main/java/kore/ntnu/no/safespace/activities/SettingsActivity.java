@@ -18,7 +18,7 @@ import kore.ntnu.no.safespace.utils.ApplicationContext;
 /**
  * The purpose if this activity is to display the different kind of settings/options the application has.
  *
- * @author x
+ * @author KORE
  */
 public class SettingsActivity extends AppCompatActivity {
 

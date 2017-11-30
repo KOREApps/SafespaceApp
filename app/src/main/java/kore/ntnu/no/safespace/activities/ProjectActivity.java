@@ -15,7 +15,7 @@ import kore.ntnu.no.safespace.tasks.SendProjectTask;
 /**
  * The purpose of this activity is to create a new project that the users can connect to their reports/documents.
  *
- * @author x
+ * @author KORE
  */
 public class ProjectActivity extends AppCompatActivity {
 

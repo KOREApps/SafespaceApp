@@ -30,7 +30,7 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 /**
  * This purpose of this activity is to display latest reports/documents in a list.
  *
- * @author x
+ * @author Erik
  */
 public class LatestReportActivity extends AppCompatActivity {
 

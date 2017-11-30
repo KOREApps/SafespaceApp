@@ -36,7 +36,7 @@ import kore.ntnu.no.safespace.utils.IdUtils;
 /**
  * The purpose of this activity is to display google maps, search for a location and edit the radius of a location.
  *
- * @author x
+ * @author Oscar
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
