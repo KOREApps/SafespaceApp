@@ -20,7 +20,7 @@ import kore.ntnu.no.safespace.data.IncidentReport;
 import kore.ntnu.no.safespace.data.Report;
 
 /**
- * Class description..
+ * Handles everything that has to do with writing, deleting and reading from disk.
  *
  * @author Kristoffer
  */
