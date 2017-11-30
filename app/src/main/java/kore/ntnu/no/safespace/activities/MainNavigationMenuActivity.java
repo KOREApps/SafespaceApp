@@ -19,7 +19,6 @@ import com.google.gson.Gson;
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.User;
 import kore.ntnu.no.safespace.tasks.GetAllProjectsTask;
-import kore.ntnu.no.safespace.tasks.InternetConnectionThread;
 import kore.ntnu.no.safespace.utils.ConnectionUtil;
 import kore.ntnu.no.safespace.utils.IdUtils;
 import kore.ntnu.no.safespace.utils.StorageUtils;
@@ -54,7 +53,6 @@ public class MainNavigationMenuActivity extends AppCompatActivity {
         latestRepBtn = findViewById(R.id.latestBtn);
         helpBtn = findViewById(R.id.helpBtn);
         settingsBtn = findViewById(R.id.settingsBtn);
-        new InternetConnectionThread(this);
 
         getProjects();
         setUpNavigationButtons();

@@ -26,12 +26,15 @@ import kore.ntnu.no.safespace.utils.StorageUtils;
 public class InternetConnectionThread extends Thread {
     private Context context;
     private HashMap<File, AsyncTask> currentlySending = new HashMap<>();
-    private boolean running = false;
+    private static boolean running = false;
 
     public InternetConnectionThread(Context context) {
         this.context = context;
-        this.running = true;
-        start();
+        running = true;
+    }
+
+    public boolean isRunning() {
+        return running;
     }
 
     @Override
