@@ -1,6 +1,7 @@
 package kore.ntnu.no.safespace.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import kore.ntnu.no.safespace.R;
 import kore.ntnu.no.safespace.data.Report;
-import kore.ntnu.no.safespace.utils.ImageUtils;
+import kore.ntnu.no.safespace.tasks.TestThread;
 
 /**
  * The purpose of this class is to serve as an interface between the recycler view that is created
@@ -55,7 +56,9 @@ public class LatestReportAdapter extends RecyclerView.Adapter<LatestReportAdapte
             holder.imageView.setImageResource(R.mipmap.ic_ss_logo_launcher);
         } else {
             try {
-                holder.imageView.setImageBitmap(ImageUtils.getBitmap(report.getImages().get(0),8));
+                holder.imageView.setImageBitmap(Bitmap.createBitmap(1,1, Bitmap.Config.ARGB_8888));
+                new TestThread(8, bm->holder.imageView.setImageBitmap(bm)).execute(report.getImages().get(0));
+//                holder.imageView.setImageBitmap(ImageUtils.getBitmap(report.getImages().get(0),8));
             } catch (IOException e) {
                 e.printStackTrace();
             }
