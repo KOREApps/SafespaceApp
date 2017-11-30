@@ -1,161 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/docScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0"
     tools:context="kore.ntnu.no.safespace.activities.DocumentActivity">
 
-    <ScrollView
-        android:id="@+id/docScrollView"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:layout_height="wrap_content">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/linearLayout2"
+        <EditText
+            android:id="@+id/docTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="start"
+            android:hint="@string/document_title"
+            android:inputType="textCapSentences"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/docTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:ellipsize="start"
-                android:hint="@string/document_title"
-                android:inputType="textCapSentences"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/projectLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/projectSpinner"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docTitle" />
+
+        <Spinner
+            android:id="@+id/docProject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="start"
+            android:gravity="center_horizontal"
+            android:scrollbarSize="20dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toStartOf="@+id/docTakePhotoBtn"
+            app:layout_constraintStart_toEndOf="@+id/projectLabel"
+            app:layout_constraintTop_toBottomOf="@+id/docTitle" />
+
+        <ImageButton
+            android:id="@+id/docTakePhotoBtn"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/ic_button_background"
+            android:contentDescription="@string/takenPhoto"
+            android:elevation="3dp"
+            android:padding="1dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_camera"
+            app:layout_constraintBottom_toBottomOf="@+id/docProject"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docTitle" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/docTakenPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn" />
+
+        <EditText
+            android:id="@+id/docDescription"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/border_rectangle"
+            android:gravity="start"
+            android:hint="@string/documentation_project_description"
+            android:inputType="textCapSentences|textMultiLine"
+            android:padding="1dp"
+            android:scrollHorizontally="true"
+            android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docTakenPhotos" />
+
+        <Button
+            android:id="@+id/docSubmitDocumentation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ic_button_background"
+            android:elevation="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docDescription" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="92dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.013"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docSubmitDocumentation">
 
             <TextView
-                android:id="@+id/projectLabel"
+                android:id="@+id/docSender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/projectSpinner"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="@string/documentation_sender" />
 
-            <Spinner
-                android:id="@+id/docProject"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:ellipsize="start"
-                android:gravity="center_horizontal"
-                android:scrollbarSize="20dp"
-                android:spinnerMode="dropdown"
-                app:layout_constraintEnd_toStartOf="@+id/docTakePhotoBtn"
-                app:layout_constraintStart_toEndOf="@+id/projectLabel"
-                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
-
-            <ImageButton
-                android:id="@+id/docTakePhotoBtn"
-                android:layout_width="65dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/ic_button_background"
-                android:contentDescription="@string/takenPhoto"
-                android:elevation="3dp"
-                android:padding="1dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_camera"
-                app:layout_constraintBottom_toBottomOf="@+id/docProject"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docTitle" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/docTakenPhotos"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_rectangle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docTakePhotoBtn" />
-
-            <EditText
-                android:id="@+id/docDescription"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_rectangle"
-                android:gravity="start"
-                android:hint="@string/documentation_project_description"
-                android:inputType="textCapSentences|textMultiLine"
-                android:labelFor="@id/docDescription"
-                android:padding="1dp"
-                android:scrollHorizontally="true"
-                android:singleLine="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docTakenPhotos" />
-
-            <Button
-                android:id="@+id/docSubmitDocumentation"
+            <TextView
+                android:id="@+id/docSenderID"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/ic_button_background"
-                android:elevation="3dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/submit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docDescription" />
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/default_user" />
+        </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout2"
-                android:layout_width="92dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.013"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/docSubmitDocumentation">
-
-                <TextView
-                    android:id="@+id/docSender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/documentation_sender" />
-
-                <TextView
-                    android:id="@+id/docSenderID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/default_user" />
-            </RelativeLayout>
-
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
